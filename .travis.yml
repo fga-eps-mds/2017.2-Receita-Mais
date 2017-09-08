@@ -9,15 +9,14 @@ sudo: required
 install:
   - pip install --upgrade pip
   - pip install -r requirements.txt
-  - pip install coveralls
 
 script:
-  - cd medical_prescription
-  - ./manage.py makemigrations
-  - ./manage.py migrate
-  - coverage run ./manage.py test
+  - python3 medical_prescription/manage.py makemigrations
+  - python3 medical_prescription/manage.py migrate
+  - coverage run python3 medical_prescription/manage.py test
 
 after_success:
+  - cd medical_prescription
   - coverage
   - coverage report
   - coveralls
