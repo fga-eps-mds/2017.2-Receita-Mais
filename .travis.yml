@@ -1,0 +1,23 @@
+language:
+  - python
+
+python:
+  - "3.5"
+
+sudo: required
+
+install:
+  - pip install --upgrade pip
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+script:
+  - cd medical_prescription
+  - ./manage.py makemigrations
+  - ./manage.py migrate
+  - coverage run ./manage.py test
+
+after_success:
+  - coverage
+  - coverage report
+  - coveralls
