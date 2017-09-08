@@ -2,4 +2,4 @@
 branch = True
 
 source = user
-omit = */apps.py, */migrations/*, */__init__.py
+omit =  */apps.py, */migrations/*, */__init__.py

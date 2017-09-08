@@ -11,12 +11,11 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - python3 medical_prescription/manage.py makemigrations
-  - python3 medical_prescription/manage.py migrate
-  - coverage run python3 medical_prescription/manage.py test
+  - cd medical_prescription
+  - python3 manage.py makemigrations
+  - python3 manage.py migrate
+  - coverage run manage.py test
 
 after_success:
-  - cd medical_prescription
-  - coverage
   - coverage report
   - coveralls
