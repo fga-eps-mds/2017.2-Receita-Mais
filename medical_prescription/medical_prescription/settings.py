@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'user',
 ]
 
+AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,7 +63,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            'user/template',
+            'medical_prescription/user/template',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -101,6 +105,9 @@ else:
             'PORT': 5432,
         }
     }
+
+AUTH_USER_MODEL = "user.User"
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
