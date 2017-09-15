@@ -6,6 +6,9 @@ python:
 
 sudo: required
 
+notifications:
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
+
 install:
   - pip install --upgrade pip
   - pip install -r requirements.txt
