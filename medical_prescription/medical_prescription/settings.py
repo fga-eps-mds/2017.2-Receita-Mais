@@ -58,10 +58,13 @@ ROOT_URLCONF = 'medical_prescription.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'user/template',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
+            'context_processors':
+            [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
