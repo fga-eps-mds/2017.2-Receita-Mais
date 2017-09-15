@@ -1,46 +1,50 @@
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-
-from time import timezone
+from datetime import date
 
 
 class UserManager(BaseUserManager):
-    def _create_user(self, email, password, is_staff, is_active, is_superuser, **extra_fields):
-        now = timezone.now()
 
-        if not email:
-            raise ValueError('The given email must be set')
+    def create_user(self, email, password=None, **extra_fields):
+        user = self.model(email=self.normalize_email(email),
+                          password=password,
+                          is_active=True,
+                          **extra_fields)
 
-        email = self.normalize_email(email)
-        user = self.model(
-            email=email, is_staff=is_staff, is_active=True, is_superuser=is_superuser,
-            last_login=now, date_join=now, **extra_fields)
         user.set_password(password)
         user.save(using=self.db)
+
         return user
 
-    def create_user(self, email, password, is_staff, is_active, is_superuser, **extra_fields):
-        return self._create_user(self, password, False, False, **extra_fields)
+    def create_superuser(self, email, password, **extra_fields):
+        user = self.model(email=self.normalize_email(email),
+                          password=password,
+                          is_active=True,
+                          is_staff=True,
+                          is_superuser=True,
+                          **extra_fields)
 
-    def create_super_user(self, email, password, is_staff, is_active, is_superuser, **extra_fields):
-        return self._create_user(self, password, True, True, **extra_fields)
+        user.set_password(password)
+        user.save(using=self.db)
+
+        return user
 
 
-class User(AbstractBaseUser):
-    first_name = models.CharField(blank=False, max_length=50)
-    last_name = models.CharField(blank=False, max_length=50)
-    date_of_birth = models.DateField()
-    phone = models.CharField(max_length=11, blank=True)
+class User(AbstractBaseUser, PermissionsMixin):
+    first_name = models.CharField(blank=False, max_length=50, default="")
+    last_name = models.CharField(blank=False, max_length=50, default="")
+    date_of_birth = models.DateField(blank=False, default=date.today)
+    phone = models.CharField(max_length=11, blank=False, default='000')
     email = models.EmailField(unique=True)
-    sex = models.CharField(max_length=10)
+    sex = models.CharField(max_length=1, default='N')
 
-    USER_FIELD = 'email'
-    REQUIER_FIELDS = ['username', 'first_name', 'last_name', 'date_of_birth', 'sex']
+    is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
     objects = UserManager()
-
-    def get_full_name(self):
-        return self.first_name + " " + self.last_name
 
     def get_short_name(self):
         return self.first_name
