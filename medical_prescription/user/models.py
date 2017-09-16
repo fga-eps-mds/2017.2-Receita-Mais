@@ -1,20 +1,23 @@
 # django components
 from django.db import models
-from django.db.models import EmailField
 from django.contrib.auth.base_user import AbstractBaseUser
 
 
-class Email(EmailField):
-
+class Email(models.EmailField):
+    '''
+    Class of Email atribute.
+    '''
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 250
         kwargs['default'] = ''
         kwargs['unique'] = True
-        super(EmailField, self).__init__(*args, **kwargs)
+        super(models.EmailField, self).__init__(*args, **kwargs)
 
 
 class Name(models.CharField):
-
+    '''
+    Class of Name atribute.
+    '''
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 250
         kwargs['default'] = ''
@@ -23,6 +26,10 @@ class Name(models.CharField):
 
 
 class LastName(models.CharField):
+    '''
+    Class of LastName atribute.
+    '''
+
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 250
         kwargs['default'] = ''
@@ -34,7 +41,7 @@ class User (AbstractBaseUser):
 
     '''
     Abstract User.
-'''
+    '''
     USERNAME_FIELD = "email"
 
     name = Name()

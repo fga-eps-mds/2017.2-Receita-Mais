@@ -3,7 +3,7 @@ from django import forms
 
 class UserLoginForm(forms.Form):
     '''
-        Login Form.
+    Login Form.
     '''
 
     email = forms.EmailField()
