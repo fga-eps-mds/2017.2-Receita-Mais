@@ -8,15 +8,6 @@ from django.core.exceptions import ValidationError
 # Local Django.
 from .models import User
 from .import constants
-from user.models import Patient
-
-
-class PatientForm(forms.ModelForm):
-
-    class Meta:
-        model = Patient
-        fields = ('name', 'date_of_birth', 'phone', 'email', 'sex',
-                  'id_document')
 
 
 class PatientRegisterForm(forms.ModelForm):
