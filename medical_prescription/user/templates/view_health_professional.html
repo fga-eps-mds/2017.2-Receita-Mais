@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<h1>Dados de todos os profissionais de saude no sistema</h1>
+
+
+{% for health_professional in health_professionals %}
+
+<p>
+Primeiro Nome: <b>{{ health_professional.user.first_name }}</b>
+<br>
+Sobrenome: <b>{{ health_professional.user.last_name }}</b>
+<br>
+Data de Nascimento:<b>{{ health_professional.user.date_of_birth|date:'d/m/Y'}}</b>
+<br>
+Telefone: <b>{{ health_professional.user.phone }} </b>
+<br>
+Email: <b>{{ health_professional.user.email }}</b>
+<br>
+Sex: <b></b>{{ health_professional.user.sex }}</b>
+
+User id: <b>{{ health_professional.user_id }}</b>
+<br>
+CRM: <b>{{ health_professional.crm }}</b>
+<br>
+Estado da CRM: <b>{{ health_professional.crm_state }}</b>
+</p>
+
+
+{% endfor %}
+   
+</body>
+</html>
