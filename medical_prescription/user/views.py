@@ -1,8 +1,11 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
+from django.contrib import auth
+
 from .forms import UserLoginForm
+
 # import for test.
 from .models import User
-# from django.contrib import auth
+
 
 # render html login.
 
@@ -45,3 +48,8 @@ def login_view(request):
             return render_to_response('message.html', {'message': 'Usuário não foi autenticado'})
 
     return render(request, 'login.html', {'form': form})
+
+
+def logout_view(request):
+    auth.logout(request)
+    return redirect('/home')
