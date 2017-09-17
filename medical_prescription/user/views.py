@@ -1,12 +1,22 @@
 from django.shortcuts import render
+from .models import HealthProfessional
+from .forms import HealthProfessionalForm
 
 
 def register_health_professional(request):
-    return render(request, 'register_health_professional.html')
+    form = HealthProfessionalForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'register_health_professional.html', context)
 
 
 def view_health_professional(request):
-    return render(request, 'view_health_professional.html')
+    health_professionals = HealthProfessional.objects.all()
+    context = {
+        'health_professionals': health_professionals
+    }
+    return render(request, 'view_health_professional.html', context)
 
 
 def edit_health_professional(request):
