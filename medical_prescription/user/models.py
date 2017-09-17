@@ -1,30 +1,54 @@
-from django.db import models
-from django.contrib.auth.base_user import AbstractBaseUser
-from . import constants
 from datetime import date
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.db import models
 
 
-class User(AbstractBaseUser):
-    USERNAME_FIELD = ['email']
-    REQUEIRED_FIELDS = ['name', 'date_of_birth', 'sex', 'email']
+class UserManager(BaseUserManager):
 
+    def create_user(self, email, password=None, **extra_fields):
+        user = self.model(email=self.normalize_email(email),
+                          password=password,
+                          is_active=True,
+                          **extra_fields)
+
+        user.set_password(password)
+        user.save(using=self.db)
+
+        return user
+
+    def create_superuser(self, email, password, **extra_fields):
+        user = self.model(email=self.normalize_email(email),
+                          password=password,
+                          is_active=True,
+                          is_staff=True,
+                          is_superuser=True,
+                          **extra_fields)
+
+        user.set_password(password)
+        user.save(using=self.db)
+
+        return user
+
+
+class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(blank=False, max_length=50, default="")
     date_of_birth = models.DateField(blank=False, default=date.today)
-    phone = models.CharField(max_length=11, blank=False, default='000')
+    phone = models.CharField(max_length=11, blank=True, default='00000000000')
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=1, default='N')
 
     is_active = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name', 'date_of_birth', 'sex']
+    objects = UserManager()
+
+    def get_full_name(self):
+        return self.name
 
 
 class Patient(models.Model):
     patient = models.OneToOneField(User)
-    id_document = models.CharField(blank=False,
-                                   max_length=constants.ID_DOCUMENT_MAX_LENGTH)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Paciente'
-        verbose_name_plural = 'Pacientes'
+    id_document = models.CharField(blank=False, max_length=32)
