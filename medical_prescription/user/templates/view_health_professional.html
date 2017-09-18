@@ -7,9 +7,7 @@
 {% for health_professional in health_professionals %}
 
 <p>
-Primeiro Nome: <b>{{ health_professional.user.first_name }}</b>
-<br>
-Sobrenome: <b>{{ health_professional.user.last_name }}</b>
+Nome: <b>{{ health_professional.user.name }}</b>
 <br>
 Data de Nascimento:<b>{{ health_professional.user.date_of_birth|date:'d/m/Y'}}</b>
 <br>
@@ -19,7 +17,6 @@ Email: <b>{{ health_professional.user.email }}</b>
 <br>
 Sex: <b></b>{{ health_professional.user.sex }}</b>
 
-User id: <b>{{ health_professional.user_id }}</b>
 <br>
 CRM: <b>{{ health_professional.crm }}</b>
 <br>

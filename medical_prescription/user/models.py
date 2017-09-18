@@ -32,10 +32,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(blank=False, max_length=50, default="")
-    last_name = models.CharField(blank=False, max_length=50, default="")
+    name = models.CharField(blank=False, max_length=50, default="")
     date_of_birth = models.DateField(blank=False, default=date.today)
-    phone = models.CharField(max_length=11, blank=False, default='000')
+    phone = models.CharField(max_length=11, blank=True, default='00000000000')
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=1, default='N')
 
@@ -47,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def get_short_name(self):
-        return self.first_name
+        return self.name
 
 
 class HealthProfessional(models.Model):
