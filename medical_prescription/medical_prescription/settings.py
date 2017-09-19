@@ -28,7 +28,7 @@ SECRET_KEY = 'kw&cp#em42$66%lprfln@!25t%(wb9j4gzz%vxaah(v-e8zxbt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medicalprescription.herokuapp.com','localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['medicalprescription.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -43,9 +43,14 @@ INSTALLED_APPS = [
     'user',
 ]
 
-AUTHENTICATION_BACKENDS = [
-        'django.contrib.auth.backends.ModelBackend',
-]
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'medicalprescriptionapp@gmail.com'
+SERVER_EMAIL = 'medicalprescriptionapp@gmail.com@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'medicalprescriptionapp@gmail.com@gmail.com'
+EMAIL_HOST_PASSWORD = 'medicalprescription123'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 AUTH_USER_MODEL = "user.User"
 
@@ -90,7 +95,7 @@ if 'TRAVIS' in os.environ:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres',
-            'PASSWORD':'',
+            'PASSWORD': '',
             'HOST': 'localhost'
         }
     }
@@ -100,7 +105,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres',
-            'PASSWORD':'',
+            'PASSWORD': '',
             'HOST': 'db',
             'PORT': 5432,
         }
