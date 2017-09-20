@@ -48,7 +48,7 @@ DEFAULT_FROM_EMAIL = 'medicalprescriptionapp@gmail.com'
 SERVER_EMAIL = 'medicalprescriptionapp@gmail.com@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'medicalprescriptionapp@gmail.com@gmail.com'
+EMAIL_HOST_USER = 'medicalprescriptionapp@gmail.com'
 EMAIL_HOST_PASSWORD = 'medicalprescription123'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

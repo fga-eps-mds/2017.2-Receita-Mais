@@ -72,11 +72,11 @@ def login_view(request):
 
 
 def reset_password(request):
-    if request.user.id is not None:
-        return redirect('/home')
-    else:
-        # nothing to do
-        pass
+    # if request.user.id is not None:
+    #     return redirect('/home')
+    # else:
+    #     # nothing to do
+    #     pass
 
     form = ResetPasswordForm(request.POST or None)
     if form.is_valid():
@@ -88,33 +88,38 @@ def reset_password(request):
             return render(request, 'message.html', {"message": "usuário não encontrado"})
 
         try:
+
             # Prepare informations to send email
             salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5]
 
             activation_key = hashlib.sha1(str(salt+email).encode('utf‌​-8')).hexdigest()
 
-            key_expires = datetime.datetime.today() + datetime.timedelta(2)
+            key_expires = datetime.datetime.today().astimezone() + datetime.timedelta(2)
 
             new_profile = ResetPasswordProfile(user=user,
                                                activation_key=activation_key,
                                                key_expires=key_expires)
+
             new_profile.save()
 
-            # TODO(lucas kishima) create constants for email_subject and email_body
-
             email_subject = 'Recuperar senha'
-            email_body = """
-                         Usuário: %s, para recuperar sua senha clique no seguinte link
-                         em menos de 48 horas:\nhttp://0.0.0.0:8000/home/recover/%s
-                         """ % (user.username, activation_key)
-
-            send_mail(email_subject, email_body, 'medicalprescriptionapp@gmail.com', [email],
+            email_body = 'Mensagem no email'
+            # email_body = ("""
+            #              Usuário: %s, para recuperar sua senha clique no seguinte link
+            #              em menos de 48 horas:\nhttp://0.0.0.0:8000/home/recover/%s
+            #              """ % (user.username, activation_key))
+            print("======PASSEI POR AQUI=======")
+            send_mail(email_subject,
+                      email_body,
+                      'medicalprescriptionapp@gmail.com',
+                      [email],
                       fail_silently=False)
 
             messages.success(request,
                              'Verifique a caixa de entrada do seu email para recuperar sua senha.')
             return redirect('/home')
         except:
+            print("DEU ERRO")
             messages.error(request, 'um email de recuperação de senha já foi enviado para este endereço!')
             return render(request, 'reset_password.html',
                           {"form": form})
