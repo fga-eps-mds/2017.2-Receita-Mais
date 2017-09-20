@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import HealthProfessional
-from .forms import HealthProfessionalForm, UserForm
+from .forms import HealthProfessionalForm, UserForm, UpdateUserForm
 from .models import User
+from django.views.generic.edit import DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 
 def register_health_professional(request):
@@ -45,16 +47,14 @@ def view_health_professional(request):
     return render(request, 'view_health_professional.html', context)
 
 
-def edit_health_professional(request):
-    user_form = UserForm()
-    hp_form = HealthProfessionalForm()
-    context = {
-        'hp_form': hp_form,
-        'user_form': user_form
-    }
-
-    return render(request, 'edit_health_professional.html', context)
+class DeleteHealthProfessional(DeleteView):
+    model = HealthProfessional
+    success_url = reverse_lazy('view')
+    template_name = 'healthprofessional_confirm_delete.html'
 
 
-def delete_health_professional(request):
-    return render(request, 'delete_health_professional.html')
+class UpdateHealthProfessional(UpdateView):
+    model = User
+    form_class = UpdateUserForm
+    success_url = reverse_lazy('view')
+    template_name = 'edit_health_professional.html'

@@ -33,7 +33,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = [
             'name', 'email', 'date_of_birth', 'phone', 'sex', 'password'
-            ]
+        ]
 
     def clean(self):
         name = self.cleaned_data.get('name')
@@ -47,23 +47,23 @@ class UserForm(forms.ModelForm):
 
         if email_from_database.exists():
             raise ValidationError("Email ja cadastrado!")
-        if len(password) < 6:
+        elif len(password) < 6:
             raise forms.ValidationError("Senha tem que ter mais de 6 caracteres!")
-        if len(password) > 12:
+        elif len(password) > 12:
             raise forms.ValidationError("Senha tem que ter menos de 12 caracteres!")
-        if password != password_confirmation:
+        elif password != password_confirmation:
             raise forms.ValidationError("As senhas não coicidem")
-        if len(email) > 50:
+        elif len(email) > 50:
             raise forms.ValidationError("Email deve conter menos de 50 caracteres!")
-        if len(email) < 5:
+        elif len(email) < 5:
             raise forms.ValidationError("Email deve conter mais de 5 caracteres!")
-        if len(name) > 50:
+        elif len(name) > 50:
             raise forms.ValidationError("Nome deve conter menos de 50 caracteres!")
-        if len(name) < 5:
+        elif len(name) < 5:
             raise forms.ValidationError("Nome deve conter mais de 5 caracteres!")
-        if len(phone) > 11:
+        elif len(phone) > 11:
             raise forms.ValidationError("Telefone deve conter menos de 11 caracteres!")
-        if calculate_age(date_of_birth) < 18:
+        elif calculate_age(date_of_birth) < 18:
             raise forms.ValidationError("O usuario ter mais de 18 anos!")
 
 
@@ -89,3 +89,38 @@ class HealthProfessionalForm(forms.ModelForm):
             raise forms.ValidationError("CRM ja existe!")
         elif number_pattern.findall(crm) == []:
             raise forms.ValidationError("A CRM só pode conter números!")
+
+
+class UpdateUserForm(forms.ModelForm):
+
+    date_of_birth = FormattedDateField(initial=date.today)
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = [
+            'name', 'date_of_birth', 'phone', 'sex', 'password'
+        ]
+
+    def clean(self):
+        name = self.cleaned_data.get('name')
+        phone = self.cleaned_data.get('phone')
+        password = self.cleaned_data.get('password')
+        password_confirmation = self.cleaned_data.get('confirm_password')
+        date_of_birth = self.cleaned_data.get('date_of_birth')
+
+        if len(password) < 6:
+            raise forms.ValidationError("Senha tem que ter mais de 6 caracteres!")
+        elif len(password) > 12:
+            raise forms.ValidationError("Senha tem que ter menos de 12 caracteres!")
+        elif password != password_confirmation:
+            raise forms.ValidationError("As senhas não coicidem")
+        elif len(name) > 50:
+            raise forms.ValidationError("Nome deve conter menos de 50 caracteres!")
+        elif len(name) < 5:
+            raise forms.ValidationError("Nome deve conter mais de 5 caracteres!")
+        elif len(phone) > 11:
+            raise forms.ValidationError("Telefone deve conter menos de 11 caracteres!")
+        elif calculate_age(date_of_birth) < 18:
+            raise forms.ValidationError("O usuario ter mais de 18 anos!")
