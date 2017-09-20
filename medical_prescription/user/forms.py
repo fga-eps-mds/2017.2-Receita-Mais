@@ -33,3 +33,10 @@ class ResetPasswordForm(forms.Form):
         else:
             raise forms.ValidationError('this email is not registered')
         return super(ResetPasswordForm, self).clean(*args, **kwargs)
+
+
+class ConfirmPasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}), label='')
+    password_confirmation = forms.CharField(widget=forms.PasswordInput(
+                            attrs={'placehold': 'password confirmation'}),
+                            label='')

@@ -9,4 +9,5 @@ urlpatterns = (
     url(r'^view/$', views.view_health_professional),
     url(r'^edit/$', views.edit_health_professional),
     url(r'^delete/$', views.delete_health_professional),
+    url(r'^reset_confirm/(?P<activation_key>\w+)/$', views.confirm_password, name='confirm_password'),
 )

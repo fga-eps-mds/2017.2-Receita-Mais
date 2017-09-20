@@ -2,13 +2,17 @@ import hashlib
 import datetime
 import random
 
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.contrib import auth
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.utils import timezone
 
 from .models import HealthProfessional, User, ResetPasswordProfile
-from .forms import HealthProfessionalForm, UserLoginForm, ResetPasswordForm
+from .forms import (HealthProfessionalForm,
+                    UserLoginForm,
+                    ResetPasswordForm,
+                    ConfirmPasswordForm)
 
 # render html login.
 
@@ -94,7 +98,7 @@ def reset_password(request):
 
             activation_key = hashlib.sha1(str(salt+email).encode('utf‌​-8')).hexdigest()
 
-            key_expires = datetime.datetime.today().astimezone() + datetime.timedelta(2)
+            key_expires = datetime.datetime.today() + datetime.timedelta(2)
 
             new_profile = ResetPasswordProfile(user=user,
                                                activation_key=activation_key,
@@ -103,23 +107,20 @@ def reset_password(request):
             new_profile.save()
 
             email_subject = 'Recuperar senha'
-            email_body = 'Mensagem no email'
+            email_body = ('Segue sua chave de ativaçãohttp://0.0.0.0:8000/home/reset_confirm/%s.' % activation_key)
             # email_body = ("""
             #              Usuário: %s, para recuperar sua senha clique no seguinte link
             #              em menos de 48 horas:\nhttp://0.0.0.0:8000/home/recover/%s
             #              """ % (user.username, activation_key))
-            print("======PASSEI POR AQUI=======")
             send_mail(email_subject,
                       email_body,
                       'medicalprescriptionapp@gmail.com',
                       [email],
                       fail_silently=False)
-
             messages.success(request,
                              'Verifique a caixa de entrada do seu email para recuperar sua senha.')
             return redirect('/home')
         except:
-            print("DEU ERRO")
             messages.error(request, 'um email de recuperação de senha já foi enviado para este endereço!')
             return render(request, 'reset_password.html',
                           {"form": form})
@@ -128,6 +129,37 @@ def reset_password(request):
         pass
 
     return render(request, 'reset_password.html', {"form": form})
+
+
+def confirm_password(request, activation_key):
+    form = ConfirmPasswordForm(request.POST or None)
+
+    user_profile = get_object_or_404(ResetPasswordProfile, activation_key=activation_key)
+
+    user = user_profile.user
+
+    if(user_profile.key_expires < timezone.now()):
+        # key expires
+        user.profile.delete()
+        return redirect('/')
+    else:
+        # Nothing to do.
+        pass
+
+    if(request.method == 'POST'):
+        if(form.is_valid()):
+            user.set_password(form.cleaned_data.get('password'))
+            user.save()
+            user_profile.delete()
+            return redirect('/')
+        else:
+            # Nothing to do.
+            pass
+    else:
+        # Nothing to do.
+        pass
+
+    return render(request, 'password_confirm.html', {'form': form})
 
 
 def logout_view(request):

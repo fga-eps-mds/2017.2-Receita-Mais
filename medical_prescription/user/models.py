@@ -57,7 +57,7 @@ class HealthProfessional(models.Model):
 
 
 class ResetPasswordProfile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     activation_key = models.CharField(max_length=40, blank=True)
     key_expires = models.DateTimeField(default=datetime.date.today())
 
