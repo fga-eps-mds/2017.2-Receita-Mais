@@ -12,13 +12,13 @@ def show_homepage(request):
 
 def register_health_professional(request):
     user_form = UserForm(request.POST or None)
-    hp_form = HealthProfessionalForm(request.POST or None)
+    p_form = HealthProfessionalForm(request.POST or None)
     context = {
-        'hp_form': hp_form,
+        'health_professional_form': health_professional_form,
         'user_form': user_form
     }
 
-    if user_form.is_valid() and hp_form.is_valid():
+    if user_form.is_valid() and health_professional_form.is_valid():
         email = user_form.cleaned_data.get('email')
         password = user_form.cleaned_data.get('password')
         name = user_form.cleaned_data.get('name')
@@ -26,8 +26,8 @@ def register_health_professional(request):
         phone = user_form.cleaned_data.get('phone')
         date_of_birth = user_form.cleaned_data.get('date_of_birth')
 
-        crm = hp_form.cleaned_data.get('crm')
-        crm_state = hp_form.cleaned_data.get('crm_state')
+        crm = health_professional_form.cleaned_data.get('crm')
+        crm_state = health_professional_form.cleaned_data.get('crm_state')
 
         User.objects.create_user(
             email=email, password=password, name=name,
