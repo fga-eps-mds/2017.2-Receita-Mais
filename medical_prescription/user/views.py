@@ -6,6 +6,10 @@ from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 
 
+def show_homepage(request):
+    return render(request, 'home.html')
+
+
 def register_health_professional(request):
     user_form = UserForm(request.POST or None)
     hp_form = HealthProfessionalForm(request.POST or None)
