@@ -25,11 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'kw&cp#em42$66%lprfln@!25t%(wb9j4gzz%vxaah(v-e8zxbt'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medicalprescription.herokuapp.com','localhost', '127.0.0.1', '0.0.0.0']
-
+ALLOWED_HOSTS = ['medicalprescription.herokuapp.com', 'localhost', '127.0.0.1',
+                 '0.0.0.0']
+                 
 
 # Application definition
 
@@ -83,7 +85,7 @@ if 'TRAVIS' in os.environ:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres',
-            'PASSWORD':'',
+            'PASSWORD': '',
             'HOST': 'localhost'
         }
     }
@@ -93,7 +95,7 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres',
-            'PASSWORD':'',
+            'PASSWORD': '',
             'HOST': 'db',
             'PORT': 5432,
         }
