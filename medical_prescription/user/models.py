@@ -1,11 +1,13 @@
+from datetime import date
+
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-from datetime import date
+
+from . import constants
 
 
 class UserManager(BaseUserManager):
-
     def create_user(self, email, password=None, **extra_fields):
         user = self.model(email=self.normalize_email(email),
                           password=password,
@@ -32,9 +34,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    name = models.CharField(blank=False, max_length=50, default="")
+    name = models.CharField(blank=False, max_length=constants.NAME_MAX_LENGHT, default="")
     date_of_birth = models.DateField(blank=False, default=date.today)
-    phone = models.CharField(max_length=11, blank=True, default='00000000000')
+    phone = models.CharField(max_length=constants.PHONE_NUMBER_FIELD_LENGTH, blank=True, default='00000000000')
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=1, default='N')
 
@@ -51,5 +53,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class HealthProfessional(models.Model):
     user = models.OneToOneField(User)
-    crm = models.CharField(max_length=10)
-    crm_state = models.CharField(max_length=2)
+    crm = models.CharField(max_length=constants.CRM_LENGTH, unique=True)
+    crm_state = models.CharField(max_length=constants.CRM_STATE_LENGTH)

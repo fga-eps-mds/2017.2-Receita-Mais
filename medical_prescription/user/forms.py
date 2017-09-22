@@ -1,18 +1,11 @@
+import re
+from datetime import date
+
 from django import forms
-from .models import HealthProfessional, User
 from django.core.exceptions import ValidationError
 
-from datetime import date
-import re
-
-
-def calculate_age(born):
-    """
-    This function needs to run unity test.
-    """
-    today = date.today()
-    return today.year - born.year - \
-        ((today.month, today.day) < (born.month, born.day))
+from . import constants
+from .models import HealthProfessional, User
 
 
 class FormattedDateField(forms.DateField):
@@ -45,26 +38,30 @@ class UserForm(forms.ModelForm):
 
         email_from_database = User.objects.filter(email=email)
 
+        today = date.today()
+        born = today.year - date_of_birth.year - \
+            ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+
         if email_from_database.exists():
-            raise ValidationError("Email ja cadastrado!")
-        elif len(password) < 6:
-            raise forms.ValidationError("Senha tem que ter mais de 6 caracteres!")
-        elif len(password) > 12:
-            raise forms.ValidationError("Senha tem que ter menos de 12 caracteres!")
+            raise ValidationError(constants.EMAIL_EXISTS_ERROR)
+        elif len(password) < constants.PASSWORD_MIN_LENGTH:
+            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
+        elif len(password) > constants.PASSWORD_MAX_LENGTH:
+            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
         elif password != password_confirmation:
-            raise forms.ValidationError("As senhas não coicidem")
-        elif len(email) > 50:
-            raise forms.ValidationError("Email deve conter menos de 50 caracteres!")
-        elif len(email) < 5:
-            raise forms.ValidationError("Email deve conter mais de 5 caracteres!")
-        elif len(name) > 50:
-            raise forms.ValidationError("Nome deve conter menos de 50 caracteres!")
-        elif len(name) < 5:
-            raise forms.ValidationError("Nome deve conter mais de 5 caracteres!")
-        elif len(phone) > 11:
-            raise forms.ValidationError("Telefone deve conter menos de 11 caracteres!")
-        elif calculate_age(date_of_birth) < 18:
-            raise forms.ValidationError("O usuario ter mais de 18 anos!")
+            raise forms.ValidationError(constants.PASSWORD_MATCH_ERROR)
+        elif len(email) > constants.EMAIL_MAX_LENGTH:
+            raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
+        elif len(email) < constants.EMAIL_MIN_LENGTH:
+            raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
+        elif len(name) > constants.NAME_MAX_LENGHT:
+            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+        elif len(name) < constants.NAME_MIN_LENGTH:
+            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+        elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
+            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE_ERROR)
+        elif born < constants.DATE_OF_BIRTH_MIN:
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
 
 
 class HealthProfessionalForm(forms.ModelForm):
@@ -81,14 +78,14 @@ class HealthProfessionalForm(forms.ModelForm):
 
         number_pattern = re.compile(r'^[0-9]*$')
 
-        if len(crm) != 5:
-            raise forms.ValidationError("O CRM deve conter 5 caracteres!")
-        elif len(crm_state) != 2:
-            raise forms.ValidationError("O estado do crm deve conter 2 caracteres!")
+        if len(crm) != constants.CRM_LENGTH:
+            raise forms.ValidationError(constants.CRM_SIZE_ERROR)
+        elif len(crm_state) != constants.CRM_STATE_LENGTH:
+            raise forms.ValidationError(constants.CRM_STATE_SIZE_ERROR)
         elif crm_from_database.exists() and crm_state_from_database.exists():
-            raise forms.ValidationError("CRM ja existe!")
+            raise forms.ValidationError(constants.CRM_EXIST_ERROR)
         elif number_pattern.findall(crm) == []:
-            raise forms.ValidationError("A CRM só pode conter números!")
+            raise forms.ValidationError(constants.CRM_FORMAT_ERROR)
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -110,17 +107,21 @@ class UpdateUserForm(forms.ModelForm):
         password_confirmation = self.cleaned_data.get('confirm_password')
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
-        if len(password) < 6:
-            raise forms.ValidationError("Senha tem que ter mais de 6 caracteres!")
-        elif len(password) > 12:
-            raise forms.ValidationError("Senha tem que ter menos de 12 caracteres!")
+        today = date.today()
+        born = today.year - date_of_birth.year - \
+            ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+
+        if len(password) < constants.PASSWORD_MIN_LENGTH:
+            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
+        elif len(password) > constants.PASSWORD_MAX_LENGTH:
+            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
         elif password != password_confirmation:
-            raise forms.ValidationError("As senhas não coicidem")
-        elif len(name) > 50:
-            raise forms.ValidationError("Nome deve conter menos de 50 caracteres!")
-        elif len(name) < 5:
-            raise forms.ValidationError("Nome deve conter mais de 5 caracteres!")
-        elif len(phone) > 11:
-            raise forms.ValidationError("Telefone deve conter menos de 11 caracteres!")
-        elif calculate_age(date_of_birth) < 18:
-            raise forms.ValidationError("O usuario ter mais de 18 anos!")
+            raise forms.ValidationError(constants.PASSWORD_MATCH_ERROR)
+        elif len(name) > constants.NAME_MAX_LENGHT:
+            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+        elif len(name) < constants.NAME_MIN_LENGTH:
+            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+        elif len(phone) > constants.PHONE_NUMBER_SIZE:
+            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE_ERROR)
+        elif born < constants.DATE_OF_BIRTH_MIN:
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
