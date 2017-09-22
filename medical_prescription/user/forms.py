@@ -3,9 +3,9 @@ from datetime import date
 
 # Django
 from django import forms
-
 # local Django
 from .models import Patient, User
+
 from django.core.exceptions import ValidationError
 import re
 from .import constants
