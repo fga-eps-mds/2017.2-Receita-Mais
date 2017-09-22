@@ -1,5 +1,7 @@
+# standard library
 from datetime import date
 
+# Django
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -55,3 +57,9 @@ class HealthProfessional(models.Model):
     user = models.OneToOneField(User)
     crm = models.CharField(max_length=constants.CRM_LENGTH, unique=True)
     crm_state = models.CharField(choices=constants.UF_CHOICE, max_length=constants.CRM_STATE_LENGTH, default='DF')
+
+
+class Patient(User):
+    id_document = models.CharField(blank=False, max_length=32, default='')
+
+    objects = UserManager()

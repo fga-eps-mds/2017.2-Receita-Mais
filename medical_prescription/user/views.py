@@ -1,10 +1,10 @@
+# Django
 from django.shortcuts import render
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 
-from .forms import HealthProfessionalForm, UserForm, UpdateUserForm
-from .models import HealthProfessional
-from .models import User
+from .forms import HealthProfessionalForm, UserForm, UpdateUserForm, PatientForm
+from .models import Patient, HealthProfessional, User
 
 
 def show_homepage(request):
@@ -63,3 +63,41 @@ class UpdateHealthProfessional(UpdateView):
     form_class = UpdateUserForm
     success_url = reverse_lazy('view')
     template_name = 'edit_health_professional.html'
+
+
+def register_patient(request):
+    patient_form = PatientForm(request.POST or None)
+    context = {
+        'patient_form': patient_form
+        }
+
+    if patient_form.is_valid():
+        email = patient_form.cleaned_data.get('email')
+        password = patient_form.cleaned_data.get('password')
+        name = patient_form.cleaned_data.get('name')
+        sex = patient_form.cleaned_data.get('sex')
+        phone = patient_form.cleaned_data.get('phone')
+        date_of_birth = patient_form.cleaned_data.get('date_of_birth')
+        id_document = patient_form.cleaned_data.get('id_document')
+
+        Patient.objects.create_user(email=email, password=password, name=name,
+                                    sex=sex, date_of_birth=date_of_birth,
+                                    phone=phone, id_document=id_document)
+
+    return render(request, 'register_patient.html', context)
+
+
+def view_patient(request):
+    patients = Patient.objects.all()
+    print(patients)
+    context = {
+        'patients': patients
+    }
+    return render(request, 'view_patient.html', context)
+
+
+class UpdatePatient(UpdateView):
+    model = Patient
+    form_class = PatientForm
+    success_url = reverse_lazy('view')
+    template_name = 'edit_patient.html'

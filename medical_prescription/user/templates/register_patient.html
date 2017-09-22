@@ -1,0 +1,13 @@
+<html>
+
+<head>
+
+  <body>
+    <form method='POST' action=''>
+      {% csrf_token %} {{ patient_form.as_p }}
+      <input type='submit' value='Criar' />
+    </form>
+  </body>
+</head>
+
+</html>

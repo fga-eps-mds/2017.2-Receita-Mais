@@ -6,10 +6,10 @@ CRM_LENGTH = 5
 CRM_STATE_LENGTH = 2
 
 # CRM MESSAGES VALIDATION MESSAGES.
-CRM_SIZE_ERROR = 'CRM must have 5 characters.'
-CRM_STATE_SIZE_ERROR = 'CRM must have 2 characters.'
-CRM_FORMAT_ERROR = 'CRM must contain /only numbers.'
-CRM_EXIST_ERROR = 'CRM already exists'
+CRM_SIZE = 'CRM must have 5 characters.'
+CRM_STATE_SIZE = 'CRM must have 2 characters.'
+CRM_FORMAT = 'CRM must contain /only numbers.'
+CRM_EXIST = 'CRM already exists'
 
 # UF FIELDS.
 UF = "UF"
@@ -49,37 +49,37 @@ NAME_FIELD_LENGTH = 50
 NAME_MIN_LENGTH = 5
 NAME_MAX_LENGHT = 50
 
-# NAME VALIDATION MESSAGES.
-NAME_CHARACTERS_ERROR = 'Name must not contain special characters'
-NAME_FORMAT_ERROR = 'Name must contain only letters'
-NAME_SIZE_ERROR = 'Name must be between 5 and 50 characters'
+# NAME VALIDATION MESSAGES
+NAME_CHARACTERS = 'Name must not contain special characteres'
+NAME_FORMAT = 'Name must contain o nly letters'
+NAME_SIZE = 'Name must be between 5 and 50 characteres'
 
-# EMAIL FIELDS.
+# EMAIL FIELDS
 EMAIL = "E-mail"
 EMAIL_FIELD_LENGTH = 50
 EMAIL_MIN_LENGTH = 5
 EMAIL_MAX_LENGTH = 50
 
 # EMAIL VALIDATION MESSAGES.
-EMAIL_FORMAT_ERROR = "E-mail must be a valid e-mail. Example: example@example.com"
-EMAIL_SIZE_ERROR = "E-mail must be between 5 and 50 characters"
-EMAIL_EXISTS_ERROR = "Email already exists"
+EMAIL_FORMAT = "E-mail must be a valid e-mail. Example: example@example.com"
+EMAIL_SIZE = "E-mail must be between 5 and 50 characters"
+EMAIL_EXISTS = "Email already exists"
 
 # DATE_OF_BIRTH FIELDS.
 DATE_OF_BIRTH = "Date of birth"
 DATE_OF_BIRTH_MIN = 18
 
 # DATE_OF_BIRTH VALIDATION MESSAGES.
-DATE_OF_BIRTH_FORMAT_ERROR = "Date of birth must be in format: dd/mm/yyyy"
-DATE_OF_BIRTH_MIN_ERROR = "User must be 18 years"
+DATE_OF_BIRTH_FORMAT = "Date of birth must be in format: dd/mm/yyyy"
+DATE_OF_BIRTH_MIN = "User must be 18 years"
 
 # PHONE_NUMBER FIELDS.
 PHONE_NUMBER = "Phone number"
 PHONE_NUMBER_FIELD_LENGTH = 11
 
 # PHONE_NUMBER VALIDATION MESSAGES.
-PHONE_NUMBER_SIZE_ERROR = 'Phone number must contain a maximum of 11 characters'
-PHONE_NUMBER_FORMAT_ERROR = 'Phone number must contain only numbers'
+PHONE_NUMBER_SIZE = 'Phone number must contain a maximum of 11 characters'
+PHONE_NUMBER_FORMAT = 'Phone number must contain only numbers'
 
 # SEX FIELDS.
 SEX = 'Sex'
@@ -89,7 +89,7 @@ SEX_F = 'F'
 SEX_CHOICE = ((SEX_M, 'Masculino'), (SEX_F, 'Feminino'))
 
 # SEX VALIDATION MESSAGES.
-SEX_VALUE_ERROR = "Sex must be M for male F for female"
+SEX_VALUE = "Sex must be M for male F for female"
 
 # PASSWORD and PASSWORD CONFIRMATION FIELDS.
 PASSWORD = 'Password'
@@ -99,5 +99,18 @@ PASSWORD_MIN_LENGTH = 6
 PASSWORD_MAX_LENGTH = 12
 
 # PASSWORD VALIDATION MESSAGES.
-PASSWORD_SIZE_ERROR = 'Password must be between 6 and 12 characters.'
-PASSWORD_MATCH_ERROR = 'Passwords do not match'
+PASSWORD_SIZE= 'Password must be between 6 and 12 characters.'
+PASSWORD_MATCH = 'Passwords do not match'
+
+# PASSWORD VALIDATION MESSAGES
+PASSWORD_SIZE = 'Password must be between 6 and 12 characteres.'
+PASSWORD_MATCH = 'Passwords do not match'
+
+# ID DOCUMENT FIELD.
+ID_DOCUMENT = 'Id Document'
+ID_DOCUMENT_LENGTH = 32
+ID_DOCUMENT_MIN_LENGTH = 10
+ID_DOCUMENT_MAX_LENGTH = 32
+
+# ID DOCUMENT FIELD VALIDATION MESSAGES.
+ID_DOCUMENT_SIZE = 'You id document must be between 10 and 32 characteres'

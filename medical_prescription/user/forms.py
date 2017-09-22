@@ -5,7 +5,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from . import constants
-from .models import HealthProfessional, User
+from .models import HealthProfessional, Patient, User
 
 
 class FormattedDateField(forms.DateField):
@@ -45,28 +45,28 @@ class UserForm(forms.ModelForm):
             ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
         if email_from_database.exists():
-            raise ValidationError(constants.EMAIL_EXISTS_ERROR)
+            raise ValidationError(constants.EMAIL_EXISTS)
         elif len(password) < constants.PASSWORD_MIN_LENGTH:
-            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
+            raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif len(password) > constants.PASSWORD_MAX_LENGTH:
-            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
+            raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif password != password_confirmation:
-            raise forms.ValidationError(constants.PASSWORD_MATCH_ERROR)
+            raise forms.ValidationError(constants.PASSWORD_MATCH)
         elif len(name) > constants.NAME_MAX_LENGHT:
-            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+            raise forms.ValidationError(constants.NAME_SIZE)
         elif len(name) < constants.NAME_MIN_LENGTH:
-            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+            raise forms.ValidationError(constants.NAME_SIZE)
         elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
-            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE_ERROR)
+            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
-            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN)
         elif email is None:
             raise forms.ValidationError("email inválido")
         else:
             if len(email) > constants.EMAIL_MAX_LENGTH:
-                raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
+                raise forms.ValidationError(constants.EMAIL_SIZE)
             elif len(email) < constants.EMAIL_MIN_LENGTH:
-                raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
+                raise forms.ValidationError(constants.EMAIL_SIZE)
 
 
 class HealthProfessionalForm(forms.ModelForm):
@@ -84,13 +84,31 @@ class HealthProfessionalForm(forms.ModelForm):
         number_pattern = re.compile(r'^[0-9]*$')
 
         if len(crm) != constants.CRM_LENGTH:
-            raise forms.ValidationError(constants.CRM_SIZE_ERROR)
+            raise forms.ValidationError(constants.CRM_SIZE)
         elif len(crm_state) != constants.CRM_STATE_LENGTH:
-            raise forms.ValidationError(constants.CRM_STATE_SIZE_ERROR)
+            raise forms.ValidationError(constants.CRM_STATE_SIZE)
         elif crm_from_database.exists() and crm_state_from_database.exists():
-            raise forms.ValidationError(constants.CRM_EXIST_ERROR)
+            raise forms.ValidationError(constants.CRM_EXIST)
         elif number_pattern.findall(crm) == []:
-            raise forms.ValidationError(constants.CRM_FORMAT_ERROR)
+            raise forms.ValidationError(constants.CRM_FORMAT)
+
+
+class PatientForm(UserForm):
+
+    class Meta:
+        model = Patient
+        fields = [
+                'name', 'email', 'date_of_birth', 'phone', 'sex',
+                'id_document', 'password'
+                ]
+
+    def clean(self):
+        id_document = self.cleaned_data.get('id_document')
+
+        if len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
+            raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
+        elif len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH:
+            raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -117,16 +135,16 @@ class UpdateUserForm(forms.ModelForm):
             ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
 
         if len(password) < constants.PASSWORD_MIN_LENGTH:
-            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
+            raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif len(password) > constants.PASSWORD_MAX_LENGTH:
-            raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
+            raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif password != password_confirmation:
-            raise forms.ValidationError(constants.PASSWORD_MATCH_ERROR)
+            raise forms.ValidationError(constants.PASSWORD_MATCH)
         elif len(name) > constants.NAME_MAX_LENGHT:
-            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+            raise forms.ValidationError(constants.NAME_SIZE)
         elif len(name) < constants.NAME_MIN_LENGTH:
-            raise forms.ValidationError(constants.NAME_SIZE_ERROR)
+            raise forms.ValidationError(constants.NAME_SIZE)
         elif len(phone) > constants.PHONE_NUMBER_SIZE:
-            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE_ERROR)
+            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
-            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN)
