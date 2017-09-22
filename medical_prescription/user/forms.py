@@ -21,6 +21,7 @@ class UserForm(forms.ModelForm):
     date_of_birth = FormattedDateField(initial=date.today)
     password = forms.CharField(widget=forms.PasswordInput())
     confirm_password = forms.CharField(widget=forms.PasswordInput())
+    email = forms.EmailField(widget=forms.EmailInput())
 
     class Meta:
         model = User
@@ -41,6 +42,7 @@ class UserForm(forms.ModelForm):
         today = date.today()
         born = today.year - date_of_birth.year - \
             ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        print(email)
 
         if email_from_database.exists():
             raise ValidationError(constants.EMAIL_EXISTS_ERROR)
@@ -50,10 +52,6 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError(constants.PASSWORD_SIZE_ERROR)
         elif password != password_confirmation:
             raise forms.ValidationError(constants.PASSWORD_MATCH_ERROR)
-        elif len(email) > constants.EMAIL_MAX_LENGTH:
-            raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
-        elif len(email) < constants.EMAIL_MIN_LENGTH:
-            raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
         elif len(name) > constants.NAME_MAX_LENGHT:
             raise forms.ValidationError(constants.NAME_SIZE_ERROR)
         elif len(name) < constants.NAME_MIN_LENGTH:
@@ -62,6 +60,13 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE_ERROR)
         elif born < constants.DATE_OF_BIRTH_MIN:
             raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
+        elif email is None:
+            raise forms.ValidationError("email inválido")
+        else:
+            if len(email) > constants.EMAIL_MAX_LENGTH:
+                raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
+            elif len(email) < constants.EMAIL_MIN_LENGTH:
+                raise forms.ValidationError(constants.EMAIL_SIZE_ERROR)
 
 
 class HealthProfessionalForm(forms.ModelForm):

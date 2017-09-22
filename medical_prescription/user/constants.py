@@ -13,6 +13,35 @@ CRM_EXIST_ERROR = 'CRM already exists'
 
 # UF FIELDS
 UF = "UF"
+UF_CHOICE = (
+    ('AC', 'AC'),
+    ('AL', 'AL'),
+    ('AP', 'AP'),
+    ('AM', 'AM'),
+    ('BA', 'BA'),
+    ('CE', 'CE'),
+    ('DF', 'DF'),
+    ('ES', 'ES'),
+    ('GO', 'GO'),
+    ('MA', 'MA'),
+    ('MT', 'MT'),
+    ('MS', 'MS'),
+    ('MG', 'MG'),
+    ('PA', 'PA'),
+    ('PB', 'PB'),
+    ('PR', 'PR'),
+    ('PE', 'PE'),
+    ('PI', 'PI'),
+    ('RJ', 'RJ'),
+    ('RN', 'RN'),
+    ('RS', 'RS'),
+    ('RO', 'RO'),
+    ('RR', 'RR'),
+    ('SC', 'SC'),
+    ('SP', 'SP'),
+    ('SE', 'SE'),
+    ('TO', 'TO'),
+)
 
 # NAME FIELDS
 NAME = "Name"
@@ -54,6 +83,10 @@ PHONE_NUMBER_FORMAT_ERROR = 'Phone number must contain only numbers'
 
 # SEX FIELDS
 SEX = 'Sex'
+SEX_M = 'M'
+SEX_F = 'F'
+
+SEX_CHOICE = ((SEX_M, 'Masculino'), (SEX_F, 'Feminino'))
 
 # SEX VALIDATION MESSAGES
 SEX_VALUE_ERROR = "Sex must be M for male F for female"

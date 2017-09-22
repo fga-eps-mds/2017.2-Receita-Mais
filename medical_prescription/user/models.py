@@ -38,7 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_of_birth = models.DateField(blank=False, default=date.today)
     phone = models.CharField(max_length=constants.PHONE_NUMBER_FIELD_LENGTH, blank=True, default='00000000000')
     email = models.EmailField(unique=True)
-    sex = models.CharField(max_length=1, default='N')
+    sex = models.CharField(choices=constants.SEX_CHOICE, max_length=10, default=constants.SEX_M)
 
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -54,4 +54,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 class HealthProfessional(models.Model):
     user = models.OneToOneField(User)
     crm = models.CharField(max_length=constants.CRM_LENGTH, unique=True)
-    crm_state = models.CharField(max_length=constants.CRM_STATE_LENGTH)
+    crm_state = models.CharField(choices=constants.UF_CHOICE, max_length=constants.CRM_STATE_LENGTH, default='DF')
