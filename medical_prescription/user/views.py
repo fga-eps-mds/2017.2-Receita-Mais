@@ -2,11 +2,13 @@ import hashlib
 import datetime
 import random
 
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.utils import timezone
+from django.views.generic import FormView
+from django.http import HttpResponse
 
 from .models import HealthProfessional, User, ResetPasswordProfile
 from .forms import (HealthProfessionalForm,
@@ -19,10 +21,9 @@ def register_view(request):
     '''
     Function to register a user in the database.
     '''
-    # Get form.
+
     form = UserLoginForm(request.POST or None)
 
-    # If the form is valid, create a user.
     if form.is_valid():
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
@@ -35,45 +36,45 @@ def register_view(request):
     return render(request, "register.html", {"form": form})
 
 
-def login_view(request):
-    '''
-    Render Login template.
-    '''
+class LoginView(FormView):
+    form_class = UserLoginForm
+    template_name = 'login.html'
 
-    if request.user.id is not None:
-        print("Id is not None")
-    else:
-        # Nothing to do
-        pass
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
 
-    form = UserLoginForm(request.POST or None)
+    def post(self, request, *args, **kwargs):
 
-    # If POST request the method login user.
-    if request.method == 'POST':
+        form = self.form_class(request.POST)
+
         if form.is_valid():
+            user = auth.authenticate(
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password'],
+            )
 
-            # Get form information.
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-
-            # Authenticate the user.
-            user = auth.authenticate(email=email, password=password)
-
-            # Case user is authentic login.
-            if(user is not None):
-                if user.is_active:
-                    auth.login(request, user)
-                    return render_to_response('message.html', {'message': 'Usuário logou'})
-                else:
-                    return render_to_response('message.html', {'message'}, 'Usuário não ativo')
-            else:
-                return render_to_response('message.html', {'message': 'O usuário não foi autenticado'})
+            LoginView.user_authentication(request, user)
 
         else:
-            # Not authenticate
-            return render_to_response('message.html', {'message': 'formulário não é valido'})
-    else:
-        return render(request, 'login.html', {'form': form})
+
+            return HttpResponse('Invalid Form')
+
+    def user_authentication(request, user):
+        '''
+        If the user is authenticated this method log the user.
+        '''
+        success_url = '/home'
+
+        if user is not None:
+            if user.is_active:
+                auth.login(request, user)
+                return redirect(str(success_url))
+            else:
+                # do nothing
+                pass
+        else:
+            return HttpResponse('User is not active')
 
 
 def reset_password(request):
@@ -81,7 +82,7 @@ def reset_password(request):
     Send an e-mail to reset user password.
     '''
 
-    # Get form information.
+    # Get form information
     form = ResetPasswordForm(request.POST or None)
 
     if form.is_valid():
