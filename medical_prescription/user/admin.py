@@ -1,6 +1,9 @@
 from django.contrib import admin
-from user.models import Patient
+from .models import User
 
-# Register your models here.
 
-admin.site.register(Patient)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['email', 'is_active']
+
+
+admin.site.register(User, UserAdmin)
