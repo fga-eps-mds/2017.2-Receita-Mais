@@ -45,6 +45,12 @@ INSTALLED_APPS = [
     'user',
 ]
 
+AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+]
+
+AUTH_USER_MODEL = "user.User"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -60,7 +66,7 @@ ROOT_URLCONF = 'medical_prescription.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['user/template'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,6 +85,7 @@ WSGI_APPLICATION = 'medical_prescription.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+<<<<<<< HEAD
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
@@ -99,7 +106,17 @@ else:
             'HOST': 'db',
             'PORT': 5432,
         }
+=======
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+>>>>>>> 42b3c2eb1d8f1ff6864b649d12cab467b262fa3b
     }
+}
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

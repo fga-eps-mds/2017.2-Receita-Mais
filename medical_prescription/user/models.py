@@ -57,7 +57,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.name
 
-
 class Patient(models.Model):
     patient = models.OneToOneField(User)
     id_document = models.CharField(blank=False, max_length=32, default='')
