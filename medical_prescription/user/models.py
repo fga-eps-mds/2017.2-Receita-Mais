@@ -1,4 +1,7 @@
+# standard library
 from datetime import date
+
+# Django
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -42,13 +45,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name', 'date_of_birth', 'sex']
+    REQUIRED_FIELDS = []
     objects = UserManager()
 
-    def get_full_name(self):
+    def get_short_name(self):
         return self.name
-
 
 class Patient(models.Model):
     patient = models.OneToOneField(User)
-    id_document = models.CharField(blank=False, max_length=32)
+    id_document = models.CharField(blank=False, max_length=32, default='')
