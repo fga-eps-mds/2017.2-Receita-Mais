@@ -39,10 +39,10 @@ class UserForm(forms.ModelForm):
 
         email_from_database = User.objects.filter(email=email)
 
+        # TODO(Mateus) Refactor date calculation.
         today = date.today()
         born = today.year - date_of_birth.year - \
             ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
-        print(email)
 
         if email_from_database.exists():
             raise ValidationError(constants.EMAIL_EXISTS_ERROR)
