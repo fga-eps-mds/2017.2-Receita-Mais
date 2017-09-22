@@ -1,19 +1,67 @@
-"""This is a constant file."""
-# NAME FIELDS.
-NAME = 'Name'
-NAME_FIELD_LENGTH = 55
+#Constants file
+
+# CRM FIELDS
+CRM = 'CRM'
+CRM_LENGTH = 5
+
+# CRM MESSAGES VALIDATION MESSAGES
+CRM_SIZE = 'CRM must have 5 characteres.'
+CRM_FORMAT = 'CRM must contain /only numbers.'
+
+# UF FIELDS
+UF = "UF"
+
+# NAME FIELDS
+NAME = "Name"
+NAME_FIELD_LENGTH = 50
 NAME_MIN_LENGTH = 5
 NAME_MAX_LENGHT = 50
 
 # NAME VALIDATION MESSAGES
-NAME_CHARACTERS = 'Your name can\'t have special characters'
-NAME_FORMAT = 'Your name must have just letters'
+NAME_CHARACTERS = 'Name must not contain special characteres'
+NAME_FORMAT = 'Name must contain o nly letters'
 NAME_SIZE = 'Name must be between 5 and 50 characteres'
 
-# DATE OF BIRTH FIELDS.
-DATE_OF_BIRTH = 'Birth Date'
-# DATE OF BIRTH VALIDATION MESSAGES.
-DATE_OF_BIRTH_FORMAT = 'Invalid birth date'
+# EMAIL FIELDS
+EMAIL = "E-mail"
+EMAIL_FIELD_LENGTH = 50
+EMAIL_MIN_LENGTH = 5
+EMAIL_MAX_LENGTH = 50
+
+# EMAIL VALIDATION MESSAGES
+EMAIL_FORMAT = 'E-mail must be a valid e-mail. Example: example@example.com'
+EMAIL_SIZE = 'E-mail must be between 5 and 50 characteres'
+
+# DATE_OF_BIRTH FIELDS
+DATE_OF_BIRTH = "Date of birth"
+
+# DATE_OF_BIRTH VALIDATION MESSAGES
+DATE_OF_BIRTH_FORMAT = "Date of birth must be in format: dd/mm/yyyy"
+
+# PHONE_NUMBER FIELDS
+PHONE_NUMBER = "Phone number"
+PHONE_NUMBER_FIELD_LENGTH = 11
+
+# PHONE_NUMBER VALIDATION MESSAGES
+PHONE_NUMBER_SIZE = 'Phone number must contain a maximum of 11 characteres'
+PHONE_NUMBER_FORMAT = 'Phone number must contain only numbers'
+
+# SEX FIELDS
+SEX = 'Sex'
+
+# SEX VALIDATION MESSAGES
+SEX_VALUE = "Sex must be M for male F for female"
+
+# PASSWORD and PASSWORD CONFIRMATION FIELDS
+PASSWORD = 'Password'
+PASSWORD_CONFIRMATION = 'Confirm password'
+PASSWORD_FIELD_LENGTH = 12
+PASSWORD_MIN_LENGTH = 6
+PASSWORD_MAX_LENGTH = 12
+
+# PASSWORD VALIDATION MESSAGES
+PASSWORD_SIZE = 'Password must be between 6 and 12 characteres.'
+PASSWORD_MATCH = 'Passwords do not match'
 
 # ID DOCUMENT FIELD.
 ID_DOCUMENT = 'Id Document'
@@ -23,40 +71,3 @@ ID_DOCUMENT_MAX_LENGTH = 32
 
 # ID DOCUMENT FIELD VALIDATION MESSAGES.
 ID_DOCUMENT_SIZE = 'You id document must be between 10 and 32 characteres'
-
-# PHONE NUMBER FIELDS.
-PHONE_NUMBER = 'Phone Number'
-PHONE_NUMBER_LENGTH = 11
-PHONE_NUMBER_MIN_LENGTH = 10
-PHONE_NUMBER_MAX_LENGTH = 11
-
-# PHONE NUMBER VALIDATION MESSAGES.
-PHONE_NUMBER_SIZE = 'Your phone number must be between 10 and 11 numbers'
-PHONE_NUMBER_FORMAT = 'Your phone number must have just numbers'
-
-# PASSWORDS FIELDS.
-PASSWORD = 'Password'
-PASSWORD_FIELD_LENGTH = 30
-PASSWORD_MIN_LENGTH = 8
-PASSWORD_MAX_LENGTH = 12
-
-# PASSWORD VALIDATION MESSAGES.
-PASSWORD_SIZE = 'Password must be between 8 and 12 characters'
-PASSWORD_NOT_EQUAL = 'Passwords do not match.'
-
-# SEX FIELDS.
-SEX = 'Sex'
-
-# SEX VALIDATION MESSAGES.
-
-
-"""
--RN01	Nome	String (5 a 50 caracteres)	Sim	--
--RN02	Data de Nascimento	Data (10 caracteres)	Sim	dd/mm/yyyy
--RN03	Documento de identificação(CPF, Certidão de nascimento ou RG)
-String de até 32 caracteres	Sim	999.000.999-00
--RN04	Número de Telefone	String (até 11 caracteres)	Não	6199999999
--RN05	Senha	String (6 a 12 caracteres alfanuméricos)	Sim	--
--RN06	Confirmação de Senha	String (6 a 12 caracteres alfanuméricos)	Sim	--
--RN07	Sexo	Caixa de seleção	Sim	M ou F
-"""
