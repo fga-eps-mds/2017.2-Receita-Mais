@@ -67,23 +67,23 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError("Nome deve conter mais de 5 caracteres!")
         elif len(phone) > 11:
             raise forms.ValidationError("Telefone deve conter menos de 11 caracteres!")
-        elif calculate_age(date_of_birth) < 18:
-            raise forms.ValidationError("O usuario ter mais de 18 anos!")
 
 
-class PatientForm(forms.ModelForm):
+class PatientForm(UserForm):
 
     class Meta:
         model = Patient
-        fields = ['id_document']
+        fields = [
+                'name', 'email', 'date_of_birth', 'phone', 'sex',
+                'id_document', 'password'
+                ]
 
     def clean(self):
-
         id_document = self.cleaned_data.get('id_document')
 
         if len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
-        elif len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH_MIN_LENGTH:
+        elif len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
 
 

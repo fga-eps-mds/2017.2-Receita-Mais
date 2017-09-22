@@ -9,24 +9,24 @@ from django.db import models
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, password=None, **kwargs):
         user = self.model(email=self.normalize_email(email),
                           password=password,
                           is_active=True,
-                          **extra_fields)
+                          **kwargs)
 
         user.set_password(password)
         user.save(using=self.db)
 
         return user
 
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, email, password, **kwargs):
         user = self.model(email=self.normalize_email(email),
                           password=password,
                           is_active=True,
                           is_staff=True,
                           is_superuser=True,
-                          **extra_fields)
+                          **kwargs)
 
         user.set_password(password)
         user.save(using=self.db)
@@ -57,6 +57,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.name
 
-class Patient(models.Model):
-    patient = models.OneToOneField(User)
+
+class Patient(User):
     id_document = models.CharField(blank=False, max_length=32, default='')
+
+    objects = UserManager()

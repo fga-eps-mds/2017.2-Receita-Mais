@@ -4,7 +4,7 @@
 
   <body>
     <form method='POST' action=''>
-      {% csrf_token %} {{ user_form.as_p }} {{ patient_form.as_p }}
+      {% csrf_token %} {{ patient_form.as_p }}
       <input type='submit' value='Criar' />
     </form>
   </body>

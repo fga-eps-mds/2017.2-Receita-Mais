@@ -47,49 +47,38 @@ def register_health_professional(request):
 
 
 def register_patient(request):
-    user_form = UserForm(request.POST or None)
     patient_form = PatientForm(request.POST or None)
     context = {
-        'patient_form': patient_form,
-        'user_form': user_form
-    }
+        'patient_form': patient_form
+        }
 
-    if user_form.is_valid() and patient_form.is_valid():
-        email = user_form.cleaned_data.get('email')
-        password = user_form.cleaned_data.get('password')
-        name = user_form.cleaned_data.get('name')
-        sex = user_form.cleaned_data.get('sex')
-        phone = user_form.cleaned_data.get('phone')
-        date_of_birth = user_form.cleaned_data.get('date_of_birth')
+    if patient_form.is_valid():
+        email = patient_form.cleaned_data.get('email')
+        password = patient_form.cleaned_data.get('password')
+        name = patient_form.cleaned_data.get('name')
+        sex = patient_form.cleaned_data.get('sex')
+        phone = patient_form.cleaned_data.get('phone')
+        date_of_birth = patient_form.cleaned_data.get('date_of_birth')
         id_document = patient_form.cleaned_data.get('id_document')
 
-        User.objects.create_user(
-            email=email, password=password, name=name,
-            sex=sex, date_of_birth=date_of_birth, phone=phone)
-
-        user = User.objects.get(email=email)
-
-        patient = Patient(user=user, id_document=id_document)
-
-        patient.save()
+        Patient.objects.create_user(email=email, password=password, name=name,
+                                    sex=sex, date_of_birth=date_of_birth,
+                                    phone=phone, id_document=id_document)
 
     return render(request, 'register_patient.html', context)
 
 
 def view_patient(request):
     patients = Patient.objects.all()
+    print(patients)
     context = {
-        'patient': patients
+        'patients': patients
     }
     return render(request, 'view_patient.html', context)
 
-class DeletePatient(DeleteView):
-    model = Patient
-    success_url = reverse_lazy('view')
-    template_name = 'patient_confirm_delete.html'
 
 class UpdatePatient(UpdateView):
-    model = User
-    form_class = UpdateUserForm
+    model = Patient
+    form_class = PatientForm
     success_url = reverse_lazy('view')
     template_name = 'edit_patient.html'
