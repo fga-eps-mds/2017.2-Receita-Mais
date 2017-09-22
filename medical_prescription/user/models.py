@@ -39,7 +39,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_of_birth = models.DateField(blank=False, default=date.today)
     phone = models.CharField(max_length=11, blank=True, default='00000000000')
     email = models.EmailField(unique=True)
-    sex = models.CharField(max_length=1, default='N')
+
+    SEX_CHOICES = (
+        ('F', 'Feminino'),
+        ('M', 'Masculino'),
+    )
+
+    sex = models.CharField(blank=False, max_length=1, choices=SEX_CHOICES)
 
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 # standard library
 from datetime import date
 
@@ -118,3 +120,4 @@ class UpdateUserForm(forms.ModelForm):
             raise forms.ValidationError("Telefone deve conter menos de 11 caracteres!")
         elif calculate_age(date_of_birth) < 18:
             raise forms.ValidationError("O usuario ter mais de 18 anos!")
+>>>>>>> 42b3c2eb1d8f1ff6864b649d12cab467b262fa3b

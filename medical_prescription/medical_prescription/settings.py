@@ -25,11 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'kw&cp#em42$66%lprfln@!25t%(wb9j4gzz%vxaah(v-e8zxbt'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medicalprescription.herokuapp.com','localhost', '127.0.0.1', '0.0.0.0']
-
+ALLOWED_HOSTS = ['medicalprescription.herokuapp.com', 'localhost', '127.0.0.1',
+                 '0.0.0.0']
+                 
 
 # Application definition
 
@@ -83,6 +85,28 @@ WSGI_APPLICATION = 'medical_prescription.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+<<<<<<< HEAD
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': 'localhost'
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': 'db',
+            'PORT': 5432,
+        }
+=======
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -90,6 +114,7 @@ DATABASES = {
         'USER': 'postgres',
         'HOST': 'db',
         'PORT': 5432,
+>>>>>>> 42b3c2eb1d8f1ff6864b649d12cab467b262fa3b
     }
 }
 # Password validation
