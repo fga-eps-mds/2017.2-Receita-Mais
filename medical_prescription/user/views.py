@@ -4,10 +4,9 @@ from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 
 # local Django
-from .models import HealthProfessional
 from .models import User
 from .models import Patient
-from .forms import HealthProfessionalForm, PatientForm, UserForm, UpdateUserForm
+from .forms import PatientForm, UserForm, UpdateUserForm
 
 
 def show_homepage(request):

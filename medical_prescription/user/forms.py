@@ -5,7 +5,7 @@ from datetime import date
 from django import forms
 
 # local Django
-from .models import HealthProfessional, Patient, User
+from .models import Patient, User
 from django.core.exceptions import ValidationError
 import re
 from .import constants
