@@ -14,6 +14,7 @@ from .forms import (HealthProfessionalForm,
                     UserLoginForm,
                     ResetPasswordForm,
                     ConfirmPasswordForm)
+from . import constants
 
 
 def register_view(request):
@@ -37,16 +38,23 @@ def register_view(request):
 
 
 class LoginView(FormView):
+    '''
+    Render and log user.
+    '''
+
     form_class = UserLoginForm
     template_name = 'login.html'
 
+    # Render the login page.
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
+    # Login user.
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
+        # Authenticate user.
         if form.is_valid():
             user = auth.authenticate(
                 email=form.cleaned_data['email'],
@@ -59,6 +67,7 @@ class LoginView(FormView):
         else:
             return render(request, self.template_name, {'form': form})
 
+    # Login valid user.
     def user_authentication(self, request, user):
         if user.is_active:
             auth.login(request, user)
@@ -72,54 +81,48 @@ class ResetPasswordView(FormView):
     form_class = ResetPasswordForm
     template_name = 'reset_password.html'
 
+    # Render password reset page.
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
     # Get form information.
     def post(self, request, *args, **kwargs):
+
         form = self.form_class(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
 
-        # Search the user in database
+        # Search the user in database.
         try:
             user = User.objects.get(email=email)
         except:
             return render(request, 'message.html', {"message": "usuário não encontrado"})
 
-        # Create a hash with the 'salt' and the user e-mail and send the same to the user.
-
         try:
-            new_profile = self._create_recover_profile(user)
 
+            # Get informations and create recover key.
+            new_profile = self._create_recover_profile(user)
             new_profile.save()
 
-            # Standar e-mail text.
-            email_subject = 'Recuperar senha'
-            email_body = ('Segue sua chave de ativação http://0.0.0.0:8000/home/reset_confirm/%s.' % new_profile.activation_key)
-
-            send_mail(email_subject,
-                      email_body,
-                      'medicalprescriptionapp@gmail.com',
+            send_mail(constants.EMAIL_SUBJECT,
+                      (constants.EMAIL_BODY % new_profile.activation_key),
+                      constants.EMAIL_ADRESS,
                       [email],
                       fail_silently=False)
 
-            messages.success(request,
-                             'Verifique a caixa de entrada do seu email para recuperar sua senha.')
+            messages.success(request, constants.EMAIL_SUCESS_MESSAGE)
 
             return redirect('/home')
         except:
-
-            messages.error(request, 'um email de recuperação de senha já foi enviado para este endereço!')
+            messages.error(request, constants.EMAIL_MESSAGE_EXIST)
             return render(request, 'reset_password.html',
                           {"form": form})
         else:
             # nothing to do
             pass
 
-    # return render(request, 'reset_password.html', {"form": form})
-
+    # Create recover key in database.
     def _create_recover_profile(self, user):
             email = user.email
             # Create a random sha1 code.
@@ -139,7 +142,9 @@ class ResetPasswordView(FormView):
 
 
 class ConfirmPasswordView(FormView):
-
+    '''
+    Reset the user password.
+    '''
     form_class = ConfirmPasswordForm
     template_name = 'password_confirm.html'
 
@@ -147,6 +152,7 @@ class ConfirmPasswordView(FormView):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
+    # Validate key and update the new password of 'User'.
     def post(self, request, activation_key, *args, **kwargs):
 
         form = ConfirmPasswordForm(request.POST or None)
@@ -156,26 +162,38 @@ class ConfirmPasswordView(FormView):
 
         user = user_profile.user
 
-        if(self._validate_activation_key(user_profile) and request.method == 'POST'):
+        if(request.method == 'POST' and user is not None):
+            if(form.is_valid()):
+                if(self._validate_activation_key(user_profile)):
 
-            # Change user password and save in database.
-            self._save_user(user, form)
-            user_profile.delete()
+                    user_profile.delete()
+                    # Change user password and save in database
+                    self._save_user_password(user, form)
+                    # Change user password and save in database.
+
+                else:
+                    return redirect('/')
+            else:
+                # Nothing to do.
+                pass
         else:
-            return redirect('/')
+            # Nothing to do.
+            pass
 
         return render(request, 'password_confirm.html', {'form': form})
 
-    def _validate_activation_key(user_profile):
+    # Validate key expiration time.
+    def _validate_activation_key(self, user_p, *args):
         # Case key expires.
-        if(user_profile.key_expires < timezone.now()):
+        if(user_p.key_expires < timezone.now()):
             # key expires.
-            user_profile.delete()
+            user_p.delete()
             return False
         else:
             return True
 
-    def _save_user(user, form):
+    # Update user password in databe.
+    def _save_user_password(self, user, form):
         if(form.is_valid()):
             user.set_password(form.cleaned_data.get('password'))
             user.save()
@@ -186,6 +204,11 @@ class ConfirmPasswordView(FormView):
 
 
 class LogoutView(View):
+    '''
+    Logout of User.
+    '''
+
+    # Exit user and render 'home' page.
     def get(self, request):
         auth.logout(request)
         return redirect('/home/login')
