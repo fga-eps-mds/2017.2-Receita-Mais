@@ -1,7 +1,5 @@
 # Django
 from django.contrib import admin
-
-# Django Local
 from .models import User
 
 

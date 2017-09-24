@@ -1,11 +1,10 @@
 # standard library
 from datetime import date
-
+import datetime
 # Django
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-
 from . import constants
 
 
@@ -57,6 +56,18 @@ class HealthProfessional(models.Model):
     user = models.OneToOneField(User)
     crm = models.CharField(max_length=constants.CRM_LENGTH, unique=True)
     crm_state = models.CharField(choices=constants.UF_CHOICE, max_length=constants.CRM_STATE_LENGTH, default='DF')
+
+
+class ResetPasswordProfile(models.Model):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(max_length=40, blank=True)
+    key_expires = models.DateTimeField(default=datetime.date.today())
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural = u'Perfil de Usuario'
 
 
 class Patient(User):

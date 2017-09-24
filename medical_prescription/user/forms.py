@@ -3,9 +3,18 @@ from datetime import date
 
 from django import forms
 from django.core.exceptions import ValidationError
+from .models import HealthProfessional, Patient, User
 
 from . import constants
-from .models import HealthProfessional, Patient, User
+
+
+class UserLoginForm(forms.Form):
+    '''
+    Login Form.
+    '''
+
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput, label=('password'))
 
 
 class FormattedDateField(forms.DateField):
@@ -59,7 +68,7 @@ class UserForm(forms.ModelForm):
         elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
-            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN)
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
         elif email is None:
             raise forms.ValidationError("email inválido")
         else:
@@ -92,6 +101,43 @@ class HealthProfessionalForm(forms.ModelForm):
         elif number_pattern.findall(crm) == []:
             raise forms.ValidationError(constants.CRM_FORMAT)
 
+        # ('first_name', 'last_name', 'date_of_birth', 'phone', 'email', 'sex')
+
+
+# fom to reset password User
+class ResetPasswordForm(forms.Form):
+    email = forms.EmailField(label='email', max_length=250)
+
+    def clean(self, *args, **kwargs):
+        email = self.cleaned_data.get('email')
+        email_from_database = User.objects.filter(email=email)
+
+        if email_from_database.exists():
+            pass
+        else:
+            raise forms.ValidationError('this email is not registered')
+        return super(ResetPasswordForm, self).clean(*args, **kwargs)
+
+
+class ConfirmPasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}),
+                               label='')
+    password_confirmation = forms.CharField(widget=forms.PasswordInput(
+                            attrs={'placehold': 'password confirmation'}),
+                            label='')
+
+    def clean(self, *args, **kwargs):
+        password = self.cleaned_data.get('password')
+        password_confirmation = self.cleaned_data.get('password_confirmation')
+
+        if(password != password_confirmation):
+            raise forms.ValidationError('As senhas devem ser iguais')
+        else:
+            # Nothing to do.
+            pass
+
+        return super(ConfirmPasswordForm, self).clean(*args, **kwargs)
+
 
 class PatientForm(UserForm):
 
@@ -103,12 +149,41 @@ class PatientForm(UserForm):
                 ]
 
     def clean(self):
+        name = self.cleaned_data.get('name')
+        phone = self.cleaned_data.get('phone')
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
+        password_confirmation = self.cleaned_data.get('confirm_password')
         id_document = self.cleaned_data.get('id_document')
 
+        email_from_database = User.objects.filter(email=email)
+        # If e-mail exists in database.
+        if email_from_database.exists():
+            raise ValidationError(constants.EMAIL_EXISTS)
+        # word is greater of PASSWORD_MIN_LENGTH
+        elif len(password) < constants.PASSWORD_MIN_LENGTH:
+            raise forms.ValidationError(constants.PASSWORD_SIZE)
+        elif len(password) > constants.PASSWORD_MAX_LENGTH:
+            raise forms.ValidationError(constants.PASSWORD_SIZE)
+        elif password != password_confirmation:
+            raise forms.ValidationError(constants.PASSWORD_MATCH)
+        elif len(name) > constants.NAME_MAX_LENGHT:
+            raise forms.ValidationError(constants.NAME_SIZE)
+        elif len(name) < constants.NAME_MIN_LENGTH:
+            raise forms.ValidationError(constants.NAME_SIZE)
+        elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
+            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         if len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
         elif len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
+        elif email is None:
+                    raise forms.ValidationError("email inválido")
+        else:
+            if len(email) > constants.EMAIL_MAX_LENGTH:
+                raise forms.ValidationError(constants.EMAIL_SIZE)
+            elif len(email) < constants.EMAIL_MIN_LENGTH:
+                raise forms.ValidationError(constants.EMAIL_SIZE)
 
 
 class UpdateUserForm(forms.ModelForm):

@@ -65,13 +65,20 @@ EMAIL_FORMAT = "E-mail must be a valid e-mail. Example: example@example.com"
 EMAIL_SIZE = "E-mail must be between 5 and 50 characters"
 EMAIL_EXISTS = "Email already exists"
 
+# EMAIL MESSAGES
+EMAIL_SUBJECT = 'Recuperação de sua senha'
+EMAIL_BODY = 'Segue sua chave de ativação http://0.0.0.0:8000/user/reset_confirm/%s.'
+EMAIL_ADRESS = 'medicalprescriptionapp@gmail.com'
+EMAIL_SUCESS_MESSAGE = 'Verifique a caixa de entrada do seu email para recuperar sua senha.'
+EMAIL_MESSAGE_EXIST = 'Um email de recuperação de senha já foi enviado para este endereço!'
+
 # DATE_OF_BIRTH FIELDS.
 DATE_OF_BIRTH = "Date of birth"
 DATE_OF_BIRTH_MIN = 18
 
 # DATE_OF_BIRTH VALIDATION MESSAGES.
 DATE_OF_BIRTH_FORMAT = "Date of birth must be in format: dd/mm/yyyy"
-DATE_OF_BIRTH_MIN = "User must be 18 years"
+DATE_OF_BIRTH_MIN_ERROR = "User must be 18 years"
 
 # PHONE_NUMBER FIELDS.
 PHONE_NUMBER = "Phone number"
@@ -99,7 +106,7 @@ PASSWORD_MIN_LENGTH = 6
 PASSWORD_MAX_LENGTH = 12
 
 # PASSWORD VALIDATION MESSAGES.
-PASSWORD_SIZE= 'Password must be between 6 and 12 characters.'
+PASSWORD_SIZE = 'Password must be between 6 and 12 characters.'
 PASSWORD_MATCH = 'Passwords do not match'
 
 # PASSWORD VALIDATION MESSAGES
