@@ -1,0 +1,2 @@
+python3 medical_prescription/manage.py makemigrations
+python3 medical_prescription/manage.py migrate

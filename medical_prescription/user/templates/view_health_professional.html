@@ -7,15 +7,15 @@
 {% for health_professional in health_professionals %}
 
 <p>
-Nome: <b>{{ health_professional.user.name }}</b>
+Nome: <b>{{ health_professional.name }}</b>
 <br>
-Data de Nascimento:<b>{{ health_professional.user.date_of_birth|date:'d/m/Y'}}</b>
+Data de Nascimento:<b>{{ health_professional.date_of_birth|date:'d/m/Y'}}</b>
 <br>
-Telefone: <b>{{ health_professional.user.phone }} </b>
+Telefone: <b>{{ health_professional.phone }} </b>
 <br>
-Email: <b>{{ health_professional.user.email }}</b>
+Email: <b>{{ health_professional.email }}</b>
 <br>
-Sex: <b></b>{{ health_professional.user.sex }}</b>
+Sex: <b></b>{{ health_professional.sex }}</b>
 
 <br>
 CRM: <b>{{ health_professional.crm }}</b>
@@ -27,6 +27,6 @@ Estado da CRM: <b>{{ health_professional.crm_state }}</b>
 </p>
 
 {% endfor %}
-   
+
 </body>
 </html>

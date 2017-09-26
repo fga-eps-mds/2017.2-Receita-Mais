@@ -11,12 +11,11 @@ from django.views.generic import FormView, View
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 
-from .models import (HealthProfessional,
-                     User,
-                     ResetPasswordProfile,
-                     Patient)
+from user.models import (HealthProfessional,
+                         User,
+                         ResetPasswordProfile,
+                         Patient)
 from .forms import (HealthProfessionalForm,
-                    UserForm,
                     UpdateUserForm,
                     PatientForm,
                     UserLoginForm,
@@ -207,32 +206,25 @@ def show_homepage(request):
 
 
 def register_health_professional(request):
-    user_form = UserForm(request.POST or None)
     health_professional_form = HealthProfessionalForm(request.POST or None)
     context = {
-        'health_professional_form': health_professional_form,
-        'user_form': user_form
+        'user_form': health_professional_form,
     }
 
-    if user_form.is_valid() and health_professional_form.is_valid():
-        email = user_form.cleaned_data.get('email')
-        password = user_form.cleaned_data.get('password')
-        name = user_form.cleaned_data.get('name')
-        sex = user_form.cleaned_data.get('sex')
-        phone = user_form.cleaned_data.get('phone')
-        date_of_birth = user_form.cleaned_data.get('date_of_birth')
+    if health_professional_form.is_valid() and health_professional_form.is_valid():
+        email = health_professional_form.cleaned_data.get('email')
+        password = health_professional_form.cleaned_data.get('password')
+        name = health_professional_form.cleaned_data.get('name')
+        sex = health_professional_form.cleaned_data.get('sex')
+        phone = health_professional_form.cleaned_data.get('phone')
+        date_of_birth = health_professional_form.cleaned_data.get('date_of_birth')
 
         crm = health_professional_form.cleaned_data.get('crm')
         crm_state = health_professional_form.cleaned_data.get('crm_state')
 
-        User.objects.create_user(
-            email=email, password=password, name=name,
-            sex=sex, date_of_birth=date_of_birth, phone=phone)
-
-        user = User.objects.get(email=email)
-
-        health_professional = HealthProfessional(
-            user=user, crm=crm, crm_state=crm_state)
+        health_professional = HealthProfessional(email=email, password=password, name=name,
+                                                 sex=sex, date_of_birth=date_of_birth,
+                                                 phone=phone, crm=crm, crm_state=crm_state)
 
         health_professional.save()
 
