@@ -7,8 +7,9 @@ from django.contrib import auth
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.utils import timezone
-from django.views.generic import FormView, View
+from django.views.generic import FormView, View, ListView
 from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 
 from user.models import (HealthProfessional,
@@ -201,42 +202,35 @@ class LogoutView(View):
         return redirect('/home/login')
 
 
-def show_homepage(request):
-    return render(request, 'home.html')
+class RegisterHealthProfessionalView(FormView):
+    form_class = HealthProfessionalForm
+    template_name = 'register_health_professional.html'
 
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
 
-def register_health_professional(request):
-    health_professional_form = HealthProfessionalForm(request.POST or None)
-    context = {
-        'user_form': health_professional_form,
-    }
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
 
-    if health_professional_form.is_valid() and health_professional_form.is_valid():
-        email = health_professional_form.cleaned_data.get('email')
-        password = health_professional_form.cleaned_data.get('password')
-        name = health_professional_form.cleaned_data.get('name')
-        sex = health_professional_form.cleaned_data.get('sex')
-        phone = health_professional_form.cleaned_data.get('phone')
-        date_of_birth = health_professional_form.cleaned_data.get('date_of_birth')
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            name = form.cleaned_data.get('name')
+            sex = form.cleaned_data.get('sex')
+            phone = form.cleaned_data.get('phone')
+            date_of_birth = form.cleaned_data.get('date_of_birth')
 
-        crm = health_professional_form.cleaned_data.get('crm')
-        crm_state = health_professional_form.cleaned_data.get('crm_state')
+            crm = form.cleaned_data.get('crm')
+            crm_state = form.cleaned_data.get('crm_state')
 
-        health_professional = HealthProfessional(email=email, password=password, name=name,
-                                                 sex=sex, date_of_birth=date_of_birth,
-                                                 phone=phone, crm=crm, crm_state=crm_state)
+            health_professional = HealthProfessional(email=email, password=password, name=name,
+                                                     sex=sex, date_of_birth=date_of_birth,
+                                                     phone=phone, crm=crm, crm_state=crm_state)
 
-        health_professional.save()
+            health_professional.save()
 
-    return render(request, 'register_health_professional.html', context)
-
-
-def view_health_professional(request):
-    health_professionals = HealthProfessional.objects.all()
-    context = {
-        'health_professionals': health_professionals
-    }
-    return render(request, 'view_health_professional.html', context)
+        return render(request, self.template_name, {'form': form})
 
 
 class DeleteHealthProfessional(DeleteView):
@@ -252,35 +246,31 @@ class UpdateHealthProfessional(UpdateView):
     template_name = 'edit_health_professional.html'
 
 
-def register_patient(request):
-    patient_form = PatientForm(request.POST or None)
-    context = {
-        'patient_form': patient_form
-        }
+class RegisterPatientView(FormView):
+    form_class = PatientForm
+    template_name = 'register_patient.html'
 
-    if patient_form.is_valid():
-        email = patient_form.cleaned_data.get('email')
-        password = patient_form.cleaned_data.get('password')
-        name = patient_form.cleaned_data.get('name')
-        sex = patient_form.cleaned_data.get('sex')
-        phone = patient_form.cleaned_data.get('phone')
-        date_of_birth = patient_form.cleaned_data.get('date_of_birth')
-        id_document = patient_form.cleaned_data.get('id_document')
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
 
-        Patient.objects.create_user(email=email, password=password, name=name,
-                                    sex=sex, date_of_birth=date_of_birth,
-                                    phone=phone, id_document=id_document)
+    def post(self, request, *args, **kwargs):
+        patient_form = self.form_class(request.POST)
 
-    return render(request, 'register_patient.html', context)
+        if patient_form.is_valid():
+            email = patient_form.cleaned_data.get('email')
+            password = patient_form.cleaned_data.get('password')
+            name = patient_form.cleaned_data.get('name')
+            sex = patient_form.cleaned_data.get('sex')
+            phone = patient_form.cleaned_data.get('phone')
+            date_of_birth = patient_form.cleaned_data.get('date_of_birth')
+            id_document = patient_form.cleaned_data.get('id_document')
 
+            Patient.objects.create_user(email=email, password=password, name=name,
+                                        sex=sex, date_of_birth=date_of_birth,
+                                        phone=phone, id_document=id_document)
 
-def view_patient(request):
-    patients = Patient.objects.all()
-    print(patients)
-    context = {
-        'patients': patients
-    }
-    return render(request, 'view_patient.html', context)
+        return render(request, self.template_name, {'form': patient_form})
 
 
 class UpdatePatient(UpdateView):
@@ -288,3 +278,21 @@ class UpdatePatient(UpdateView):
     form_class = UpdateUserForm
     success_url = reverse_lazy('view')
     template_name = 'edit_patient.html'
+
+
+class ShowHomePageView(TemplateView):
+    template_name = 'home.html'
+
+
+class ShowPatientsView(ListView):
+    model = Patient
+    template_name = 'view_patient.html'
+    context_object_name = 'patients'
+    paginate_by = 10
+
+
+class ShowHealthProfessionalView(ListView):
+    model = HealthProfessional
+    template_name = 'view_health_professional.html'
+    context_object_name = 'health_professionals'
+    paginate_by = 10
