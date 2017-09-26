@@ -1,11 +1,10 @@
-# 2017.2-Grupo2
+# 2017.2 - Receituário Médico.
 
 [![Build Status](https://travis-ci.org/fga-gpp-mds/2017.2-Receituario-Medico.svg?branch=master)](https://travis-ci.org/fga-gpp-mds/2017.2-Receituario-Medico)
 [![Coverage Status](https://coveralls.io/repos/github/fga-gpp-mds/2017.2-Receituario-Medico/badge.svg)](https://coveralls.io/github/fga-gpp-mds/2017.2-Receituario-Medico)
 [![Code Climate](https://codeclimate.com/github/fga-gpp-mds/2017.2-Receituario-Medico/badges/gpa.svg)](https://codeclimate.com/github/fga-gpp-mds/2017.2-Receituario-Medico)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-# 2017.2 - Receituário Médico.
 
 <p align="justify">O Receituário Médico é um sistema direcionado para os profissionais de saúde que é idealizado pelo médico Getúlio de Morato Filho com o objetivo de tornar a prescrição médica mais rápida e fácil. E o outro viés que o sistema atende é o aproximar o contato do paciente com o médico através de um portal onde será possível visualizar suas receitas e tirar eventuais dúvidas sobre elas.</p>
 
@@ -26,10 +25,17 @@ Primeiro passo para a instalação do projeto é baixar o repositório com o seg
 
 ```docker-compose up```
 
+```docker-compose run web sh coverage.sh```
+
 Acesse a aplicação através do link: http://0.0.0.0:8000
 
 
 ## Principais funcionalidades
+Realizar prescrição médica
+Chat entre médico e paciênte
+Consultar receitas antigas
+Enviar exames ao médico
+Salvar receitas preescritas
 
 
 ## Como contribuir
