@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'landing',
 ]
 
 # ====== DONT REMOVE -ME
@@ -75,7 +76,7 @@ ROOT_URLCONF = 'medical_prescription.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['medical_prescription/templates', 'landing/templates', 'user/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors':
@@ -155,3 +156,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+]
