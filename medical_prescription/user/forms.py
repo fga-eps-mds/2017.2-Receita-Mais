@@ -13,10 +13,10 @@ class UserLoginForm(forms.Form):
     Login Form.
     '''
 
-    email = forms.EmailField(widget = forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
-                                                             'placeholder': 'Email'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                             'placeholder': '* Email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
-                                                                 'placeholder': 'Senha'}))
+                                                                 'placeholder': '* Senha'}))
 
 
 class FormattedDateField(forms.DateField):
@@ -29,10 +29,20 @@ class FormattedDateField(forms.DateField):
 
 class UserForm(forms.ModelForm):
 
-    date_of_birth = FormattedDateField(initial=date.today)
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
-    email = forms.EmailField(widget=forms.EmailInput())
+    name = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                           'placeholder': '* João da Silva '}))
+    date_of_birth = FormattedDateField(widget=forms.DateInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                                        'placeholder': '*Ex: dd/mm/aaaa'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                 'placeholder': '*********'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                         'placeholder': '*********'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v3__input',
+                                                            'placeholder': '* exemplo@exemplo.com'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                          'placeholder': '* (xx)xxxxx-xxxx'}))
+    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}), choices = constants.SEX_CHOICE)
+
 
     class Meta:
         model = User
@@ -81,6 +91,11 @@ class UserForm(forms.ModelForm):
 
 
 class HealthProfessionalForm(forms.ModelForm):
+    crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                            'placeholder': '* 00000'}))
+    crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
+                                                             'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
+
     class Meta:
         model = HealthProfessional
         fields = ('crm', 'crm_state')
