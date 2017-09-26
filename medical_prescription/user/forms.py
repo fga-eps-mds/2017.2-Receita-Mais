@@ -58,8 +58,12 @@ class HealthProfessionalForm(UserForm):
 
         # TODO(Mateus) Refactor date calculation.
         today = date.today()
-        born = today.year - date_of_birth.year - \
-            ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        try:
+            born = today.year - date_of_birth.year - \
+                ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        except:
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_FORMAT)
+
 
         crm_from_database = HealthProfessional.objects.filter(crm=crm)
         crm_state_from_database = HealthProfessional.objects.filter(crm_state=crm_state)
@@ -68,7 +72,7 @@ class HealthProfessionalForm(UserForm):
 
         if len(crm) != constants.CRM_LENGTH:
             raise forms.ValidationError(constants.CRM_SIZE)
-        elif len(crm_state) != constants.CRM_STATE_LENGTH:
+        elif crm_state is not None and len(crm_state) < constants.CRM_STATE_LENGTH:
             raise forms.ValidationError(constants.CRM_STATE_SIZE)
         elif crm_from_database.exists() and crm_state_from_database.exists():
             raise forms.ValidationError(constants.CRM_EXIST)
@@ -87,7 +91,7 @@ class HealthProfessionalForm(UserForm):
         elif len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
         elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
-            raise forms.ValidationError(constants.PHONE_NUMBER_FIELD_LENGTH)
+            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
             raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
         elif email is None:
@@ -203,8 +207,11 @@ class UpdateUserForm(forms.ModelForm):
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
         today = date.today()
-        born = today.year - date_of_birth.year - \
-            ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        try:
+            born = today.year - date_of_birth.year - \
+                ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        except:
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_FORMAT)
 
         if len(password) < constants.PASSWORD_MIN_LENGTH:
             raise forms.ValidationError(constants.PASSWORD_SIZE)

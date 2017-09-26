@@ -8,7 +8,7 @@ CRM_STATE_LENGTH = 2
 # CRM MESSAGES VALIDATION MESSAGES.
 CRM_SIZE = 'CRM must have 5 characters.'
 CRM_STATE_SIZE = 'CRM must have 2 characters.'
-CRM_FORMAT = 'CRM must contain /only numbers.'
+CRM_FORMAT = 'CRM must contain only numbers.'
 CRM_EXIST = 'CRM already exists'
 
 # UF FIELDS.
