@@ -498,7 +498,6 @@ fieldset[disabled] .s-btn {
   box-shadow: none;
   border-radius: 0;
   letter-spacing: .1rem;
-  text-transform: uppercase;
   padding: 0 1.25rem 0 0;
   transition-duration: 300ms;
   transition-property: all;

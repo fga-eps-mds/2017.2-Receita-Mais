@@ -1,19 +1,51 @@
-<html>
 
-  <head>
-    <title>LOGIN PAGE</title>
-  </head>
+{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+  <div class="s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide" style="background-image: url({% static 'landing/img/1920x1080/14.jpg' %})">
+    <div class="container g-ver-center--xs">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="col-lg-4 col-sm-4 g-hor-centered-row__col">
+            <div class="wow fadeInUp" data-wow-duration=".3" data-wow-delay=".1s">
+              <br>
+              <br>
+              <!--  LOGIN FORM -->
+              <form class="center-block g-width-350--xs g-bg-color--white-opacity-lightest g-box-shadow__blueviolet-v1 g-padding-x-40--xs g-padding-y-60--xs g-radius--4" method="post" action=".">
+                   {% csrf_token %}
+                <div class="form-group g-text-center--xs g-margin-b-40--xs">
+                  <h2 class="g-font-size-30--xs g-color--white">Login</h2>
+                </div>
 
-  <body>
-    <h1>Formulário Login</h1></br>
+                <div class="form-group g-margin-b-30--xs">
+                  {% for error in form.email.errors %}
+                    <div class="alert alert-danger" role="alert">{{error}}</div>
+                  {% endfor %}
 
-    <form method="POST" action=".">
-      {% csrf_token %}
-      {{ form.as_p }}
+                   {{ form.email }}
+                </div>
 
-      <input type="hidden" name="next" value="/" />
-      <input type="submit" value="Login" />
-    </form>
+                <div class="form-group g-margin-b-30--xs">
+                  {% for error in form.password.errors %}
+                    <div class="alert-danger" role="alert">{{error}}</div>
+                  {% endfor %}
 
-  </body>
-</html>
+                   {{ form.password }}
+    
+
+                </div>
+
+                <div class="g-text-center--xs">
+                  <button type="submit" class="text-uppercase btn-block s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Login</button>
+                  <a class="g-color--white g-font-size-13--xs" href="#">Esqueceu sua senha?</a><br>
+                  <a class="g-color--white g-font-size-13--xs" href="#">Não possui uma conta?Cadastre-se já</a>
+                </div>
+                
+              </form>
+              <!-- END LOGIN FORM -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
