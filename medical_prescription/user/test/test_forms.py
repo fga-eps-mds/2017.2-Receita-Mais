@@ -36,7 +36,6 @@ class LoginTeste(TestCase):
 
     def test_get_short_name(self):
         user_name = User.objects.get(name="Felipe")
-        print("AQUI" + user_name.name)
         self.assertEqual(user_name.get_short_name(), "Felipe")
 
 

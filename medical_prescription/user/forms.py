@@ -64,7 +64,6 @@ class HealthProfessionalForm(UserForm):
         except:
             raise forms.ValidationError(constants.DATE_OF_BIRTH_FORMAT)
 
-
         crm_from_database = HealthProfessional.objects.filter(crm=crm)
         crm_state_from_database = HealthProfessional.objects.filter(crm_state=crm_state)
 

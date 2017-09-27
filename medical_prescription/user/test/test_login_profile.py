@@ -1,8 +1,12 @@
 from django.test import TestCase
+
 from user.models import User
 
 
 class LoginProfileTest(TestCase):
+    """
+    Testing user save in database.
+    """
     def setUp(self):
         self.user = User()
         self.user.name = "Felipe"
