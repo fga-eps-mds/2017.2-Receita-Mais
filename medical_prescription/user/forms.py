@@ -29,7 +29,7 @@ class FormattedDateField(forms.DateField):
 
 class UserForm(forms.ModelForm):
 
-    name = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                            'placeholder': '* João da Silva '}))
     date_of_birth = FormattedDateField(widget=forms.DateInput(attrs={'class': 'form-control s-form-v3__input',
                                                                                         'placeholder': '*Ex: dd/mm/aaaa'}))
@@ -75,6 +75,7 @@ class HealthProfessionalForm(UserForm):
 
         print("NOME:")
         print(name)
+        print(email)
 
         # TODO(Mateus) Refactor date calculation.
         today = date.today()
