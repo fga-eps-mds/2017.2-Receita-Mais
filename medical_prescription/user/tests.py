@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from user.models import User
-from user.views import ResetPasswordProfile
 from user.forms import PatientForm, HealthProfessionalForm
 # Create your tests here.
 
@@ -37,7 +36,6 @@ class LoginTeste(TestCase):
 
     def test_get_short_name(self):
         user_name = User.objects.get(name="Felipe")
-        print("AQUI" + user_name.name)
         self.assertEqual(user_name.get_short_name(), "Felipe")
 
 
@@ -71,17 +69,6 @@ class MyTests(TestCase):
         self.password_valid = '1234567'
         self.password_invalid = '1234567891011'
 
-    def test_forms_patient_is_valid(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = PatientForm(data=form_data)
-        self.assertTrue(form.is_valid())
 
     def test_forms_patient_name_is_not_valid(self):
         form_data = {'name': self.name_invalid,
