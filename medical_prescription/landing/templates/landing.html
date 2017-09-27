@@ -1,0 +1,192 @@
+{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+
+<div>
+
+            <!--========== SWIPER SLIDER ==========-->
+            <div class="s-swiper js__swiper-slider">
+                <!-- Swiper Wrapper -->
+                <div class="swiper-wrapper">  
+                    <div class="s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide" style="background-image: url({% static 'landing/img/1920x1080/14.jpg' %})" >
+                        <div class="container g-ver-center--xs">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="g-margin-b-50--xs">
+                                        <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white">Profissional de Saúde?</h1>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Já possui uma conta?</p>
+                                                <a href="{% url 'login' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">Logue-se Agora</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Não possui?</p>
+                                                <a href="{% url 'register' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">Cadastre-se</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="s-promo-block-v4 g-fullheight--xs g-bg-position--center swiper-slide" style="background: url({% static 'landing/img/1920x1080/13.jpg' %})" >
+                        <div class="container g-text-right--xs g-ver-center--xs">
+                            <div class="row">
+                                <div class="col-md-7 col-md-offset-5">
+                                    <div class="g-margin-b-50--xs">
+                                        <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white">Paciente?</h1>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Já possui uma conta?</p>
+                                                <a href="{% url 'login' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">Logue-se Agora</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Não possui?</p>
+                                                <p class="g-font-size-14--xs g-font-size-18--sm g-color--white-opacity">Converse com seu médico agora para receber seu convite de acesso!</p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Swiper Wrapper -->
+
+                <!-- Pagination -->
+                <div class="s-swiper__pagination-v1 s-swiper__pagination-v1--bc s-swiper__pagination-v1--white js__swiper-pagination"></div>
+            </div>
+            <!--========== END SWIPER SLIDER ==========-->
+
+                <!-- Features -->
+                <!-- <div id="js__scroll-to-section" class="container g-padding-y-80--xs g-padding-y-125--sm">
+                    <div class="g-text-center--xs g-margin-b-100--xs">
+                        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">Saiba um pouco mais</p>
+                        <h2 class="g-font-size-32--xs g-font-size-36--md">O Receita Mais oferece diversas funcionalidades para auxiliar você! <br> Entre elas :</h2>
+                    </div>
+                    <div class="row g-margin-b-60--xs g-margin-b-70--md">
+                        <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+                            <div class="clearfix">
+                                <div class="g-media g-width-30--xs">
+                                    <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".1s">
+                                        <i class="g-font-size-28--xs g-color--primary ti-desktop"></i>
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="g-font-size-18--xs">Receitas a qualquer momento</h3>
+                                    <p class="g-margin-b-0--xs">As receitas feitas ficam disponíveis a qualquer momento, tanto para o médico quanto para o paciente!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+                            <div class="clearfix">
+                                <div class="g-media g-width-30--xs">
+                                    <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".2s">
+                                        <i class="g-font-size-28--xs g-color--primary ti-settings"></i>
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="g-font-size-18--xs">Receitas Personalizadas</h3>
+                                    <p class="g-margin-b-0--xs"> Faça a receita de acordo com a sua necessidade! Personalizando da maneira que melhor o agrade! </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="clearfix">
+                                <div class="g-media g-width-30--xs">
+                                    <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".3s">
+                                        <i class="g-font-size-28--xs g-color--primary ti-ruler-alt-2"></i>
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="g-font-size-18--xs">Pixel Perfect</h3>
+                                    <p class="g-margin-b-0--xs">This is where we sit down, grab a cup of coffee and dial in the details.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- // end row  -->
+                    <!-- <div class="row">
+                        <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+                            <div class="clearfix">
+                                <div class="g-media g-width-30--xs">
+                                    <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".4s">
+                                        <i class="g-font-size-28--xs g-color--primary ti-package"></i>
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="g-font-size-18--xs">Endless Possibilities</h3>
+                                    <p class="g-margin-b-0--xs">This is where we sit down, grab a cup of coffee and dial in the details.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 g-margin-b-60--xs g-margin-b-0--md">
+                            <div class="clearfix">
+                                <div class="g-media g-width-30--xs">
+                                    <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".5s">
+                                        <i class="g-font-size-28--xs g-color--primary ti-star"></i>
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="g-font-size-18--xs">Ganho de tempo</h3>
+                                    <p class="g-margin-b-0--xs">Você sabia que o tempo gasto preenchendo papéis corresponde a 60% do tempo da consulta?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="clearfix">
+                                <div class="g-media g-width-30--xs">
+                                    <div class="wow fadeInDown" data-wow-duration=".3" data-wow-delay=".6s">
+                                        <i class="g-font-size-28--xs g-color--primary ti-panel"></i>
+                                    </div>
+                                </div>
+                                <div class="g-media__body g-padding-x-20--xs">
+                                    <h3 class="g-font-size-18--xs">Parallax Support</h3>
+                                    <p class="g-margin-b-0--xs">This is where we sit down, grab a cup of coffee and dial in the details.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- // end row  -->
+                <!-- </div> -->
+                <!-- End Features -->
+    
+
+            <!-- Mockup -->
+            <!-- <div id="js__scroll-to-section" class="container g-padding-y-80--xs g-padding-y-125--xsm">
+                <div class="row g-hor-centered-row--md g-row-col--5 g-margin-b-80--xs g-margin-b-100--md">
+                    <div class="col-sm-5 g-hor-centered-row__col">
+                        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs"> </p>
+                        <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-25--xs">É profissional de saúde e se interessou?</h2>
+                        <p class="g-font-size-18--sm">Cadastre-se agora mesmo clicando no botão abaixo para começar a aproveitar as oportunidades disponibilizadas.É rápido e
+                        de graça.</p>
+                        <div align="center">
+                            <button type="submit" class="text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Saiba Mais</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-5 g-hor-centered-row__col">
+                        <img class="img-responsive" src="img/mockups/iphone-03.png" alt="Mockup Image">
+                    </div>
+                </div>
+                <div class="row g-hor-centered-row--md g-row-col--5">
+                    <div class="col-sm-5 col-sm-push-7 g-hor-centered-row__col">
+                        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs"> </p>
+                        <h2 class="g-font-size-32--xs g-font-size-36--sm g-margin-b-25--xs">É um paciente e deseja utilizar o sistema?</h2>
+                        <p class="g-font-size-18--sm">Clique no botão a baixo e saiba como fazer para ter acesso!</p>
+                        <div align="center">
+                            <button type="submit" class="text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Saiba Mais</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-5 col-sm-pull-7 g-hor-centered-row__col g-text-left--xs g-text-right--md">
+                        <img class="img-responsive" src="img/mockups/iphone-02.png" alt="Mockup Image">
+                    </div>
+                </div>
+            </div> -->
+            <!-- End Mockup -->
+
+            
+    
+</div>
+
+{% endblock %}
