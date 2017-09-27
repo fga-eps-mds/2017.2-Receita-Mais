@@ -1,0 +1,30 @@
+SourceMeter for Python 8.2.0 (build 8717#45192  Linux64) - (C) 2001-2016 FrontEndART Ltd.
+Executing tasks. (Multithread:4)
+  [2017-09-26 21:50:44] Starting task: PANTask
+  [2017-09-26 21:50:44] Starting task: PylintTask
+  [2017-09-26 21:50:44] Starting task: CleanResultsTask
+  [2017-09-26 21:50:44] Task ended: CleanResultsTask Result:OK
+  [2017-09-26 21:50:45] Task ended: PANTask Result:OK
+  [2017-09-26 21:51:03] Task ended: PylintTask Result:OK
+  [2017-09-26 21:51:03] Starting task: PAN2LimTask
+  [2017-09-26 21:51:04] Task ended: PAN2LimTask Result:OK
+  [2017-09-26 21:51:04] Starting task: ProfileTask
+  [2017-09-26 21:51:04] Starting task: DcfTask
+  [2017-09-26 21:51:04] Starting task: LIM2MetricsTask
+  [2017-09-26 21:51:05] Task ended: LIM2MetricsTask Result:OK
+  [2017-09-26 21:51:06] Task ended: DcfTask Result:OK
+  [2017-09-26 21:51:06] Task ended: ProfileTask Result:OK
+  [2017-09-26 21:51:06] Starting task: FaultHunterPythonTask
+  [2017-09-26 21:51:06] Starting task: Pylint2GraphTask
+  [2017-09-26 21:51:06] Task ended: Pylint2GraphTask Result:OK
+  [2017-09-26 21:51:10] Task ended: FaultHunterPythonTask Result:OK
+  [2017-09-26 21:51:10] Starting task: GraphMergeTask
+  [2017-09-26 21:51:11] Task ended: GraphMergeTask Result:OK
+  [2017-09-26 21:51:11] Starting task: MetricHunterTask
+  [2017-09-26 21:51:14] Task ended: MetricHunterTask Result:OK
+  [2017-09-26 21:51:14] Starting task: AddLicenceTask
+  [2017-09-26 21:51:14] Task ended: AddLicenceTask Result:OK
+  [2017-09-26 21:51:14] Starting task: ChangeTrackerTask
+  [2017-09-26 21:51:14] Task ended: ChangeTrackerTask Result:OK
+  [2017-09-26 21:51:14] Starting task: GraphDumpTask
+  [2017-09-26 21:51:14] Task ended: GraphDumpTask Result:OK
