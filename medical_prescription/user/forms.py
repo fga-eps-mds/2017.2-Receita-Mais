@@ -90,7 +90,7 @@ class HealthProfessionalForm(UserForm):
             raise forms.ValidationError(constants.NAME_SIZE)
         elif len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
-        elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
+        elif phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
             raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN_ERROR)
@@ -172,7 +172,7 @@ class PatientForm(UserForm):
             raise forms.ValidationError(constants.NAME_SIZE)
         elif len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
-        elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
+        elif phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         if len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
@@ -223,7 +223,7 @@ class UpdateUserForm(forms.ModelForm):
             raise forms.ValidationError(constants.NAME_SIZE)
         elif len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
-        elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
+        elif phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
             raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN)
