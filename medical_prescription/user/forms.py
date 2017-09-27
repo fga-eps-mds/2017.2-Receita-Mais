@@ -156,6 +156,10 @@ class ConfirmPasswordForm(forms.Form):
 
 
 class PatientForm(UserForm):
+    id_document = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                'placeholder': '* 00000'}))
+    id_document_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
+                                                                     'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
 
     class Meta:
         model = Patient
