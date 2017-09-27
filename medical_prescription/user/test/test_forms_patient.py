@@ -33,7 +33,7 @@ class TestPatientForm(TestCase):
         self.crm_state_invalid = 'a'
 
         self.id_document_valid = '12345678910'
-        self.id_document_invalid = '1234'
+        self.id_document_invalid = '1'
 
         self.password_valid = '1234567'
         self.password_invalid = '1234567891011'
