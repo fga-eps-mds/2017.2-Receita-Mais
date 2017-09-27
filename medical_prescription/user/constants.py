@@ -8,7 +8,7 @@ CRM_STATE_LENGTH = 2
 # CRM MESSAGES VALIDATION MESSAGES.
 CRM_SIZE = 'CRM must have 5 characters.'
 CRM_STATE_SIZE = 'CRM must have 2 characters.'
-CRM_FORMAT = 'CRM must contain only numbers.'
+CRM_FORMAT = 'CRM must contain /only numbers.'
 CRM_EXIST = 'CRM already exists'
 
 # UF FIELDS.
@@ -117,7 +117,7 @@ PASSWORD_MATCH = 'Passwords do not match'
 ID_DOCUMENT = 'Id Document'
 ID_DOCUMENT_LENGTH = 32
 ID_DOCUMENT_MIN_LENGTH = 2
-ID_DOCUMENT_MAX_LENGTH = 50
+ID_DOCUMENT_MAX_LENGTH = 32
 
 # ID DOCUMENT FIELD VALIDATION MESSAGES.
 ID_DOCUMENT_SIZE = 'You id document must be between 10 and 32 characteres'
