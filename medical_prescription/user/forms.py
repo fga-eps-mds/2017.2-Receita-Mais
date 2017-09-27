@@ -41,7 +41,7 @@ class UserForm(forms.ModelForm):
                                                             'placeholder': '* exemplo@exemplo.com'}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                           'placeholder': '* (xx)xxxxx-xxxx'}))
-    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}), choices = constants.SEX_CHOICE)
+    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}), choices=constants.SEX_CHOICE)
 
 
     class Meta:
@@ -72,10 +72,6 @@ class HealthProfessionalForm(UserForm):
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
         email_from_database = User.objects.filter(email=email)
-
-        print("NOME:")
-        print(name)
-        print(email)
 
         # TODO(Mateus) Refactor date calculation.
         today = date.today()
@@ -125,7 +121,8 @@ class HealthProfessionalForm(UserForm):
 
 # fom to reset password User
 class ResetPasswordForm(forms.Form):
-    email = forms.EmailField(label='email', max_length=250)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v4__input g-padding-l-0--xs',
+                                                            'placeholder': '* exemplo@exemplo.com'}))
 
     def clean(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
