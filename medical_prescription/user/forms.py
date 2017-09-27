@@ -13,8 +13,10 @@ class UserLoginForm(forms.Form):
     Login Form.
     '''
 
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput, label=('password'))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                             'placeholder': '* Email'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                 'placeholder': '* Senha'}))
 
 
 class FormattedDateField(forms.DateField):
@@ -27,10 +29,20 @@ class FormattedDateField(forms.DateField):
 
 class UserForm(forms.ModelForm):
 
-    date_of_birth = FormattedDateField(initial=date.today)
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
-    email = forms.EmailField(widget=forms.EmailInput())
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                           'placeholder': '* João da Silva '}))
+    date_of_birth = FormattedDateField(widget=forms.DateInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                                        'placeholder': '*Ex: dd/mm/aaaa'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                 'placeholder': '*********'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                         'placeholder': '*********'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v3__input',
+                                                            'placeholder': '* exemplo@exemplo.com'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                          'placeholder': '* (xx)xxxxx-xxxx'}))
+    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}), choices=constants.SEX_CHOICE)
+
 
     class Meta:
         model = User
@@ -40,6 +52,11 @@ class UserForm(forms.ModelForm):
 
 
 class HealthProfessionalForm(UserForm):
+    crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                        'placeholder': '* 00000'}))
+    crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
+                                                             'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
+
     class Meta:
         model = HealthProfessional
         fields = ('name', 'email', 'date_of_birth', 'phone', 'sex', 'crm', 'crm_state', 'password',)
@@ -101,12 +118,11 @@ class HealthProfessionalForm(UserForm):
             elif len(email) < constants.EMAIL_MIN_LENGTH:
                 raise forms.ValidationError(constants.EMAIL_SIZE)
 
-        # ('first_name', 'last_name', 'date_of_birth', 'phone', 'email', 'sex')
-
 
 # fom to reset password User
 class ResetPasswordForm(forms.Form):
-    email = forms.EmailField(label='email', max_length=250)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v4__input g-padding-l-0--xs',
+                                                            'placeholder': '* exemplo@exemplo.com'}))
 
     def clean(self, *args, **kwargs):
         email = self.cleaned_data.get('email')
@@ -140,6 +156,10 @@ class ConfirmPasswordForm(forms.Form):
 
 
 class PatientForm(UserForm):
+    id_document = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                'placeholder': '* 00000'}))
+    id_document_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
+                                                                     'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
 
     class Meta:
         model = Patient

@@ -1,5 +1,5 @@
 # Django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.views.generic import FormView
 
@@ -41,4 +41,4 @@ class LoginView(FormView):
     def user_authentication(self, request, user):
         if user.is_active:
             auth.login(request, user)
-            return render(request, 'home.html')
+            return redirect('/dashboard/health_professional')

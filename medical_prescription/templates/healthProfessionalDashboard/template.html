@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {% load staticfiles %} {% csrf_token %} {% include "healthProfessionalDashboard/head.html" %}
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+    <div class="wrapper">
+   
+        <!-- navigation bar -->
+        {% include "healthProfessionalDashboard/nav_bar.html" %}
+
+        <!-- parte de baixo -->
+        {% include "healthProfessionalDashboard/side_bar.html" %}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+ 
+            <!-- Main content -->
+            <section class="content container-fluid">
+
+                 {% block content %} {% endblock %}
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+{% load static %}{% load staticfiles %}
+
+<!--========== JAVASCRIPTS ==========-->
+
+<script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "dashboard/bowercomponents/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+<script src="{% static "dashboard/dist/js/adminlte.min.js" %}"></script>
+
+
+<!--========== END JAVASCRIPTS ==========-->
+
+
+</body>
+
+
+
+
+</html>

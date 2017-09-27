@@ -93,7 +93,7 @@ SEX = 'Sex'
 SEX_M = 'M'
 SEX_F = 'F'
 
-SEX_CHOICE = ((SEX_M, 'Masculino'), (SEX_F, 'Feminino'))
+SEX_CHOICE = ((SEX_M, 'M'), (SEX_F, 'F'))
 
 # SEX VALIDATION MESSAGES.
 SEX_VALUE = "Sex must be M for male F for female"
