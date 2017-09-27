@@ -14,13 +14,11 @@ class RegisterPatientViewTest(TestCase):
         self.phone_valid = '123456789'
         self.email_valid = 'admin@admin.com'
         self.sex_valid = 'M'
-        self.crm_valid = '12345'
-        self.crm_state_valid = 'DF'
         self.id_document_valid = '12345678910'
         self.password_valid = '1234567'
 
     def test_get(self):
-        request = self.factory.get('user/register_patient/')
+        request = self.factory.get('/user/register_patient/')
         response = self.my_view.get(request)
         self.assertEqual(response.status_code, 200)
 
@@ -30,12 +28,10 @@ class RegisterPatientViewTest(TestCase):
                    'email': self.email_valid,
                    'password': self.password_valid,
                    'confirm_password': self.password_valid,
-                   'crm': self.crm_valid,
-                   'crm_state': self.crm_state_valid,
                    'sex': self.sex_valid,
                    'date_of_birth': self.date_of_birth_valid}
 
-        response = self.client.post('/user/register_health_professional/', context)
+        response = self.client.post('/user/register_patient/', context)
 
         # If the method redirect correctly the status code 200 is returned.
         self.assertEqual(response.status_code, 200)

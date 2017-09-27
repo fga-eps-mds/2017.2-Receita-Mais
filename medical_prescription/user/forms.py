@@ -85,9 +85,9 @@ class HealthProfessionalForm(UserForm):
             raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif password != password_confirmation:
             raise forms.ValidationError(constants.PASSWORD_MATCH)
-        elif len(name) > constants.NAME_MAX_LENGHT:
+        elif name is not None and len(name) > constants.NAME_MAX_LENGHT:
             raise forms.ValidationError(constants.NAME_SIZE)
-        elif len(name) < constants.NAME_MIN_LENGTH:
+        elif name is not None and len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
         elif phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
@@ -167,15 +167,15 @@ class PatientForm(UserForm):
             raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif password != password_confirmation:
             raise forms.ValidationError(constants.PASSWORD_MATCH)
-        elif len(name) > constants.NAME_MAX_LENGHT:
+        elif name is not None and len(name) > constants.NAME_MAX_LENGHT:
             raise forms.ValidationError(constants.NAME_SIZE)
-        elif len(name) < constants.NAME_MIN_LENGTH:
+        elif name is not None and len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
         elif phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
-        if len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
+        if id_document is not None and len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
-        elif len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH:
+        elif id_document is not None and len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH:
             raise forms.ValidationError((constants.ID_DOCUMENT_SIZE))
         elif email is None:
                     raise forms.ValidationError("email inválido")
