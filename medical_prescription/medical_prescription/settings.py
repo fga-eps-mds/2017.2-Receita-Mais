@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'landing',
+    'dashboard',
 ]
 
 # ====== DONT REMOVE -ME
@@ -76,7 +77,7 @@ ROOT_URLCONF = 'medical_prescription.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['medical_prescription/templates', 'landing/templates', 'user/templates'],
+        'DIRS': ['medical_prescription/templates', 'landing/templates', 'user/templates', 'dashboard/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors':
