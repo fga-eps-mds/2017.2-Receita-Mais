@@ -52,7 +52,8 @@ class TestPatientForm(TestCase):
                      'confirm_password': self.password_valid,
                      'id_document': self.id_document_valid,
                      'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
+                     'date_of_birth': self.date_of_birth_valid,
+                     'id_document_state': 'DF'}
         form = PatientForm(data=form_data)
         self.assertTrue(form.is_valid())
 
