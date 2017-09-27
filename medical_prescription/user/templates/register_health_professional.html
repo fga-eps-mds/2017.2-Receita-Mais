@@ -12,91 +12,91 @@
 
             <div class="row g-row-col-5 g-margin-b-50--xs">
                 <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
-                    {% for error in user_form.name.errors %}
+                    {% for error in form.name.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Nome</h4>
-                    {{ user_form.name }}
+                    {{ form.name }}
                 </div>
 
                 <div class="col-sm-2">
-                    {% for error in user_form.sex.errors %}
+                    {% for error in form.sex.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
                     
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Sexo</h4>
-                    {{ user_form.sex }}
+                    {{ form.sex }}
                 </div>
             </div>
 
             <div class="g-margin-b-30--xs">
-                {% for error in user_form.email.errors %}
+                {% for error in form.email.errors %}
                     <div class="alert alert-danger" role="alert">{{error}}</div>
                 {% endfor %}
 
                 <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Email</h4>
-                {{ user_form.email }}
+                {{ form.email }}
             </div>
 
             <div class="row g-row-col-5 g-margin-b-50--xs">
                 <div class="col-sm-6 g-margin-b-30--xs g-margin-b-0--md">
-                    {% for error in user_form_of_birth.errors %}
+                    {% for error in form.date_of_birth.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Data de Nascimento</h4>
-                     {{ user_form.date_of_birth }}
+                     {{ form.date_of_birth }}
                 </div>
 
                 <div class="col-sm-6">
-                    {% for error in user_form.phone.errors %}
+                    {% for error in form.phone.errors %}
                          <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Telefone:</h4>
-                    {{ user_form.phone }}
+                    {{ form.phone }}
                 </div>
             </div>
 
             <div class="row g-row-col-5 g-margin-b-50--xs">
                 <div class="col-sm-6 g-margin-b-30--xs g-margin-b-0--md">
-                    {% for error in user_form.password.errors %}
+                    {% for error in form.password.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Senha</h4>
-                     {{ user_form.password }}
+                     {{ form.password }}
                 </div>
 
                 <div class="col-sm-6">
-                    {% for error in user_form.confirm_password.errors %}
+                    {% for error in form.confirm_password.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Confirme sua senha</h4>
-                     {{ user_form.confirm_password }}
+                     {{ form.confirm_password }}
                 </div>
             </div>
 
             <div class="row g-row-col-5 g-margin-b-50--xs">
                 <div class="col-sm-9 g-margin-b-30--xs g-margin-b-0--md">
-                    {% for error in health_professional_form.crm.errors %}
+                    {% for error in form.crm.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">CRM</h4>
-                     {{ health_professional_form.crm }}
+                     {{ form.crm }}
                      
                 </div>
 
                 <div class="col-sm-3">
-                     {% for error in health_professional_form.crm_state.errors %}
+                     {% for error in form.crm_state.errors %}
                     <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Estado</h4>
-                     {{ health_professional_form.crm_state }}
+                     {{ form.crm_state }}
                 </div>
             </div>
             

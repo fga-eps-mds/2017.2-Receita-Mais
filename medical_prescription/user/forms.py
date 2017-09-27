@@ -3,7 +3,7 @@ from datetime import date
 
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import HealthProfessional, Patient, User
+from user.models import HealthProfessional, Patient, User
 
 from . import constants
 
@@ -50,7 +50,20 @@ class UserForm(forms.ModelForm):
             'name', 'email', 'date_of_birth', 'phone', 'sex', 'password'
         ]
 
+
+class HealthProfessionalForm(UserForm):
+    crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                        'placeholder': '* 00000'}))
+    crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
+                                                             'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
+
+    class Meta:
+        model = HealthProfessional
+        fields = ('name', 'email', 'date_of_birth', 'phone', 'sex', 'crm', 'crm_state', 'password',)
+
     def clean(self):
+        crm = self.cleaned_data.get('crm')
+        crm_state = self.cleaned_data.get('crm_state')
         name = self.cleaned_data.get('name')
         phone = self.cleaned_data.get('phone')
         email = self.cleaned_data.get('email')
@@ -60,12 +73,31 @@ class UserForm(forms.ModelForm):
 
         email_from_database = User.objects.filter(email=email)
 
+        print("NOME:")
+        print(name)
+
         # TODO(Mateus) Refactor date calculation.
         today = date.today()
-        born = today.year - date_of_birth.year - \
-            ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        try:
+            born = today.year - date_of_birth.year - \
+                ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        except:
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_FORMAT)
 
-        if email_from_database.exists():
+        crm_from_database = HealthProfessional.objects.filter(crm=crm)
+        crm_state_from_database = HealthProfessional.objects.filter(crm_state=crm_state)
+
+        number_pattern = re.compile(r'^[0-9]*$')
+
+        if len(crm) != constants.CRM_LENGTH:
+            raise forms.ValidationError(constants.CRM_SIZE)
+        elif crm_state is not None and len(crm_state) < constants.CRM_STATE_LENGTH:
+            raise forms.ValidationError(constants.CRM_STATE_SIZE)
+        elif crm_from_database.exists() and crm_state_from_database.exists():
+            raise forms.ValidationError(constants.CRM_EXIST)
+        elif number_pattern.findall(crm) == []:
+            raise forms.ValidationError(constants.CRM_FORMAT)
+        elif email_from_database.exists():
             raise ValidationError(constants.EMAIL_EXISTS)
         elif len(password) < constants.PASSWORD_MIN_LENGTH:
             raise forms.ValidationError(constants.PASSWORD_SIZE)
@@ -88,37 +120,6 @@ class UserForm(forms.ModelForm):
                 raise forms.ValidationError(constants.EMAIL_SIZE)
             elif len(email) < constants.EMAIL_MIN_LENGTH:
                 raise forms.ValidationError(constants.EMAIL_SIZE)
-
-
-class HealthProfessionalForm(forms.ModelForm):
-    crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
-                                                            'placeholder': '* 00000'}))
-    crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
-                                                             'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
-
-    class Meta:
-        model = HealthProfessional
-        fields = ('crm', 'crm_state')
-
-    def clean(self):
-        crm = self.cleaned_data.get('crm')
-        crm_state = self.cleaned_data.get('crm_state')
-
-        crm_from_database = HealthProfessional.objects.filter(crm=crm)
-        crm_state_from_database = HealthProfessional.objects.filter(crm_state=crm_state)
-
-        number_pattern = re.compile(r'^[0-9]*$')
-
-        if len(crm) != constants.CRM_LENGTH:
-            raise forms.ValidationError(constants.CRM_SIZE)
-        elif len(crm_state) != constants.CRM_STATE_LENGTH:
-            raise forms.ValidationError(constants.CRM_STATE_SIZE)
-        elif crm_from_database.exists() and crm_state_from_database.exists():
-            raise forms.ValidationError(constants.CRM_EXIST)
-        elif number_pattern.findall(crm) == []:
-            raise forms.ValidationError(constants.CRM_FORMAT)
-
-        # ('first_name', 'last_name', 'date_of_birth', 'phone', 'email', 'sex')
 
 
 # fom to reset password User
@@ -223,8 +224,11 @@ class UpdateUserForm(forms.ModelForm):
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
         today = date.today()
-        born = today.year - date_of_birth.year - \
-            ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        try:
+            born = today.year - date_of_birth.year - \
+                ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        except:
+            raise forms.ValidationError(constants.DATE_OF_BIRTH_FORMAT)
 
         if len(password) < constants.PASSWORD_MIN_LENGTH:
             raise forms.ValidationError(constants.PASSWORD_SIZE)
@@ -236,7 +240,7 @@ class UpdateUserForm(forms.ModelForm):
             raise forms.ValidationError(constants.NAME_SIZE)
         elif len(name) < constants.NAME_MIN_LENGTH:
             raise forms.ValidationError(constants.NAME_SIZE)
-        elif len(phone) > constants.PHONE_NUMBER_SIZE:
+        elif len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH:
             raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
         elif born < constants.DATE_OF_BIRTH_MIN:
             raise forms.ValidationError(constants.DATE_OF_BIRTH_MIN)
