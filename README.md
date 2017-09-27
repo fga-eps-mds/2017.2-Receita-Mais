@@ -1,9 +1,10 @@
-# 2017.2 - Receituário Médico.
-
+# 2017.2 - Receita Mais.
 [![Build Status](https://travis-ci.org/fga-gpp-mds/2017.2-Receituario-Medico.svg?branch=master)](https://travis-ci.org/fga-gpp-mds/2017.2-Receituario-Medico)
 [![Coverage Status](https://coveralls.io/repos/github/fga-gpp-mds/2017.2-Receituario-Medico/badge.svg)](https://coveralls.io/github/fga-gpp-mds/2017.2-Receituario-Medico)
 [![Code Climate](https://codeclimate.com/github/fga-gpp-mds/2017.2-Receituario-Medico/badges/gpa.svg)](https://codeclimate.com/github/fga-gpp-mds/2017.2-Receituario-Medico)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+<p align="center"><img src="https://raw.githubusercontent.com/wiki/fga-gpp-mds/2017.2-Receituario-Medico/imagens/logo/logo.png" width="350px"></p>
 
 
 <p align="justify">O Receituário Médico é um sistema direcionado para os profissionais de saúde que é idealizado pelo médico Getúlio de Morato Filho com o objetivo de tornar a prescrição médica mais rápida e fácil. E o outro viés que o sistema atende é o aproximar o contato do paciente com o médico através de um portal onde será possível visualizar suas receitas e tirar eventuais dúvidas sobre elas.</p>
