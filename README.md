@@ -26,17 +26,15 @@ Primeiro passo para a instalação do projeto é baixar o repositório com o seg
 
 ```docker-compose up```
 
-```docker-compose run web sh coverage.sh```
-
 Acesse a aplicação através do link: http://0.0.0.0:8000
 
 
 ## Principais funcionalidades
-Realizar prescrição médica
-Chat entre médico e paciênte
-Consultar receitas antigas
-Enviar exames ao médico
-Salvar receitas preescritas
+* Realizar prescrição médica
+* Chat entre médico e paciênte
+* Consultar receitas antigas
+* Enviar exames ao médico
+* Salvar receitas preescritas
 
 
 ## Como contribuir
