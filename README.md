@@ -44,3 +44,7 @@ Os contribuintes podem colaborar para manter e evoluir o sistema através da cor
 ## Documentação
 
 Toda a documentação pode ser acessada através da wiki do projeto <a href="https://github.com/fga-gpp-mds/2017.2-Receituario-Medico/wiki">aqui</a>.
+
+## Deploy
+
+Uma versão mais estável do sistema pode ser acessada no seguinte link: [https://medicalprescription.herokuapp.com/](https://medicalprescription.herokuapp.com/)
