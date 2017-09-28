@@ -29,10 +29,8 @@ class RegisterHealthProfessionalView(FormView):
             crm = form.cleaned_data.get('crm')
             crm_state = form.cleaned_data.get('crm_state')
 
-            health_professional = HealthProfessional(email=email, password=password, name=name,
-                                                     sex=sex, date_of_birth=date_of_birth,
-                                                     phone=phone, crm=crm, crm_state=crm_state)
-
-            health_professional.save()
+            HealthProfessional.objects.create_user(email=email, password=password, name=name,
+                                                   sex=sex, date_of_birth=date_of_birth,
+                                                   phone=phone, crm=crm, crm_state=crm_state)
 
         return render(request, self.template_name, {'form': form})

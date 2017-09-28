@@ -1,11 +1,9 @@
 from django.test import TestCase
-
-from user.models import User
 from user.forms import PatientForm
+from user.models import User
 
 
 class TestPatientForm(TestCase):
-
     def setUp(self):
         self.name_valid = 'Teste Nome'
         self.name_invalid = 'a'
@@ -116,7 +114,6 @@ class TestPatientForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid}
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
-
 
     def test_forms_patient_password_is_not_valid(self):
         form_data = {'name': self.name_valid,
