@@ -4,9 +4,21 @@
 
 <head>
     {% load staticfiles %} {% csrf_token %} {% include "landing/head.html" %}
+                 {% csrf_token %}
+
 </head>
 
 <body>
+
+        {% if messages %} 
+            {% for message in messages %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %} 
+        {% endif %}
+
+
     <div>
         <!-- navigation bar -->
         {% include "landing/nav_bar.html" %}
