@@ -33,7 +33,8 @@ class LoginView(FormView):
             if user is not None:
                 return self.user_authentication(request, user)
             else:
-                return render(request, 'message.html', {"message": "usuário não none"})
+                message = 'O Usuário não foi encontrado em nossa base de dados.'
+                return render(request, self.template_name, {'form': form, 'message': message})
         else:
             return render(request, self.template_name, {'form': form})
 
