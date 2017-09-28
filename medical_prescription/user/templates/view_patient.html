@@ -1,0 +1,25 @@
+
+<html>
+
+<body>
+
+    <h1>Dados de todos os pacientes de saude no sistema</h1> {% for patient in patients %}
+
+    <p>
+        Nome: <b>{{ patient.name }}</b>
+        <br> Data de Nascimento:<b>{{ patient.date_of_birth|date:'d/m/Y'}}</b>
+        <br> Telefone: <b>{{ patient.phone }} </b>
+        <br> Email: <b>{{ patient.email }}</b>
+        <br> Sex: <b></b>{{ patient.sex }}</b>
+
+        <br> ID Document: <b>{{ patient.id_document }}</b>
+    </p>
+    <p>
+        pk: <b>{{ patient.pk }}</b>
+    </p>
+
+    {% endfor %}
+
+</body>
+
+</html>

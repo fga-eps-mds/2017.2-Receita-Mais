@@ -1,6 +1,8 @@
+class HealthProfessional(models.Model, User)
 *.pyc
 __pycache__
 virtual/
+.vscode/
 db.sqlite3
 .DS_Store
 .coverage
@@ -10,3 +12,4 @@ htmlcov
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+.sonar/

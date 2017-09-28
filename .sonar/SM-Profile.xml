@@ -1,0 +1,372 @@
+<sourcemeter-profile>
+  <tool-options>
+    <tool name = "MetricHunter" enabled = "true">
+      <metric-thresholds>
+        <threshold metric-id="LOC" relation="gt" value="1000" entity="Class" />
+        <threshold metric-id="LLOC" relation="gt" value="600" entity="Class" />
+        <threshold metric-id="NA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NG" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NLA" relation="gt" value="5" entity="Class" />
+        <threshold metric-id="NLG" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NLM" relation="gt" value="20" entity="Class" />
+        <threshold metric-id="NLPA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NLPM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NLS" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NPA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NPM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NS" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NOS" relation="gt" value="900" entity="Class" />
+        <threshold metric-id="TNA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNG" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNLA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNLG" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNLPA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNLPM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNLS" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNLM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNPA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNPM" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TNS" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TLOC" relation="gt" value="1600" entity="Class" />
+        <threshold metric-id="TLLOC" relation="gt" value="960" entity="Class" />
+        <threshold metric-id="TNOS" relation="gt" value="1440" entity="Class" />
+        <threshold metric-id="PUA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="AD" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="CD" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TCLOC" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="TCD" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NL" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NLE" relation="gt" value="3" entity="Class" />
+        <threshold metric-id="WMC" relation="gt" value="115" entity="Class" />
+        <threshold metric-id="CBOI" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NOI" relation="gt" value="50" entity="Class" />
+        <threshold metric-id="RFC" relation="gt" value="70" entity="Class" />
+        <threshold metric-id="LCOM5" relation="gt" value="1" entity="Class" />
+        <threshold metric-id="CCL" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="CCO" relation="gt" value="57" entity="Class" />
+        <threshold metric-id="CC" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="CI" relation="gt" value="0" entity="Class" />
+        <threshold metric-id="CLC" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="CLLC" relation="gt" value="0.15" entity="Class" />
+        <threshold metric-id="LDC" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="LLDC" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="WarningBlocker" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="WarningCritical" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="WarningMajor" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="WarningMinor" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="DIT" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NOA" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NOC" relation="gt" value="10" entity="Class" />
+        <threshold metric-id="NOD" relation="gt" value="none" entity="Class" />
+        <threshold metric-id="NOP" relation="gt" value="none" entity="Class" />
+
+        <threshold metric-id="LOC" relation="gt" value="100" entity="Method" />
+        <threshold metric-id="LLOC" relation="gt" value="65" entity="Method" />
+        <threshold metric-id="NUMPAR" relation="gt" value="5" entity="Method" />
+        <threshold metric-id="NOS" relation="gt" value="90" entity="Method" />
+        <threshold metric-id="TLOC" relation="gt" value="160" entity="Method" />
+        <threshold metric-id="TLLOC" relation="gt" value="104" entity="Method" />
+        <threshold metric-id="TNOS" relation="gt" value="144" entity="Method" />
+        <threshold metric-id="CD" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="TCLOC" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="TCD" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HCPL" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HDIF" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HEFF" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HNDB" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HPL" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HPV" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HTRP" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="HVOL" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="MIMS" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="MI" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="MISEI" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="MISM" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="McCC" relation="gt" value="10" entity="Method" />
+        <threshold metric-id="NL" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="NLE" relation="gt" value="3" entity="Method" />
+        <threshold metric-id="NOI" relation="gt" value="10" entity="Method" />
+        <threshold metric-id="CCL" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="CCO" relation="gt" value="10" entity="Method" />
+        <threshold metric-id="CC" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="CI" relation="gt" value="0" entity="Method" />
+        <threshold metric-id="CLC" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="CLLC" relation="gt" value="0.15" entity="Method" />
+        <threshold metric-id="LDC" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="LLDC" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="WarningBlocker" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="WarningCritical" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="WarningMajor" relation="gt" value="none" entity="Method" />
+        <threshold metric-id="WarningMinor" relation="gt" value="none" entity="Method" />
+
+        <threshold metric-id="CD" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="TCLOC" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="TCD" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HCPL" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HDIF" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HEFF" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HNDB" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HPL" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HPV" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HTRP" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="HVOL" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="MIMS" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="MI" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="MISEI" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="MISM" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="NL" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="CCL" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="CC" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="CLC" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="LDC" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="LLDC" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="WarningBlocker" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="WarningCritical" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="WarningMajor" relation="gt" value="none" entity="Function" />
+        <threshold metric-id="WarningMinor" relation="gt" value="none" entity="Function" />
+
+        <threshold metric-id="CA" relation="gt" value="none" entity="CloneClass" />
+        <threshold metric-id="CCO" relation="gt" value="10" entity="CloneClass" />
+        <threshold metric-id="CE" relation="gt" value="101" entity="CloneClass" />
+        <threshold metric-id="CI" relation="gt" value="2" entity="CloneClass" />
+        <threshold metric-id="CLLOC" relation="gt" value="33" entity="CloneClass" />
+        <threshold metric-id="CV" relation="gt" value="none" entity="CloneClass" />
+        <threshold metric-id="NCR" relation="gt" value="none" entity="CloneClass" />
+
+        <threshold metric-id="CA" relation="gt" value="none" entity="CloneInstance" />
+        <threshold metric-id="CCO" relation="gt" value="5" entity="CloneInstance" />
+        <threshold metric-id="CE" relation="gt" value="50" entity="CloneInstance" />
+        <threshold metric-id="CLLOC" relation="gt" value="33" entity="CloneInstance" />
+        <threshold metric-id="CV" relation="gt" value="none" entity="CloneInstance" />
+
+      </metric-thresholds>
+    </tool>
+  </tool-options>
+  <rule-options>
+    <rule id="AAI"  enabled="true" priority="Minor"/>
+    <rule id="BE"  enabled="true" priority="Major"/>
+    <rule id="BT"  enabled="true" priority="Major"/>
+    <rule id="BoC"  enabled="true" priority="Major"/>
+    <rule id="DDV"  enabled="true" priority="Major"/>
+    <rule id="MS"  enabled="true" priority="Major"/>
+    <rule id="MeN"  enabled="true" priority="Minor"/>
+    <rule id="MoN"  enabled="true" priority="Minor"/>
+    <rule id="NoC"  enabled="true" priority="Major"/>
+    <rule id="OC"  enabled="true" priority="Major"/>
+    <rule id="ORS"  enabled="true" priority="Critical"/>
+    <rule id="OSC"  enabled="true" priority="Major"/>
+    <rule id="RI"  enabled="true" priority="Minor"/>
+    <rule id="RS"  enabled="true" priority="Critical"/>
+    <rule id="SFC"  enabled="true" priority="Major"/>
+    <rule id="SI"  enabled="true" priority="Minor"/>
+    <rule id="SSP"  enabled="true" priority="Major"/>
+    <rule id="SSS"  enabled="true" priority="Major"/>
+    <rule id="TI"  enabled="true" priority="Major"/>
+    <rule id="WI"  enabled="true" priority="Major"/>
+    <rule id="AB"  enabled="true" priority="Major"/>
+    <rule id="ABIS"  enabled="true" priority="Major"/>
+    <rule id="ACI"  enabled="true" priority="Critical"/>
+    <rule id="ACLU"  enabled="true" priority="Minor"/>
+    <rule id="ACNU"  enabled="true" priority="Minor"/>
+    <rule id="AD"  enabled="true" priority="Major"/>
+    <rule id="ADOI"  enabled="true" priority="Major"/>
+    <rule id="AFN"  enabled="true" priority="Major"/>
+    <rule id="AFNR"  enabled="true" priority="Critical"/>
+    <rule id="AM"  enabled="true" priority="Major"/>
+    <rule id="AMBD"  enabled="true" priority="Critical"/>
+    <rule id="ANS"  enabled="true" priority="Critical"/>
+    <rule id="AOT"  enabled="true" priority="Major"/>
+    <rule id="AUEIS"  enabled="true" priority="Major"/>
+    <rule id="B"  enabled="true" priority="Critical"/>
+    <rule id="BB"  enabled="true" priority="Major"/>
+    <rule id="BC"  enabled="true" priority="Minor"/>
+    <rule id="BCA"  enabled="true" priority="Minor"/>
+    <rule id="BCM"  enabled="true" priority="Critical"/>
+    <rule id="BD"  enabled="true" priority="Major"/>
+    <rule id="BEC"  enabled="true" priority="Critical"/>
+    <rule id="BEO"  enabled="true" priority="Critical"/>
+    <rule id="BFC"  enabled="true" priority="Critical"/>
+    <rule id="BFS"  enabled="true" priority="Major"/>
+    <rule id="BFSK"  enabled="true" priority="Major"/>
+    <rule id="BI"  enabled="true" priority="Major"/>
+    <rule id="BMCA"  enabled="true" priority="Minor"/>
+    <rule id="BMMA"  enabled="true" priority="Minor"/>
+    <rule id="BN"  enabled="true" priority="Minor"/>
+    <rule id="BOE"  enabled="true" priority="Major"/>
+    <rule id="BOM"  enabled="true" priority="Major"/>
+    <rule id="BRS"  enabled="true" priority="Critical"/>
+    <rule id="BSA"  enabled="true" priority="Major"/>
+    <rule id="BSC"  enabled="true" priority="Critical"/>
+    <rule id="BSSC"  enabled="true" priority="Critical"/>
+    <rule id="BW"  enabled="true" priority="Minor"/>
+    <rule id="BaB"  enabled="true" priority="Major"/>
+    <rule id="BrE"  enabled="true" priority="Major"/>
+    <rule id="BuB"  enabled="true" priority="Major"/>
+    <rule id="CB"  enabled="true" priority="Major"/>
+    <rule id="CI"  enabled="true" priority="Minor"/>
+    <rule id="CM"  enabled="true" priority="Major"/>
+    <rule id="CNE"  enabled="true" priority="Critical"/>
+    <rule id="CVFL"  enabled="true" priority="Major"/>
+    <rule id="CoB"  enabled="true" priority="Major"/>
+    <rule id="CoM"  enabled="true" priority="Major"/>
+    <rule id="DAN"  enabled="true" priority="Critical"/>
+    <rule id="DIM"  enabled="true" priority="Major"/>
+    <rule id="DK"  enabled="true" priority="Major"/>
+    <rule id="DL"  enabled="true" priority="Major"/>
+    <rule id="DM"  enabled="true" priority="Major"/>
+    <rule id="DVM"  enabled="true" priority="Major"/>
+    <rule id="DeM"  enabled="true" priority="Major"/>
+    <rule id="EB"  enabled="true" priority="Major"/>
+    <rule id="ED"  enabled="true" priority="Minor"/>
+    <rule id="ENA"  enabled="true" priority="Major"/>
+    <rule id="EU"  enabled="true" priority="Major"/>
+    <rule id="ExU"  enabled="true" priority="Major"/>
+    <rule id="FB"  enabled="true" priority="Major"/>
+    <rule id="FCS"  enabled="true" priority="Major"/>
+    <rule id="FNM"  enabled="true" priority="Critical"/>
+    <rule id="FR"  enabled="true" priority="Critical"/>
+    <rule id="Fi"  enabled="true" priority="Major"/>
+    <rule id="GAML"  enabled="true" priority="Major"/>
+    <rule id="GM"  enabled="true" priority="Major"/>
+    <rule id="GS"  enabled="true" priority="Major"/>
+    <rule id="GVNA"  enabled="true" priority="Major"/>
+    <rule id="GVU"  enabled="true" priority="Major"/>
+    <rule id="HM"  enabled="true" priority="Major"/>
+    <rule id="IAO"  enabled="true" priority="Critical"/>
+    <rule id="IB"  enabled="true" priority="Major"/>
+    <rule id="IED"  enabled="true" priority="Major"/>
+    <rule id="IFI"  enabled="true" priority="Major"/>
+    <rule id="IIG"  enabled="true" priority="Critical"/>
+    <rule id="IINC"  enabled="true" priority="Critical"/>
+    <rule id="IME"  enabled="true" priority="Major"/>
+    <rule id="IN"  enabled="true" priority="Minor"/>
+    <rule id="INC"  enabled="true" priority="Critical"/>
+    <rule id="INI"  enabled="true" priority="Minor"/>
+    <rule id="IS"  enabled="true" priority="Major"/>
+    <rule id="ISI"  enabled="true" priority="Critical"/>
+    <rule id="ISO"  enabled="true" priority="Critical"/>
+    <rule id="InE"  enabled="true" priority="Major"/>
+    <rule id="InS"  enabled="true" priority="Critical"/>
+    <rule id="InSI"  enabled="true" priority="Critical"/>
+    <rule id="LB"  enabled="true" priority="Major"/>
+    <rule id="LFI"  enabled="true" priority="Major"/>
+    <rule id="LFT"  enabled="true" priority="Critical"/>
+    <rule id="LLS"  enabled="true" priority="Major"/>
+    <rule id="LNL"  enabled="true" priority="Major"/>
+    <rule id="LS"  enabled="true" priority="Critical"/>
+    <rule id="LTFA"  enabled="true" priority="Critical"/>
+    <rule id="LTL"  enabled="true" priority="Minor"/>
+    <rule id="LTMA"  enabled="true" priority="Critical"/>
+    <rule id="LUF"  enabled="true" priority="Critical"/>
+    <rule id="LoE"  enabled="true" priority="Major"/>
+    <rule id="MA"  enabled="true" priority="Major"/>
+    <rule id="MD"  enabled="true" priority="Minor"/>
+    <rule id="MF"  enabled="true" priority="Major"/>
+    <rule id="MFA"  enabled="true" priority="Major"/>
+    <rule id="MFAK"  enabled="true" priority="Major"/>
+    <rule id="MFN"  enabled="true" priority="Minor"/>
+    <rule id="MFS"  enabled="true" priority="Critical"/>
+    <rule id="MFSK"  enabled="true" priority="Critical"/>
+    <rule id="MH"  enabled="true" priority="Critical"/>
+    <rule id="MI"  enabled="true" priority="Major"/>
+    <rule id="MIM"  enabled="true" priority="Critical"/>
+    <rule id="MK"  enabled="true" priority="Critical"/>
+    <rule id="MLE"  enabled="true" priority="Minor"/>
+    <rule id="MMA"  enabled="true" priority="Minor"/>
+    <rule id="MRA"  enabled="true" priority="Critical"/>
+    <rule id="MSA"  enabled="true" priority="Critical"/>
+    <rule id="NAI"  enabled="true" priority="Major"/>
+    <rule id="NC"  enabled="true" priority="Critical"/>
+    <rule id="NE"  enabled="true" priority="Major"/>
+    <rule id="NI"  enabled="true" priority="Major"/>
+    <rule id="NIL"  enabled="true" priority="Critical"/>
+    <rule id="NIR"  enabled="true" priority="Major"/>
+    <rule id="NM"  enabled="true" priority="Critical"/>
+    <rule id="NMA"  enabled="true" priority="Critical"/>
+    <rule id="NMC"  enabled="true" priority="Major"/>
+    <rule id="NNIM"  enabled="true" priority="Critical"/>
+    <rule id="NO"  enabled="true" priority="Critical"/>
+    <rule id="NPIC"  enabled="true" priority="Major"/>
+    <rule id="NR"  enabled="true" priority="Critical"/>
+    <rule id="NSA"  enabled="true" priority="Critical"/>
+    <rule id="NSU"  enabled="true" priority="Minor"/>
+    <rule id="NVFP"  enabled="true" priority="Critical"/>
+    <rule id="NoM"  enabled="true" priority="Major"/>
+    <rule id="OD"  enabled="true" priority="Major"/>
+    <rule id="OM"  enabled="true" priority="Major"/>
+    <rule id="ONO"  enabled="true" priority="Critical"/>
+    <rule id="OOL"  enabled="true" priority="Critical"/>
+    <rule id="PA"  enabled="true" priority="Major"/>
+    <rule id="POOC"  enabled="true" priority="Major"/>
+    <rule id="PS"  enabled="true" priority="Major"/>
+    <rule id="PSS"  enabled="true" priority="Major"/>
+    <rule id="PU"  enabled="true" priority="Critical"/>
+    <rule id="PoE"  enabled="true" priority="Major"/>
+    <rule id="PrS"  enabled="true" priority="Critical"/>
+    <rule id="R"  enabled="true" priority="Major"/>
+    <rule id="RAIG"  enabled="true" priority="Critical"/>
+    <rule id="RB"  enabled="true" priority="Major"/>
+    <rule id="RBT"  enabled="true" priority="Critical"/>
+    <rule id="RIH"  enabled="true" priority="Major"/>
+    <rule id="RII"  enabled="true" priority="Critical"/>
+    <rule id="RKA"  enabled="true" priority="Critical"/>
+    <rule id="RNE"  enabled="true" priority="Critical"/>
+    <rule id="ROF"  enabled="true" priority="Critical"/>
+    <rule id="RON"  enabled="true" priority="Major"/>
+    <rule id="RUA"  enabled="true" priority="Major"/>
+    <rule id="ReB"  enabled="true" priority="Major"/>
+    <rule id="RedB"  enabled="true" priority="Major"/>
+    <rule id="RelB"  enabled="true" priority="Major"/>
+    <rule id="RoB"  enabled="true" priority="Major"/>
+    <rule id="SA"  enabled="true" priority="Major"/>
+    <rule id="SB"  enabled="true" priority="Major"/>
+    <rule id="SD"  enabled="true" priority="Major"/>
+    <rule id="SINC"  enabled="true" priority="Major"/>
+    <rule id="SM"  enabled="true" priority="Major"/>
+    <rule id="SOOC"  enabled="true" priority="Critical"/>
+    <rule id="SP"  enabled="true" priority="Minor"/>
+    <rule id="SuOOC"  enabled="true" priority="Critical"/>
+    <rule id="TFFA"  enabled="true" priority="Critical"/>
+    <rule id="TFPM"  enabled="true" priority="Minor"/>
+    <rule id="TFS"  enabled="true" priority="Critical"/>
+    <rule id="TMA"  enabled="true" priority="Minor"/>
+    <rule id="TMB"  enabled="true" priority="Minor"/>
+    <rule id="TMFA"  enabled="true" priority="Critical"/>
+    <rule id="TMIA"  enabled="true" priority="Minor"/>
+    <rule id="TML"  enabled="true" priority="Minor"/>
+    <rule id="TMPM"  enabled="true" priority="Minor"/>
+    <rule id="TMRS"  enabled="true" priority="Minor"/>
+    <rule id="TMS"  enabled="true" priority="Minor"/>
+    <rule id="TW"  enabled="true" priority="Minor"/>
+    <rule id="ToMA"  enabled="true" priority="Minor"/>
+    <rule id="ToMFA"  enabled="true" priority="Critical"/>
+    <rule id="ToML"  enabled="true" priority="Minor"/>
+    <rule id="U"  enabled="true" priority="Major"/>
+    <rule id="UA"  enabled="true" priority="Major"/>
+    <rule id="UAV"  enabled="true" priority="Critical"/>
+    <rule id="UB"  enabled="true" priority="Major"/>
+    <rule id="UBA"  enabled="true" priority="Critical"/>
+    <rule id="UEOL"  enabled="true" priority="Major"/>
+    <rule id="UFSA"  enabled="true" priority="Major"/>
+    <rule id="UFSK"  enabled="true" priority="Major"/>
+    <rule id="UIE"  enabled="true" priority="Critical"/>
+    <rule id="UKA"  enabled="true" priority="Critical"/>
+    <rule id="UL"  enabled="true" priority="Major"/>
+    <rule id="ULEF"  enabled="true" priority="Minor"/>
+    <rule id="ULV"  enabled="true" priority="Major"/>
+    <rule id="UNS"  enabled="true" priority="Major"/>
+    <rule id="UP"  enabled="true" priority="Major"/>
+    <rule id="US"  enabled="true" priority="Major"/>
+    <rule id="UTU"  enabled="true" priority="Major"/>
+    <rule id="UV"  enabled="true" priority="Critical"/>
+    <rule id="UWI"  enabled="true" priority="Major"/>
+    <rule id="UnI"  enabled="true" priority="Major"/>
+    <rule id="UnV"  enabled="true" priority="Major"/>
+    <rule id="WSIC"  enabled="true" priority="Minor"/>
+    <rule id="WSID"  enabled="true" priority="Minor"/>
+    <rule id="XB"  enabled="true" priority="Major"/>
+    <rule id="YOF"  enabled="true" priority="Critical"/>
+  </rule-options>
+</sourcemeter-profile>
