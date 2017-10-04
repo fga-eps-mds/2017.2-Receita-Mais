@@ -28,5 +28,5 @@ class RegisterHealthProfessionalViewTest(TestCase):
                    'crm_state': 'DF'}
         response = self.client.post('/user/register_health_professional/', context)
 
-        # If the method redirect correctly the status code 200 is returned.
-        self.assertEqual(response.status_code, 200)
+        # If the method redirect the status code 302 is returned.
+        self.assertEqual(response.status_code, 302)
