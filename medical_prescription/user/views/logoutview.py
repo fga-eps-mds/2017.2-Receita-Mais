@@ -12,4 +12,4 @@ class LogoutView(View):
     # Exit user and render 'home' page.
     def get(self, request):
         auth.logout(request)
-        return redirect('/home/login')
+        return redirect('/')

@@ -1,6 +1,8 @@
 # Django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
+from django.contrib import messages
+
 
 # Local Django
 from user.models import HealthProfessional
@@ -32,5 +34,10 @@ class RegisterHealthProfessionalView(FormView):
             HealthProfessional.objects.create_user(email=email, password=password, name=name,
                                                    sex=sex, date_of_birth=date_of_birth,
                                                    phone=phone, crm=crm, crm_state=crm_state)
+
+            messages.success(
+                request, 'Registro Realizado!Um email foi enviado com seu link para ativação!', extra_tags='alert')
+
+            return redirect('/')
 
         return render(request, self.template_name, {'form': form})
