@@ -13,12 +13,19 @@ class LoginView(FormView):
     '''
 
     form_class = UserLoginForm
-    template_name = 'login.html'
+    template_name_patient = 'login_patient.html'
+    template_name_healthProfessional = 'login_healthprofessional.html'
+    template_name = ''
 
+    # TODO(Felipe) Renderizar o template de acordo com o tipo de Usuário
     # Render the login page.
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
+
+        if(request.path == '/user/login_healthprofessional/'):
+            return render(request, self.template_name_healthProfessional, {'form': form})
+        else:
+            return render(request, self.template_name_patient, {'form': form})
 
     # Login user.
     def post(self, request, *args, **kwargs):
@@ -41,5 +48,7 @@ class LoginView(FormView):
     # Login valid user.
     def user_authentication(self, request, user):
         if user.is_active:
+
+            # TODO(Felipe) Redirecionar a página da acordo com o tipo de usuário
             auth.login(request, user)
             return redirect('/dashboardHealthProfessional/health_professional')

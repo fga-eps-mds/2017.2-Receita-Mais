@@ -16,7 +16,8 @@ from user.views import (ConfirmPasswordView,
 
 
 urlpatterns = (
-    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^login_patient/$', LoginView.as_view(), name='login_patient'),
+    url(r'^login_healthprofessional/$', LoginView.as_view(), name='login_healthprofessional'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^reset/$', ResetPasswordView.as_view(), name='reset_password'),
     url(r'^reset_confirm/(?P<activation_key>\w+)/$', ConfirmPasswordView.as_view(), name='confirm_password'),
