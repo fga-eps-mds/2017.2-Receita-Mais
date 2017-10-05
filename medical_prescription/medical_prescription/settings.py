@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'landing',
-    'dashboard',
+    'dashboardPatient',
+    'dashboardHealthProfessional',
 ]
 
 # ====== DONT REMOVE -ME
@@ -77,7 +78,14 @@ ROOT_URLCONF = 'medical_prescription.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), 'medical_prescription/templates', 'landing/templates', 'user/templates', 'dashboard/templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            'medical_prescription/templates',
+            'landing/templates',
+            'user/templates',
+            'dashboardPatient/templates',
+            'dashboardHealthProfessional/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors':
@@ -109,7 +117,7 @@ if 'TRAVIS' in os.environ:
     }
 elif 'DYNO' in os.environ:
     default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-    DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
+    DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
 else:
     DATABASES = {
         'default': {

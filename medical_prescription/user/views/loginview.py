@@ -42,4 +42,4 @@ class LoginView(FormView):
     def user_authentication(self, request, user):
         if user.is_active:
             auth.login(request, user)
-            return redirect('/dashboard/health_professional')
+            return redirect('/dashboardHealthProfessional/health_professional')
