@@ -208,13 +208,9 @@ class PatientForm(UserForm):
 
 class UpdateUserForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        self.current_user = kwargs['instance']
-        super(UpdateUserForm, self).__init__(*args, **kwargs)
-
     # It verifies if the given password matches the one in the database.
     def verify_password(self, password):
-        return self.current_user.check_password(password)
+        return self.instance.check_password(password)
 
     date_of_birth = FormattedDateField(initial=date.today)
     password = forms.CharField(widget=forms.PasswordInput())

@@ -35,18 +35,23 @@ class TestUpdateUserForm(TestCase):
         self.password_invalid = '1234567891011'
         self.password_invalid_MAX = '1234567891011'
 
-        user = User()
-        user.email = "admin@hotmail.com"
-        user.save()
+        self.user = User()
+        self.user.name = self.name_valid
+        self.user.date_of_birth = "1990-12-10"
+        self.user.phone = self.phone_valid
+        self.user.sex = self.sex_valid
+        self.user.set_password(self.password_valid)
+        self.user.email = "admin@hotmail.com"
+        self.user.save()
 
     def test_update_user_form_valid(self):
         form_data = {'name': self.name_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_valid
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertTrue(form.is_valid())
 
     def test_update_user_form_name_is_not_valid(self):
@@ -54,8 +59,7 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     'password': self.password_valid}
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -65,7 +69,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -75,7 +79,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -84,8 +88,8 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_invalid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     'password': self.password_valid
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -95,7 +99,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -105,7 +109,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -115,7 +119,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -125,7 +129,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid_MAX,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -135,7 +139,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid_MIN,
-                     'confirm_password': self.password_valid}
+                    }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -145,7 +149,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_invalid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -155,7 +159,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                    }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -165,7 +169,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                    }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -175,7 +179,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -185,7 +189,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -195,7 +199,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -205,7 +209,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -215,7 +219,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -225,7 +229,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -235,7 +239,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -245,7 +249,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -255,7 +259,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -265,7 +269,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_valid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -275,7 +279,7 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
 
@@ -285,6 +289,6 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_invalid}
+                     }
         form = UpdateUserForm(data=form_data)
         self.assertFalse(form.is_valid())
