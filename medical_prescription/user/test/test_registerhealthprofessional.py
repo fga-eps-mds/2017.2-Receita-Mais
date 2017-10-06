@@ -20,11 +20,11 @@ class RegisterHealthProfessionalViewTest(TestCase):
         context = {'email': 'test@test.com',
                    'password': '1st234567',
                    'confirm_password': '1st234567',
-                   'name': 'Teste registro',
+                   'name': 'Testeregistro',
                    'sex': 'M',
-                   'phone': '9999-9999',
+                   'phone': '6699999999',
                    'date_of_birth': '10/12/1990',
-                   'crm': '12345',
+                   'crm': '12347',
                    'crm_state': 'DF'}
         response = self.client.post('/user/register_health_professional/', context)
 

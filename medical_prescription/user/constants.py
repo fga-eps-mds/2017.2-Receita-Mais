@@ -8,7 +8,7 @@ CRM_STATE_LENGTH = 2
 # CRM MESSAGES VALIDATION MESSAGES.
 CRM_SIZE = 'CRM must have 5 characters.'
 CRM_STATE_SIZE = 'CRM must have 2 characters.'
-CRM_FORMAT = 'CRM must contain /only numbers.'
+CRM_FORMAT = 'CRM must contain only numbers.'
 CRM_EXIST = 'CRM already exists'
 
 # UF FIELDS.
@@ -51,13 +51,13 @@ NAME_MAX_LENGHT = 50
 
 # NAME VALIDATION MESSAGES
 NAME_CHARACTERS = 'Name must not contain special characteres'
-NAME_FORMAT = 'Name must contain o nly letters'
+NAME_FORMAT = 'Name must contain only letters'
 NAME_SIZE = 'Name must be between 5 and 50 characteres'
 
 # EMAIL FIELDS
 EMAIL = "E-mail"
 EMAIL_FIELD_LENGTH = 50
-EMAIL_MIN_LENGTH = 5
+EMAIL_MIN_LENGTH = 6
 EMAIL_MAX_LENGTH = 50
 
 # EMAIL VALIDATION MESSAGES.
@@ -75,17 +75,19 @@ EMAIL_MESSAGE_EXIST = 'Um email de recuperação de senha já foi enviado para e
 # DATE_OF_BIRTH FIELDS.
 DATE_OF_BIRTH = "Date of birth"
 DATE_OF_BIRTH_MIN = 18
+DATE_OF_BIRTH_MIN_PATIENT = 0
 
 # DATE_OF_BIRTH VALIDATION MESSAGES.
 DATE_OF_BIRTH_FORMAT = "Date of birth must be in format: dd/mm/yyyy"
 DATE_OF_BIRTH_MIN_ERROR = "User must be 18 years"
-
+DATE_OF_BIRTH_MIN_PATIENT_ERROR = "User cannot be born in the future"
 # PHONE_NUMBER FIELDS.
 PHONE_NUMBER = "Phone number"
-PHONE_NUMBER_FIELD_LENGTH = 11
+PHONE_NUMBER_FIELD_LENGTH_MAX = 11
+PHONE_NUMBER_FIELD_LENGTH_MIN = 10
 
 # PHONE_NUMBER VALIDATION MESSAGES.
-PHONE_NUMBER_SIZE = 'Phone number must contain a maximum of 11 characters'
+PHONE_NUMBER_SIZE = 'Phone number must be between 10 and 11 characters'
 PHONE_NUMBER_FORMAT = 'Phone number must contain only numbers'
 
 # SEX FIELDS.
@@ -108,10 +110,8 @@ PASSWORD_MAX_LENGTH = 12
 # PASSWORD VALIDATION MESSAGES.
 PASSWORD_SIZE = 'Password must be between 6 and 12 characters.'
 PASSWORD_MATCH = 'Passwords do not match'
-
-# PASSWORD VALIDATION MESSAGES
-PASSWORD_SIZE = 'Password must be between 6 and 12 characteres.'
-PASSWORD_MATCH = 'Passwords do not match'
+PASSWORD_ERROR_ALNUM = 'Characteres must be alphanumeric'
+PASSWORD_FORMAT = 'Password must contain only alphanumeric characteres'
 
 # ID DOCUMENT FIELD.
 ID_DOCUMENT = 'Id Document'
@@ -120,4 +120,5 @@ ID_DOCUMENT_MIN_LENGTH = 2
 ID_DOCUMENT_MAX_LENGTH = 32
 
 # ID DOCUMENT FIELD VALIDATION MESSAGES.
-ID_DOCUMENT_SIZE = 'You id document must be between 10 and 32 characteres'
+ID_DOCUMENT_SIZE = 'Your id document must be between 10 and 32 characteres'
+ID_DOCUMENT_FORMAT = 'Id document must be only numbers'
