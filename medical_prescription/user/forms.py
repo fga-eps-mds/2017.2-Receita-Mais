@@ -208,24 +208,27 @@ class PatientForm(UserForm):
 
 class UpdateUserForm(forms.ModelForm):
 
+    # It verifies if the given password matches the one in the database.
+    def verify_password(self, password):
+        return self.instance.check_password(password)
+
     date_of_birth = FormattedDateField(initial=date.today)
     password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
         fields = [
-            'name', 'date_of_birth', 'phone', 'sex', 'password'
+            'name', 'date_of_birth', 'phone', 'sex'
         ]
 
     def clean(self):
         name = self.cleaned_data.get('name')
         phone = self.cleaned_data.get('phone')
         password = self.cleaned_data.get('password')
-        password_confirmation = self.cleaned_data.get('confirm_password')
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
         today = date.today()
+
         try:
             born = today.year - date_of_birth.year - \
                 ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
@@ -236,7 +239,7 @@ class UpdateUserForm(forms.ModelForm):
             raise forms.ValidationError(constants.PASSWORD_SIZE)
         elif len(password) > constants.PASSWORD_MAX_LENGTH:
             raise forms.ValidationError(constants.PASSWORD_SIZE)
-        elif password != password_confirmation:
+        elif not self.verify_password(password):
             raise forms.ValidationError(constants.PASSWORD_MATCH)
         elif len(name) > constants.NAME_MAX_LENGHT:
             raise forms.ValidationError(constants.NAME_SIZE)
