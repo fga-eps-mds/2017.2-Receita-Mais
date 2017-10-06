@@ -6,8 +6,8 @@ from user.models import User
 class TestPatientForm(TestCase):
     def setUp(self):
         self.name_valid = 'Teste Nome'
-        self.name_invalid = 'a@'
-        self.name_invalid_TYPE = 'a@'
+        self.name_invalid = 'a12'
+        self.name_invalid_TYPE = 'a@hjasgdjasd1al'
         self.name_invalid_MAX = 'aasdkgasghdhjadjasvdashdjavcdbnmhasdvbdmmasbdnmhamsjdhgegdhjgsavdhabvdbnasd'
         self.name_invalid_MIN = 'a'
 
@@ -20,7 +20,7 @@ class TestPatientForm(TestCase):
         self.email_valid = 'admin@admin.com'
         self.email_invalid = 'admin.com'
         self.email_invalid_TYPE = 'admin.com'
-        self.email_invalid_MIN = 'a@a.com'
+        self.email_invalid_MIN = 'a@a.a'
         self.email_invalid_MAX = 'admin@fgdhafdgfashgdfaghfdasfdghashjasghjasgdhjgasdjasjdjaasdsdfjh.com'
         self.email_invalid_BASE = 'admin@hotmail.com'
 
@@ -38,7 +38,7 @@ class TestPatientForm(TestCase):
         self.sex_valid = 'M'
         self.sex_invalid = 'A'
 
-        self.id_document_valid = '12345678910'
+        self.id_document_valid = '12345678910654'
         self.id_document_invalid = '1'
         self.id_document_invalid_MIN = '1'
         self.id_document_invalid_MAX = '123456789101112131415161718192021222324252627282930'
@@ -56,8 +56,7 @@ class TestPatientForm(TestCase):
                      'confirm_password': self.password_valid,
                      'id_document': self.id_document_valid,
                      'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'id_document_state': 'DF'}
+                     'date_of_birth': self.date_of_birth_valid}
         form = PatientForm(data=form_data)
         self.assertTrue(form.is_valid())
 
