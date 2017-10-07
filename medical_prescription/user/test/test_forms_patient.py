@@ -28,7 +28,7 @@ class TestPatientForm(TestCase):
         self.password_invalid = '123456789'
         self.password_invalid_MAX = '1234567891011'
         self.password_invalid_MIN = '123'
-        self.password_invalid_TYPE = 'a@d123a'
+        self.password_invalid_TYPE = 'a@d123!'
 
         self.date_of_birth_valid = '10/12/1990'
         self.date_of_birth_invalid = '18'
