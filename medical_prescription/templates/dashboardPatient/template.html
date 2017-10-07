@@ -3,44 +3,49 @@
 
 <head>
     {% load staticfiles %} {% csrf_token %} {% include "dashboardPatient/head.html" %}
+    {% load static %}
 </head>
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-            {% include "dashboardPatient/side_bar.html" %}
-
-        <div class="main-panel">
-            {% include "dashboardPatient/nav_bar.html" %}
-            <div class="content">
-                {% block content %} {% endblock %}
-            </div>
-
+      <!-- Nav bar-->
+      <div>
+        {% include "dashboardPatient/side_bar.html" %}
+      </div>
+      <div class ="main-panel">
+        <!-- Side Bar -->
+        <div>
+          {% include "dashboardPatient/nav_bar.html" %}
         </div>
+
+        <!--Panel content -->
+        <div class= "content">
+          <div class = "container-fluid">
+            {% block content %} {% endblock %}
+
+            <!-- TODO (Felipe) Fix layout size. -->
+            <br><br><br><br><br>
+
+          </div>
+        </div>
+        <div>
+          {% include "dashboardPatient/footer.html" %}
+        </div>
+      </div>
     </div>
-</body>
-<!--   Core JS Files   -->
-<script src=" {% static "dashboard_patient/js/jquery-3.2.1.min.js" %}" type="text/javascript"></script>
-<script src="{% static "dashboard_patient/js/bootstrap.min.js" %}" type="text/javascript"></script>
-<script src=" {% static "dashboard_patient/js/material.min.js" %}" type="text/javascript"></script>
+  <!--   Core JS Files   -->
+<script src="{% static "dashboard_patient/js/jquery-3.2.1.min.js"%}" type="text/javascript"></script>
+<script src="{% static "dashboard_patient/js/bootstrap.min.js"%}" type="text/javascript"></script>
+<script src="{% static "dashboard_patient/js/material.min.js"%}" type="text/javascript"></script>
 <!--  Charts Plugin -->
-<script src="{% static "dashboard_patient/js/chartist.min.js" %}"></script>
+<script src="{% static "dashboard_patient/js/chartist.min.js"%}"></script>
 <!--  Dynamic Elements plugin -->
-<script src="{% static "dashboard_patient/js/arrive.min.js" %}"></script>
+<script src="{% static "dashboard_patient/js/arrive.min.js"%}"></script>
 <!--  PerfectScrollbar Library -->
-<script src="{% static "dashboard_patient/js/perfect-scrollbar.jquery.min.js" %}"></script>
+<script src="{% static "dashboard_patient/js/perfect-scrollbar.jquery.min.js"%}"></script>
 <!--  Notifications Plugin    -->
-<script src="{% static "dashboard_patient/js/bootstrap-notify.js" %}"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<script src="{% static "dashboard_patient/js/bootstrap-notify.js"%}"></script>
 <!-- Material Dashboard javascript methods -->
-<script src="{% static "dashboard_patient/js/material-dashboard.js" %}"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="{% static "dashboard_patient/js/demo.js" %}"></script>
+<script src="{% static "dashboard_patient/js/material-dashboard.js"%}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -49,5 +54,6 @@
 
     });
 </script>
+</body>
 
 </html>
