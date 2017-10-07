@@ -42,9 +42,9 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_valid
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertTrue(form.is_valid())
 
     def test_update_user_form_name_is_not_valid_TYPE(self):
@@ -52,9 +52,8 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_valid}
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_name_is_not_valid_MAX(self):
@@ -63,8 +62,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_name_is_not_valid_MIN(self):
@@ -73,8 +72,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_date_of_birth_is_not_valid_FORMAT(self):
@@ -82,9 +81,9 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_invalid_FORMAT,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_valid
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_date_of_birth_is_not_valid_MIN(self):
@@ -93,8 +92,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_phone_is_not_valid_TYPE(self):
@@ -103,8 +102,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid_TYPE,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_phone_is_not_valid_MIN(self):
@@ -133,8 +132,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_password_is_not_valid_MAX(self):
@@ -143,8 +142,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid_MAX,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_password_is_not_valid_MIN(self):
@@ -152,9 +151,8 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_invalid_MIN,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_invalid_MIN}
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_password_is_not_valid_TYPE(self):
@@ -173,8 +171,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_invalid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_invalid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_1(self):
@@ -182,9 +180,8 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_valid}
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_2(self):
@@ -192,9 +189,8 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     'password': self.password_valid}
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_3(self):
@@ -203,8 +199,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_4(self):
@@ -213,8 +209,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_5(self):
@@ -223,8 +219,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_6(self):
@@ -233,8 +229,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_7(self):
@@ -243,8 +239,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_8(self):
@@ -253,8 +249,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_9(self):
@@ -263,8 +259,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_10(self):
@@ -273,8 +269,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_invalid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_11(self):
@@ -283,8 +279,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_12(self):
@@ -293,8 +289,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_invalid,
-                     'confirm_password': self.password_valid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_13(self):
@@ -303,8 +299,8 @@ class TestUpdateUserForm(TestCase):
                      'phone': self.phone_valid,
                      'sex': self.sex_invalid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid}
-        form = UpdateUserForm(data=form_data)
+                     }
+        form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
     def test_update_user_form_invalid_14(self):
