@@ -24,7 +24,7 @@
                     {% for error in form.sex.errors %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
                     {% endfor %}
-                    
+
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Sexo</h4>
                     {{ form.sex }}
                 </div>
@@ -87,7 +87,7 @@
 
                     <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">CRM</h4>
                      {{ form.crm }}
-                     
+
                 </div>
 
                 <div class="col-sm-3">
@@ -99,10 +99,10 @@
                      {{ form.crm_state }}
                 </div>
             </div>
-            
+
             <div class="g-text-center--xs">
                 <button value='Criar' type="submit" class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Cadastrar</button>
-                <br><a class="g-color--white g-font-size-13--xs" href="{% url 'login' %}">Já possui conta?Faça login agora!</a><br>
+                <br><a class="g-color--white g-font-size-13--xs" href="{% url 'login_healthprofessional' %}">Já possui conta?Faça login agora!</a><br>
 
             </div>
 

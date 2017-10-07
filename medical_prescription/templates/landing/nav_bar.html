@@ -17,7 +17,7 @@
 
                 <div class="s-header-v2__navbar-col s-header-v2__navbar-col-width--180">
                     <!-- Logo -->
-                    <div class="s-header-v2__logo"> 
+                    <div class="s-header-v2__logo">
                         <a href="#" class="s-header-v2__logo-link">
                                     <img class="s-header-v2__logo-img s-header-v2__logo-img--default" src="{% static "landing/img/logo-white.png" %}" alt="Dublin Logo">
                                     <img class="s-header-v2__logo-img s-header-v2__logo-img--shrink" src="{% static "landing/img/logo.png" %}" alt="Dublin Logo">
@@ -35,7 +35,7 @@
                                 <a href="" class="dropdown-toggle s-header-v2__nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false"> Paciente <span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
                                 <ul class="dropdown-menu s-header-v2__dropdown-menu">
-                                    <li><a href="{% url 'login' %}" class="s-header-v2__dropdown-menu-link">Login</a></li>
+                                    <li><a href="{% url 'login_patient' %}" class="s-header-v2__dropdown-menu-link">Login</a></li>
                                 </ul>
                             </li>
                             <!-- End Home -->
@@ -45,7 +45,7 @@
                                 <a href="javascript:void(0);" class="dropdown-toggle s-header-v2__nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">Profissional de Saúde <span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
                                 <ul class="dropdown-menu s-header-v2__dropdown-menu">
-                                    <li><a href="{% url 'login' %}" class="s-header-v2__dropdown-menu-link">Login</a></li>
+                                    <li><a href="{% url 'login_healthprofessional' %}" class="s-header-v2__dropdown-menu-link">Login</a></li>
                                     <li><a href="{% url 'register' %}" class="s-header-v2__dropdown-menu-link">Cadastro</a></li>
                                 </ul>
                             </li>
