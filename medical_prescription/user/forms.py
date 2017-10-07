@@ -1,4 +1,3 @@
-import re
 from datetime import date
 
 from django import forms
@@ -42,7 +41,8 @@ class UserForm(forms.ModelForm):
                                                             'placeholder': '* exemplo@exemplo.com'}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                           'placeholder': '* (xx)xxxxx-xxxx'}))
-    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}), choices=constants.SEX_CHOICE)
+    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}),
+                            choices=constants.SEX_CHOICE)
 
     class Meta:
         model = User
@@ -73,13 +73,13 @@ class HealthProfessionalForm(UserForm):
 
         email_from_database = User.objects.filter(email=email)
 
-        # TODO(Mateus) Refactor date calculation.
+        # Validating date of birth Format.
         today = date.today()
         try:
             born = today.year - date_of_birth.year - \
                 ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
         except:
-            raise forms.ValidationError(constants.DATE_OF_BIRTH_FORMAT)
+            raise forms.ValidationError({'date_of_birth': [_(constants.DATE_OF_BIRTH_FORMAT)]})
 
         crm_from_database = HealthProfessional.objects.filter(crm=crm)
         crm_state_from_database = HealthProfessional.objects.filter(crm_state=crm_state)
@@ -98,7 +98,7 @@ class HealthProfessionalForm(UserForm):
         elif email_from_database.exists():
             raise ValidationError({'email': [_(constants.EMAIL_EXISTS)]})
         elif email is None:
-            raise forms.ValidationError("email inválido")
+            raise forms.ValidationError({'email': [_(constants.EMAIL_NONE)]})
         elif len(email) > constants.EMAIL_MAX_LENGTH:
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
         elif len(email) < constants.EMAIL_MIN_LENGTH:
@@ -147,7 +147,7 @@ class ResetPasswordForm(forms.Form):
         if email_from_database.exists():
             pass
         else:
-            raise forms.ValidationError('this email is not registered')
+            raise ValidationError({'email': [_(constants.EMAIL_EXISTS)]})
         return super(ResetPasswordForm, self).clean(*args, **kwargs)
 
 
@@ -193,6 +193,8 @@ class PatientForm(UserForm):
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
         today = date.today()
+
+        # Validating date of birth Format.
         try:
             born = today.year - date_of_birth.year - \
                 ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
@@ -203,9 +205,9 @@ class PatientForm(UserForm):
 
         # Validating email.
         if email_from_database.exists():
-            raise ValidationError(constants.EMAIL_EXISTS)
+            raise ValidationError({'email': [_(constants.EMAIL_EXISTS)]})
         elif email is None:
-            raise forms.ValidationError("email inválido")
+            raise forms.ValidationError({'email': [_(constants.EMAIL_NONE)]})
         elif len(email) > constants.EMAIL_MAX_LENGTH:
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
         elif len(email) < constants.EMAIL_MIN_LENGTH:
@@ -273,6 +275,7 @@ class UpdateUserForm(forms.ModelForm):
 
         today = date.today()
 
+        # Validating date of birth Format.
         try:
             born = today.year - date_of_birth.year - \
                 ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
@@ -304,8 +307,6 @@ class UpdateUserForm(forms.ModelForm):
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
         elif phone is not None and not phone.isdigit():
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_FORMAT)]})
-        elif phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH_MAX:
-            raise forms.ValidationError(constants.PHONE_NUMBER_SIZE)
 
         # Validating date of birth.
         elif born < constants.DATE_OF_BIRTH_MIN_PATIENT:
