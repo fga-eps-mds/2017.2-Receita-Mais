@@ -286,7 +286,7 @@ class UpdateUserForm(forms.ModelForm):
             raise forms.ValidationError({'password': [_(constants.PASSWORD_SIZE)]})
         elif not password.isalnum():
             raise forms.ValidationError({'password': [_(constants.PASSWORD_FORMAT)]})
-        elif password != password_confirmation:
+        elif not self.verify_password(password):
             raise forms.ValidationError({'password': [_(constants.PASSWORD_MATCH)]})
 
         # Validating name.

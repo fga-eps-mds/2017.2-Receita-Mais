@@ -20,7 +20,7 @@ class RegisterHealthProfessionalViewTest(TestCase):
         context = {'email': 'test@test.com',
                    'password': '1st234567',
                    'confirm_password': '1st234567',
-                   'name': 'Testeregistro',
+                   'name': 'Teste registro',
                    'sex': 'M',
                    'phone': '6699999999',
                    'date_of_birth': '10/12/1990',
@@ -30,3 +30,17 @@ class RegisterHealthProfessionalViewTest(TestCase):
 
         # If the method redirect the status code 302 is returned.
         self.assertEqual(response.status_code, 302)
+
+    def test_post_invalid(self):
+        context = {'email': 'test@test.com',
+                   'password': '1st234567',
+                   'confirm_password': '1st234567',
+                   'name': 'Teste registro',
+                   'sex': 'A',
+                   'phone': '6699999999',
+                   'date_of_birth': '10/12/1990',
+                   'crm': '12347',
+                   'crm_state': 'DF'}
+        response = self.client.post('/user/register_health_professional/', context)
+
+        self.assertEqual(response.status_code, 200)

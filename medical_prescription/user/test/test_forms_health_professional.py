@@ -30,7 +30,7 @@ class TestHealthProfessionalForm(TestCase):
         self.password_invalid = '123'
         self.password_invalid_MAX = '1234567891011'
         self.password_invalid_MIN = '123'
-        self.password_invalid_TYPE = 'a@d123a'
+        self.password_invalid_TYPE = 'a@d13!*'
 
         self.date_of_birth_valid = '10/12/1990'
         self.date_of_birth_invalid = '18'
@@ -43,10 +43,10 @@ class TestHealthProfessionalForm(TestCase):
         self.crm_valid = '12345'
         self.crm_valid_existent = '54321'
         self.crm_invalid = '1'
-        self.crm_invalid_MIN = '1'
+        self.crm_invalid_MIN = '13'
         self.crm_invalid_MAX = '1564564564689756431367'
         self.crm_invalid_FORMAT = 'a4'
-        self.crm_invalid_TYPE = 'a1234'
+        self.crm_invalid_TYPE = 'a1@13'
 
         self.crm_state_valid = 'DF'
         self.crm_state_invalid = '1234a'
@@ -321,18 +321,18 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-        def test_forms_health_professional_crm_is_not_valid_TYPE(self):
-            form_data = {'name': self.name_valid,
-                         'phone': self.phone_valid,
-                         'email': self.email_valid,
-                         'password': self.password_valid,
-                         'confirm_password': self.password_valid,
-                         'crm': self.crm_invalid_TYPE,
-                         'crm_state': self.crm_state_valid,
-                         'sex': self.sex_valid,
-                         'date_of_birth': self.date_of_birth_valid}
-            form = HealthProfessionalForm(data=form_data)
-            self.assertFalse(form.is_valid())
+    def test_forms_health_professional_crm_is_not_valid_TYPE(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'crm': self.crm_invalid_TYPE,
+                     'crm_state': self.crm_state_valid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid}
+        form = HealthProfessionalForm(data=form_data)
+        self.assertFalse(form.is_valid())
 
     def test_forms_health_professional_crm_is_not_valid_existent(self):
         form_data = {'name': self.name_valid,
