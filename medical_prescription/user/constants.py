@@ -63,7 +63,8 @@ EMAIL_MAX_LENGTH = 50
 # EMAIL VALIDATION MESSAGES.
 EMAIL_FORMAT = "E-mail must be a valid e-mail. Example: example@example.com"
 EMAIL_SIZE = "E-mail must be between 5 and 50 characters"
-EMAIL_EXISTS = "Email already exists"
+EMAIL_EXISTS = "E-mail already exists"
+EMAIL_NONE = "Must have an E-mail"
 
 # EMAIL MESSAGES
 EMAIL_SUBJECT = 'Recuperação de sua senha'
