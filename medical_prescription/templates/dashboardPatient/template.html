@@ -1,47 +1,12 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    {% load staticfiles %} {% csrf_token %} {% include "dashboardPatient/head.html" %}
+  </head>
+  <body>
+      <!-- navigation bar -->
+      <!-- side bar ->
 
-<head>
-    {% load staticfiles %} {% csrf_token %} {% include "dashboard/head.html" %}
-</head>
-
-<body class="hold-transition skin-purple sidebar-mini">
-
-    <div class="wrapper">
-
-        <!-- navigation bar -->
-        {% include "dashboardPatient/nav_bar.html" %}
-
-        <!-- parte de baixo -->
-        {% include "dashboardPatient/side_bar.html" %}
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-
-            <!-- Main content -->
-            <section class="content container-fluid">
-
-                 {% block content %} {% endblock %}
-
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-        <div class="control-sidebar-bg"></div>
-    </div>
-
-{% load static %}{% load staticfiles %}
-
-<!--========== JAVASCRIPTS ==========-->
-
-<script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
-<script src="{% static "dashboard/bowercomponents/bootstrap/dist/js/bootstrap.min.js" %}"></script>
-<script src="{% static "dashboard/dist/js/adminlte.min.js" %}"></script>
-
-
-<!--========== END JAVASCRIPTS ==========-->
-
-</body>
-
+  </body>
 </html>

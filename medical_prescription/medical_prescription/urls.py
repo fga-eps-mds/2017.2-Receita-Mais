@@ -5,7 +5,7 @@ from landing.views import home
 
 urlpatterns = [
     url(r'^user/', include('user.urls')),
-    url(r'^dashboardHealthProfessional/', include('dashboardHealthProfessional.urls')),
+    url(r'^dashboard/', include('dashboardHealthProfessional.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='landing_page'),
 ]

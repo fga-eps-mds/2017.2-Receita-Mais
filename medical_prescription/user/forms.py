@@ -14,7 +14,7 @@ class UserLoginForm(forms.Form):
     '''
 
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
-                                                             'placeholder': '* Email'}))
+                                                           'placeholder': '* Email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
                                                                  'placeholder': '* Senha'}))
 
@@ -30,9 +30,9 @@ class FormattedDateField(forms.DateField):
 class UserForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
-                                                           'placeholder': '* João da Silva '}))
+                                                         'placeholder': '* João da Silva '}))
     date_of_birth = FormattedDateField(widget=forms.DateInput(attrs={'class': 'form-control s-form-v3__input',
-                                                                                        'placeholder': '*Ex: dd/mm/aaaa'}))
+                                                                     'placeholder': '*Ex: dd/mm/aaaa'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
                                                                  'placeholder': '*********'}))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control s-form-v3__input',
@@ -41,8 +41,7 @@ class UserForm(forms.ModelForm):
                                                             'placeholder': '* exemplo@exemplo.com'}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                           'placeholder': '* (xx)xxxxx-xxxx'}))
-    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}), choices=constants.SEX_CHOICE)
-
+    sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}),choices=constants.SEX_CHOICE)
 
     class Meta:
         model = User

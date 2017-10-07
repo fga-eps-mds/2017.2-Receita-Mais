@@ -2,10 +2,10 @@
 from django.conf.urls import url
 from user.views import (ConfirmPasswordView,
                         DeleteHealthProfessional,
-                        LoginView,
                         LogoutView,
-                        RegisterHealthProfessionalView,
+                        LoginView,
                         RegisterPatientView,
+                        RegisterHealthProfessionalView,
                         ResetPasswordView,
                         ShowHomePageView,
                         ShowPatientsView,
