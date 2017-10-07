@@ -7,38 +7,24 @@ from user.forms import UserLoginForm
 class TestUserForm(TestCase):
 
     def setUp(self):
-        self.name_valid = 'Teste Nome'
-        self.name_invalid = 'a'
-
-        self.date_of_birth_valid = '10/12/1990'
-        self.date_of_birth_invalid = '18'
-
-        self.phone_valid = '123456789'
-        self.phone_invalid = '123456789101112'
-
         self.email_valid_reset = 'admin@gmail.com'
         self.email_valid = 'admin@admin.com'
         self.email_invalid = 'admin.com'
         self.email_invalid_1 = 'admin@hotmail.com'
-
-        self.sex_valid = 'M'
-        self.sex_invalid = 'A'
-
-        self.crm_valid = '12345'
-        self.crm_invalid = '1'
-
-        self.crm_state_valid = 'DF'
-        self.crm_state_invalid = 'asd'
-
-        self.id_document_valid = '12345678910'
-        self.id_document_invalid = '1234'
+        self.email_invalid_NULL = None
 
         self.password_valid = '1234567'
         self.password_invalid = '1234567891011'
+        self.password_invalid_NULL = None
 
         user = User()
         user.email = "admin@hotmail.com"
         user.save()
+
+        user1 = User()
+        user1.email = "admin@admin.com"
+        user1.is_active = False
+        user1.save()
 
     def test_user_login_form_valid(self):
         form_data = {'email': self.email_valid,
@@ -55,5 +41,23 @@ class TestUserForm(TestCase):
     def test_user_login_form_invalid_all(self):
         form_data = {'email': self.email_invalid,
                      'password': self.password_invalid}
+        form = UserLoginForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_login_form_invalid_NULL_0(self):
+        form_data = {'email': self.email_invalid_NULL,
+                     'password': self.password_invalid}
+        form = UserLoginForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_login_form_invalid_NULL_1(self):
+        form_data = {'email': self.email_invalid,
+                     'password': self.password_invalid_NULL}
+        form = UserLoginForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_login_form_invalid_NULL_2(self):
+        form_data = {'email': self.email_invalid,
+                     'password': self.password_invalid_NULL}
         form = UserLoginForm(data=form_data)
         self.assertFalse(form.is_valid())

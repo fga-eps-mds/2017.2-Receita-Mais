@@ -14,7 +14,7 @@ from user import constants
 class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(blank=False, max_length=constants.NAME_MAX_LENGHT, default="")
     date_of_birth = models.DateField(blank=False, default=date.today)
-    phone = models.CharField(max_length=constants.PHONE_NUMBER_FIELD_LENGTH, blank=True, default='00000000000')
+    phone = models.CharField(max_length=constants.PHONE_NUMBER_FIELD_LENGTH_MAX, blank=True, default='00000000000')
     email = models.EmailField(unique=True)
     sex = models.CharField(choices=constants.SEX_CHOICE, max_length=10, default=constants.SEX_M)
 
