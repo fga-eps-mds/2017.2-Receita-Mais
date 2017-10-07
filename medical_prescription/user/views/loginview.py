@@ -15,6 +15,7 @@ class LoginView(FormView):
     form_class = UserLoginForm
     template_name = ''
     dashboard_name = ''
+
     # Render the login page.
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
@@ -47,10 +48,10 @@ class LoginView(FormView):
     def set_template_name(self, request):
         if(request.path == '/user/login_healthprofessional/'):
             self.template_name = 'login_healthprofessional.html'
-            self.dashboard_name = '/dashboard/health_professional'
+            self.dashboard_name = '/dashboard_health_professional/health_professional'
         else:
             self.template_name = 'login_patient.html'
-            self.dashboard_name = '/dashboard/patient'
+            self.dashboard_name = '/dashboard_patient/patient'
 
     # Login valid user.
     def user_authentication(self, request, user):

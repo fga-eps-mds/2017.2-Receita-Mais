@@ -1,6 +1,6 @@
 # Django
 from django.conf.urls import url
-from dashboardHealthProfessional.views import (home)
+from dashboardPatient.views import (home)
 
 
 urlpatterns = (
