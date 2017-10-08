@@ -41,6 +41,7 @@ class UserForm(forms.ModelForm):
                                                             'placeholder': '* exemplo@exemplo.com'}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                           'placeholder': '* (xx)xxxxx-xxxx'}))
+    
     sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input'}),
                             choices=constants.SEX_CHOICE)
 
