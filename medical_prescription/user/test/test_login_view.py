@@ -15,6 +15,7 @@ class LoginViewTest(TestCase):
         self.user = User()
         self.user.email = "teste@teste.com"
         self.user.password = "teste404"
+        self.user.is_active = False
         self.user.save()
 
         self.factory = RequestFactory()
@@ -37,6 +38,20 @@ class LoginViewTest(TestCase):
     # Testing method 'post' in LoginView.
     def test_post(self):
         response = self.client.post('/user/login_patient/', {'email': 'teste@teste.com', 'password': 'teste404'})
+
+        # If the method redirect correctly the status code 200 is returned.
+        self.assertEqual(response.status_code, 200)
+
+    # Testing method 'post' in LoginView.
+    def test_post_1(self):
+        response = self.client.post('/user/login/', {'email': 'teste', 'password': 'teste'})
+
+        # If the method redirect correctly the status code 200 is returned.
+        self.assertEqual(response.status_code, 200)
+
+    # Testing method 'post' in LoginView.
+    def test_post_2(self):
+        response = self.client.post('/user/login/', {'email': None, 'password': None})
 
         # If the method redirect correctly the status code 200 is returned.
         self.assertEqual(response.status_code, 200)

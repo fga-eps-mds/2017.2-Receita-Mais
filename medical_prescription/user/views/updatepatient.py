@@ -10,5 +10,7 @@ from user.forms import UpdateUserForm
 class UpdatePatient(UpdateView):
     model = Patient
     form_class = UpdateUserForm
-    success_url = reverse_lazy('view')
     template_name = 'edit_patient.html'
+
+    def get_success_url(self, **kwargs):
+            return reverse_lazy('edit_patient', kwargs={'pk': self.object.id})
