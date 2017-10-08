@@ -3,22 +3,22 @@
 <html>
 
 <head>
-    {% load staticfiles %} {% csrf_token %} {% include "healthProfessionalDashboard/head.html" %}
+    {% load staticfiles %} {% csrf_token %} {% include "dashboard/head.html" %}
 </head>
 
 <body class="hold-transition skin-purple sidebar-mini">
 
     <div class="wrapper">
-   
+
         <!-- navigation bar -->
-        {% include "healthProfessionalDashboard/nav_bar.html" %}
+        {% include "dashboardHealthProfessional/nav_bar.html" %}
 
         <!-- parte de baixo -->
-        {% include "healthProfessionalDashboard/side_bar.html" %}
+        {% include "dashboardHealthProfessional/side_bar.html" %}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
- 
+
             <!-- Main content -->
             <section class="content container-fluid">
 
@@ -42,10 +42,6 @@
 
 <!--========== END JAVASCRIPTS ==========-->
 
-
 </body>
-
-
-
 
 </html>
