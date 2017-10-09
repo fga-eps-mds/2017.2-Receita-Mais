@@ -1,16 +1,19 @@
+# standard library
 from datetime import date
 
+# django
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+# local django
 from user import constants
 from user.models import User
 
 
 class UserValidator():
     """
-        Validating user fields.
+    Validating user fields.
     """
 
     def validator_email(self, email):
@@ -27,6 +30,17 @@ class UserValidator():
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
         elif len(email) < constants.EMAIL_MIN_LENGTH:
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
+
+    def validator_email_in_reset_password(self, email):
+        """
+        Validating email.
+        """
+        email_from_database = User.objects.filter(email=email)
+
+        if email_from_database.exists():
+            pass
+        else:
+            raise ValidationError({'email': [_(constants.EMAIL_EXISTS)]})
 
     def validator_password(self, password, password_confirmation):
         """

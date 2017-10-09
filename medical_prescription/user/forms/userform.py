@@ -1,12 +1,16 @@
+# django
 from django import forms
-from user.forms import FormattedDateField
 
+# local django
+from user.forms import FormattedDateField
 from user import constants
 from user.models import User
 
 
 class UserForm(forms.ModelForm):
-
+    """
+    Define fields in user form.
+    """
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                          'placeholder': '* João da Silva '}))
     date_of_birth = FormattedDateField(widget=forms.DateInput(attrs={'class': 'form-control s-form-v3__input',
@@ -23,6 +27,7 @@ class UserForm(forms.ModelForm):
                             choices=constants.SEX_CHOICE)
 
     class Meta:
+        # Define model to User.
         model = User
         fields = [
             'name', 'email', 'date_of_birth', 'phone', 'sex', 'password'

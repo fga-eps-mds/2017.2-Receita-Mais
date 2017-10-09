@@ -1,7 +1,12 @@
+# django
 from django import forms
 
 
 class FormattedDateField(forms.DateField):
+    """
+    Define format in field data.
+    """
+
     widget = forms.DateInput(format='%d/%m/%Y')
 
     def __init__(self, *args, **kwargs):

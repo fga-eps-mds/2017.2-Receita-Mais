@@ -1,22 +1,33 @@
+# django
 from django import forms
-from django.utils.translation import ugettext_lazy as _
-from django.core.exceptions import ValidationError
 
-from user.models import User
-from user import constants
+# local django
+from user.validators import UserValidator
 
 
-# form to reset password User
 class ResetPasswordForm(forms.Form):
+    """
+    Form to reset password User
+    """
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v4__input g-padding-l-0--xs',
                                                             'placeholder': '* exemplo@exemplo.com'}))
 
     def clean(self, *args, **kwargs):
-        email = self.cleaned_data.get('email')
-        email_from_database = User.objects.filter(email=email)
+        """
+        Get patient fields.
+        """
 
-        if email_from_database.exists():
-            pass
-        else:
-            raise ValidationError({'email': [_(constants.EMAIL_EXISTS)]})
+        email = self.cleaned_data.get('email')
+
+        # Verify validations in form.
+        self.validator_all(email)
+
         return super(ResetPasswordForm, self).clean(*args, **kwargs)
+
+    def validator_all(self, email):
+        """
+        Checks validator in all fields.
+        """
+
+        validator = UserValidator()
+        validator.validator_email_in_reset_password(email)

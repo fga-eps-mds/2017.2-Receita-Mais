@@ -1,7 +1,12 @@
+# django
 from django import forms
 
 
 class ConfirmPasswordForm(forms.Form):
+    """
+    Form to confirm password.
+    """
+
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}),
                                label='')
     password_confirmation = forms.CharField(widget=forms.PasswordInput(

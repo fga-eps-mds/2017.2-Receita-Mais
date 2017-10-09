@@ -1,8 +1,11 @@
+# standard library
 from datetime import date
 
+# django
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+# local django
 from user.validators import UserValidator
 from user import constants
 

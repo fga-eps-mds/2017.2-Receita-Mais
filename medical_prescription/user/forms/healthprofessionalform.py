@@ -1,7 +1,7 @@
-# Django
+# django
 from django import forms
 
-# Local Django
+# local django
 from user.models import HealthProfessional
 from user.forms import UserForm
 from user import constants
@@ -9,16 +9,25 @@ from user.validators import HealthProfessionalValidator
 
 
 class HealthProfessionalForm(UserForm):
+    """
+    Form to register health professional.
+    """
+
     crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                         'placeholder': '* 00000'}))
     crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
                                                              'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
 
     class Meta:
+        # Define model to form.
         model = HealthProfessional
         fields = ('name', 'email', 'date_of_birth', 'phone', 'sex', 'crm', 'crm_state', 'password',)
 
     def clean(self):
+        """
+        Get health professional fields.
+        """
+
         crm = self.cleaned_data.get('crm')
         crm_state = self.cleaned_data.get('crm_state')
         name = self.cleaned_data.get('name')
@@ -27,13 +36,23 @@ class HealthProfessionalForm(UserForm):
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('confirm_password')
         date_of_birth = self.cleaned_data.get('date_of_birth')
+
+        # Verify validations in form.
         self.validator_all(name, phone, email, password, password_confirmation, crm, crm_state, date_of_birth)
 
     def validator_all(self, name, phone, email, password, password_confirmation, crm, crm_state, date_of_birth):
+        """
+        Checks validator in all fields.
+        """
+
         validator = HealthProfessionalValidator()
+
+        # Fields common all users.
         validator.validator_email(email)
         validator.validator_password(password, password_confirmation)
         validator.validator_name(name)
         validator.validator_phone_number(phone)
         validator.validator_date_of_birth(date_of_birth)
+
+        # Fields specify to the health professional.
         validator.validator_crm(crm, crm_state)
