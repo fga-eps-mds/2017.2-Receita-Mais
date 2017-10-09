@@ -1,3 +1,5 @@
+from datetime import date
+
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -24,3 +26,18 @@ class HealthProfessionalValidator(UserValidator):
             raise forms.ValidationError({'crm_state': [_(constants.CRM_EXIST)]})
         elif not crm.isdigit():
             raise forms.ValidationError({'crm': [_(constants.CRM_FORMAT)]})
+
+    def validator_date_of_birth(self, date_of_birth):
+        """
+        Validating date of birth.
+        """
+
+        today = date.today()
+        try:
+            born = today.year - date_of_birth.year - \
+                ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+        except:
+            raise forms.ValidationError({'date_of_birth': [_(constants.DATE_OF_BIRTH_FORMAT)]})
+
+        if born < constants.DATE_OF_BIRTH_MIN:
+            raise forms.ValidationError({'date_of_birth': [_(constants.DATE_OF_BIRTH_MIN_ERROR)]})
