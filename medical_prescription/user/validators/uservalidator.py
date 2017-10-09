@@ -63,7 +63,7 @@ class UserValidator():
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
         elif phone is not None and len(phone) < constants.PHONE_NUMBER_FIELD_LENGTH_MIN:
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
-        elif not phone.isdigit():
+        elif not str(phone).isdigit():
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_FORMAT)]})
 
     def validator_date_of_birth(self, date_of_birth):
