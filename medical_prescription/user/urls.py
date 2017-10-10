@@ -1,5 +1,7 @@
 # Django
 from django.conf.urls import url
+
+# Local Django
 from user.views import (ConfirmPasswordView,
                         DeleteHealthProfessional,
                         LogoutView,
