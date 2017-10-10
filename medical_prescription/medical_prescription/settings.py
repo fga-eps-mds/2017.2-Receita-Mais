@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'landing',
     'dashboardPatient',
     'dashboardHealthProfessional',
+    'exam',
 ]
 
 # ====== DONT REMOVE -ME
