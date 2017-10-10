@@ -1,0 +1,82 @@
+[
+    {
+        "model": "exam.Exam",
+        "pk": 1,
+        "fields": {
+            "id_tuss": "10101012",
+            "description": "Em consultório (no horário normal ou preestabelecido)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 2,
+        "fields": {
+            "id_tuss": "10102019",
+            "description": "Visita hospitalar (paciente internado)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 3,
+        "fields": {
+            "id_tuss": "10103015",
+            "description": "Atendimento ao recém-nascido em berçário"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 4,
+        "fields": {
+            "id_tuss": "10103023",
+            "description": "Atendimento ao recém-nascido em sala de parto (parto normal ou operatório de baixo risco)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 5,
+        "fields": {
+            "id_tuss": "10104020",
+            "description": "Atendimento médico do intensivista em UTI geral ou pediátrica (plantão de 12 horas - por paciente)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 6,
+        "fields": {
+            "id_tuss": "10104011",
+            "description": "Atendimento do intensivista diarista (por dia e por paciente)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 7,
+        "fields": {
+            "id_tuss": "31101402",
+            "description": "Punção biópsia renal percutânea"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 8,
+        "fields": {
+            "id_tuss": "31008011",
+            "description": "Diálise peritoneal intermitente - agudo ou crônico (por sessão)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 9,
+        "fields": {
+            "id_tuss": "30909031",
+            "description": "Hemodiálise crônica (por sessão)"
+        }
+    },
+    {
+        "model": "exam.Exam",
+        "pk": 10,
+        "fields": {
+            "id_tuss": "31008020",
+            "description": "Diálise peritoneal ambulatorial contínua (CAPD) 9 dias - treinamento"
+        }
+    }
+]
