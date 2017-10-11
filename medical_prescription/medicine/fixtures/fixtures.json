@@ -1,0 +1,64 @@
+[
+  {
+    "model": "medicine.activeprinciple",
+    "pk": 2,
+    "fields": {
+      "name": "AZILSARTANA MEDOXOMILA POT\u00c1SSICA"
+    }
+  },
+  {
+    "model": "medicine.activeprinciple",
+    "pk": 3,
+    "fields": {
+      "name": "ACHILLEA MILLEFOLIUM L"
+    }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 4,
+    "fields": {
+      "name": "ALFA AMILASE BACTERIANA"
+      }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 5,
+    "fields": {
+      "name": "ALFAMILASE"
+      }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 6,
+    "fields": {
+      "name": "ALOE FEROX MILL"
+      }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 7,
+    "fields": {
+      "name": "AMIDO DE MILHO"
+      }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 8,
+    "fields": {
+      "name": "AMILASE"
+      }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 9,
+    "fields": {
+      "name": "AMILMETACRESOL"
+      }
+  },
+  {"model": "medicine.activeprinciple",
+    "pk": 10,
+    "fields": {
+      "name": "AMILORIDA"
+      }
+    },
+  {"model": "medicine.activeprinciple",
+    "pk": 11,
+    "fields": {
+      "name": "AMILSUPRIDA"
+      }
+  }
+]
