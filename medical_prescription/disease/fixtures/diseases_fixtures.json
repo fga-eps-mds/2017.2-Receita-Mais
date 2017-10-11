@@ -1,0 +1,242 @@
+[
+    {
+        "model": "disease.Disease",
+        "pk": 1,
+        "fields": {
+            "id_cid_10": "A00",
+            "description": "A00   Colera"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 2,
+        "fields": {
+            "id_cid_10": "A01",
+            "description": "A01   Febres tifoide e paratifoide"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 3,
+        "fields": {
+            "id_cid_10": "A02",
+            "description": "A02   Outr infecc p/Salmonella"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 4,
+        "fields": {
+            "id_cid_10": "A03",
+            "description": "A03   Shiguelose"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 5,
+        "fields": {
+            "id_cid_10": "A04",
+            "description": "A04   Outr infecc intestinais bacter"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 6,
+        "fields": {
+            "id_cid_10": "A05",
+            "description": "A05   Outr intox alimentares bacter NCOP"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 7,
+        "fields": {
+            "id_cid_10": "B22",
+            "description": "B22   Doenc p/HIV result em outr doenc espec"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 8,
+        "fields": {
+            "id_cid_10": "B23",
+            "description": "B23   Doenc p/HIV result em outr doenc"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 9,
+        "fields": {
+            "id_cid_10": "B24",
+            "description": "B24   Doenc p/HIV NE"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 10,
+        "fields": {
+            "id_cid_10": "B25",
+            "description": "B25   Doenc p/citomegalovirus"
+        }
+    },
+	    {
+        "model": "disease.Disease",
+        "pk": 11,
+        "fields": {
+            "id_cid_10": "B26",
+            "description": "B26   Caxumba"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 12,
+        "fields": {
+            "id_cid_10": "C97",
+            "description": "C97   Neopl malig de localiz mult independentes"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 13,
+        "fields": {
+            "id_cid_10": "D00",
+            "description": "D00   Carcinoma in situ cav oral esofago estomago"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 14,
+        "fields": {
+            "id_cid_10": "D01",
+            "description": "D01   Carcinoma in situ de outr orgaos digestivos"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 15,
+        "fields": {
+            "id_cid_10": "D02",
+            "description": "D02   Carcinoma in situ ouvido medio e ap respirat"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 16,
+        "fields": {
+            "id_cid_10": "D03",
+            "description": "D03   Melanoma in situ"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 17,
+        "fields": {
+            "id_cid_10": "E63",
+            "description": "E63   Outr defic nutricionais"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 18,
+        "fields": {
+            "id_cid_10": "E64",
+            "description": "E64   Sequelas desnutric e outr defic nutricionais"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 19,
+        "fields": {
+            "id_cid_10": "E65",
+            "description": "E65   Adiposidade localizada"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 20,
+        "fields": {
+            "id_cid_10": "E66",
+            "description": "E66   Obesidade"
+        }
+    },
+	    {
+        "model": "disease.Disease",
+        "pk": 21,
+        "fields": {
+            "id_cid_10": "E90",
+            "description": "E90   Transt nutricionais e metab em doenc COP"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 22,
+        "fields": {
+            "id_cid_10": "F00",
+            "description": "F00   Demencia na doenc de Alzheimer"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 23,
+        "fields": {
+            "id_cid_10": "F01",
+            "description": "F01   Demencia vascular"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 24,
+        "fields": {
+            "id_cid_10": "F02",
+            "description": "F02   Demencia em outr doenc COP"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 25,
+        "fields": {
+            "id_cid_10": "F03",
+            "description": "F03   Demencia NE"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 26,
+        "fields": {
+            "id_cid_10": "I22",
+            "description": "I22   Infarto do miocardio recorrente"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 27,
+        "fields": {
+            "id_cid_10": "I23",
+            "description": "I23   Alg complic atuais subs infarto agud miocard"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 28,
+        "fields": {
+            "id_cid_10": "I24",
+            "description": "I24   Outr doenc isquemicas agudas do coracao"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 29,
+        "fields": {
+            "id_cid_10": "I25",
+            "description": "I25   Doenc isquemica cronica do coracao"
+        }
+    },
+    {
+        "model": "disease.Disease",
+        "pk": 30,
+        "fields": {
+            "id_cid_10": "I26",
+            "description": "I26   Embolia pulmonar"
+        }
+    }
+]
