@@ -29,8 +29,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['medicalprescription.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 
-# Application definition
+# Set initial database
 
+
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
