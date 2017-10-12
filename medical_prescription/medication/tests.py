@@ -22,4 +22,4 @@ class TestMedicationList(TestCase):
         self.assertEqual(len(self.health_professional_medications), 1)
 
     def teste_len_false(self):
-        self.assertEqual(len(self.health_professional), 50)
+        self.assertNotEqual(len(self.health_professional_medications), 50)
