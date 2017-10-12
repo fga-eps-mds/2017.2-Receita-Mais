@@ -7,6 +7,9 @@ from user.models import HealthProfessional
 class ActivePrinciple(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 #  This class create objects custons active principle
 
 
