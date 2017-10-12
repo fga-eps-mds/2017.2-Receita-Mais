@@ -1,4 +1,73 @@
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" />
-</form>
+{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+<!-- Register Form -->
+<div class="g-position--relative g-bg-color--primary">
+  <div class="g-container--md g-padding-y-125--xs">
+    <div class="g-text-center--xs g-margin-t-50--xs g-margin-b-80--xs">
+      <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs">Editar Paciente</p>
+      <h2 class="g-font-size-32--xs g-font-size-36--sm g-color--white">Dados Cadastrais</h2>
+    </div>
+
+    <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+      {% csrf_token %}
+
+      <div class="row g-row-col-5 g-margin-b-50--xs">
+        <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+          {% for error in form.name.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endfor %}
+
+          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Nome</h4>
+          {{ form.name }}
+        </div>
+
+        <div class="col-sm-2">
+          {% for error in form.sex.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endfor %}
+
+          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Sexo</h4>
+          {{ form.sex }}
+        </div>
+      </div>
+
+      <div class="row g-row-col-5 g-margin-b-50--xs">
+        <div class="col-sm-6 g-margin-b-30--xs g-margin-b-0--md">
+          {% for error in form.date_of_birth.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+
+          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Data de Nascimento</h4>
+          {{ form.date_of_birth }}
+        </div>
+
+        <div class="col-sm-6">
+          {% for error in form.phone.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+
+          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Telefone:</h4>
+          {{ form.phone }}
+        </div>
+      </div>
+
+      <div class="row g-row-col-5 g-margin-b-50--xs">
+        <div class="col-sm-6 g-margin-b-30--xs g-margin-b-0--md">
+          {% for error in form.password.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+
+          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Senha</h4>
+          {{ form.password }}
+        </div>
+      </div>
+      
+      <div class="g-text-center--xs">
+        <button value='Update' type="submit" class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Editar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!-- End Form -->
+
+{% endblock %}
