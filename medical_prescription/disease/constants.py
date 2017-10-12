@@ -1,5 +1,5 @@
-# Constants file
+# Constants file.
 
-# DISEASES CONSTANTS
+# DISEASES CONSTANTS.
 ID_CID_MAX_LENGTH = 5
 DESC_CID_MAX_LENGTH = 500
