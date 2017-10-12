@@ -1,4 +1,27 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
-  
+
+
+<form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+             {% csrf_token %}
+
+            <div class="row g-row-col-5 g-margin-b-50--xs">
+                <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+                    {% for error in form.name.errors %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                    {% endfor %}
+                    <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Nome</h4>
+                    {{ form.name }}
+                </div>
+                <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+                    {% for error in form.description.errors %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                    {% endfor %}
+                    <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Descrição</h4>
+                    {{ form.description }}
+                </div>
+            </div>
+            <button value='Criar' type="submit" class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Cadastrar</button>
+        </form>
+
 {% endblock %}

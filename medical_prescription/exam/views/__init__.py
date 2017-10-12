@@ -1,2 +1,2 @@
 from .list_exams import ListExams
-from .createcustomexam import CustomExam
+from .createcustomexam import CreateCustomExamsView

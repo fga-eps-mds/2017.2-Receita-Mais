@@ -23,3 +23,15 @@ class CustomExamValidator():
             raise forms.ValidationError({'description': [_(constants.DESC_SIZE)]})
         elif description is not None and len(description) < constants.DESC_MIN_LENGTH:
             raise forms.ValidationError({'description': [_(constants.DESC_SIZE)]})
+
+    def validator_name(self, name):
+        """
+        Validating name.
+        """
+
+        name = CustomExam.objects.filter(name=name)
+
+        if name is not None and len(name) > constants.NAME_MAX_LENGTH:
+            raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})
+        elif name is not None and len(name) < constants.NAME_MIN_LENGTH:
+            raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})

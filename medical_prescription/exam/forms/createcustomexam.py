@@ -7,7 +7,7 @@ from exam.models import CustomExam
 from exam.validators import CustomExamValidator
 
 
-class CreateCustomExams(forms.Form):
+class CreateCustomExams(forms.ModelForm):
     """
     Form to create a custom exam.
     """
@@ -15,7 +15,7 @@ class CreateCustomExams(forms.Form):
     class Meta:
         # Define model to form.
         model = CustomExam
-        fields = ('description',)
+        fields = ('description', 'name',)
 
     def clean(self):
         """
@@ -23,11 +23,12 @@ class CreateCustomExams(forms.Form):
         """
 
         description = self.cleaned_data.get('description')
+        name = self.cleaned_data.get('name')
 
         # Verify validations in form.
-        self.validator_all(description)
+        self.validator_all(description, name)
 
-    def validator_all(self, description):
+    def validator_all(self, description, name):
         """
         Checks validator in all fields.
         """
@@ -36,3 +37,4 @@ class CreateCustomExams(forms.Form):
 
         # Fields common all users.
         validator.validator_description(description)
+        validator.validator_name(name)
