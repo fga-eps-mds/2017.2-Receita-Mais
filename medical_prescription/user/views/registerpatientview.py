@@ -6,7 +6,6 @@ from django.views.generic import FormView
 from user.models import Patient
 from user.forms import PatientForm
 
-
 class RegisterPatientView(FormView):
     form_class = PatientForm
     template_name = 'register_patient.html'
@@ -31,6 +30,7 @@ class RegisterPatientView(FormView):
                                         sex=sex, date_of_birth=date_of_birth,
                                         phone=phone, id_document=id_document)
 
-            ##AQUI
+            # ConfirmAccountView.activate_account_request(email)
+
 
         return render(request, self.template_name, {'form': patient_form})

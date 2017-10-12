@@ -5,12 +5,12 @@ import datetime
 from django.db import models
 
 # Local Django
-from .models import User
+from user.models import User
 
 
 class UserActivateProfile(models.Model):
     user = models.OneToOneField(User)
-    activation_key = models.CharField(max_lenght=50, blank=False)
+    activation_key = models.CharField(blank=False)
     key_expires = models.DateTimeField(default=datetime.date.today())
 
     def __str__(self):
