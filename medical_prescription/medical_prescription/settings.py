@@ -47,21 +47,18 @@ INSTALLED_APPS = [
 ]
 
 # ====== DONT REMOVE -ME
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'medicalprescriptionapp@gmail.com'
-# SERVER_EMAIL = 'medicalprescriptionapp@gmail.com@gmail.com'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'medicalprescriptionapp@gmail.com'
-# EMAIL_HOST_PASSWORD = 'medicalprescription123'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'codamaisapp@gmail.com'
-EMAIL_HOST_PASSWORD = 'codamais'
+EMAIL_HOST_USER = 'medicalprescriptionapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'medicalprescription123'
 EMAIL_PORT = 587
+
+
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'codamaisapp@gmail.com'
+# EMAIL_HOST_PASSWORD = 'codamais'
+# EMAIL_PORT = 587
 
 AUTH_USER_MODEL = "user.User"
 

@@ -57,7 +57,7 @@ class ConfirmAccountView(View):
                      """
 
         send_mail(email_subject, email_body % UserActivateProfile.activation_key,
-                  'codamaisapp@gmail.com', [email], fail_silently=False)
+                  'medicalprescriptionapp@gmail.com', [email], fail_silently=False)
 
     def activate_register_user(request, activation_key):
         try:
