@@ -1,5 +1,4 @@
 # standard library
-import logging
 import hashlib
 import datetime
 import random
@@ -52,7 +51,12 @@ class ConfirmAccountView(View):
 
     def send_activation_account_email(email, UserActivateProfile):
         print("Sending email")
-        email_subject = 'Oi'
-        email_body = 'Alo'
+        email_subject = 'Confirmação de Conta'
+        email_body = """
+                     Obrigado por se registrar.Para ativar sua conta, clique neste link
+                     para ativar sua conta: http://localhost:8000/user/confirm/%s
+                     """
+        print("Chave:")
+        print(UserActivateProfile.activation_key)
 
-        send_mail(email_subject, email_body, 'codamaisapp@gmail.com', [email] , fail_silently=False)
+        send_mail(email_subject, email_body % UserActivateProfile.activation_key , 'codamaisapp@gmail.com', [email] , fail_silently=False)
