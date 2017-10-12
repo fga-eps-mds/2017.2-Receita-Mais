@@ -7,6 +7,7 @@ from django.contrib import messages
 # Local Django
 from user.models import HealthProfessional
 from user.forms import HealthProfessionalForm
+#from user.views import ConfirmAccountView
 
 
 class RegisterHealthProfessionalView(FormView):
@@ -37,6 +38,8 @@ class RegisterHealthProfessionalView(FormView):
 
             messages.success(
                 request, 'Registro Realizado!Um email foi enviado com seu link para ativação!', extra_tags='alert')
+
+            # ConfirmAccountView.activate_account_request(email)
 
             return redirect('/')
 

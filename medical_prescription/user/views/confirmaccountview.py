@@ -6,10 +6,10 @@ import random
 
 # Django from django.utils import timezone
 from django.views.generic import View
-from django.core.email import send_email
+from django.core.mail import send_mail
 
 # Local Django
-from .models import User, UserActivateProfile
+from user.models import User, UserActivateProfile
 
 
 class ConfirmAccountView(View):
@@ -55,5 +55,4 @@ class ConfirmAccountView(View):
         email_subject = 'Oi'
         email_body = 'Alo'
 
-        send_email(email_subject, email_body, 'codamaisapp@gmail.com', email,
-                   fail_silently=False)
+        send_mail(email_subject, email_body, 'codamaisapp@gmail.com', email, fail_silently=False)

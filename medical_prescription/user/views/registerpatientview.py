@@ -5,6 +5,7 @@ from django.views.generic import FormView
 # Local Django
 from user.models import Patient
 from user.forms import PatientForm
+#from user.views import ConfirmAccountView
 
 class RegisterPatientView(FormView):
     form_class = PatientForm
