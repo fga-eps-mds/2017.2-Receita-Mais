@@ -25,9 +25,9 @@ class ConfirmAccountView(View):
     # 3 - Ativar o usuário
     # 3.5 - Informar o usuário que sua conta foi ativada.
     # 4 - Redirecionar ele para a página de X.
-    def activate_account_request(self, email):
-        profile = self.create_activate_account_profile(email)
-        self.send_activation_account_email(email, profile)
+    def activate_account_request(email):
+        profile = ConfirmAccountView.create_activate_account_profile(email)
+        ConfirmAccountView.send_activation_account_email(email, profile)
 
     def create_activate_account_profile(email):
         print("Creating activate account profile")
@@ -55,4 +55,4 @@ class ConfirmAccountView(View):
         email_subject = 'Oi'
         email_body = 'Alo'
 
-        send_mail(email_subject, email_body, 'codamaisapp@gmail.com', email, fail_silently=False)
+        send_mail(email_subject, email_body, 'codamaisapp@gmail.com', [email] , fail_silently=False)
