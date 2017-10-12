@@ -60,6 +60,18 @@
                     <li><a href="{% url 'activeprinciple_list' %}">Visualizar princípios ativos</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-medkit"></i> <span>Exames</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'create_custom_exams' %}">Criar novo Exame</a></li>
+                    <li><a href="{% url 'list_exams' %}">Visualizar Exames</a></li>
+                    <li><a href="#">Visualizar Exames Personalizados</a></li>
+                </ul>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
