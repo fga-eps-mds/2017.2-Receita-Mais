@@ -4,23 +4,29 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <th>Nome</th>
-      <th>Editar</th>
-      <th>Excluir</th>
+      <th>Laboratório</th>
+      <th>Restrito</th>
     </thead>
     <tbody>
 
-    {% for medication in list_medications %}
-    <tr class='clickable-row'>
-      <td>{{ medication.name }}</td>
-      <td><a href="#"><i class="fa-pencil" aria-hidden="true"></></a></td>
-      <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
-    </tr>
+      {% for medication in list_medications %}
+        <tr class='clickable-row'>
+          <td>{{ medication.name }}</td>
+          <td>{{ medication.laboratory }}</td>
 
-    {% empty %}
+          {% if medication.is_restricted %}
+            <td>Sim</td>
+          {% else %}
+            <td>Não</td>
+          {% endif %}
+        </tr>
 
-    <li>Não existem princípios ativos cadastrados.</li>
+      {% empty %}
 
-    {% endfor %}
+        <li>Não existem princípios ativos cadastrados.</li>
+
+      {% endfor %}
+    </tbody>
   </table>
 </div>
 {%endblock %}
