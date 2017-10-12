@@ -1,0 +1,19 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+
+<div class="panel-body">
+<table class="table table-striped table-bordered table-hover">
+<thead>
+<th>Nome</th>
+</thead>
+<tbody>
+
+{% for disease in list_disease %}
+<tr class='clickable-row'>
+<td>{{ disease.description }}</td>
+</tr>
+{% empty %}
+<li>Não existem doenças cadastradas.</li>
+{% endfor %}
+</table>
+</div>
+{%endblock %}

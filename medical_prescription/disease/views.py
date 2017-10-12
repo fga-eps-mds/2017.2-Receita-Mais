@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from .model import Disease
+from .models import Disease
 # Create your views here.
 
 
