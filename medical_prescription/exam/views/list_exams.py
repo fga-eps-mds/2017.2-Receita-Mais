@@ -13,5 +13,5 @@ class ListExams(ListView):
     paginate_by = 20
 
     # Get 20 queries of objects Medication.
-    def get_query_set(self, request):
+    def get_queryset(self):
         return self.model.objects.all()
