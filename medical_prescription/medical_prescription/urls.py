@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^medicine/', include('medicine.urls')),
     url(r'^dashboard_patient/', include('dashboardPatient.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^disease/', include('disease.urls')),
     url(r'^$', home, name='landing_page'),
 ]
