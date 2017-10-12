@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from .views import ListMedication
+from .views import ListMedicationByHealthProfessional
 
 urlpatterns = [
-    url(r'^list_medication/$', ListMedication.as_view(), name='list_medication'),
+    url(r'^list_medication/$', ListMedicationByHealthProfessional.as_view(), name='list_medication'),
 ]

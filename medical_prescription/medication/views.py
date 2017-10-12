@@ -2,10 +2,9 @@ from django.views.generic import ListView
 from .models import Medication
 
 
-class ListMedication(ListView):
-
+class ListMedicationByHealthProfessional(ListView):
     '''
-    Query and list objects Medication.
+        View for listing medications created by the Health Professional.
     '''
 
     template_name = 'list_medication.html'
@@ -13,6 +12,6 @@ class ListMedication(ListView):
     model = Medication
     paginate_by = 20
 
-    # Get 20 queries of objects Medication.
-    def get_query_set(self, request):
-        return self.model.objects.all()
+    # Listing objects created by the logged Health Professional.
+    def get_queryset(self):
+        return self.model.objects.filter(health_professional=self.request.user)
