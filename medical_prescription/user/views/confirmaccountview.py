@@ -6,6 +6,7 @@ import random
 # Django from django.utils import timezone
 from django.views.generic import View
 from django.core.mail import send_mail
+from django.shortcuts import redirect
 
 # Local Django
 from user.models import User, UserActivateProfile
@@ -53,10 +54,20 @@ class ConfirmAccountView(View):
         print("Sending email")
         email_subject = 'Confirmação de Conta'
         email_body = """
-                     Obrigado por se registrar.Para ativar sua conta, clique neste link
-                     para ativar sua conta: http://localhost:8000/user/confirm/%s
+                     Obrigado por se registrar. Para ativar sua conta, clique
+                     neste link: http://localhost:8000/user/confirm/%s
                      """
         print("Chave:")
         print(UserActivateProfile.activation_key)
 
-        send_mail(email_subject, email_body % UserActivateProfile.activation_key , 'codamaisapp@gmail.com', [email] , fail_silently=False)
+        send_mail(email_subject, email_body % UserActivateProfile.activation_key,
+                  'codamaisapp@gmail.com', [email], fail_silently=False)
+
+    def activate_register_user(request, activation_key):
+        user_profile = UserActivateProfile.objects.get(activation_key=activation_key)
+        user = user_profile.user
+
+        user.is_active = True
+        user.save()
+
+        return redirect('/')
