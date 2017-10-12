@@ -1,8 +1,11 @@
+# Django imports.
 from django.views.generic import ListView
+
+# Local Django imports
 from .models import Disease
-# Create your views here.
 
 
+# List disease class.
 class ListDisease(ListView):
     model = Disease
     template_name = 'list_disease.html'

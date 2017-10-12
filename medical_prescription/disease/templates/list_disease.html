@@ -1,20 +1,19 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
+    {% if list_disease %}
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
         <thead>
           <th>Código</th>
           <th>Descrição</th>
         </thead>
-        <tbody>
+      <tbody>
 
       {% for disease in list_disease %}
       <tr class='clickable-row'>
         <td>{{ disease.id_cid_10 }}</td>
         <td>{{ disease.description }}</td>
-      </tr>
-      {% empty %}
-        <li>Não existem doenças cadastradas.</li>
+      </tr>        
       {% endfor %}
       </table>
     </div>
@@ -34,7 +33,11 @@
             </span>
         </div>
     {% endif %}
+    {% else %}
+      <li>Não existem doenças cadastradas.</li>
+    {% endif %}
+
 
 {# .... **More content, footer, etc.** .... #}
 
-{%endblock %}
+{% endblock %}
