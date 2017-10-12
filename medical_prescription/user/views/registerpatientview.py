@@ -29,6 +29,8 @@ class RegisterPatientView(FormView):
 
             Patient.objects.create_user(email=email, password=password, name=name,
                                         sex=sex, date_of_birth=date_of_birth,
-                                        phone=phone, id_document=id_document)
+                                        phone=phone, id_document=id_document)]
+
+            ##AQUI
 
         return render(request, self.template_name, {'form': patient_form})
