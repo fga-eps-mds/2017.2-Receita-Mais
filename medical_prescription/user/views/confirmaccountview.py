@@ -3,10 +3,12 @@ import hashlib
 import datetime
 import random
 
-# Django from django.utils import timezone
+# Django
 from django.views.generic import View
+from django.utils import timezone
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.contrib import messages
 
 # Local Django
 from user.models import User, UserActivateProfile
@@ -44,30 +46,41 @@ class ConfirmAccountView(View):
         new_profile = UserActivateProfile(user=user, activation_key=activation_key,
                                           key_expires=key_expires)
         new_profile.save()
-        print("PROFILE SAVED")
-        print(user.email)
-        print(new_profile.activation_key)
 
         return new_profile
 
     def send_activation_account_email(email, UserActivateProfile):
-        print("Sending email")
         email_subject = 'Confirmação de Conta'
         email_body = """
                      Obrigado por se registrar. Para ativar sua conta, clique
                      neste link: http://localhost:8000/user/confirm/%s
                      """
-        print("Chave:")
-        print(UserActivateProfile.activation_key)
 
         send_mail(email_subject, email_body % UserActivateProfile.activation_key,
                   'codamaisapp@gmail.com', [email], fail_silently=False)
 
     def activate_register_user(request, activation_key):
-        user_profile = UserActivateProfile.objects.get(activation_key=activation_key)
+        try:
+            user_profile = UserActivateProfile.objects.get(activation_key=activation_key)
+        except:
+            messages.success(
+                request, 'Não existe um usuário para ser ativado ou a conta ja foi ativada!', extra_tags='alert')
+            return redirect('/')
+
         user = user_profile.user
 
-        user.is_active = True
-        user.save()
+        if user_profile.key_expires > timezone.now():
+            user.is_active = True
+            user.save()
+            user_profile.delete()
+            messages.success(
+                request, 'Conta ativada com sucesso!Realize login para acessar o sistema.', extra_tags='alert')
+
+        else:
+            # TODO(João) Send message telling user that the time to activate account expired.
+            #            And his register has been deleted.
+            messages.success(
+                request, 'O tempo de ativar essa conta expirou :( .Realize o registro novamente!).', extra_tags='alert')
+            pass
 
         return redirect('/')
