@@ -1,0 +1,666 @@
+[
+  {
+    "model": "user.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$WOOlrneKxwST$wVibE24JlfvieGYlBX6Kn2TjIFUwZcgYuVyrhJUaZtk=",
+      "last_login": null,
+      "is_superuser": false,
+      "name": "Teste Testado",
+      "date_of_birth": "1991-11-11",
+      "phone": "06199999999",
+      "email": "admin@hotmail.com",
+      "sex": "M",
+      "is_active": false,
+      "is_staff": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "user.healthprofessional",
+    "pk": 5,
+    "fields": {
+      "crm": "12222",
+      "crm_state": "PI",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 53,
+    "fields": {
+      "active_ingredient": "CEFALOTINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALOTINA SÓDICA",
+      "description": "1G PÓ P/ SOL INJ CT FA VD INC + DIL AMP PLAS INC X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 1,
+    "fields": {
+      "active_ingredient": "CEFALOTINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALOTINA SÓDICA",
+      "description": "1G PÓ P/ SOL INJ CT FA VD INC + DIL AMP PLAS INC X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 2,
+    "fields": {
+      "active_ingredient": "CEFALOTINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALOTINA SÓDICA",
+      "description": "1G PÓ P/ SOL INJ CT 50 FA VD INC + 50 DIL AMP PLAS INC X 10 ML (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 3,
+    "fields": {
+      "active_ingredient": "CEFALOTINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALOTINA SÓDICA",
+      "description": "1G PÓ P/ SOL INJ CT FA VD INC + DIL AMP PLAS INC X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 4,
+    "fields": {
+      "active_ingredient": "CEFALOTINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALOTINA SÓDICA",
+      "description": "1G PÓ P/ SOL INJ CT 50 FA VD INC + 50 DIL AMP PLAS INC X 5 ML (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 5,
+    "fields": {
+      "active_ingredient": "CEFALOTINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALOTINA SÓDICA",
+      "description": "1G PÓ P/ SOL INJ CT 50 FA VD INC (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 6,
+    "fields": {
+      "active_ingredient": "CEFAZOLINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFAZOLINA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ CT 1 FA VD INC + 1 DIL X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 7,
+    "fields": {
+      "active_ingredient": "CEFAZOLINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFAZOLINA SÓDICA",
+      "description": "1 G PÓ INJ CT 25 FA VD INC + 25 DIL X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 8,
+    "fields": {
+      "active_ingredient": "CEFAZOLINA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFAZOLINA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ CT 50 FA VD INC (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 9,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "500 MG PÓ P/ SOL INJ CT 01 FA VD INC + 01 DIL AMP VD INC X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 10,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "500 MG PÓ P/ SOL INJ CT 25 FA VD INC + 25 DIL AMP VD INC X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 11,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ CT 01 FA VD INC + 01 DIL AMP VD INC X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 12,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ CT 25 FA VD INC + 25 DIL AMP VD INC X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 13,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ CT 25 FA VD INC + 25 DIL AMP VD INC X 5 ML (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 14,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ CT 50 FA VD INC (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 15,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "1 G PÓ SOL INJ CT FA VD INC + AMP DIL VD INC X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 16,
+    "fields": {
+      "active_ingredient": "CEFOTAXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFOTAXIMA SÓDICA",
+      "description": "500 MG PÓ P/ SOL INJ CT 50 FA VD INC (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 17,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "250 MG COM REV CT BL AL PLAS INC X 10",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 18,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "500 MG COM REV CT BL AL PLAS INC X 10",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 19,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "250 MG COM REV CT BL AL PLAS INC X 6",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 20,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "250 MG COM REV CT 2 BL AL PLAS INC X 10",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 21,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "500 MG COM REV CT 1 BL AL PLAS INC X 06",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 22,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "500 MG COM REV CT 2 BL AL PLAS INC X 10",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 23,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "500 MG COM REV CT 2 BL AL PLAS INC X 07",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 24,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CIPROFLOXACINO",
+      "description": "250 MG COM REV CT 2 BL AL PLAS INC X 07",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 25,
+    "fields": {
+      "active_ingredient": "CEFALEXINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALEXINA",
+      "description": "500 MG COM REV CT BL AL PVC/PVDC INC X 8",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 26,
+    "fields": {
+      "active_ingredient": "CEFALEXINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALEXINA",
+      "description": "500 MG COM REV CT BL AL PVC/PVDC INC X 10",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 27,
+    "fields": {
+      "active_ingredient": "CEFALEXINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALEXINA",
+      "description": "500 MG CAP GEL DURA CT BL AL PVC/PE/PVDC INC X 100 (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 28,
+    "fields": {
+      "active_ingredient": "CEFALEXINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALEXINA",
+      "description": "500 MG CAP GEL DURA CT BL AL PVC/PE/PVDC INC X 200 (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 29,
+    "fields": {
+      "active_ingredient": "CEFALEXINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALEXINA",
+      "description": "500 MG CAP GEL DURA CT BL AL PVC/PE/PVDC INC X 8",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 30,
+    "fields": {
+      "active_ingredient": "CEFALEXINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFALEXINA",
+      "description": "500 MG CAP GEL DURA CT BL AL PVC/PE/PVDC INC X 10",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 31,
+    "fields": {
+      "active_ingredient": "CEFTAZIDIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTAZIDIMA",
+      "description": "1 G PÓ P/SOL INJ CT 25 FA VD INC + 25 DIL AMP VD INC X 10 ML",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 32,
+    "fields": {
+      "active_ingredient": "CEFTAZIDIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTAZIDIMA",
+      "description": "1 G PO P/ SOL INJ CT 50 FA VD INC",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 33,
+    "fields": {
+      "active_ingredient": "CEFTAZIDIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTAZIDIMA",
+      "description": "1 G PÓ P/SOL INJ CT FA VD INC + DIL AMP VD INC X 10 ML",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 34,
+    "fields": {
+      "active_ingredient": "CEFUROXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFUROXIMA SÓDICA",
+      "description": "750 MG PÓ SOL INJ CT 25 FA VD INC + 25 AMP DIL VD INC X 6 ML",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 35,
+    "fields": {
+      "active_ingredient": "CEFUROXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFUROXIMA SÓDICA",
+      "description": "750 MG PÓ SOL INJ CT 25 FA VD INC",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 36,
+    "fields": {
+      "active_ingredient": "CEFUROXIMA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFUROXIMA SÓDICA",
+      "description": "750 MG PÓ SOL INJ CT FA VD INC + 1 AMP DIL VD INC X 6 ML",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 37,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "1 G PÓ INJ IV CT 5 FA VD INC + 5 AMP DIL X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 38,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "1 G PÓ INJ IV CT 25 FA VD INC + 25 AMP DIL X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 39,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ IV CT 50 FA VD INC (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 40,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "1 G PÓ P/ SOL INJ IV CT FA VD INC + AMP DIL X 10 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 41,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "500 MG PÓ P/ SOL INJ IV CT FA VD INC + DIL X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 42,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "500 MG PÓ INJ IV CT 5 FA VD INC + 5 AMP DIL X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 43,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "500 MG PÓ INJ IV CT 25 FA VD INC + 25 AMP DIL X 5 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 44,
+    "fields": {
+      "active_ingredient": "CEFTRIAXONA SÓDICA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CEFTRIAXONA SÓDICA",
+      "description": "500 MG PÓ P/ SOL INJ IV CT 50 FA VD INC (EMB HOSP)",
+      "is_restricted": "True",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 45,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CEFEPIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CEFEPIMA",
+      "description": "1 G PO P/ SOL INJ CT 25 FA VD INC",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 46,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CEFEPIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CEFEPIMA",
+      "description": "1 G PO P/ SOL INJ CT 25 FA VD INC + 25 DIL AMP VD INC X 3 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 47,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CEFEPIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CEFEPIMA",
+      "description": "1 G PO P/ SOL INJ CT FA VD INC",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 48,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CEFEPIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CEFEPIMA",
+      "description": "1 G PO P/ SOL INJ CT FA VD INC X DIL AMP VD INC X 3 ML",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 49,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE CEFEPIMA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE CEFEPIMA",
+      "description": "2 G PO P/ SOL INJ CT FA VD INC",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 50,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE METFORMINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE METFORMINA",
+      "description": "1 G COM REV CT BL AL PLAS INC X 30",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 51,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE METFORMINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE METFORMINA",
+      "description": "500 MG COM REV CT BL AL PLAS INC X 30",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  },
+  {
+    "model": "medication.medication",
+    "pk": 52,
+    "fields": {
+      "active_ingredient": "CLORIDRATO DE METFORMINA",
+      "laboratory": "AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA",
+      "name": "CLORIDRATO DE METFORMINA",
+      "description": "500 MG COM REV CT BL AL PLAS INC X 60",
+      "is_restricted": "False",
+      "health_professional": 5
+    }
+  }
+]
