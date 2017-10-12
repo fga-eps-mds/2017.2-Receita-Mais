@@ -1,4 +1,4 @@
-
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}  
 <html>
 
 <body>
@@ -14,12 +14,10 @@
 
         <br> ID Document: <b>{{ patient.id_document }}</b>
     </p>
-    <p>
-        pk: <b>{{ patient.pk }}</b>
-    </p>
 
     {% endfor %}
 
 </body>
 
 </html>
+{%endblock %}

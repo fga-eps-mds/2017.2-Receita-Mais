@@ -1,4 +1,47 @@
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+
+<div class="g-position--relative g-bg-color--primary">
+  <div class="g-container--md g-padding-y-125--xs">
+    <div class="g-text-center--xs g-margin-t-50--xs g-margin-b-80--xs">
+      <h2 class="g-font-size-32--xs g-font-size-36--sm g-color--white">Excluir cadastro</h2>
+
+      <form action="" method="post">{% csrf_token %}
+          <div class="g-text-center--xs">
+
+            <a class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs" href="#" data-toggle="modal" data-target="#confirm-delete"><i class="fa fa-trash" aria-hidden="true"></i>Excluir</span></a>
+
+
+            <div class="modal fade" id="confirm-delete" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                        <br>
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title" id="myModalLabel">Confirmar Exclusão</h4>
+                          </div>
+
+                          <div class="modal-body">
+                              <p>Está é uma ação irreversível</p>
+                              <p>Você quer excluir a sua conta?</p>
+                          </div>
+
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                              <button value='Delete' type="submit" class="btn btn-danger btn-ok">Excluir</button>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+
+          </div>
+      </form>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
