@@ -15,18 +15,7 @@ from user.models import User, UserActivateProfile
 
 
 class ConfirmAccountView(View):
-    # REGISTRAR
-    # 1 - Criar um identificador único daquele usuário.
-    # 2 - Criar um "perfil" temporário que vai ser responsável por linkar o usuário com essa chave.
-    # 3 - Salvar Esse perfil temporário.
-    # 4 - Enviar email com as informações.
 
-    # NA HORA DE CONFIRMAR:
-    # 1 - Identificar o perfil que possui aquela URL.
-    # 2 - Obter Usuário
-    # 3 - Ativar o usuário
-    # 3.5 - Informar o usuário que sua conta foi ativada.
-    # 4 - Redirecionar ele para a página de X.
     def activate_account_request(email):
         profile = ConfirmAccountView.create_activate_account_profile(email)
         ConfirmAccountView.send_activation_account_email(email, profile)
