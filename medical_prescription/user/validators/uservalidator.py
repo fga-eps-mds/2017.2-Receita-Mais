@@ -28,8 +28,6 @@ class UserValidator():
             raise forms.ValidationError({'email': [_(constants.EMAIL_NONE)]})
         elif len(email) > constants.EMAIL_MAX_LENGTH:
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
-        elif len(email) < constants.EMAIL_MIN_LENGTH:
-            raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
 
     def validator_email_in_reset_password(self, email):
         """
@@ -73,11 +71,11 @@ class UserValidator():
         Validating phone number.
         """
 
-        if phone is not None and len(phone) > constants.PHONE_NUMBER_FIELD_LENGTH_MAX:
+        if phone is None:
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
-        elif phone is not None and len(phone) < constants.PHONE_NUMBER_FIELD_LENGTH_MIN:
+        elif len(phone) < constants.PHONE_NUMBER_FIELD_LENGTH_MIN:
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
-        elif not str(phone).isdigit():
+        elif not phone.isdigit():
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_FORMAT)]})
 
     def validator_date_of_birth(self, date_of_birth):

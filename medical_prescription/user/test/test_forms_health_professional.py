@@ -16,13 +16,13 @@ class TestHealthProfessionalForm(TestCase):
         self.phone_valid = '1234567890'
         self.phone_invalid = '456'
         self.phone_invalid_MIN = '456'
-        self.phone_invalid_TYPE = 'asdaaaaaads'
+        self.phone_invalid_TYPE = 'aas1@a;$aaa'
         self.phone_invalid_MAX = '456134564898761'
 
         self.email_valid = 'admin@admin.com'
         self.email_invalid = 'admin.com'
         self.email_invalid_TYPE = 'admin.com'
-        self.email_invalid_MIN = 'a@a.c'
+        self.email_invalid_MIN = 'a@a.'
         self.email_invalid_MAX = 'admin@fgdhafdgfashgdfaghfdasfdghashjasghjasgdhjgasdjasjdjaasdsdfjh.com'
         self.email_invalid_BASE = 'admin@hotmail.com'
 
