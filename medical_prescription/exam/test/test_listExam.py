@@ -1,6 +1,5 @@
 
 from django.test import TestCase
-from exam.models import Exam
 from django.test.client import RequestFactory
 
 from exam.views import ListExams
