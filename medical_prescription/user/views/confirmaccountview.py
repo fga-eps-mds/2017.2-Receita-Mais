@@ -14,8 +14,11 @@ from django.contrib import messages
 from user.models import User, UserActivateProfile
 
 
+# This class is responsible for doing user account activation.
 class ConfirmAccountView(View):
 
+    # This method calls the methods resposible for creating the temporary user
+    # profile and sending the confirmation email.
     def activate_account_request(email):
         profile = ConfirmAccountView.create_activate_account_profile(email)
         ConfirmAccountView.send_activation_account_email(email, profile)
@@ -32,12 +35,14 @@ class ConfirmAccountView(View):
 
         user = User.objects.get(email=email)
 
+        # Creating the temporary user.
         new_profile = UserActivateProfile(user=user, activation_key=activation_key,
                                           key_expires=key_expires)
         new_profile.save()
 
         return new_profile
 
+    # Sending email for account activation.
     def send_activation_account_email(email, UserActivateProfile):
         email_subject = 'Confirmação de Conta'
         email_body = """
@@ -48,9 +53,15 @@ class ConfirmAccountView(View):
         send_mail(email_subject, email_body % UserActivateProfile.activation_key,
                   'medicalprescriptionapp@gmail.com', [email], fail_silently=False)
 
+    # Activating account and deleting temporary profile when the account
+    # confirmation link is requested.
     def activate_register_user(request, activation_key):
+
+        # Getting ther user to be activated.
         try:
             user_profile = UserActivateProfile.objects.get(activation_key=activation_key)
+
+        # If there is no user to be activated, an error message is displayed.
         except:
             messages.success(
                 request, 'Não existe um usuário para ser ativado ou a conta ja foi ativada!', extra_tags='alert')
@@ -58,6 +69,7 @@ class ConfirmAccountView(View):
 
         user = user_profile.user
 
+        # Activating user account.
         if user_profile.key_expires > timezone.now():
             user.is_active = True
             user.save()
@@ -65,6 +77,7 @@ class ConfirmAccountView(View):
             messages.success(
                 request, 'Conta ativada com sucesso!Realize login para acessar o sistema.', extra_tags='alert')
 
+        # If the account activation time has expired, an error message is displayed.
         else:
             # TODO(João) Send message telling user that the time to activate account expired.
             #            And his register has been deleted.
