@@ -1,1 +1,3 @@
 from .test_listExam import TestListExam
+from .test_form_createcustomexam import TestCreateCustomExamForm
+from .test_createcustomexamview import CreateCustomExamsViewTest
