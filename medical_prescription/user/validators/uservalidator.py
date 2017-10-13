@@ -28,8 +28,6 @@ class UserValidator():
             raise forms.ValidationError({'email': [_(constants.EMAIL_NONE)]})
         elif len(email) > constants.EMAIL_MAX_LENGTH:
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
-        elif len(email) < constants.EMAIL_MIN_LENGTH:
-            raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
 
     def validator_email_in_reset_password(self, email):
         """
