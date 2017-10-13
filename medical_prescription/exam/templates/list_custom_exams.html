@@ -13,6 +13,8 @@
         {% if exam.is_active and exam.health_professional_FK.email == request.user.email %}
             <td>{{ exam.name }}</td>
             <td>{{ exam.description }}</td>
+
+            <td><a href="{% url 'update_custom_exams' pk=exam.pk %}" class="btn">Editar</a></td>
         {% endif %}
       </tr>
       {% endfor %}
