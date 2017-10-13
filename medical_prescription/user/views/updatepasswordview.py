@@ -12,7 +12,6 @@ class UpdateUserPassword(UpdateView):
         form = UpdatePasswordForm(user=request.user, data=request.POST or None)
 
         if request.method == "POST":
-            print("Solicitado")
             if form.is_valid():
                 password = form.cleaned_data.get('new_password')
                 user = request.user
