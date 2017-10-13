@@ -7,12 +7,12 @@ class UpdatePasswordForm(forms.Form):
     """
     Form to confirm password.
     """
-    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'old password'}),
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Senha Atual', 'class': 'form-control'}),
                                    label='')
-    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'new password'}),
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Nova Senha', 'class': 'form-control'}),
                                    label='')
     new_password_confirmation = forms.CharField(widget=forms.PasswordInput(
-                            attrs={'placeholder': 'new password confirmation'}),
+                            attrs={'placeholder': 'new password confirmation', 'class': 'form-control'}),
                             label='')
 
     def __init__(self, user, data=None):

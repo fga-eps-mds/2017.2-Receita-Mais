@@ -8,7 +8,7 @@ from user.forms import UpdatePasswordForm
 
 class UpdateUserPassword(UpdateView):
 
-    def edit_password_view(request, email):
+    def edit_patient_password_view(request, email):
         form = UpdatePasswordForm(user=request.user, data=request.POST or None)
 
         if request.method == "POST":
@@ -22,6 +22,29 @@ class UpdateUserPassword(UpdateView):
 
                 return redirect('/')
             else:
+                # Nothing to do.
+                pass
+        else:
+            # Nothing to do.
+            pass
+
+        return render(request, 'edit_patient_password.html', {'form': form})
+
+    def edit_health_professional_password_view(request, email):
+        form = UpdatePasswordForm(user=request.user, data=request.POST or None)
+
+        if request.method == "POST":
+            print("Solicitado")
+            if form.is_valid():
+                password = form.cleaned_data.get('new_password')
+                user = request.user
+                print(user.name)
+                user.set_password(password)
+                user.save()
+
+                return redirect('/')
+            else:
+                print("invalido")
                 # Nothing to do.
                 pass
         else:

@@ -100,6 +100,9 @@
                                 <div class="pull-right">
                                     <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
                                 </div>
+                                <div class="pull-left">
+                                    <a href="{% url 'edit_hp_password' request.user.email %}" class="btn btn-default btn-flat">Editar Senha</a>
+                                </div>
                             </li>
                         </ul>
                     </li>
