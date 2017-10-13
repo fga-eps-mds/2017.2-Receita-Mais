@@ -1,0 +1,119 @@
+{% load static %} {% load staticfiles %}
+
+<header class="navbar-fixed-top s-header-v2 js__header-sticky">
+    <!-- Navbar -->
+    <nav class="s-header-v2__navbar">
+        <div class="container g-display-table--lg">
+            <!-- Navbar Row -->
+            <div class="s-header-v2__navbar-row">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="s-header-v2__navbar-col">
+                    <button type="button" class="collapsed s-header-v2__toggle" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+                                <span class="s-header-v2__toggle-icon-bar"></span>
+                            </button>
+                </div>
+
+                <div class="s-header-v2__navbar-col s-header-v2__navbar-col-width--180">
+                    <!-- Logo -->
+                    <div class="s-header-v2__logo">
+                        <a href="#" class="s-header-v2__logo-link">
+                                    <img class="s-header-v2__logo-img s-header-v2__logo-img--default" src="{% static "landing/img/logo-white.png" %}" alt="Receita Mais">
+                                    <img class="s-header-v2__logo-img s-header-v2__logo-img--shrink" src="{% static "landing/img/logo.png" %}" alt="Receita Mais">
+                                </a>
+                    </div>
+                    <!-- End Logo -->
+                </div>
+
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Nova Prescrição</a></li>
+                            <li><a href="#">Novo Manipulado</a></li>
+                            <li><a href="#">Personalizar Prescrições</a></li>
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <li class="dropdown messages-menu">
+                                <!-- Menu toggle button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-envelope-o"></i>
+                                        <span class="label label-success"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header"></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu">
+
+                                                <!-- end message .-->
+                                        </ul>
+                                        <!-- /.menu -->
+                                        </li>
+                                        <li class="footer"><a href="#">Veja todas as mensagens</a></li>
+                                </ul>
+                            </li>
+                                                <!-- Notifications Menu -->
+                            <li class="dropdown notifications-menu">
+                                <!-- Menu toggle button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                        <span class="label label-warning"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header"></li>
+                                    <li>
+                                        <!-- Inner Menu: contains the notifications -->
+                                        <ul class="menu">
+
+                                            <!-- end notification -->
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">Veja todas as notificações !</a></li>
+                                </ul>
+                            </li>
+                                                    <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <i class="fa fa-user-circle" alt="User Image"></i>
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs">{{ request.user.name }}</span>
+                                </a>
+                                <ul class="dropdown-menu" >
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header" >
+                                        <img src= "{% static 'img/user.png' %}" class="img-circle" alt="User Image">
+                                        <p>
+                                             {{ request.user.name }}
+                                        </p>
+                                        <small>Especialização</small>
+
+                                    </li>
+
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <!-- End Navbar -->

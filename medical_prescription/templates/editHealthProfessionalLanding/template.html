@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {% load staticfiles %} {% csrf_token %} {% include "editHealthProfessionalLanding/head.html" %}
+</head>
+
+<body>
+
+        {% if messages %} 
+            {% for message in messages %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %} 
+        {% endif %}
+
+
+    <div>
+        <!-- navigation bar -->
+        {% include "editHealthProfessionalLanding/nav_bar.html" %}
+    </div>
+    <div>
+        <!-- Campo do meio -->
+        {% block content %} {% endblock %}
+    </div>
+
+    <div>
+        <!-- parte de baixo -->
+        {% include "editHealthProfessionalLanding/footer.html" %}
+    </div>
+</body>
+
+
+{% load static %}
+
+<!-- Back To Top -->
+<a href="javascript:void(0);" class="s-back-to-top js__back-to-top"></a>
+
+<!-- Vendor -->
+<script type="text/javascript" src="{% static "landing/vendor/jquery.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/jquery.migrate.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/jquery.smooth-scroll.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/jquery.back-to-top.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/scrollbar/jquery.scrollbar.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/swiper/swiper.jquery.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/masonry/jquery.masonry.pkgd.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/masonry/imagesloaded.pkgd.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/jquery.equal-height.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/jquery.parallax.min.js " %}"></script>
+<script type="text/javascript" src="{% static "landing/vendor/jquery.wow.min.js" %}"></script>
+
+<!-- General Components and Settings -->
+<script type="text/javascript" src="{% static "landing/js/global.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/header-sticky.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/scrollbar.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/swiper.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/masonry.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/equal-height.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/parallax.min.js" %}"></script>
+<script type="text/javascript" src="{% static "landing/js/components/wow.min.js" %}"></script>
+<!--========== END JAVASCRIPTS ==========-->
+
+</html>
+
+
+

@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^dashboard_patient/', include('dashboardPatient.urls')),
     url(r'^exam/', include('exam.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^disease/', include('disease.urls')),
     url(r'^$', home, name='landing_page'),
 ]
