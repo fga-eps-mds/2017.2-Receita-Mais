@@ -1,28 +1,38 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
-  <ul class="nav nav-tabs">
-   <li>
-     <a href="{% url 'list_all_medications' %}" data-toggle="nab-tabs" >Gerais</a>
-   </li>
+  <!-- TODO(Felipe) create js method for active links -->
 
+  <ul class="nav nav-tabs">
    <li class="active">
+     <a href="{% url 'list_all_medications' %}" id="tag-geral" data-toggle="nav-tabs" >Gerais</a>
+   </li>
+   <li id="tag-custom">
      <a data-toggle="nab-tabs" href="{% url 'list_medication' %}">Customizados</a>
    </li>
  </ul>
  <div class="panel-body">
+  <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <th>Nome</th>
-      <th>Editar</th>
-      <th>Excluir</th>
+      <th>Laboratório</th>
+      <th>Restrição</th>
     </thead>
+
     <tbody>
 
       {% for medication in list_medications %}
         <tr class='clickable-row'>
           <td>{{ medication.name }}</td>
-          <td><a href="#"><i class="fa-pencil" aria-hidden="true"></></a></td>
-          <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
+          <td>{{ medication.laboratory }}</td>
+
+
+          {% if medication.is_restricted %}
+            <td>Sim</td>
+          {% else %}
+            <td>Não</td>
+          {% endif %}
+
         </tr>
 
       {% empty %}
@@ -59,4 +69,5 @@
   </ul>
 {% endif %}
 </div>
+
 {%endblock %}
