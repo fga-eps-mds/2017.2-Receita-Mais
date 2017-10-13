@@ -1,19 +1,38 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
 <div class="panel-body">
+
+  <!-- tab component -->
+  <table class = "table table-striped table-bordered table-hover">
+  <ul class = "nav nav-tabs">
+    <li class="active">
+      <td>Todos os medicamentos</td>
+      <td>Meus Medicamentos</td>
+    </li>
+  </ul>
+  </table>
+
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <th>Nome</th>
-      <th>Editar</th>
-      <th>Excluir</th>
+      <th>Laboratório</th>
+      <th>Restrição</th>
     </thead>
+
     <tbody>
 
       {% for medication in list_medications %}
         <tr class='clickable-row'>
           <td>{{ medication.name }}</td>
-          <td><a href="#"><i class="fa-pencil" aria-hidden="true"></></a></td>
-          <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
+          <td>{{ medication.laboratory }}</td>
+
+
+          {% if medication.is_restricted %}
+            <td>Sim</td>
+          {% else %}
+            <td>Não</td>
+          {% endif %}
+
         </tr>
 
       {% empty %}
