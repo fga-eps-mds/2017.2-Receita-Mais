@@ -1,6 +1,5 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
-    {% if list_exam %}
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
         <thead>
@@ -11,7 +10,7 @@
 
       {% for exam in list_exam %}
       <tr class='clickable-row'>
-        {% if exam.is_active %}
+        {% if exam.is_active and exam.id_tuss != '' %}
             <td>{{ exam.id_tuss }}</td>
             <td>{{ exam.description }}</td>
         {% endif %}
@@ -34,9 +33,6 @@
                 {% endif %}
             </span>
         </div>
-    {% endif %}
-    {% else %}
-      <li>Não existem exames cadastrados.</li>
     {% endif %}
 
 {% endblock %}

@@ -22,9 +22,9 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                </span>
             </div>
         </form>
         <!-- /.search form -->
@@ -38,10 +38,10 @@
             <li><a href="#"><i class="fa fa-users"></i> <span>Pacientes</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-files-o"></i> <span>Receitas</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
                 <ul class="treeview-menu">
                     <li><a href="#">Criar nova receita</a></li>
                     <li><a href="#">Visualizar favoritos</a></li>
@@ -49,10 +49,10 @@
             </li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-medkit"></i> <span>Medicamentos</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
                 <ul class="treeview-menu">
                     <li><a href="#">Criar novo medicamento</a></li>
                     <li><a href="{% url 'list_medication' %}">Visualizar medicamentos</a></li>
@@ -60,23 +60,25 @@
                     <li><a href="{% url 'activeprinciple_list' %}">Visualizar princípios ativos</a></li>
                 </ul>
             </li>
-            <li class="treeview">
-                <a href="#"><i class="fa fa-medkit"></i> <span>Exames</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-                <ul class="treeview-menu">
-                    <li><a href="{% url 'disease_list' %}">Doenças</a></li>
-                </ul>
-                <ul class="treeview-menu">
-                    <li><a href="{% url 'create_custom_exams' %}">Criar novo Exame</a></li>
-                    <li><a href="{% url 'list_exams' %}">Visualizar Exames</a></li>
-                    <li><a href="#">Visualizar Exames Personalizados</a></li>
-                </ul>
-            </li>
-        </ul>
-        <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-</aside>
+                <li class="treeview">
+                    <a href="{% url 'disease_list' %}"><i class="#"></i> <span>Doenças</span>
+                    </a>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-medkit"></i> <span>Exames</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{% url 'create_custom_exams' %}">Criar novo Exame</a></li>
+                        <li><a href="{% url 'list_exams' %}">Visualizar Exames</a></li>
+                        <li><a href="{% url 'list_custom_exams' %}">Visualizar Exames Personalizados</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
