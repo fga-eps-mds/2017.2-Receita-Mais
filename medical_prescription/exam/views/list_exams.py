@@ -1,5 +1,8 @@
 from django.views.generic import ListView
 from exam.models import Exam
+from django.contrib.auth.decorators import login_required
+
+login_required()
 
 
 class ListExams(ListView):
