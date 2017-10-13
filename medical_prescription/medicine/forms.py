@@ -1,5 +1,9 @@
+# Django
 from django import forms
+# Models app
 from .models import CustomActivePrinciple
+
+# Class create form custom active principle
 
 
 class CustomActivePrincipleForm(forms.ModelForm):

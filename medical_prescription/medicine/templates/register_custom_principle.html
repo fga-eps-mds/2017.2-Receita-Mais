@@ -1,6 +1,18 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
-<form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-success">Criar</button>
+
+<div class="container" style="display:none;" id="myAlert">
+</div>
+<form method="POST" class="post-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="save btn btn-success" value="showAlert" onclick="showAlert();">Criar</button>
 </form>
+<script>
+function showAlert(){
+  if($("#myAlert").find("div#myAlert2").length==0){
+    $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'>Principio ativo criado com sucesso.</div>");
+  }
+  $("#myAlert").css("display", "");
+}
+</script>
 {% endblock %}

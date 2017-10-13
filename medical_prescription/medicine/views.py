@@ -1,5 +1,5 @@
-from user.models import HealthProfessional
-from django.views.generic import ListView, FormView
+import time
+from django.views.generic import ListView, FormView, UpdateView
 
 from .models import ActivePrinciple, CustomActivePrinciple
 from medicine.forms import CustomActivePrincipleForm
@@ -30,11 +30,12 @@ class ListActivePrinciple(ListView):
 
 
 class CreateCustomActivePrinciple(FormView):
-    form_class = CustomActivePrincipleForm
-    template_name = 'register_custom_principle.html'
-    success_url = '/medicine/list/'
+    form_class = CustomActivePrincipleForm  # Class forms.py define how the form will be
+    template_name = 'register_custom_principle.html'  # Template define html redirect create
+    success_url = '/medicine/list/'  # Redirect this url when post is success
 
     def dispatch(self, *args, **kwargs):
+        time.sleep(0.4)  # Time to wait to inform the creation of the principle
         return super(CreateCustomActivePrinciple, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
@@ -45,3 +46,17 @@ class CreateCustomActivePrinciple(FormView):
         self.customactiveprinciple.save()
 
         return super(CreateCustomActivePrinciple, self).form_valid(form)
+
+
+class EditCustomActivePrinciple(UpdateView):
+    model = ActivePrinciple  # Defines which model will be edited
+    form_class = CustomActivePrincipleForm  # Class forms.py define how the form will be
+    template_name = 'register_custom_principle.html'   # Template define html redirect create
+    success_url = '/medicine/list/'  # Redirect this url when post is success
+
+    def get(self, request, *args, **kwargs):
+        return super(EditCustomActivePrinciple, self).post(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        time.sleep(0.4)  # Time to wait to inform the creation of the principle
+        return super(EditCustomActivePrinciple, self).post(request, *args, **kwargs)

@@ -12,7 +12,9 @@
     <div id="general" class="tab-pane fade in active">
       <table class="table table-striped table-bordered table-hover">
       <thead>
+      {% if list_active_principle > 0 %}
       <th>Nome</th>
+      {% endif %}
       </thead>
       <tbody>
 
@@ -21,7 +23,8 @@
       <td>{{ activePrinciple.name }}</td>
       </tr>
       {% empty %}
-      <li>Não existem princípios ativos cadastrados.</li>
+      <br>
+      <li><b>Não existem princípios ativos cadastrados.</b></li>
       {% endfor %}
       </table>
 
@@ -60,12 +63,14 @@
       <table class="table table-striped table-bordered table-hover">
       <thead>
       <th>Nome</th>
+      <th>Editar</th>
       </thead>
       <tbody>
       <!-- Listing Custom Active Principle -->
       {% for custonActivePrinciple in custons %}
       <tr class='clickable-row'>
       <td>{{ custonActivePrinciple.name }}</td>
+      <td><a href="{% url 'edit_activePrinciple' custonActivePrinciple.id %}" data-confirm="true"><i class="fa-pencil" aria-hidden="true"></></a></td >
       </tr>
       {% empty %}
       <li>Não existem princípios ativos cadastrados.</li>
