@@ -10,7 +10,7 @@
 
       {% for exam in list_custom_exam %}
       <tr class='clickable-row'>
-        {% if exam.is_active and exam.name != '' %}
+        {% if exam.is_active and exam.health_professional_FK.email == request.user.email %}
             <td>{{ exam.name }}</td>
             <td>{{ exam.description }}</td>
         {% endif %}
