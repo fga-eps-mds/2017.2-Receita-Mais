@@ -4,10 +4,10 @@
 
   <ul class="nav nav-tabs">
    <li class="active">
-     <a href="{% url 'list_all_medications' %}" target="_self" data-toggle="tab" >Gerais</a>
+     <a href="{% url 'list_all_medications' %}" id="tag-geral" data-toggle="nav-tabs" >Gerais</a>
    </li>
-   <li>
-     <a data-toggle="tab" href="{% url 'list_medication' %}">Customizados</a>
+   <li id="tag-custom">
+     <a data-toggle="nab-tabs" href="{% url 'list_medication' %}">Customizados</a>
    </li>
  </ul>
  <div class="panel-body">
@@ -69,4 +69,5 @@
   </ul>
 {% endif %}
 </div>
+
 {%endblock %}
