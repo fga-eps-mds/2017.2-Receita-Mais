@@ -52,6 +52,7 @@ class TestHealthProfessionalForm(TestCase):
         self.crm_state_invalid = '1234a'
         self.crm_state_invalid_MAX = 'aaaaaaaa'
         self.crm_state_invalid_MIN = 'A'
+        self.crm_state_invalid_NONE = None
 
         user = HealthProfessional()
         user.crm = "54321"
@@ -383,6 +384,20 @@ class TestHealthProfessionalForm(TestCase):
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_invalid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid}
+
+        form = HealthProfessionalForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_forms_health_professional_crm_state_is_not_valid_NONE(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'crm': self.crm_valid,
+                     'crm_state': self.crm_state_invalid_NONE,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
 

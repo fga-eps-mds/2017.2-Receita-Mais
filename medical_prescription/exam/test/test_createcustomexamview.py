@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.test.client import RequestFactory, Client
-from django.contrib import auth
 
-from exam.models import CustomExam
 from exam.views import CreateCustomExamsView
 from user.models import HealthProfessional
 
@@ -34,10 +32,8 @@ class CreateCustomExamsViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    # Testing method 'post' in CreateCustomExamsView.
-    # TODO(Guilherme) Test with logged user.
-    # def test_post(self):
-    #     # request = self.factory.get('/exam/create_custom_exams/')
-    #     # auth.login(request, self.user)
-    #     response = self.client.post('/exam/create_custom_exams/', {'name': self.name, 'description': self.description})
-    #     self.assertEqual(response.status_code, 200)
+    def test_post(self):
+        # request = self.factory.get('/exam/create_custom_exams/')
+        # auth.login(request, self.user)
+        response = self.client.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
+        self.assertEqual(response.status_code, 200)
