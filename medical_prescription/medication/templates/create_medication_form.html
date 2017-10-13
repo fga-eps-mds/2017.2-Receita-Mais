@@ -1,0 +1,20 @@
+{% extends "dashboardHealthProfessional/template.html" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+
+<!-- Panel -->
+
+{% csrf_token %}
+
+<div>
+  <ul>
+    <li>Nome: {{ form.name}}</li>
+    <li>Ingrediente ativo: {{ form.active_ingredient }}</li>
+    <li>Descrição: {{ form.description }}</li>
+    <li>Restrição: {{ form.is_restricted }}</li>
+  </ul>
+<div>
+
+{% endblock %}
