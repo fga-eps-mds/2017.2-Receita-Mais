@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 # Local Django
 from exam.models import CustomExam
 from exam.forms import CreateCustomExams
-
+from django.contrib import messages
+from user.models import HealthProfessional
 
 login_required()
 
@@ -24,8 +25,15 @@ class CreateCustomExamsView(FormView):
 
         if form.is_valid():
             description = form.cleaned_data.get('description')
-            health_professional_FK = request.user.pk
+            name = form.cleaned_data.get('name')
+            user = HealthProfessional.objects.get(email=request.user)
 
-            CustomExam.objects.create_user(description=description, health_professional_FK=health_professional_FK)
+            health_professional_FK = user
+
+            CustomExam.objects.create(name=name, description=description,
+                                      health_professional_FK=health_professional_FK)
+
+            messages.success(
+                request, 'Cadastro Realizado!', extra_tags='alert')
 
         return render(request, self.template_name, {'form': form})

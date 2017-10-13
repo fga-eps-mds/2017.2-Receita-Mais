@@ -11,6 +11,7 @@ class CreateCustomExams(forms.ModelForm):
     """
     Form to create a custom exam.
     """
+    description = forms.CharField(widget=forms.Textarea)
 
     class Meta:
         # Define model to form.
@@ -36,5 +37,5 @@ class CreateCustomExams(forms.ModelForm):
         validator = CustomExamValidator()
 
         # Fields common all users.
-        validator.validator_description(description)
         validator.validator_name(name)
+        validator.validator_description(description)
