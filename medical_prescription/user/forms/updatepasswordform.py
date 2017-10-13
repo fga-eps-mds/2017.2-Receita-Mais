@@ -9,9 +9,9 @@ class UpdatePasswordForm(forms.Form):
     """
     old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Senha Atual', 'class': 'form-control'}),
                                    label='')
-    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Nova Senha', 'class': 'form-control'}),
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Nova Senha', 'class': 'form-control'}),
                                    label='')
-    new_password_confirmation = forms.CharField(widget=forms.PasswordInput(
+    password_confirmation = forms.CharField(widget=forms.PasswordInput(
                             attrs={'placeholder': 'new password confirmation', 'class': 'form-control'}),
                             label='')
 
@@ -21,22 +21,15 @@ class UpdatePasswordForm(forms.Form):
 
     def clean(self, *args, **kwargs):
         old_password = self.cleaned_data.get('old_password')
-        new_password = self.cleaned_data.get('new_password')
-        new_password_confirmation = self.cleaned_data.get('new_password_confirmation')
+        password = self.cleaned_data.get('password')
+        password_confirmation = self.cleaned_data.get('password_confirmation')
 
         if not self.user.check_password(old_password):
             raise forms.ValidationError('Senha Invalida')
-        elif(new_password != new_password_confirmation):
+        elif(password != password_confirmation):
             raise forms.ValidationError('As senhas devem ser iguais')
 
         validator = UserValidator()
-        validator.validator_password(new_password, new_password_confirmation)
+        validator.validator_password(password, password_confirmation)
 
         return super(UpdatePasswordForm, self).clean(*args, **kwargs)
-
-    def verify_password(self, password):
-        """
-        Verifies if the given password matches the one in the database.
-        """
-
-        return self.instance.check_password(password)
