@@ -1,6 +1,15 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
-<div class="panel-body">
+  <ul class="nav nav-tabs">
+   <li>
+     <a href="{% url 'list_all_medications' %}" data-toggle="tab" >Gerais</a>
+   </li>
+
+   <li class="active">
+     <a data-toggle="tab" href="{% url 'list_medication' %}">Customizados</a>
+   </li>
+ </ul>
+ <div class="panel-body">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <th>Nome</th>
@@ -27,7 +36,7 @@
   {% comment "Source" %}
   <p>Retirado de: https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html</p>
   {% endcomment %}
-  
+
   {% if is_paginated %}
   <ul class="pagination">
     {% if page_obj.has_previous %}
