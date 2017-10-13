@@ -36,5 +36,5 @@ class UpdateCustomExamForm(forms.ModelForm):
 
             validator = CustomExamValidator()
 
-            validator.validator_name(name)
+            validator.validator_name_update(name)
             validator.validator_description(description)

@@ -34,3 +34,13 @@ class CustomExamValidator():
             raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})
         elif name_base.exists():
             raise forms.ValidationError({'name': [_(constants.NAME_EXISTS)]})
+
+    def validator_name_update(self, name):
+        """
+        Validating name.
+        """
+
+        if name is not None and len(name) > constants.NAME_MAX_LENGTH:
+            raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})
+        elif name is not None and len(name) < constants.NAME_MIN_LENGTH:
+            raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})
