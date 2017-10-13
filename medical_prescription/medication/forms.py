@@ -9,9 +9,9 @@ class CreateMedicationForm(forms.ModelForm):
     name = forms.CharField(max_length=100)
     active_ingredient = forms.CharField(max_length=100)
     description = forms.CharField(widget=forms.Textarea)
-    is_restricted = forms.BooleanField()
+    is_restricted = forms.BooleanField(required=False)
 
     class Meta:
         model = Medication
 
-        fields = ['name', 'active_ingredient', 'description', 'is_restricted']
+        fields = ['name', 'active_ingredient', 'laboratory', 'description']

@@ -10,10 +10,15 @@
 
 <div>
   <ul>
+    <form action='' method="POST">
+    {% csrf_token %}
     <li>Nome: {{ form.name}}</li>
     <li>Ingrediente ativo: {{ form.active_ingredient }}</li>
+    <li>Laboratório: {{ form.laboratory }}</li>
     <li>Descrição: {{ form.description }}</li>
     <li>Restrição: {{ form.is_restricted }}</li>
+    <input type="submit" value='Criar'/>
+  </form>
   </ul>
 <div>
 
