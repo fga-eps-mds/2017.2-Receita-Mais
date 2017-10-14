@@ -1,5 +1,15 @@
+# standard library
+import logging
+
 # django
 from django import forms
+
+# local django
+from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class ConfirmPasswordForm(forms.Form):
@@ -14,6 +24,7 @@ class ConfirmPasswordForm(forms.Form):
                             label='')
 
     def clean(self, *args, **kwargs):
+        logger.debug("Start clean data in ConfirmPasswordForm.")
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('password_confirmation')
 
@@ -23,4 +34,5 @@ class ConfirmPasswordForm(forms.Form):
             # Nothing to do.
             pass
 
+        logger.debug("Exit clean data in ConfirmPasswordForm.")
         return super(ConfirmPasswordForm, self).clean(*args, **kwargs)
