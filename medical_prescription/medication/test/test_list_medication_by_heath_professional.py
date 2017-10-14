@@ -15,7 +15,7 @@ class TestMedicationList(TestCase):
 
         self.view = ListMedicationByHealthProfessional
 
-        # Making medicati
+        # Making medication
         self.medication = Medication()
         self.medication.name = "Medicamento Teste"
         self.medication.active_ingredient = "Teste Lab"
@@ -32,8 +32,8 @@ class TestMedicationList(TestCase):
     def teste_len_false(self):
         self.assertNotEqual(len(self.health_professional_medications), 50)
 
-    # def test_list(self):
-    #         request = self.factor
-    #         request.user = self.user
-    #         list_medications = self.view.get_queryset()
-    #         self.assertEqual(self.health_professional_medications, list_medications)
+    def test_list(self):
+            request = self.factory
+            request.user = self.user
+            list_medications = self.view.get_queryset(self.view)
+            self.assertEqual(self.health_professional_medications, list_medications)

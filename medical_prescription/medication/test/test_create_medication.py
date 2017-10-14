@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from medication.views import CreateMedicationView
 from medication.forms import CreateMedicationForm
 from user.models import HealthProfessional
@@ -7,6 +7,8 @@ from user.models import HealthProfessional
 class TesteCreateMedication(TestCase):
 
     def setUp(self):
+
+        self.factory = RequestFactory()
 
         self.form_class = CreateMedicationForm
         self.class_name = CreateMedicationView

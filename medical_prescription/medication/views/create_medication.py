@@ -16,5 +16,6 @@ class CreateMedicationView(CreateView):
 
     def form_valid(self, form):
         health_professional_object = HealthProfessional.objects.filter(pk=self.request.user.pk)[0]
+
         form.instance.health_professional = health_professional_object
         return super().form_valid(form)
