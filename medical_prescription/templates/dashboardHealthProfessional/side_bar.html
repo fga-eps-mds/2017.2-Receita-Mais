@@ -29,39 +29,37 @@
     </form>
     <!-- /.search form -->
 
-    <!-- Sidebar Menu -->
-    <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">HEADER</li>
-      <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      <li><a href="#"><i class="fa fa-wechat"></i> <span>Conversas</span></a></li>
-      <li><a href="#"><i class="fa fa-users"></i> <span>Pacientes</span></a></li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-files-o"></i> <span>Receitas</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#">Criar nova receita</a></li>
-          <li><a href="#">Visualizar favoritos</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-medkit"></i> <span>Medicamentos</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="#">Criar novo medicamento</a></li>
-          <li><a href="{% url 'list_all_medications' %}">Visualizar medicamentos</a></li>
-          <li><a href="#">Criar princípios ativos</a></li>
-          <li><a href="{% url 'activeprinciple_list' %}">Visualizar princípios ativos</a></li>
-        </ul>
-      </li>
-
-
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">HEADER</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a href="#"><i class="fa fa-wechat"></i> <span>Conversas</span></a></li>
+            <li><a href="#"><i class="fa fa-users"></i> <span>Pacientes</span></a></li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-files-o"></i> <span>Receitas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Criar nova receita</a></li>
+                    <li><a href="#">Visualizar favoritos</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-medkit"></i> <span>Medicamentos</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Criar novo medicamento</a></li>
+                    <li><a href="#">Visualizar medicamentos</a></li>
+                    <li><a href="{% url 'create_activePrinciple' %}">Criar princípios ativos</a></li>
+                    <li><a href="{% url 'activeprinciple_list' %}">Visualizar princípios ativos</a></li>
+                </ul>
+            </li>
 
       <li class="treeview">
         <a href="{% url 'disease_list' %}"><i class="fa fa-heartbeat"></i> <span>Doenças</span>
@@ -87,7 +85,6 @@
         </ul>
       </li>
     </ul>
-  </ul>
 
   <!-- /.sidebar-menu -->
 </section>

@@ -1,2 +1,2 @@
-# Local Django
 from .activeprinciple import ActivePrinciple
+from .customactiveprinciple import CustomActivePrinciple
