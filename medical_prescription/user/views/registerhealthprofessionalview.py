@@ -10,6 +10,7 @@ from django.contrib import messages
 from user.models import HealthProfessional
 from user.forms import HealthProfessionalForm
 from user import constants
+from user.views import ConfirmAccountView
 
 # Set level logger.
 logging.basicConfig(level=logging.DEBUG)
@@ -44,8 +45,10 @@ class RegisterHealthProfessionalView(FormView):
                                                    sex=sex, date_of_birth=date_of_birth,
                                                    phone=phone, crm=crm, crm_state=crm_state)
 
+            ConfirmAccountView.activate_account_request(email)
             messages.success(
                 request, 'Registro Realizado!Um email foi enviado com seu link para ativação!', extra_tags='alert')
+
             logger.debug("Exit post method - Successful user registration.")
             return redirect('/')
 

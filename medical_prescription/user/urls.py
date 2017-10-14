@@ -13,7 +13,8 @@ from user.views import (ConfirmPasswordView,
                         ShowPatientsView,
                         ShowHealthProfessionalView,
                         UpdateHealthProfessional,
-                        UpdatePatient
+                        UpdatePatient,
+                        ConfirmAccountView
                         )
 
 
@@ -31,4 +32,5 @@ urlpatterns = (
     url(r'^register_patient/$', RegisterPatientView.as_view(), name='register_patient'),
     url(r'^view_patient/$', ShowPatientsView.as_view(), name='view_patient'),
     url(r'^edit_patient/(?P<pk>[0-9]+)/$', UpdatePatient.as_view(), name='edit_patient'),
+    url(r'^confirm/(?P<activation_key>\w+)/$', ConfirmAccountView.activate_register_user, name='confirm_account')
 )
