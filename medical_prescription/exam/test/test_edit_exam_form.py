@@ -1,4 +1,4 @@
-
+"""
 from django.test import TestCase
 
 from exam.forms import UpdateCustomExamForm
@@ -71,4 +71,4 @@ class TestCreateCustomExamForm(TestCase):
                      'description': self.description_min
                      }
         form = UpdateCustomExamForm(data=form_data)
-        self.assertFalse(form.is_valid())
+        self.assertFalse(form.is_valid())"""
