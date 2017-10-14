@@ -2,12 +2,14 @@
 import logging
 
 # Django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
+from django.contrib import messages
 
 # Local Django
 from user.models import Patient
 from user.forms import PatientForm
+from user.views import ConfirmAccountView
 from user import constants
 
 # Set level logger.
@@ -40,7 +42,15 @@ class RegisterPatientView(FormView):
             Patient.objects.create_user(email=email, password=password, name=name,
                                         sex=sex, date_of_birth=date_of_birth,
                                         phone=phone, id_document=id_document)
-            logger.debug("Exit post method - Successful user registration.")
 
-        logger.debug("Exit post method - Not successful user registration.")
+            logger.debug("Exit post method - Successful user registration.")
+            logger.debug("Exit post method - Not successful user registration.")
+
+            ConfirmAccountView.activate_account_request(email)
+
+            messages.success(
+                request, 'Registro Realizado!Um email foi enviado com seu link para ativação!', extra_tags='alert')
+
+            return redirect('/')
+
         return render(request, self.template_name, {'form': patient_form})

@@ -33,7 +33,7 @@ class RegisterPatientViewTest(TestCase):
                    'date_of_birth': self.date_of_birth_valid,
                    'id_document': self.id_document_valid}
 
-        response = self.client.post('/user/register_patient/', context)
+        response = self.client.post('/', context)
 
         # If the method redirect correctly the status code 200 is returned.
         self.assertEqual(response.status_code, 200)
