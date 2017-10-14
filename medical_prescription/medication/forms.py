@@ -4,14 +4,27 @@ from .models import Medication
 
 class CreateMedicationForm(forms.ModelForm):
 
-    # TODO(Felipe) Change for constants in merge.
+    name = forms.CharField(max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control',
+                                                         'type': 'text',
+                                                         'placeholder': 'Nome'}))
 
-    name = forms.CharField(max_length=100)
-    active_ingredient = forms.CharField(max_length=100)
-    description = forms.CharField(widget=forms.Textarea)
-    is_restricted = forms.BooleanField(required=False)
+    laboratory = forms.CharField(max_length=100,
+                                 widget=forms.TextInput(attrs={'class': 'form-control',
+                                                               'type': 'text',
+                                                               'placeholder': 'Laboratório'}))
+
+    active_ingredient = forms.CharField(max_length=100,
+                                        widget=forms.TextInput(attrs={'class': 'form-control',
+                                                                      'type': 'text',
+                                                                      'placeholder': 'Ingrediente Ativo'}))
+    description = forms.CharField(widget=forms.Textarea(
+                                  attrs={'class': 'form-control',
+                                         'cols': '10',
+                                         'rows': '5'}))
+    is_restricted = forms.BooleanField()
+
 
     class Meta:
         model = Medication
-
         fields = ['name', 'active_ingredient', 'laboratory', 'description']
