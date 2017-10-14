@@ -1,5 +1,5 @@
 # Django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth.decorators import login_required
 
@@ -31,5 +31,7 @@ class CreateCustomExamsView(FormView):
 
             CustomExam.objects.create(name=name, description=description,
                                       health_professional_FK=health_professional_FK)
+
+            return redirect('/dashboard_health_professional/health_professional')
 
         return render(request, self.template_name, {'form': form})
