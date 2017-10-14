@@ -36,13 +36,15 @@ class TestCreateCustomExamForm(TestCase):
         user.crm = "54321"
         user.save()
         custom_exam.health_professional_FK = user
+        custom_exam.pk = 1
         custom_exam.save()
-"""
+
     def test_valid(self):
         form_data = {'name': self.name_valid,
                      'description': self.description_valid
                      }
         form = UpdateCustomExamForm(data=form_data)
+        form.get_pk(1)
         self.assertTrue(form.is_valid())
 
     def test_invalid_max_name(self):
@@ -50,6 +52,7 @@ class TestCreateCustomExamForm(TestCase):
                      'description': self.description_valid
                      }
         form = UpdateCustomExamForm(data=form_data)
+        form.get_pk(1)
         self.assertFalse(form.is_valid())
 
     def test_invalid_min_name(self):
@@ -57,6 +60,7 @@ class TestCreateCustomExamForm(TestCase):
                      'description': self.description_valid
                      }
         form = UpdateCustomExamForm(data=form_data)
+        form.get_pk(1)
         self.assertFalse(form.is_valid())
 
     def test_invalid_max_description(self):
@@ -64,6 +68,7 @@ class TestCreateCustomExamForm(TestCase):
                      'description': self.description_max
                      }
         form = UpdateCustomExamForm(data=form_data)
+        form.get_pk(1)
         self.assertFalse(form.is_valid())
 
     def test_invalid_min_description(self):
@@ -71,4 +76,5 @@ class TestCreateCustomExamForm(TestCase):
                      'description': self.description_min
                      }
         form = UpdateCustomExamForm(data=form_data)
-        self.assertFalse(form.is_valid())"""
+        form.get_pk(1)
+        self.assertFalse(form.is_valid())
