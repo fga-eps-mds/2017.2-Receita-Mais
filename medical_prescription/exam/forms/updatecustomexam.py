@@ -3,8 +3,8 @@ from django import forms
 
 # local django
 from exam.models import CustomExam
-
 from exam.validators import CustomExamValidator
+from exam import constants
 
 
 class UpdateCustomExamForm(forms.ModelForm):
@@ -18,13 +18,22 @@ class UpdateCustomExamForm(forms.ModelForm):
             model = CustomExam
             fields = ('description', 'name',)
 
+        def get_pk(self, pk):
+            self.pk = pk
+
         def clean(self):
             """
             Get Custom Exam fields.
             """
-
             description = self.cleaned_data.get('description')
             name = self.cleaned_data.get('name')
+
+            exists = CustomExam.objects.get(pk=self.pk)
+
+            name_base = CustomExam.objects.filter(name=name)
+
+            if name_base.exists() and exists.name != name:
+                raise forms.ValidationError({'name': [(constants.NAME_EXISTS)]})
 
             # Verify validations in form.
             self.validator_all(description, name)

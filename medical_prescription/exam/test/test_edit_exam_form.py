@@ -72,10 +72,3 @@ class TestCreateCustomExamForm(TestCase):
                      }
         form = UpdateCustomExamForm(data=form_data)
         self.assertFalse(form.is_valid())
-
-    def test_invalid_exists_name(self):
-        form_data = {'name': self.name_exists,
-                     'description': self.description_valid
-                     }
-        form = UpdateCustomExamForm(data=form_data)
-        self.assertFalse(form.is_valid())
