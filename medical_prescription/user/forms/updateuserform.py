@@ -4,6 +4,7 @@ import logging
 
 # django
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 # local django
 from user.forms import FormattedDateField
@@ -52,6 +53,8 @@ class UpdateUserForm(forms.ModelForm):
 
         logger.debug("Start validations in UpdateUserForm.")
 
+        self.verify_password(password)
+
         validator = UserValidator()
         validator.validator_name(name)
         validator.validator_password(password, password)
@@ -64,5 +67,7 @@ class UpdateUserForm(forms.ModelForm):
         """
         Verifies if the given password matches the one in the database.
         """
+        check_password = self.instance.check_password(password)
 
-        return self.instance.check_password(password)
+        if not check_password:
+            raise forms.ValidationError({'password': [_(constants.PASSWORD_MATCH)]})

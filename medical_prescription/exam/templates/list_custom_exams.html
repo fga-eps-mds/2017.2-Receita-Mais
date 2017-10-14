@@ -3,6 +3,7 @@
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
         <thead>
+          <th>ID</th>  
           <th>Nome</th>
           <th>Descrição</th>
         </thead>
@@ -11,8 +12,11 @@
       {% for exam in list_custom_exam %}
       <tr class='clickable-row'>
         {% if exam.is_active and exam.health_professional_FK.email == request.user.email %}
+            <td>{{ exam.pk }}</td>
             <td>{{ exam.name }}</td>
             <td>{{ exam.description }}</td>
+
+            <td><a href="{% url 'update_custom_exams' pk=exam.pk %}" class="btn">Editar</a></td>
         {% endif %}
       </tr>
       {% endfor %}

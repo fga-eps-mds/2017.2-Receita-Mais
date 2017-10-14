@@ -33,7 +33,5 @@ class CreateCustomExamsViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_post(self):
-        # request = self.factory.get('/exam/create_custom_exams/')
-        # auth.login(request, self.user)
         response = self.client.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         self.assertEqual(response.status_code, 200)
