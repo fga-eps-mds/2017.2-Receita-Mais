@@ -1,0 +1,61 @@
+{% extends "dashboardHealthProfessional/template.html" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+
+<!-- Panel -->
+
+{% csrf_token %}
+<div class = "col-sm-4 center-block center">
+    <form action=''  method="POST">
+
+      {% csrf_token %}
+      <!-- Nome -->
+      <font size="5">
+        <span class = "label label-primary" >Nome</span>
+      </font>
+      {{ form.name }}
+
+      <br>
+
+      <!--Ingrediente Ativo-->
+      <font size="5">
+        <span class="label label-primary"> Ingrediente Ativo</span>
+      </font>
+      {{ form.active_ingredient }}
+
+      <br>
+
+      <!-- Laboratório -->
+      <font size="5">
+        <span class = "label label-primary"> Laboratório </span>
+      </font>
+      <br>
+
+      {{ form.laboratory }}
+      <br>
+
+      <!-- Descrição -->
+
+      <font size="5">
+        <span class ="label label-primary"> Descrição </span>
+      </font>
+      <br>
+      {{ form.description }}
+
+      <br>
+
+      <!-- Restrição -->
+      <font size ="5">
+        <span class= "label label-primary"> Restrição</span>
+      </font>
+       {{ form.is_restricted }}
+
+
+       <br><br>
+
+       <button type ="submit" class = "btn btn-success">Enviar</button>
+    </form>
+</div>
+{% endblock %}
