@@ -1,5 +1,6 @@
 # standard library
 from datetime import date
+import logging
 
 # django
 from django import forms
@@ -8,6 +9,10 @@ from django.utils.translation import ugettext_lazy as _
 # local django
 from user.validators import UserValidator
 from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class PatientValidator(UserValidator):
@@ -19,6 +24,8 @@ class PatientValidator(UserValidator):
         """
         Validating id document.
         """
+        logger.debug("Start validator_document.")
+
         if id_document is not None and len(id_document) < constants.ID_DOCUMENT_MIN_LENGTH:
             raise forms.ValidationError({'id_document': [_(constants.ID_DOCUMENT_SIZE)]})
         elif id_document is not None and len(id_document) > constants.ID_DOCUMENT_MAX_LENGTH:
@@ -26,10 +33,13 @@ class PatientValidator(UserValidator):
         elif not id_document.isdigit():
             raise forms.ValidationError({'id_document': [_(constants.ID_DOCUMENT_FORMAT)]})
 
+        logger.debug("Exit validator_document.")
+
     def validator_date_of_birth(self, date_of_birth):
         """
         Validating date of birth.
         """
+        logger.debug("Start validator_date_of_birth.")
 
         today = date.today()
         try:
@@ -40,3 +50,5 @@ class PatientValidator(UserValidator):
 
         if born < constants.DATE_OF_BIRTH_MIN_PATIENT:
             raise forms.ValidationError({'date_of_birth': [_(constants.DATE_OF_BIRTH_MIN_PATIENT_ERROR)]})
+
+        logger.debug("Exit validator_date_of_birth.")

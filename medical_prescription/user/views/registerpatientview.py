@@ -1,3 +1,6 @@
+# standard library
+import logging
+
 # Django
 from django.shortcuts import render
 from django.views.generic import FormView
@@ -5,6 +8,11 @@ from django.views.generic import FormView
 # Local Django
 from user.models import Patient
 from user.forms import PatientForm
+from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class RegisterPatientView(FormView):
@@ -12,10 +20,12 @@ class RegisterPatientView(FormView):
     template_name = 'register_patient.html'
 
     def get(self, request, *args, **kwargs):
+        logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
+        logger.debug("Start post method.")
         patient_form = self.form_class(request.POST)
 
         if patient_form.is_valid():
@@ -30,5 +40,7 @@ class RegisterPatientView(FormView):
             Patient.objects.create_user(email=email, password=password, name=name,
                                         sex=sex, date_of_birth=date_of_birth,
                                         phone=phone, id_document=id_document)
+            logger.debug("Exit post method - Successful user registration.")
 
+        logger.debug("Exit post method - Not successful user registration.")
         return render(request, self.template_name, {'form': patient_form})

@@ -1,12 +1,19 @@
+# standard library
+import logging
+
 # Django
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib import messages
 
-
 # Local Django
 from user.models import HealthProfessional
 from user.forms import HealthProfessionalForm
+from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class RegisterHealthProfessionalView(FormView):
@@ -14,10 +21,12 @@ class RegisterHealthProfessionalView(FormView):
     template_name = 'register_health_professional.html'
 
     def get(self, request, *args, **kwargs):
+        logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
+        logger.debug("Start post method.")
         form = self.form_class(request.POST)
 
         if form.is_valid():
@@ -37,7 +46,8 @@ class RegisterHealthProfessionalView(FormView):
 
             messages.success(
                 request, 'Registro Realizado!Um email foi enviado com seu link para ativação!', extra_tags='alert')
-
+            logger.debug("Exit post method - Successful user registration.")
             return redirect('/')
 
+        logger.debug("Exit post method - Not successful user registration.")
         return render(request, self.template_name, {'form': form})

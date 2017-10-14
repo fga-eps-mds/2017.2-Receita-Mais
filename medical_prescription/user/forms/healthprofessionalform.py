@@ -1,3 +1,6 @@
+# standard library
+import logging
+
 # django
 from django import forms
 
@@ -6,6 +9,10 @@ from user.models import HealthProfessional
 from user.forms import UserForm
 from user import constants
 from user.validators import HealthProfessionalValidator
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class HealthProfessionalForm(UserForm):
@@ -27,6 +34,7 @@ class HealthProfessionalForm(UserForm):
         """
         Get health professional fields.
         """
+        logger.debug("Start clean data in HealthProfessionalForm.")
 
         crm = self.cleaned_data.get('crm')
         crm_state = self.cleaned_data.get('crm_state')
@@ -39,12 +47,14 @@ class HealthProfessionalForm(UserForm):
 
         # Verify validations in form.
         self.validator_all(name, phone, email, password, password_confirmation, crm, crm_state, date_of_birth)
+        logger.debug("Exit clean data in HealthProfessionalForm.")
 
     def validator_all(self, name, phone, email, password, password_confirmation, crm, crm_state, date_of_birth):
         """
         Checks validator in all fields.
         """
 
+        logger.debug("Start validations in HealthProfessionalForm.")
         validator = HealthProfessionalValidator()
 
         # Fields common all users.
@@ -56,3 +66,4 @@ class HealthProfessionalForm(UserForm):
 
         # Fields specify to the health professional.
         validator.validator_crm(crm, crm_state)
+        logger.debug("Exit validations in HealthProfessionalForm.")

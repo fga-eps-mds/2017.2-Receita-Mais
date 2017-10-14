@@ -1,5 +1,6 @@
 # standard library
 from datetime import date
+import logging
 
 # django
 from django import forms
@@ -10,6 +11,12 @@ from user.forms import (UserForm,
                         FormattedDateField
                         )
 from user.validators import PatientValidator
+from user import constants
+
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class PatientForm(UserForm):
@@ -32,6 +39,7 @@ class PatientForm(UserForm):
         """
         Get patient fields.
         """
+        logger.debug("Start clean data in PatientForm.")
 
         name = self.cleaned_data.get('name')
         phone = self.cleaned_data.get('phone')
@@ -43,12 +51,14 @@ class PatientForm(UserForm):
 
         # Verify validations in form.
         self.validator_all(name, phone, email, password, password_confirmation, id_document, date_of_birth)
+        logger.debug("Exit clean data in PatientForm.")
 
     def validator_all(self, name, phone, email, password, password_confirmation, id_document, date_of_birth):
         """
         Checks validator in all fields.
         """
 
+        logger.debug("Start validations in PatientForm.")
         validator = PatientValidator()
 
         # Fields common all users.
@@ -60,3 +70,4 @@ class PatientForm(UserForm):
 
         # Fields specify to the patient.
         validator.validator_document(id_document)
+        logger.debug("Exit validations in PatientForm.")
