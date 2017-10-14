@@ -22,8 +22,7 @@ class CreateMedicationForm(forms.ModelForm):
                                   attrs={'class': 'form-control',
                                          'cols': '10',
                                          'rows': '5'}))
-    is_restricted = forms.BooleanField()
-
+    is_restricted = forms.BooleanField(required=False)
 
     class Meta:
         model = Medication

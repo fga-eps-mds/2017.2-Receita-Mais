@@ -7,57 +7,55 @@
 <!-- Panel -->
 
 {% csrf_token %}
-<div class="center-block">
-  <div class = "col-sm-4 center-block">
-      <form action=''class =  method="POST">
+<div class = "col-sm-4 center-block center">
+    <form action=''  method="POST">
 
-        {% csrf_token %}
-        <!-- Nome -->
-        <font size="5">
-          <span class = "label label-primary" >Nome</span>
-        </font>
-        {{ form.name }}
+      {% csrf_token %}
+      <!-- Nome -->
+      <font size="5">
+        <span class = "label label-primary" >Nome</span>
+      </font>
+      {{ form.name }}
 
-        <br>
+      <br>
 
-        <!--Ingrediente Ativo-->
-        <font size="5">
-          <span class="label label-primary"> Ingrediente Ativo</span>
-        </font>
-        {{ form.active_ingredient }}
+      <!--Ingrediente Ativo-->
+      <font size="5">
+        <span class="label label-primary"> Ingrediente Ativo</span>
+      </font>
+      {{ form.active_ingredient }}
 
-        <br>
+      <br>
 
-        <!-- Laboratório -->
-        <font size="5">
-          <span class = "label label-primary"> Laboratório </span>
-        </font>
-        <br>
+      <!-- Laboratório -->
+      <font size="5">
+        <span class = "label label-primary"> Laboratório </span>
+      </font>
+      <br>
 
-        {{ form.laboratory }}
-        <br>
+      {{ form.laboratory }}
+      <br>
 
-        <!-- Descrição -->
+      <!-- Descrição -->
 
-        <font size="5">
-          <span class ="label label-primary"> Descrição </span>
-        </font>
-        <br>
-        {{ form.description }}
+      <font size="5">
+        <span class ="label label-primary"> Descrição </span>
+      </font>
+      <br>
+      {{ form.description }}
 
-        <br>
+      <br>
 
-        <!-- Restrição -->
-        <font size ="5">
-          <span class= "label label-primary"> Restrição</span>
-        </font>
-         {{ form.is_restricted }}
+      <!-- Restrição -->
+      <font size ="5">
+        <span class= "label label-primary"> Restrição</span>
+      </font>
+       {{ form.is_restricted }}
 
 
-         <br><br>
+       <br><br>
 
-         <button class = "btn btn-success">Enviar</button>
-      </form>
-  </div>
+       <button type ="submit" class = "btn btn-success">Enviar</button>
+    </form>
 </div>
 {% endblock %}

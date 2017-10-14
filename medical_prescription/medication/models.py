@@ -5,8 +5,6 @@ from user.models import HealthProfessional
 
 class Medication(models.Model):
 
-    # TODO(Mateus) add constraints to constants file
-
     name = models.CharField(max_length=100, blank=False, default="")
     active_ingredient = models.CharField(max_length=100, blank=False, default="")
     laboratory = models.CharField(max_length=100, blank=False, default="")
