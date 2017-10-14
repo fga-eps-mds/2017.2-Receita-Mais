@@ -1,6 +1,7 @@
 # Django
 from django.shortcuts import render, redirect
 from django.views.generic.edit import UpdateView
+from django.contrib import auth
 
 # Local Django
 from user.forms import UpdatePasswordForm
@@ -18,13 +19,15 @@ class UpdateUserPassword(UpdateView):
         # If the form is completed and valid, the patient password is changed.
         if request.method == "POST":
             if form.is_valid():
-                password = form.cleaned_data.get('new_password')
+                password = form.cleaned_data.get('password')
                 user = request.user
                 print(user.name)
                 user.set_password(password)
                 user.save()
 
-                return redirect('/')
+                auth.login(request, user)
+
+                return redirect('/dashboard_patient/patient')
             else:
                 # Nothing to do.
                 pass
@@ -42,17 +45,17 @@ class UpdateUserPassword(UpdateView):
 
         # If the form is completed and valid, the health professional password is changed.
         if request.method == "POST":
-            print("Solicitado")
             if form.is_valid():
-                password = form.cleaned_data.get('new_password')
+                password = form.cleaned_data.get('password')
+
                 user = request.user
-                print(user.name)
                 user.set_password(password)
                 user.save()
 
-                return redirect('/')
+                auth.login(request, user)
+
+                return redirect('/dashboard_health_professional/health_professional')
             else:
-                print("invalido")
                 # Nothing to do.
                 pass
         else:
