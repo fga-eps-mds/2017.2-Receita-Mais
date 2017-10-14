@@ -1,3 +1,6 @@
+# standard library
+import logging
+
 # Django
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -6,6 +9,11 @@ from django.views.generic import FormView
 # Local Django
 from user.models import ResetPasswordProfile
 from user.forms import ConfirmPasswordForm
+from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class ConfirmPasswordView(FormView):
@@ -16,11 +24,13 @@ class ConfirmPasswordView(FormView):
     template_name = 'password_confirm.html'
 
     def get(self, request, *args, **kwargs):
+        logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
     # Validate key and update the new password of 'User'.
     def post(self, request, activation_key, *args, **kwargs):
+        logger.debug("Start get method.")
 
         form = ConfirmPasswordForm(request.POST or None)
 
@@ -39,6 +49,7 @@ class ConfirmPasswordView(FormView):
                     # Change user password and save in database.
 
                 else:
+                    logger.debug("Exit get method - not validate key.")
                     return redirect('/')
             else:
                 # Nothing to do.
@@ -46,7 +57,7 @@ class ConfirmPasswordView(FormView):
         else:
             # Nothing to do.
             pass
-
+        logger.debug("Exit get method.")
         return render(request, 'password_confirm.html', {'form': form})
 
     # Validate key expiration time.

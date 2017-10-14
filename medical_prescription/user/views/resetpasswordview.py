@@ -2,6 +2,7 @@
 import hashlib
 import datetime
 import random
+import logging
 
 # Django
 from django.shortcuts import render, redirect
@@ -16,6 +17,10 @@ from user.models import (User,
 from user.forms import ResetPasswordForm
 from user import constants
 
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
+
 
 class ResetPasswordView(FormView):
     '''
@@ -26,11 +31,13 @@ class ResetPasswordView(FormView):
 
     # Render password reset page.
     def get(self, request, *args, **kwargs):
+        logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
     # Get form information.
     def post(self, request, *args, **kwargs):
+        logger.debug("Start post method.")
 
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -40,6 +47,7 @@ class ResetPasswordView(FormView):
         try:
             user = User.objects.get(email=email)
         except:
+            logger.exception("User not found.")
             return render(request, 'message.html', {"message": "usuário não encontrado"})
 
         try:
@@ -58,6 +66,7 @@ class ResetPasswordView(FormView):
 
             return redirect('/home')
         except:
+            logger.exception("Confirmation already sent.")
             messages.error(request, constants.EMAIL_MESSAGE_EXIST)
             return render(request, 'reset_password.html',
                           {"form": form})
@@ -67,6 +76,8 @@ class ResetPasswordView(FormView):
 
     # Create recover key in database.
     def _create_recover_profile(self, user):
+            logger.debug("Start recover profile.")
+
             email = user.email
             # Create a random sha1 code.
             salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5]
@@ -81,4 +92,5 @@ class ResetPasswordView(FormView):
                                                activation_key=activation_key,
                                                key_expires=key_expires)
 
+            logger.debug("Exit recover profile.")
             return new_profile

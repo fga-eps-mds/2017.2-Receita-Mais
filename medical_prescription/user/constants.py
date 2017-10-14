@@ -123,3 +123,6 @@ ID_DOCUMENT_MAX_LENGTH = 32
 # ID DOCUMENT FIELD VALIDATION MESSAGES.
 ID_DOCUMENT_SIZE = 'Your id document must be between 10 and 32 characteres'
 ID_DOCUMENT_FORMAT = 'Id document must be only numbers'
+
+# LEVEL LOGGER
+DEFAULT_LOGGER = 'default'

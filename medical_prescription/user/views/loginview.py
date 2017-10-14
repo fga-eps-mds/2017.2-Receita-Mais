@@ -1,3 +1,6 @@
+# standard library
+import logging
+
 # Django
 from django.shortcuts import render, redirect
 from django.contrib import auth
@@ -5,6 +8,11 @@ from django.views.generic import FormView
 
 # Local Django
 from user.forms import UserLoginForm
+from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class LoginView(FormView):
@@ -18,6 +26,7 @@ class LoginView(FormView):
 
     # Render the login page.
     def get(self, request, *args, **kwargs):
+        logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)
 
         self.set_template_name(request)
@@ -26,6 +35,7 @@ class LoginView(FormView):
 
     # Login user.
     def post(self, request, *args, **kwargs):
+        logger.debug("Start post method.")
         form = self.form_class(request.POST)
 
         self.set_template_name(request)
@@ -40,8 +50,10 @@ class LoginView(FormView):
                 return self.user_authentication(request, user)
             else:
                 message = 'O Usuário não foi encontrado em nossa base de dados.'
+                logger.debug("Exit post method.")
                 return render(request, self.template_name, {'form': form, 'message': message})
         else:
+            logger.debug("Exit post method.")
             return render(request, self.template_name, {'form': form})
 
     # Define template and dashboard url
@@ -57,6 +69,6 @@ class LoginView(FormView):
     def user_authentication(self, request, user):
         if user.is_active:
 
-            # TODO(Felipe) Redirecionar a página da acordo com o tipo de usuário
+            # TODO(Felipe) Redirect for specify user.
             auth.login(request, user)
             return redirect(self.dashboard_name)

@@ -1,5 +1,6 @@
 # standard library
 from datetime import date
+import logging
 
 # django
 from django import forms
@@ -9,6 +10,10 @@ from django.utils.translation import ugettext_lazy as _
 from user.models import HealthProfessional
 from user.validators import UserValidator
 from user import constants
+
+# Set level logger.
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
 class HealthProfessionalValidator(UserValidator):
@@ -20,6 +25,7 @@ class HealthProfessionalValidator(UserValidator):
         """
         Validating crm.
         """
+        logger.debug("Start validator_crm.")
 
         crm_from_database = HealthProfessional.objects.filter(crm=crm)
         crm_state_from_database = HealthProfessional.objects.filter(crm_state=crm_state)
@@ -33,10 +39,14 @@ class HealthProfessionalValidator(UserValidator):
         elif not crm.isdigit():
             raise forms.ValidationError({'crm': [_(constants.CRM_FORMAT)]})
 
+        logger.debug("Exit validator_crm.")
+
+
     def validator_date_of_birth(self, date_of_birth):
         """
         Validating date of birth.
         """
+        logger.debug("Start validator_date_of_birth.")
 
         today = date.today()
         try:
@@ -48,3 +58,5 @@ class HealthProfessionalValidator(UserValidator):
         # Checks if health professional is under 18.
         if born < constants.DATE_OF_BIRTH_MIN:
             raise forms.ValidationError({'date_of_birth': [_(constants.DATE_OF_BIRTH_MIN_ERROR)]})
+
+        logger.debug("Exit validator_date_of_birth.")
