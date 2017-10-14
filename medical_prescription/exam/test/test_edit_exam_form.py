@@ -1,4 +1,4 @@
-"""
+
 from django.test import TestCase
 
 from exam.forms import UpdateCustomExamForm
@@ -37,7 +37,7 @@ class TestCreateCustomExamForm(TestCase):
         user.save()
         custom_exam.health_professional_FK = user
         custom_exam.save()
-
+"""
     def test_valid(self):
         form_data = {'name': self.name_valid,
                      'description': self.description_valid
