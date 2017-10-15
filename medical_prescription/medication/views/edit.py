@@ -11,3 +11,5 @@ class UpdateMedication(UpdateView):
     model = Medication
     template_name = 'edit_medication.html'
     form_class = EditForm
+
+    sucess_url = 'list_all_medications.html'
