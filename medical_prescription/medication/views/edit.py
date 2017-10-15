@@ -14,5 +14,6 @@ class UpdateMedication(UpdateView):
     template_name = 'edit_medication.html'
     form_class = EditForm
 
+    # Redirect for list _medications_by_health_professional.
     def get_success_url(self):
         return reverse(self.sucess_url)
