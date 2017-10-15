@@ -1,5 +1,6 @@
 from django.views.generic import UpdateView
 from medication.models import Medication
+from medication.forms import EditForm
 
 
 class UpdateMedication(UpdateView):
@@ -8,12 +9,5 @@ class UpdateMedication(UpdateView):
     '''
 
     model = Medication
-
-    # Fields of eidt Form.
-    fields = ['name',
-              'active_ingredient',
-              'laboratory',
-              'description',
-              'is_restricted']
-
-    template_name = 'edit_medication'
+    template_name = 'edit_medication.html'
+    form_class = EditForm
