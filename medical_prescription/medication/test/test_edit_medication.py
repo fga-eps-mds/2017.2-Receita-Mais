@@ -13,4 +13,4 @@ class TesteEdit(TestCase):
         self.assertEqual(self.view.get_success_url(), '/medication/list_medication/')
 
     def teste_get_url_false(self):
-        self.assertNotEqual(self.view.get_sucess_url(), 'error')
+        self.assertNotEqual(self.view.get_success_url(), 'error')
