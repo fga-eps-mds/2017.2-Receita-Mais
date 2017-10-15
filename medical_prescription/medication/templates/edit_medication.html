@@ -8,7 +8,7 @@
 
 {% csrf_token %}
 <div class = "col-sm-4 center-block center">
-    <form action=''  method="POST">
+    <form action=''  method="post">
 
       {% csrf_token %}
       <!-- Nome -->
@@ -55,7 +55,7 @@
 
        <br><br>
 
-       <button type ="submit" class = "btn btn-success">Enviar</button>
+       <button type ="submit" value="Update" class = "btn btn-success">Enviar</button>
     </form>
 </div>
 {% endblock %}
