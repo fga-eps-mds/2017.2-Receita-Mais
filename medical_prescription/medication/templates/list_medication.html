@@ -21,7 +21,7 @@
       {% for medication in list_medications %}
         <tr class='clickable-row'>
           <td>{{ medication.name }}</td>
-          <td><a href="#"><i class="fa-pencil" aria-hidden="true"></></a></td>
+          <td><a href="{% url 'edit_medication' medication.pk %}"><i class="fa-pencil" aria-hidden="true"></></a></td>
           <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a> </td>
         </tr>
 

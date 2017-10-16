@@ -1,5 +1,5 @@
 from django import forms
-from .models import Medication
+from medication.models import Medication
 
 
 class CreateMedicationForm(forms.ModelForm):
