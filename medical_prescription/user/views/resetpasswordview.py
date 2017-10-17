@@ -46,6 +46,7 @@ class ResetPasswordView(FormView):
         # Search the user in database.
         try:
             user = User.objects.get(email=email)
+            print(email)
         except:
             logger.exception("User not found.")
             return render(request, 'message.html', {"message": "usuário não encontrado"})
@@ -56,6 +57,7 @@ class ResetPasswordView(FormView):
             new_profile = self._create_recover_profile(user)
             new_profile.save()
 
+            print (constants.EMAIL_SUBJECT)
             send_mail(constants.EMAIL_SUBJECT,
                       (constants.EMAIL_BODY % new_profile.activation_key),
                       constants.EMAIL_ADRESS,
@@ -64,7 +66,7 @@ class ResetPasswordView(FormView):
 
             messages.success(request, constants.EMAIL_SUCESS_MESSAGE)
 
-            return redirect('/home')
+            return redirect('/')
         except:
             logger.exception("Confirmation already sent.")
             messages.error(request, constants.EMAIL_MESSAGE_EXIST)
@@ -83,7 +85,7 @@ class ResetPasswordView(FormView):
             salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5]
 
             # Join 'salt' and 'email' to create the activation key.
-            activation_key = hashlib.sha1(str(salt+email).encode('utf‌​-8')).hexdigest()
+            activation_key = hashlib.sha1(str(salt + email).encode('utf‌​-8')).hexdigest()
 
             # Make a expire parameter for the activation key.
             key_expires = datetime.datetime.today() + datetime.timedelta(2)
