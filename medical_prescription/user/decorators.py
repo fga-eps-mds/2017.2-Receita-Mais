@@ -44,3 +44,18 @@ def health_professional_is_account_owner(method):
             return redirect('/')
 
     return wrap
+
+
+def patient_is_account_owner(method):
+    """
+    Verify if patient is a owner of request
+    """
+    def wrap(request, *args, **kwargs):
+        is_patient = hasattr(request.user, 'patient')
+        is_owner = int(request.user.pk) == int(kwargs.get('pk'))
+        if is_owner and is_patient:
+            return method(request, *args, **kwargs)
+        else:
+            return redirect('/')
+
+    return wrap
