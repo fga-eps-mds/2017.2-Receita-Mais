@@ -43,11 +43,21 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="dropdown user user-menu">
                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">person</i>
                         <p class="hidden-lg hidden-md">Profile</p>
                     </a>
+                    <ul class="dropdown-menu">
+                      <p align="center">
+                           {{ request.user.name }}
+                      </p>
+                      <li class="user-footer">
+
+                              <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                              <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
+                      </li>
+                    </ul>
                 </li>
             </ul>
             <form class="navbar-form navbar-right" role="search">
