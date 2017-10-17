@@ -17,8 +17,6 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r'^$', home, name='home'),
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^user/', include('user.urls')),
     url(r'^dashboard_health_professional/', include('dashboardHealthProfessional.urls')),
     url(r'^medicine/', include('medicine.urls')),
