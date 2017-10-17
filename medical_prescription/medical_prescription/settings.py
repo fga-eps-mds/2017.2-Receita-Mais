@@ -11,6 +11,7 @@ import os
 
 from decouple import config
 from dj_database_url import parse as dburl
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,7 +75,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('pt-br', _('Portuguese (Brazil)')),
+)
+
+# Locale Path for translation
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 ROOT_URLCONF = 'medical_prescription.urls'
 
@@ -97,6 +109,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
