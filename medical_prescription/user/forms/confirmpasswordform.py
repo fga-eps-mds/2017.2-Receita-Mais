@@ -6,6 +6,7 @@ from django import forms
 
 # local django
 from user import constants
+from user.validators import UserValidator
 
 # Set level logger.
 logging.basicConfig(level=logging.DEBUG)
@@ -28,8 +29,15 @@ class ConfirmPasswordForm(forms.Form):
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('password_confirmation')
 
-        if(password != password_confirmation):
-            raise forms.ValidationError('As senhas devem ser iguais')
+        validator = UserValidator()
+
+        if(validator.validator_password(password, password_confirmation)):
+
+            if(password != password_confirmation):
+                raise forms.ValidationError('As senhas devem ser iguais')
+            else:
+                # Nothing to do.
+                pass
         else:
             # Nothing to do.
             pass

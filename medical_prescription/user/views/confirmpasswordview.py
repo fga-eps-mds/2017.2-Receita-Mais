@@ -48,6 +48,8 @@ class ConfirmPasswordView(FormView):
                     self._save_user_password(user, form)
                     # Change user password and save in database.
 
+                    return redirect('login_healthprofessional')
+
                 else:
                     logger.debug("Exit get method - not validate key.")
                     return redirect('/')
