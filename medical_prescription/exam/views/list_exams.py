@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from exam.models import Exam
+from exam.models import DefaultExam
 from django.contrib.auth.decorators import login_required
 
 login_required()
@@ -12,7 +12,7 @@ class ListExams(ListView):
 
     template_name = 'list_exams.html'
     context_object_name = 'list_exam'
-    model = Exam
+    model = DefaultExam
     paginate_by = 20
 
     # Get 20 queries of objects Medication.
