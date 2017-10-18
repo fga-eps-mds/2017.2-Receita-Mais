@@ -8,20 +8,20 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="active">
-        <a href="">
+      <li>
+        <a href="http://0.0.0.0:8000/dashboard_patient/patient/">
           <i class="material-icons">dashboard</i>
           <p>Página Principal</p>
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="{% url 'edit_patient_password' request.user.email %}">
           <i class="material-icons">mail</i>
           <p>Conversas</p>
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="#">
           <i class="material-icons">hourglass_empty</i>
           <p>Histórico Médico</p>
         </a>
@@ -29,3 +29,16 @@
     </ul>
   </div>
 </div>
+
+<script
+  type="text/javascript"
+  src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script type="text/javascript">
+$('.nav li').click(function() {
+    event.preventDefault();
+    $('.nav li').removeClass('active');
+    $(this).addClass('active');
+});
+</script>
