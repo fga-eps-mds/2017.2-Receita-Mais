@@ -1,1 +1,1 @@
-from .createprescriptionform import CreatePrescriptionForm
+from .createprescriptionexamform import CreatePrescriptionExamForm

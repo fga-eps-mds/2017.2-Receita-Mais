@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 
-from prescription.forms import CreatePrescriptionForm
+from prescription.forms import CreatePrescriptionExamForm
 
 
 # Create your views here.
 
 class CreatePrescriptionView(FormView):
-    template_name = 'createprescription.html'
-    form_class = CreatePrescriptionForm
+    template_name = 'createprescriptionexam.html'
+    form_class = CreatePrescriptionExamForm
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
@@ -20,6 +20,7 @@ class CreatePrescriptionView(FormView):
         if form.is_valid():
             patient = form.cleaned_data.get('patient')
             cid = form.cleaned_data.get('cid')
+            exam = form.cleaned_data.get('exam')
 
             return redirect('/dashboard_health_professional/health_professional')
         else:
