@@ -1,6 +1,5 @@
 # Django
 from django.shortcuts import redirect
-from user.models import HealthProfessional
 
 
 def is_health_professional(method):
@@ -53,6 +52,7 @@ def patient_is_account_owner(method):
     def wrap(request, *args, **kwargs):
         is_patient = hasattr(request.user, 'patient')
         is_owner = int(request.user.pk) == int(kwargs.get('pk'))
+        print(request.user.pk)
         if is_owner and is_patient:
             return method(request, *args, **kwargs)
         else:
