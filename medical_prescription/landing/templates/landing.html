@@ -1,4 +1,4 @@
-{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
 <div>
 
@@ -11,15 +11,15 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="g-margin-b-50--xs">
-                                        <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white">Profissional de Saúde?</h1>
+                                        <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white">{% trans "Profissional de Saúde" %}?</h1>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Já possui uma conta?</p>
-                                                <a href="{% url 'login_healthprofessional' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">Logue-se Agora</a>
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">{% trans "Já possui uma conta?" %}</p>
+                                                <a href="{% url 'login_healthprofessional' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">{% trans "Logue-se Agora" %}</a>
                                             </div>
                                             <div class="col-md-6">
-                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Não possui?</p>
-                                                <a href="{% url 'register' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">Cadastre-se</a>
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">{% trans "Não possui?" %}</p>
+                                                <a href="{% url 'register' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">{% trans "Cadastre-se" %}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -32,16 +32,16 @@
                             <div class="row">
                                 <div class="col-md-7 col-md-offset-5">
                                     <div class="g-margin-b-50--xs">
-                                        <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white">Paciente?</h1>
+                                        <h1 class="g-font-size-32--xs g-font-size-45--sm g-font-size-60--md g-color--white">{% trans "Paciente" %}?</h1>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <p class="g-font-size-18--xs g-font-size-22--sm g-color--w
-                                                hite-opacity">Já possui uma conta?</p>
-                                                <a href="{% url 'login_healthprofessional' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">Logue-se Agora</a>
+                                                hite-opacity">{% trans "Já possui uma conta?" %}</p>
+                                                <a href="{% url 'login_healthprofessional' %}" class="text-uppercase s-btn s-btn--md s-btn--white-brd g-radius--50 g-padding-x-50--xs">{% trans "Logue-se Agora" %}</a>
                                             </div>
                                             <div class="col-md-6">
-                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">Não possui?</p>
-                                                <p class="g-font-size-14--xs g-font-size-18--sm g-color--white-opacity">Converse com seu médico agora para receber seu convite de acesso!</p>
+                                                <p class="g-font-size-18--xs g-font-size-22--sm g-color--white-opacity">{% trans "Não possui?" %}</p>
+                                                <p class="g-font-size-14--xs g-font-size-18--sm g-color--white-opacity">{% trans "Converse com seu médico agora para receber seu convite de acesso!" %}</p>
 
                                             </div>
                                         </div>

@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-18 16:53-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: medical_prescription/landing/templates/landing.html:14
+#: medical_prescription/templates/landing/nav_bar.html:47
+msgid "Profissional de Saúde"
+msgstr "Health Professional"
+
+#: medical_prescription/landing/templates/landing.html:17
+#: medical_prescription/landing/templates/landing.html:39
+msgid "Já possui uma conta?"
+msgstr "Have an account?"
+
+#: medical_prescription/landing/templates/landing.html:18
+#: medical_prescription/landing/templates/landing.html:40
+msgid "Logue-se Agora"
+msgstr "Log in now"
+
+#: medical_prescription/landing/templates/landing.html:21
+#: medical_prescription/landing/templates/landing.html:43
+msgid "Não possui?"
+msgstr "Don't have one?"
+
+#: medical_prescription/landing/templates/landing.html:22
+msgid "Cadastre-se"
+msgstr "Register"
+
+#: medical_prescription/landing/templates/landing.html:35
+#: medical_prescription/templates/landing/nav_bar.html:37
+msgid "Paciente"
+msgstr "Patient"
+
+#: medical_prescription/landing/templates/landing.html:44
+msgid "Converse com seu médico agora para receber seu convite de acesso!"
+msgstr "Check with your health professional about obtaining an invitation!"
+
+#: medical_prescription/medical_prescription/settings.py:82
+msgid "English"
+msgstr ""
+
+#: medical_prescription/medical_prescription/settings.py:83
+msgid "Portuguese (Brazil)"
+msgstr ""
+
+#: medical_prescription/templates/landing/footer.html:11
+msgid "Home"
+msgstr ""
+
+#: medical_prescription/templates/landing/footer.html:17
+msgid "Sobre o projeto"
+msgstr "About the project"
+
+#: medical_prescription/templates/landing/footer.html:23
+msgid "Sobre a equipe"
+msgstr "Meet our team"
+
+#: medical_prescription/templates/landing/nav_bar.html:50
+msgid "Cadastro"
+msgstr "Register"
+
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:5
+msgid "Edição de Senha"
+msgstr "Password edit"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:17
+#: medical_prescription/user/templates/edit_patient_password.html:17
+msgid "Senha Antiga:"
+msgstr "Old password:"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:28
+#: medical_prescription/user/templates/edit_patient_password.html:28
+msgid "Nova senha"
+msgstr "New password"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:40
+#: medical_prescription/user/templates/edit_patient_password.html:40
+msgid "Confirme nova senha"
+msgstr "Confirm your new password"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:49
+#: medical_prescription/user/templates/edit_patient_password.html:49
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: medical_prescription/user/templates/edit_patient.html:7
+msgid "Dados Cadastrais"
+msgstr "Register Data"
+
+#: medical_prescription/user/templates/edit_patient.html:19
+msgid "Nome"
+msgstr "Name"
+
+#: medical_prescription/user/templates/edit_patient.html:28
+msgid "Sexo"
+msgstr "Sex"
+
+#: medical_prescription/user/templates/edit_patient.html:39
+msgid "Data de Nascimento"
+msgstr "Date of Birth"
+
+#: medical_prescription/user/templates/edit_patient.html:48
+msgid "Telefone:"
+msgstr "Phone:"
+
+#: medical_prescription/user/templates/edit_patient.html:59
+msgid "Senha"
+msgstr "Password"
+
+#: medical_prescription/user/templates/edit_patient.html:65
+msgid "Editar"
+msgstr "Edit"
+
+#: medical_prescription/user/templates/login_healthprofessional.html:43
+#: medical_prescription/user/templates/login_patient.html:43
+msgid "Esqueceu sua senha?"
+msgstr "Forgot your password?"
+
+#: medical_prescription/user/templates/login_healthprofessional.html:44
+msgid "É um profissional de saúde e não possui uma conta?<br>Cadastre-se já"
+msgstr ""
+"Are you a health professional and don't have an account?<br>Register now"
+
+#: medical_prescription/user/templates/login_patient.html:44
+msgid "É um paciente e não possui uma conta?<br>Cadastre-se já"
+msgstr "Are you a patient and don't have an account?<br>Register now"

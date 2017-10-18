@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^disease/', include('disease.urls')),
     url(r'^$', home, name='landing_page'),
 ]
-"""
+
 urlpatterns += i18n_patterns(
     url(r'^user/', include('user.urls')),
     url(r'^dashboard_health_professional/', include('dashboardHealthProfessional.urls')),
@@ -27,4 +27,3 @@ urlpatterns += i18n_patterns(
     url(r'^disease/', include('disease.urls')),
     url(r'^$', home, name='landing_page'),
 )
-"""
