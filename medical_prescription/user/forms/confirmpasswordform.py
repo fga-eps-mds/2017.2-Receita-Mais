@@ -31,16 +31,7 @@ class ConfirmPasswordForm(forms.Form):
 
         validator = UserValidator()
 
-        if(validator.validator_password(password, password_confirmation)):
-
-            if(password != password_confirmation):
-                raise forms.ValidationError('As senhas devem ser iguais')
-            else:
-                # Nothing to do.
-                pass
-        else:
-            # Nothing to do.
-            pass
+        validator.validator_password(password, password_confirmation)
 
         logger.debug("Exit clean data in ConfirmPasswordForm.")
         return super(ConfirmPasswordForm, self).clean(*args, **kwargs)
