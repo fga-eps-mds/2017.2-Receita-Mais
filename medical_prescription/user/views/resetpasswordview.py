@@ -57,7 +57,6 @@ class ResetPasswordView(FormView):
             new_profile = self._create_recover_profile(user)
             new_profile.save()
 
-            print (constants.EMAIL_SUBJECT)
             send_mail(constants.EMAIL_SUBJECT,
                       (constants.EMAIL_BODY % new_profile.activation_key),
                       constants.EMAIL_ADRESS,

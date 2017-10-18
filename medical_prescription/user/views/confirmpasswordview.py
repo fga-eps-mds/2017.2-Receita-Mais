@@ -68,7 +68,7 @@ class ConfirmPasswordView(FormView):
     # Return login page of especific user type.
     def get_type_user(self, email):
         query = Patient.objects.filter(email=email)
-        print("THIS IS MY QUERY-----", query)
+
         if(query.exists()):
             return 'login_patient'
         else:
