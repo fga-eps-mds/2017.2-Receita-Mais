@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 # Local Django
 from user.models import HealthProfessional
-from user.decorators import health_professional_is_account_owner
+from user.decorators import health_professional_is_account_owner_with_pk
 
 
 class DeleteHealthProfessional(DeleteView):
@@ -16,6 +16,6 @@ class DeleteHealthProfessional(DeleteView):
     template_name = 'health_professional_confirm_delete.html'
 
     @method_decorator(login_required)
-    @method_decorator(health_professional_is_account_owner)
+    @method_decorator(health_professional_is_account_owner_with_pk)
     def dispatch(self, *args, **kwargs):
         return super(DeleteHealthProfessional, self).dispatch(*args, **kwargs)

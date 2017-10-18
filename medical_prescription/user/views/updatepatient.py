@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Local Django
 from user.models import Patient
 from user.forms import UpdateUserForm
-from user.decorators import patient_is_account_owner
+from user.decorators import patient_is_account_owner_with_pk
 
 
 class UpdatePatient(UpdateView):
@@ -17,7 +17,7 @@ class UpdatePatient(UpdateView):
     template_name = 'edit_patient.html'
 
     @method_decorator(login_required)
-    @method_decorator(patient_is_account_owner)
+    @method_decorator(patient_is_account_owner_with_pk)
     def dispatch(self, *args, **kwargs):
         return super(UpdatePatient, self).dispatch(*args, **kwargs)
 
