@@ -11,7 +11,7 @@ def is_health_professional(method):
         if is_health_professional:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/')
+            return redirect('/user/login_healthprofessional')
 
     return wrap
 
@@ -25,7 +25,7 @@ def is_patient(method):
         if is_patient:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/')
+            return redirect('/user/login_patient')
 
     return wrap
 
@@ -40,7 +40,7 @@ def health_professional_is_account_owner(method):
         if is_owner and is_health_professional:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/')
+            return redirect('/user/login_healthprofessional')
 
     return wrap
 
@@ -56,6 +56,6 @@ def patient_is_account_owner(method):
         if is_owner and is_patient:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/')
+            return redirect('/user/login_patient')
 
     return wrap
