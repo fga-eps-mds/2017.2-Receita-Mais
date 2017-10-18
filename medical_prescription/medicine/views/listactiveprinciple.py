@@ -19,7 +19,7 @@ class ListActivePrinciple(ListView):
         return super(ListActivePrinciple, self).dispatch(*args, **kwargs)
 
     # This method is overridden by ListView. It defines list objects that are shown
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         list_all_principle = ActivePrinciple.objects.all()
         list_general = [geactivePrinciple for geactivePrinciple in list_all_principle if not
                         hasattr(geactivePrinciple, 'customactiveprinciple')]

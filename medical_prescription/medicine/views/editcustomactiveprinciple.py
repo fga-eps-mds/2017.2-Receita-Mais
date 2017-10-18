@@ -17,9 +17,6 @@ class EditCustomActivePrinciple(UpdateView):
 
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
-    def dispatch(self, *args, **kwargs):
-        return super(EditCustomActivePrinciple, self).dispatch(*args, **kwargs)
-
     def get(self, request, *args, **kwargs):
         return super(EditCustomActivePrinciple, self).post(request, *args, **kwargs)
 
