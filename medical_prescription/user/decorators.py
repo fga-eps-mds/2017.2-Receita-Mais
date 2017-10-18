@@ -1,5 +1,6 @@
 # Django
 from django.shortcuts import redirect
+from django.core.exceptions import PermissionDenied
 
 
 def is_health_professional(method):
@@ -30,9 +31,9 @@ def is_patient(method):
     return wrap
 
 
-def health_professional_is_account_owner(method):
+def health_professional_is_account_owner_with_pk(method):
     """
-    Verify if health professional is a owner of request
+    Verify if health professional is a owner of request with pk
     """
     def wrap(request, *args, **kwargs):
         is_health_professional = hasattr(request.user, 'healthprofessional')
@@ -40,22 +41,51 @@ def health_professional_is_account_owner(method):
         if is_owner and is_health_professional:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/user/login_healthprofessional')
+            raise PermissionDenied
 
     return wrap
 
 
-def patient_is_account_owner(method):
+def patient_is_account_owner_with_pk(method):
     """
-    Verify if patient is a owner of request
+    Verify if patient is a owner of request with pk
     """
     def wrap(request, *args, **kwargs):
         is_patient = hasattr(request.user, 'patient')
         is_owner = int(request.user.pk) == int(kwargs.get('pk'))
-        print(request.user.pk)
         if is_owner and is_patient:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/user/login_patient')
+            raise PermissionDenied
+
+    return wrap
+
+
+def health_professional_is_account_owner_with_email(method):
+    """
+    Verify if health professional is a owner of request with email
+    """
+    def wrap(request, email, *args, **kwargs):
+        is_health_professional = hasattr(request.user, 'healthprofessional')
+        is_owner = email == request.user.email
+        if is_owner and is_health_professional:
+            return method(request, email, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+    return wrap
+
+
+def patient_is_account_owner_with_email(method):
+    """
+    Verify if patient is a owner of request with email
+    """
+    def wrap(request, email, *args, **kwargs):
+        is_patient = hasattr(request.user, 'patient')
+        is_owner = email == request.user.email
+        if is_owner and is_patient:
+            return method(request, email, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
     return wrap
