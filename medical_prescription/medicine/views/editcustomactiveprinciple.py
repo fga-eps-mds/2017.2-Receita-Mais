@@ -20,6 +20,8 @@ class EditCustomActivePrinciple(UpdateView):
     def get(self, request, *args, **kwargs):
         return super(EditCustomActivePrinciple, self).post(request, *args, **kwargs)
 
+    @method_decorator(login_required)
+    @method_decorator(is_health_professional)
     def post(self, request, *args, **kwargs):
         time.sleep(0.4)  # Time to wait to inform the creation of the principle
         return super(EditCustomActivePrinciple, self).post(request, *args, **kwargs)
