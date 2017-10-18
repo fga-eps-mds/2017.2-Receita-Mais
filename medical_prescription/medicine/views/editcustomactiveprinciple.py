@@ -1,9 +1,12 @@
 # Django
 import time
 from django.views.generic import UpdateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from medicine.models import ActivePrinciple
 from medicine.forms import CustomActivePrincipleForm
+from user.decorators import is_health_professional
 
 
 class EditCustomActivePrinciple(UpdateView):
@@ -11,6 +14,11 @@ class EditCustomActivePrinciple(UpdateView):
     form_class = CustomActivePrincipleForm  # Class forms.py define how the form will be
     template_name = 'register_custom_principle.html'   # Template define html redirect create
     success_url = '/medicine/list/'  # Redirect this url when post is success
+
+    @method_decorator(login_required)
+    @method_decorator(is_health_professional)
+    def dispatch(self, *args, **kwargs):
+        return super(EditCustomActivePrinciple, self).dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         return super(EditCustomActivePrinciple, self).post(request, *args, **kwargs)

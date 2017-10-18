@@ -1,7 +1,10 @@
 # Django
 from django.views.generic import ListView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from medicine.models import ActivePrinciple, CustomActivePrinciple
+from user.decorators import is_health_professional
 
 
 class ListActivePrinciple(ListView):
@@ -9,6 +12,11 @@ class ListActivePrinciple(ListView):
     template_name = 'list_medicine.html'  # Define template where itens will be shown
     context_object_name = 'list_active_principle'  # List itens default to list
     paginate_by = 20  # Number of itens per page
+
+    @method_decorator(login_required)
+    @method_decorator(is_health_professional)
+    def dispatch(self, *args, **kwargs):
+        return super(ListActivePrinciple, self).dispatch(*args, **kwargs)
 
     # This method is overridden by ListView. It defines list objects that are shown
     def get_queryset(self):
