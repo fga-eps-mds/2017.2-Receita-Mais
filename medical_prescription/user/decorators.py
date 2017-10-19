@@ -1,4 +1,4 @@
-# Django
+# Django imports
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 

@@ -1,9 +1,10 @@
-# Django
+# Django imports
 import time
 from django.views.generic import UpdateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
+# Local Django imports
 from medicine.models import ActivePrinciple
 from medicine.forms import CustomActivePrincipleForm
 from user.decorators import is_health_professional

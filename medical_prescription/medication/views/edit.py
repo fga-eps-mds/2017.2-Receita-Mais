@@ -1,10 +1,10 @@
-# Django
+# Django imports
 from django.views.generic import UpdateView
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
-# Local Django
+# Local Django imports
 from medication.models import Medication
 from medication.forms import EditForm
 from user.decorators import is_health_professional
