@@ -10,7 +10,7 @@ class CreatePrescriptionExamForm(forms.ModelForm):
     cid = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
                                                         'placeholder': 'CID'}))
 
-    exam = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
+    exam = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
                                                          'placeholder': 'Nome do Exame'}))
 
     class Meta():
