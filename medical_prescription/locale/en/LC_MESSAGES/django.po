@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-18 16:53-0200\n"
+"POT-Creation-Date: 2017-10-19 00:34-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,10 +73,17 @@ msgstr "Meet our team"
 msgid "Cadastro"
 msgstr "Register"
 
+#: medical_prescription/user/forms/userloginform.py:10
+#: medical_prescription/user/templates/edit_patient.html:59
+#: medical_prescription/user/templates/password_confirm.html:17
+#: medical_prescription/user/templates/register_health_professional.html:68
+#: medical_prescription/user/templates/register_patient.html:68
+msgid "Senha"
+msgstr "Password"
 
 #: medical_prescription/user/templates/edit_health_professional_password.html:5
 msgid "Edição de Senha"
-msgstr "Password edit"
+msgstr "Password Edit"
 
 #: medical_prescription/user/templates/edit_health_professional_password.html:17
 #: medical_prescription/user/templates/edit_patient_password.html:17
@@ -99,28 +106,34 @@ msgid "Confirmar"
 msgstr "Confirm"
 
 #: medical_prescription/user/templates/edit_patient.html:7
+#: medical_prescription/user/templates/register_health_professional.html:7
+#: medical_prescription/user/templates/register_patient.html:7
 msgid "Dados Cadastrais"
-msgstr "Register Data"
+msgstr "Registration Details"
 
 #: medical_prescription/user/templates/edit_patient.html:19
+#: medical_prescription/user/templates/register_health_professional.html:19
+#: medical_prescription/user/templates/register_patient.html:19
 msgid "Nome"
 msgstr "Name"
 
 #: medical_prescription/user/templates/edit_patient.html:28
+#: medical_prescription/user/templates/register_health_professional.html:28
+#: medical_prescription/user/templates/register_patient.html:28
 msgid "Sexo"
 msgstr "Sex"
 
 #: medical_prescription/user/templates/edit_patient.html:39
+#: medical_prescription/user/templates/register_health_professional.html:48
+#: medical_prescription/user/templates/register_patient.html:48
 msgid "Data de Nascimento"
 msgstr "Date of Birth"
 
 #: medical_prescription/user/templates/edit_patient.html:48
+#: medical_prescription/user/templates/register_health_professional.html:57
+#: medical_prescription/user/templates/register_patient.html:57
 msgid "Telefone:"
 msgstr "Phone:"
-
-#: medical_prescription/user/templates/edit_patient.html:59
-msgid "Senha"
-msgstr "Password"
 
 #: medical_prescription/user/templates/edit_patient.html:65
 msgid "Editar"
@@ -139,3 +152,66 @@ msgstr ""
 #: medical_prescription/user/templates/login_patient.html:44
 msgid "É um paciente e não possui uma conta?<br>Cadastre-se já"
 msgstr "Are you a patient and don't have an account?<br>Register now"
+
+#: medical_prescription/user/templates/password_confirm.html:6
+msgid "Recuperar senha"
+msgstr "Forgot your password?"
+
+#: medical_prescription/user/templates/password_confirm.html:26
+msgid "Confirmar senha"
+msgstr "Confirm your new password"
+
+#: medical_prescription/user/templates/password_confirm.html:31
+msgid "Salvar"
+msgstr "Save"
+
+#: medical_prescription/user/templates/register_health_professional.html:6
+msgid "Cadastro Profissional de Saúde"
+msgstr "Health Professional"
+
+#: medical_prescription/user/templates/register_health_professional.html:38
+#: medical_prescription/user/templates/register_patient.html:38
+msgid "Email"
+msgstr "Email"
+
+#: medical_prescription/user/templates/register_health_professional.html:77
+#: medical_prescription/user/templates/register_patient.html:77
+msgid "Confirme sua senha"
+msgstr "Confirm your new password"
+
+#: medical_prescription/user/templates/register_health_professional.html:88
+msgid "CRM"
+msgstr "CRM"
+
+#: medical_prescription/user/templates/register_health_professional.html:98
+msgid "Estado"
+msgstr "State"
+
+#: medical_prescription/user/templates/register_health_professional.html:104
+#: medical_prescription/user/templates/register_patient.html:96
+msgid "Cadastrar"
+msgstr "Register"
+
+#: medical_prescription/user/templates/register_health_professional.html:105
+msgid "Já possui conta?Faça login agora!"
+msgstr "Have an account?"
+
+#: medical_prescription/user/templates/register_patient.html:6
+msgid "Cadastro Paciente"
+msgstr "Register"
+
+#: medical_prescription/user/templates/register_patient.html:88
+msgid "RG"
+msgstr "RG"
+
+#: medical_prescription/user/templates/reset_password.html:15
+msgid "Recupere sua senha"
+msgstr "Forgot your password?"
+
+#: medical_prescription/user/templates/reset_password.html:31
+msgid "Enviar"
+msgstr "Submit"
+
+#: medical_prescription/user/templates/reset_password.html:42
+msgid "Contate-nos"
+msgstr "Contact us"
