@@ -1,0 +1,43 @@
+<div>
+    <div class="modal-header">
+        <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+        <h3 class="modal-title">Prescrição</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            {# Form to adding modal. #}
+            <form class="" action="index.html" method="post">
+              <div class="form-group">
+                {% for error in form.patient.errors %}
+                <div class="alert alert-danger" role="alert">{{error}}</div>
+                {% endfor %}
+                <label for="id_{{ form.patient.name }}"> Paciente: </label>
+                  {{form.patient}}
+              </div>
+
+              <div class="form-group">
+                {% for error in form.cid.errors %}
+                <div class="alert alert-danger" role="alert">{{error}}</div>
+                {% endfor %}
+                <label for="id_{{ form.cid.name }}"> Doença: </label>
+                  {{form.cid}}
+              </div>
+
+              <div class="form-group" id="teste">
+                {% for error in form.exam.errors %}
+                <div class="alert alert-danger" role="alert">{{error}}</div>
+                {% endfor %}
+                <label for="id_{{ form.exam.name }}"></label>
+                  {{form.exam}}
+              </div>
+
+              <input type="button" value="Add another text input" onClick="addInput('teste');">
+            </form>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success btn-sm btn-fill "><span class="glyphicon glyphicon-shopping-cart"></span> Reservar </button>
+      <button type="button" class="btn btn-primary "><span class="glyphicon glyphicon-heart"></span> Favoritar </button>
+    </div>
+</div>
