@@ -41,12 +41,11 @@ class ResetPasswordView(FormView):
 
         form = self.form_class(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            email = form.cleaned_data['email']
 
         # Search the user in database.
         try:
             user = User.objects.get(email=email)
-            print(email)
         except:
             logger.exception("User not found.")
             return render(request, 'message.html', {"message": "usuário não encontrado"})
