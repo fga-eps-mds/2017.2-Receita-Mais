@@ -1,4 +1,4 @@
-{% load static %} {% load staticfiles %}
+{% load static %} {% load staticfiles %} {% load i18n %}
 
 <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
   <div class="logo">
@@ -11,25 +11,25 @@
       <li class="active">
         <a href="">
           <i class="material-icons">dashboard</i>
-          <p>Página Principal</p>
+          <p>{% trans "Página Principal"%}</p>
         </a>
       </li>
       <li class="editar">
         <a href="{% url 'edit_patient_password' request.user.email %}">
           <i class="material-icons">dashboard</i>
-          <p>Editar</p>
+          <p>{% trans "Editar"%}</p>
         </a>
       </li>
       <li>
         <a href="">
           <i class="material-icons">mail</i>
-          <p>Conversas</p>
+          <p>{% trans "Conversas"%}</p>
         </a>
       </li>
       <li>
         <a href="">
           <i class="material-icons">hourglass_empty</i>
-          <p>Histórico Médico</p>
+          <p>{% trans "Histórico Médico"%}</p>
         </a>
       </li>
     </ul>

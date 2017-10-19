@@ -1,4 +1,4 @@
-{% load static %} {% load staticfiles %}
+{% load static %} {% load staticfiles %} {% load i18n %}
 
 <header class="navbar-fixed-top s-header-v2 js__header-sticky">
     <!-- Navbar -->
@@ -35,9 +35,9 @@
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Nova Prescrição</a></li>
-                            <li><a href="#">Novo Manipulado</a></li>
-                            <li><a href="#">Personalizar Prescrições</a></li>
+                            <li><a href="#">{% trans "Nova Prescrição"%}</a></li>
+                            <li><a href="#">{% trans "Novo Manipulado"%}</a></li>
+                            <li><a href="#">{% trans "Personalizar Prescrições"%}</a></li>
                             <!-- Messages: style can be found in dropdown.less-->
                             <li class="dropdown messages-menu">
                                 <!-- Menu toggle button -->
@@ -55,7 +55,7 @@
                                         </ul>
                                         <!-- /.menu -->
                                         </li>
-                                        <li class="footer"><a href="#">Veja todas as mensagens</a></li>
+                                        <li class="footer"><a href="#">{% trans "Veja todas as mensagens"%}</a></li>
                                 </ul>
                             </li>
                                                 <!-- Notifications Menu -->
@@ -74,7 +74,7 @@
                                             <!-- end notification -->
                                         </ul>
                                     </li>
-                                    <li class="footer"><a href="#">Veja todas as notificações !</a></li>
+                                    <li class="footer"><a href="#">{% trans "Veja todas as notificações !"%}</a></li>
                                 </ul>
                             </li>
                                                     <!-- User Account Menu -->
@@ -93,17 +93,17 @@
                                         <p>
                                              {{ request.user.name }}
                                         </p>
-                                        <small>Especialização</small>
+                                        <small>{% trans "Especialização"%}</small>
 
                                     </li>
 
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                            <a href="#" class="btn btn-default btn-flat">{% trans "Perfil"%}</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
+                                            <a href="{% url 'logout' %}" class="btn btn-default btn-flat">{% trans "Sair"%}</a>
                                         </div>
                                     </li>
                                 </ul>

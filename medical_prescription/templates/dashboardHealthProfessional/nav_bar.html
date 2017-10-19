@@ -1,4 +1,4 @@
-{% load static %} {% load staticfiles %}
+{% load static %} {% load staticfiles %} {% load i18n %}
 
 <!-- Main Header -->
 <header class="main-header">
@@ -21,9 +21,9 @@
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
-                <li><a href="#">Nova Prescrição</a></li>
-                <li><a href="#">Novo Manipulado</a></li>
-                <li><a href="#">Personalizar Prescrições</a></li>
+                <li><a href="#">{% trans "Nova Prescrição"%}</a></li>
+                <li><a href="#">{% trans "Novo Manipulado"%}</a></li>
+                <li><a href="#">{% trans "Personalizar Prescrições"%}</a></li>
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
@@ -44,7 +44,7 @@
                             </ul>
                             <!-- /.menu -->
                             </li>
-                            <li class="footer"><a href="#">Veja todas as mensagens</a></li>
+                            <li class="footer"><a href="#">{% trans "Veja todas as mensagens"%}</a></li>
                     </ul>
                 </li>
 
@@ -69,7 +69,7 @@
                                 <!-- end notification -->
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">Veja todas as notificações !</a></li>
+                        <li class="footer"><a href="#">{% trans "Veja todas as notificações !"%}</a></li>
                     </ul>
                 </li>
 
@@ -89,20 +89,20 @@
 
                             <p>
                                  {{ request.user.name }}
-                                <small>Especialização</small>
+                                <small>{% trans "Especialização"%}</small>
                             </p>
                         </li>
 
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="#" class="btn btn-default btn-flat">{% trans "Perfil"%}</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
+                                    <a href="{% url 'logout' %}" class="btn btn-default btn-flat">{% trans "Sair"%}</a>
                                 </div>
                                 <div class="pull-left">
-                                    <a href="{% url 'edit_hp_password' request.user.email %}" class="btn btn-default btn-flat">Editar Senha</a>
+                                    <a href="{% url 'edit_hp_password' request.user.email %}" class="btn btn-default btn-flat">{% trans "Editar Senha"%}</a>
                                 </div>
                             </li>
                         </ul>
@@ -111,10 +111,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                <a href="#" class="btn btn-default btn-flat">{% trans "Perfil"%}</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
+                                <a href="{% url 'logout' %}" class="btn btn-default btn-flat">{% trans "Sair"%}</a>
                             </div>
                         </li>
                     </ul>
