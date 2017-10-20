@@ -13,15 +13,17 @@ class CreateTestePrescriptionView(FormView):
     form_class = CreatePrescriptionExamForm
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(request.GET)
+        form = self.form_class(request.GET or None)
         data = dict()
+        print("--------------GET-----------------")
         context = {'form': form}
-        data['html_show'] = render_to_string(self.template_name, context, request=request)
+        data['html_form'] = render_to_string(self.template_name, context, request=request)
         return JsonResponse(data)
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         data = dict()
+        print("--------------POST-----------------")
 
         if form.is_valid():
             data['form_is_valid'] = True
