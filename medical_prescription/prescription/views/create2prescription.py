@@ -21,11 +21,17 @@ class CreateTestePrescriptionView(FormView):
         return JsonResponse(data)
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST or None)
         data = dict()
         print("--------------POST-----------------")
+        print("--------------POST-----------------")
+        print("--------------POST-----------------")
+        print("--------------POST-----------------")
+        print("--------------POST-----------------")
+        print(form.cleaned_data['d'])
 
         if form.is_valid():
+
             data['form_is_valid'] = True
 
         context = {'form': form}

@@ -9,6 +9,7 @@ $(function() {
           'search': request.term
         },
         success: function(data) {
+          console.log(data.list)
           response(data.list);
         }
       });

@@ -4,14 +4,14 @@ from prescription.models import Prescription
 
 
 class CreatePrescriptionExamForm(forms.ModelForm):
-    patient = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
-                                                            'placeholder': 'Nome do Paciente:'}))
+    patient = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control patient-field',
+                                                            'placeholder': 'Nome do Paciente:'}), required=False)
 
     cid = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
-                                                        'placeholder': 'CID'}))
+                                                        'placeholder': 'CID'}), required=False)
 
     exam = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
-                                                         'placeholder': 'Nome do Exame'}))
+                                                         'placeholder': 'Nome do Exame'}), required=False)
 
     class Meta():
         model = Prescription
