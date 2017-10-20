@@ -1,20 +1,20 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
   <ul class="nav nav-tabs">
    <li class="active">
-     <a href="{% url 'list_all_medications' %}" id="tag-geral" data-toggle="nav-tabs" >Gerais</a>
+     <a href="{% url 'list_all_medications' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
    </li>
    <li id="tag-custom">
-     <a data-toggle="nab-tabs" href="{% url 'list_medication' %}">Customizados</a>
+     <a data-toggle="nab-tabs" href="{% url 'list_medication' %}">{% trans "Customizados" %}</a>
    </li>
  </ul>
  <div class="panel-body">
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
     <thead>
-      <th>Nome</th>
-      <th>Laboratório</th>
-      <th>Restrição</th>
+      <th>{% trans "Nome" %}</th>
+      <th>{% trans "Laboratório" %}</th>
+      <th>{% trans "Restrição" %}</th>
     </thead>
 
     <tbody>
@@ -26,16 +26,16 @@
 
 
           {% if medication.is_restricted %}
-            <td>Sim</td>
+            <td>{% trans "Sim" %}</td>
           {% else %}
-            <td>Não</td>
+            <td>{% trans "Não" %}</td>
           {% endif %}
 
         </tr>
 
       {% empty %}
 
-        <li>Não existem princípios ativos cadastrados.</li>
+        <li>{% trans "Não existem medicamentos cadastrados." %}</li>
 
       {% endfor %}
     </tbody>

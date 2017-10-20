@@ -1,11 +1,11 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
         <thead>
           <th>ID</th>  
-          <th>Nome</th>
-          <th>Descrição</th>
+          <th>{% trans "Nome" %}</th>
+          <th>{% trans "Descrição" %}</th>
         </thead>
       <tbody>
 
@@ -16,7 +16,7 @@
             <td>{{ exam.name }}</td>
             <td>{{ exam.description }}</td>
 
-            <td><a href="{% url 'update_custom_exams' pk=exam.pk %}" class="btn">Editar</a></td>
+            <td><a href="{% url 'update_custom_exams' pk=exam.pk %}" class="btn">{% trans "Editar" %}</a></td>
         {% endif %}
       </tr>
       {% endfor %}
@@ -27,13 +27,13 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}">Página Anterior</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">{% trans "Página Anterior" %}</a>
                 {% endif %}
                 <span class="page-current">
                     Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">Próxima página</a>
+                    <a href="?page={{ page_obj.next_page_number }}">{% trans "Próxima Página" %}</a>
                 {% endif %}
             </span>
         </div>

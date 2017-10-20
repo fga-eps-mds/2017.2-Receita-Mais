@@ -1,4 +1,4 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
 
 <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
@@ -10,7 +10,7 @@
       <div class="alert alert-danger" role="alert">{{error}}</div>
       {% endfor %}
 
-      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Nome</h4>
+      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">{% trans "Nome" %}</h4>
       {{ form.name }}
     </div>
   </div>
@@ -21,14 +21,14 @@
       <div class="alert alert-danger" role="alert">{{error}}</div>
       {% endfor %}
 
-      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Descrição</h4>
+      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">{% trans "Descrição" %}</h4>
       {{ form.description }}
     </div>
   </div>
 
   <div class="control-group">
     <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
-      <button class="btn btn-primary" align="center">Cadastrar</button>
+      <button class="btn btn-primary" align="center">{% trans "Cadastrar" %}</button>
     </div>
   </div>
 </form>
