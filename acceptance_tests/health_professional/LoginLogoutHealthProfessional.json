@@ -1,0 +1,65 @@
+{
+  "CreationDate": "2017-10-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Login@POS=2",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Login@POS=2",
+      "Value": "Login"
+    },
+    {
+      "Command": "click",
+      "Target": "css=h2.g-font-size-30--xs.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h2.g-font-size-30--xs.g-color--white",
+      "Value": "Login"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_email",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_email",
+      "Value": "med@med.com"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_password",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.text-uppercase.btn-block.s-btn.s-btn--md.s-btn--white-bg.g-radius--50.g-padding-x-50--xs.g-margin-b-20--xs",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=span.hidden-xs",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Logout",
+      "Value": ""
+    }
+  ]
+}

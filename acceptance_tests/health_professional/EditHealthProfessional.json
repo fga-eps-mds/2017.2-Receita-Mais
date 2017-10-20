@@ -1,0 +1,165 @@
+{
+  "CreationDate": "2017-10-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/user/edit_health_professional/15/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Medico da Silva Souza"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Medico da Silva Souza"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[1]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[1]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[1]/div[2]/h4",
+      "Value": "Sexo"
+    },
+    {
+      "Command": "select",
+      "Target": "id=id_sex",
+      "Value": "label=M"
+    },
+    {
+      "Command": "select",
+      "Target": "id=id_sex",
+      "Value": "label=M"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_date_of_birth",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_date_of_birth",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_date_of_birth",
+      "Value": "19/09/1978"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_date_of_birth",
+      "Value": "19/09/1978"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[2]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[2]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[2]/div[2]/h4",
+      "Value": "Telefone:"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_phone",
+      "Value": "7736862236"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_phone",
+      "Value": "7736862236"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div/h4",
+      "Value": "Senha"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_password",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_password",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.text-uppercase.s-btn.s-btn--md.s-btn--white-bg.g-radius--50.g-padding-x-70--xs.g-margin-b-20--xs",
+      "Value": ""
+    }
+  ]
+}
