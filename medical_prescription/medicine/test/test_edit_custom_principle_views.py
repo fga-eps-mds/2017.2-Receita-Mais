@@ -35,12 +35,12 @@ class TestEditCustom(TestCase):
 
     # Testing method 'post'.
     def test_post(self):
-        response = self.client.post('/medicine/edit/1/',
+        response = self.client.post('/pt-br/medicine/edit/1/',
                                     {'name': self.name_valid})
         self.assertEqual(response.status_code, 302)
 
     # Testing method 'post'.
     def test_post_invalid(self):
-        response = self.client.post('/medicine/edit/2/',
+        response = self.client.post('/medicine/edit/2asdasdasdad/',
                                     {'name': self.name_valid})
         self.assertEqual(response.status_code, 404)

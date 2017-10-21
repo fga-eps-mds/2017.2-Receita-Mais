@@ -28,4 +28,4 @@ class TesteCreateMedication(TestCase):
 
     def test_redirect_true(self):
         my_class = self.class_name()
-        self.assertEqual(my_class.get_success_url(), '/medication/list_medication/')
+        self.assertEqual(my_class.get_success_url(), '/pt-br/medication/list_medication/')
