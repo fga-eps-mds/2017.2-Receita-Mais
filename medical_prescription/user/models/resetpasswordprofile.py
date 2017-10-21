@@ -14,4 +14,4 @@ class ResetPasswordProfile(models.Model):
     key_expires = models.DateTimeField(default=datetime.date.today())
 
     def __str__(self):
-        return self.user.username
+        return self.user.name

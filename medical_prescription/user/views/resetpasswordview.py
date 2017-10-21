@@ -41,7 +41,7 @@ class ResetPasswordView(FormView):
 
         form = self.form_class(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            email = form.cleaned_data['email']
 
         # Search the user in database.
         try:
@@ -64,7 +64,7 @@ class ResetPasswordView(FormView):
 
             messages.success(request, constants.EMAIL_SUCESS_MESSAGE)
 
-            return redirect('/home')
+            return redirect('/')
         except:
             logger.exception("Confirmation already sent.")
             messages.error(request, constants.EMAIL_MESSAGE_EXIST)
@@ -83,7 +83,7 @@ class ResetPasswordView(FormView):
             salt = hashlib.sha1(str(random.random()).encode('utf-8')).hexdigest()[:5]
 
             # Join 'salt' and 'email' to create the activation key.
-            activation_key = hashlib.sha1(str(salt+email).encode('utf‌​-8')).hexdigest()
+            activation_key = hashlib.sha1(str(salt + email).encode('utf‌​-8')).hexdigest()
 
             # Make a expire parameter for the activation key.
             key_expires = datetime.datetime.today() + datetime.timedelta(2)

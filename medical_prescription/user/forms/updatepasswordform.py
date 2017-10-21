@@ -8,10 +8,11 @@ from user.validators import UserValidator
 class UpdatePasswordForm(forms.Form):
 
     # Form fields to edit password.
-    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Senha Atual', 'class': 'form-control'}),
-                                   label='')
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Senha Atual',
+                                                                     'class': 'form-control'}), label='')
+
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Nova Senha', 'class': 'form-control'}),
-                                   label='')
+                               label='')
     password_confirmation = forms.CharField(widget=forms.PasswordInput(
                             attrs={'placeholder': 'new password confirmation', 'class': 'form-control'}),
                             label='')

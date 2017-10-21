@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.views.generic import FormView
 
 # Local Django
-from user.models import ResetPasswordProfile
+from user.models import ResetPasswordProfile, Patient
 from user.forms import ConfirmPasswordForm
 from user import constants
 
@@ -48,6 +48,11 @@ class ConfirmPasswordView(FormView):
                     self._save_user_password(user, form)
                     # Change user password and save in database.
 
+                    # Redirect for especific login page.
+                    template_redirect = self.get_type_user(user.email)
+
+                    return redirect(template_redirect)
+
                 else:
                     logger.debug("Exit get method - not validate key.")
                     return redirect('/')
@@ -59,6 +64,15 @@ class ConfirmPasswordView(FormView):
             pass
         logger.debug("Exit get method.")
         return render(request, 'password_confirm.html', {'form': form})
+
+    # Return login page of especific user type.
+    def get_type_user(self, email):
+        query = Patient.objects.filter(email=email)
+
+        if(query.exists()):
+            return 'login_patient'
+        else:
+            return 'login_healthprofessional'
 
     # Validate key expiration time.
     def _validate_activation_key(self, user_p, *args):
