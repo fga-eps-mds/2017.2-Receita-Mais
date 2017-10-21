@@ -1,0 +1,45 @@
+{
+  "CreationDate": "2017-10-20",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/medicine/list/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/aside/section/ul/li[6]/a/span[1]",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Visualizar princípios ativos",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Visualizar princípios ativos",
+      "Value": "Visualizar princípios ativos"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Gerais",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Gerais",
+      "Value": "Gerais"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Customizados",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Customizados",
+      "Value": "Customizados"
+    }
+  ]
+}

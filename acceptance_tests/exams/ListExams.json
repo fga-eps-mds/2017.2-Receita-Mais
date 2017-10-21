@@ -1,0 +1,25 @@
+{
+  "CreationDate": "2017-10-20",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/exam/create_custom_exams/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link= Exames",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Visualizar Exames",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Visualizar Exames",
+      "Value": "Visualizar Exames"
+    }
+  ]
+}

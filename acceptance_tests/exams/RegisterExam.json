@@ -1,0 +1,75 @@
+{
+  "CreationDate": "2017-10-20",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/medicine/create/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link= Exames",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Criar novo Exame",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Criar novo Exame",
+      "Value": "Criar novo Exame"
+    },
+    {
+      "Command": "click",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Tomografia"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/form/div[2]/div/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/div[1]/section/form/div[2]/div/h4",
+      "Value": "Descrição"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_description",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_description",
+      "Value": "Isso é um teste."
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.btn.btn-primary",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=button.btn.btn-primary",
+      "Value": "Cadastrar"
+    }
+  ]
+}
