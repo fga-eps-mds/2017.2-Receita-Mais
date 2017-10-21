@@ -1,5 +1,6 @@
 {% load static %}
 {% load staticfiles %}
+{% load i18n %}
 
 <!--========== HEADER V2 ==========-->
 <header class="navbar-fixed-top s-header-v2 js__header-sticky">
@@ -33,9 +34,9 @@
                             <!-- Home -->
                             <li class="dropdown s-header-v2__nav-item s-header-v2__dropdown-on-hover">
                                 <a href="" class="dropdown-toggle s-header-v2__nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                    aria-expanded="false"> Paciente <span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
+                                    aria-expanded="false"> {% trans "Paciente" %}<span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
                                 <ul class="dropdown-menu s-header-v2__dropdown-menu">
-                                    <li><a href="{% url 'login_patient' %}" class="s-header-v2__dropdown-menu-link">Login</a></li>
+                                    <li><a href="{% url 'login_patient' %}" class="s-header-v2__dropdown-menu-link">{% trans "Login" %}</a></li>
                                 </ul>
                             </li>
                             <!-- End Home -->
@@ -43,10 +44,10 @@
                             <!-- Pages -->
                             <li class="dropdown s-header-v2__nav-item s-header-v2__dropdown-on-hover">
                                 <a href="javascript:void(0);" class="dropdown-toggle s-header-v2__nav-link" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                    aria-expanded="false">Profissional de Saúde <span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
+                                    aria-expanded="false">{% trans "Profissional de Saúde" %} <span class="g-font-size-10--xs g-margin-l-5--xs ti-angle-down"></span></a>
                                 <ul class="dropdown-menu s-header-v2__dropdown-menu">
                                     <li><a href="{% url 'login_healthprofessional' %}" class="s-header-v2__dropdown-menu-link">Login</a></li>
-                                    <li><a href="{% url 'register' %}" class="s-header-v2__dropdown-menu-link">Cadastro</a></li>
+                                    <li><a href="{% url 'register' %}" class="s-header-v2__dropdown-menu-link">{% trans "Cadastro" %}</a></li>
                                 </ul>
                             </li>
                             <!-- End Pages -->

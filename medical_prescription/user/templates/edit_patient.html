@@ -1,10 +1,10 @@
-{% extends "editPatientLanding/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "editPatientLanding/template.html" %} {% block content %} {% load staticfiles %} {% load static %}{% load i18n %}
 <!-- Register Form -->
 <div class="g-position--relative g-bg-color--primary">
   <div class="g-container--md g-padding-y-125--xs">
     <div class="g-text-center--xs g-margin-t-50--xs g-margin-b-80--xs">
       <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2 g-margin-b-25--xs">Editar Paciente</p>
-      <h2 class="g-font-size-32--xs g-font-size-36--sm g-color--white">Dados Cadastrais</h2>
+       <label for="" class="col-sm-2 control-label">{% trans "Dados Cadastrais"%}</label>
     </div>
 
     <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
@@ -16,7 +16,7 @@
           <div class="alert alert-danger" role="alert">{{ error }}</div>
           {% endfor %}
 
-          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Nome</h4>
+           <label for="" class="col-sm-2 control-label">{% trans "Nome"%}</label>
           {{ form.name }}
         </div>
 
@@ -25,7 +25,7 @@
           <div class="alert alert-danger" role="alert">{{ error }}</div>
           {% endfor %}
 
-          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Sexo</h4>
+           <label for="" class="col-sm-2 control-label">{% trans "Sexo"%}</label>
           {{ form.sex }}
         </div>
       </div>
@@ -36,7 +36,7 @@
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}
 
-          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Data de Nascimento</h4>
+           <label for="" class="col-sm-2 control-label">{% trans "Data de Nascimento"%}</label>
           {{ form.date_of_birth }}
         </div>
 
@@ -45,7 +45,7 @@
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}
 
-          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Telefone:</h4>
+           <label for="" class="col-sm-2 control-label">{% trans "Telefone:"%}</label>
           {{ form.phone }}
         </div>
       </div>
@@ -56,13 +56,13 @@
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}
 
-          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Senha</h4>
+           <label for="" class="col-sm-2 control-label">{% trans "Senha"%}</label>
           {{ form.password }}
         </div>
       </div>
 
       <div class="g-text-center--xs">
-        <button value='Update' type="submit" class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">Editar</button>
+        <button value='Update' type="submit" class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">{% trans "Editar"%}</button>
       </div>
 
     </form>

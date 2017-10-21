@@ -58,7 +58,7 @@ class LoginView(FormView):
 
     # Define template and dashboard url
     def set_template_name(self, request):
-        if(request.path == '/user/login_healthprofessional/'):
+        if "healthprofessional" in request.path:
             self.template_name = 'login_healthprofessional.html'
             self.dashboard_name = '/dashboard_health_professional/health_professional'
         else:

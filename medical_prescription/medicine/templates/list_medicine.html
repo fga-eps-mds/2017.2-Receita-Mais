@@ -1,8 +1,8 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
   <!-- Define tabs -->
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#general">Gerais</a></li>
-    <li><a data-toggle="tab" href="#custons">Customizados</a></li>
+    <li class="active"><a data-toggle="tab" href="#general">{% trans "Gerais" %}</a></li>
+    <li><a data-toggle="tab" href="#custons">{% trans "Customizados" %}</a></li>
   </ul>
   <!-- End define tabs -->
 
@@ -24,7 +24,7 @@
       </tr>
       {% empty %}
       <br>
-      <li><b>Não existem princípios ativos cadastrados.</b></li>
+      <li><b>{% trans "Não existem princípios ativos cadastrados." %}</b></li>
       {% endfor %}
       </table>
 
@@ -63,8 +63,8 @@
       <table class="table table-striped table-bordered table-hover">
       <thead>
       {% if list_active_principle > 0 %}
-      <th>Nome</th>
-      <th>Editar</th>
+      <th>{% trans "Nome" %}</th>
+      <th>{% trans "Editar" %}</th>
       {% endif %}
       </thead>
       <tbody>
@@ -76,7 +76,7 @@
       </tr>
       {% empty %}
       <br>
-      <li><b>Não existem princípios ativos cadastrados.</b></li>
+      <li><b>{% trans "Não existem princípios ativos cadastrados." %}</b></li>
       {% endfor %}
       <!-- End Listing Custom Active Principle -->
       </table>

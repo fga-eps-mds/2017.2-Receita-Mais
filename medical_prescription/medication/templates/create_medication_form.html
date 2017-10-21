@@ -3,6 +3,7 @@
 {% block content %}
 {% load staticfiles %}
 {% load static %}
+{% load i18n %}
 
 <!-- Panel -->
 
@@ -13,7 +14,7 @@
       {% csrf_token %}
       <!-- Nome -->
       <font size="5">
-        <span class = "label label-primary" >Nome</span>
+        <span class="label label-primary">{% trans "Nome" %}</span>
       </font>
       {{ form.name }}
 
@@ -21,7 +22,7 @@
 
       <!--Ingrediente Ativo-->
       <font size="5">
-        <span class="label label-primary"> Ingrediente Ativo</span>
+        <span class="label label-primary">{% trans "Princípio Ativo" %}</span>
       </font>
       {{ form.active_ingredient }}
 
@@ -29,7 +30,7 @@
 
       <!-- Laboratório -->
       <font size="5">
-        <span class = "label label-primary"> Laboratório </span>
+        <span class="label label-primary">{% trans "Laboratório" %}</span>
       </font>
       <br>
 
@@ -39,7 +40,7 @@
       <!-- Descrição -->
 
       <font size="5">
-        <span class ="label label-primary"> Descrição </span>
+        <span class="label label-primary">{% trans "Descrição" %}</span>
       </font>
       <br>
       {{ form.description }}
@@ -48,14 +49,14 @@
 
       <!-- Restrição -->
       <font size ="5">
-        <span class= "label label-primary"> Restrição</span>
+        <span class="label label-primary">{% trans "Restrição" %}</span>
       </font>
        {{ form.is_restricted }}
 
 
        <br><br>
 
-       <button type ="submit" class = "btn btn-success">Enviar</button>
+       <button type ="submit" class = "btn btn-success">{% trans "Enviar" %}</button>
     </form>
 </div>
 {% endblock %}

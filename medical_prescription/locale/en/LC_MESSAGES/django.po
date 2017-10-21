@@ -1,0 +1,455 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-21 13:50-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: medical_prescription/disease/templates/list_disease.html:7
+msgid "Código"
+msgstr "Code"
+
+#: medical_prescription/disease/templates/list_disease.html:8
+#: medical_prescription/exam/templates/create_custom_exams.html:24
+#: medical_prescription/exam/templates/list_custom_exams.html:8
+#: medical_prescription/exam/templates/list_exams.html:7
+#: medical_prescription/exam/templates/update_customexam.html:23
+#: medical_prescription/medication/templates/create_medication_form.html:43
+#: medical_prescription/medication/templates/edit_medication.html:43
+msgid "Descrição"
+msgstr "Description"
+
+#: medical_prescription/disease/templates/list_disease.html:37
+msgid "Não existem doenças cadastradas."
+msgstr "No diseases were found in the database."
+
+#: medical_prescription/exam/templates/create_custom_exams.html:13
+#: medical_prescription/exam/templates/list_custom_exams.html:7
+#: medical_prescription/exam/templates/update_customexam.html:12
+#: medical_prescription/medication/forms/create_form.py:12
+#: medical_prescription/medication/templates/create_medication_form.html:17
+#: medical_prescription/medication/templates/edit_medication.html:17
+#: medical_prescription/medication/templates/list_all_medications.html:15
+#: medical_prescription/medication/templates/list_medication.html:15
+#: medical_prescription/medicine/templates/list_medicine.html:66
+#: medical_prescription/user/templates/edit_patient.html:19
+#: medical_prescription/user/templates/register_health_professional.html:19
+#: medical_prescription/user/templates/register_patient.html:19
+msgid "Nome"
+msgstr "Name"
+
+#: medical_prescription/exam/templates/create_custom_exams.html:31
+#: medical_prescription/exam/templates/update_customexam.html:30
+#: medical_prescription/user/templates/register_health_professional.html:104
+#: medical_prescription/user/templates/register_patient.html:96
+msgid "Cadastrar"
+msgstr "Register"
+
+#: medical_prescription/exam/templates/list_custom_exams.html:19
+#: medical_prescription/medication/templates/list_medication.html:16
+#: medical_prescription/medicine/templates/list_medicine.html:67
+#: medical_prescription/templates/dashboardPatient/side_bar.html:20
+#: medical_prescription/user/templates/edit_patient.html:65
+msgid "Editar"
+msgstr "Edit"
+
+#: medical_prescription/exam/templates/list_custom_exams.html:30
+#: medical_prescription/exam/templates/list_exams.html:26
+msgid "Página Anterior"
+msgstr "Previous Page"
+
+#: medical_prescription/exam/templates/list_custom_exams.html:36
+#: medical_prescription/exam/templates/list_exams.html:32
+msgid "Próxima Página"
+msgstr "Next Page"
+
+#: medical_prescription/exam/templates/list_exams.html:6
+msgid "Código Tuss"
+msgstr "Tuss Code"
+
+#: medical_prescription/landing/templates/landing.html:14
+#: medical_prescription/templates/landing/nav_bar.html:47
+msgid "Profissional de Saúde"
+msgstr "Health Professional"
+
+#: medical_prescription/landing/templates/landing.html:17
+#: medical_prescription/landing/templates/landing.html:39
+msgid "Já possui uma conta?"
+msgstr "Have an Account?"
+
+#: medical_prescription/landing/templates/landing.html:18
+#: medical_prescription/landing/templates/landing.html:40
+msgid "Logue-se Agora"
+msgstr "Log in now"
+
+#: medical_prescription/landing/templates/landing.html:21
+#: medical_prescription/landing/templates/landing.html:43
+msgid "Não possui?"
+msgstr "Don't have one?"
+
+#: medical_prescription/landing/templates/landing.html:22
+msgid "Cadastre-se"
+msgstr "Register"
+
+#: medical_prescription/landing/templates/landing.html:35
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:38
+#: medical_prescription/templates/landing/nav_bar.html:37
+msgid "Paciente"
+msgstr "Patient"
+
+#: medical_prescription/landing/templates/landing.html:44
+msgid "Converse com seu médico agora para receber seu convite de acesso!"
+msgstr "Check with your health professional about obtaining an invitation!"
+
+#: medical_prescription/medical_prescription/settings.py:82
+msgid "English"
+msgstr ""
+
+#: medical_prescription/medical_prescription/settings.py:83
+msgid "Portuguese (Brazil)"
+msgstr ""
+
+#: medical_prescription/medication/forms/create_form.py:17
+#: medical_prescription/medication/templates/create_medication_form.html:33
+#: medical_prescription/medication/templates/edit_medication.html:33
+#: medical_prescription/medication/templates/list_all_medications.html:16
+msgid "Laboratório"
+msgstr "Laboratory"
+
+#: medical_prescription/medication/forms/create_form.py:22
+#: medical_prescription/medication/templates/create_medication_form.html:25
+#: medical_prescription/medication/templates/edit_medication.html:25
+msgid "Princípio Ativo"
+msgstr "Active Ingredient"
+
+#: medical_prescription/medication/templates/create_medication_form.html:52
+#: medical_prescription/medication/templates/edit_medication.html:52
+#: medical_prescription/medication/templates/list_all_medications.html:17
+msgid "Restrição"
+msgstr "Restricted"
+
+#: medical_prescription/medication/templates/create_medication_form.html:59
+#: medical_prescription/medication/templates/edit_medication.html:59
+#: medical_prescription/templates/landing/footer.html:37
+#: medical_prescription/user/templates/reset_password.html:31
+msgid "Enviar"
+msgstr "Submit"
+
+#: medical_prescription/medication/templates/list_all_medications.html:5
+#: medical_prescription/medication/templates/list_medication.html:5
+#: medical_prescription/medicine/templates/list_medicine.html:4
+msgid "Gerais"
+msgstr "Standard"
+
+#: medical_prescription/medication/templates/list_all_medications.html:8
+#: medical_prescription/medication/templates/list_medication.html:9
+#: medical_prescription/medicine/templates/list_medicine.html:5
+msgid "Customizados"
+msgstr "Customized"
+
+#: medical_prescription/medication/templates/list_all_medications.html:29
+msgid "Sim"
+msgstr "Yes"
+
+#: medical_prescription/medication/templates/list_all_medications.html:31
+msgid "Não"
+msgstr "No"
+
+#: medical_prescription/medication/templates/list_all_medications.html:38
+#: medical_prescription/medication/templates/list_medication.html:30
+msgid "Não existem medicamentos cadastrados."
+msgstr "No medications were found in the database."
+
+#: medical_prescription/medication/templates/list_medication.html:17
+msgid "Excluir"
+msgstr "Delete"
+
+#: medical_prescription/medicine/templates/list_medicine.html:27
+#: medical_prescription/medicine/templates/list_medicine.html:79
+msgid "Não existem princípios ativos cadastrados."
+msgstr "No active ingredients were found in the database."
+
+#: medical_prescription/medicine/templates/register_custom_principle.html:8
+msgid "Criar"
+msgstr "Create"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:24
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:38
+msgid "Nova Prescrição"
+msgstr "New Prescription"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:25
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:39
+msgid "Novo Manipulado"
+msgstr "New Manipulated Medicine"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:26
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:40
+msgid "Personalizar Prescrições"
+msgstr "Customize Prescription"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:47
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:58
+msgid "Veja todas as mensagens"
+msgstr "View all Messages"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:72
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:77
+msgid "Veja todas as notificações !"
+msgstr "View all Notifications"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:92
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:96
+msgid "Especialização"
+msgstr "Speciality"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:99
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:114
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:103
+msgid "Perfil"
+msgstr "Profile"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:102
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:117
+#: medical_prescription/templates/editHealthProfessionalLanding/nav_bar.html:106
+msgid "Sair"
+msgstr "Log Out"
+
+#: medical_prescription/templates/dashboardHealthProfessional/nav_bar.html:105
+msgid "Editar Senha"
+msgstr "Edit"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:15
+msgid "Usuário"
+msgstr "User"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:37
+#: medical_prescription/templates/dashboardPatient/side_bar.html:26
+msgid "Conversas"
+msgstr "Messages"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:40
+msgid "Receitas"
+msgstr "Prescriptions"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:46
+msgid "Criar nova receita"
+msgstr "Create New Prescription"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:47
+msgid "Visualizar favoritos"
+msgstr "Visualize Favorites"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:51
+msgid "Medicamentos"
+msgstr "Visualize Medications"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:57
+msgid "Criar novo medicamento"
+msgstr "Create New Medication"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:58
+msgid "Visualizar medicamentos"
+msgstr "Visualize Medications"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:59
+msgid "Criar princípios ativos"
+msgstr "Create Active Ingredients"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:60
+msgid "Visualizar princípios ativos"
+msgstr "Visualize Active Ingredients"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:65
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:71
+msgid "Doenças"
+msgstr "Diseases"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:76
+msgid "Exames"
+msgstr "Exams"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:82
+msgid "Criar novo Exame"
+msgstr "Create New Exam"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:83
+msgid "Visualizar Exames"
+msgstr "Visualize Exams"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:84
+msgid "Visualizar Exames Personalizados"
+msgstr "Visualize Custom Exams"
+
+#: medical_prescription/templates/dashboardPatient/side_bar.html:14
+msgid "Página Principal"
+msgstr "Homepage"
+
+#: medical_prescription/templates/dashboardPatient/side_bar.html:32
+msgid "Histórico Médico"
+msgstr "Medical History"
+
+#: medical_prescription/templates/editHealthProfessionalLanding/footer.html:11
+#: medical_prescription/templates/editPatientLanding/footer.html:11
+#: medical_prescription/templates/landing/footer.html:11
+msgid "Home"
+msgstr ""
+
+#: medical_prescription/templates/editHealthProfessionalLanding/footer.html:17
+#: medical_prescription/templates/editPatientLanding/footer.html:17
+#: medical_prescription/templates/landing/footer.html:17
+msgid "Sobre o projeto"
+msgstr "About the Project"
+
+#: medical_prescription/templates/editHealthProfessionalLanding/footer.html:23
+#: medical_prescription/templates/editPatientLanding/footer.html:23
+#: medical_prescription/templates/landing/footer.html:22
+msgid "Sobre a equipe"
+msgstr "Meet our Team"
+
+#: medical_prescription/templates/landing/nav_bar.html:39
+msgid "Login"
+msgstr ""
+
+#: medical_prescription/templates/landing/nav_bar.html:50
+msgid "Cadastro"
+msgstr "Register"
+
+#: medical_prescription/user/forms/userloginform.py:10
+#: medical_prescription/user/templates/edit_patient.html:59
+#: medical_prescription/user/templates/register_health_professional.html:68
+#: medical_prescription/user/templates/register_patient.html:68
+msgid "Senha"
+msgstr "Password"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:5
+msgid "Edição de Senha"
+msgstr "Password Edit"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:17
+#: medical_prescription/user/templates/edit_patient_password.html:17
+msgid "Senha Antiga:"
+msgstr "Old Password:"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:28
+#: medical_prescription/user/templates/edit_patient_password.html:28
+msgid "Nova senha"
+msgstr "New Password"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:40
+#: medical_prescription/user/templates/edit_patient_password.html:40
+msgid "Confirme nova senha"
+msgstr "Confirm your New Password"
+
+#: medical_prescription/user/templates/edit_health_professional_password.html:49
+#: medical_prescription/user/templates/edit_patient_password.html:49
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: medical_prescription/user/templates/edit_patient.html:7
+#: medical_prescription/user/templates/register_health_professional.html:7
+#: medical_prescription/user/templates/register_patient.html:7
+msgid "Dados Cadastrais"
+msgstr "Registration Details"
+
+#: medical_prescription/user/templates/edit_patient.html:28
+#: medical_prescription/user/templates/register_health_professional.html:28
+#: medical_prescription/user/templates/register_patient.html:28
+msgid "Sexo"
+msgstr "Sex"
+
+#: medical_prescription/user/templates/edit_patient.html:39
+#: medical_prescription/user/templates/register_health_professional.html:48
+#: medical_prescription/user/templates/register_patient.html:48
+msgid "Data de Nascimento"
+msgstr "Date of Birth"
+
+#: medical_prescription/user/templates/edit_patient.html:48
+#: medical_prescription/user/templates/register_health_professional.html:57
+#: medical_prescription/user/templates/register_patient.html:57
+msgid "Telefone:"
+msgstr "Phone:"
+
+#: medical_prescription/user/templates/login_healthprofessional.html:43
+#: medical_prescription/user/templates/login_patient.html:43
+msgid "Esqueceu sua senha?"
+msgstr "Forgot your password?"
+
+#: medical_prescription/user/templates/login_healthprofessional.html:44
+msgid "É um profissional de saúde e não possui uma conta?<br>Cadastre-se já"
+msgstr ""
+"Are you a Health Professional and don't have an Account?<br>Register now"
+
+#: medical_prescription/user/templates/login_patient.html:44
+msgid "É um paciente e não possui uma conta?<br>Cadastre-se já"
+msgstr "Are you a Patient and don't have an Account?<br>Register now"
+
+#: medical_prescription/user/templates/password_confirm.html:6
+msgid "Recuperar senha"
+msgstr "Forgot your Password?"
+
+#: medical_prescription/user/templates/password_confirm.html:17
+#, fuzzy
+#| msgid "Confirme a nova senha"
+msgid "Digite a nova senha"
+msgstr "Confirm your New Password"
+
+#: medical_prescription/user/templates/password_confirm.html:35
+msgid "Salvar"
+msgstr "Save"
+
+#: medical_prescription/user/templates/register_health_professional.html:6
+msgid "Cadastro Profissional de Saúde"
+msgstr "Health Professional Register"
+
+#: medical_prescription/user/templates/register_health_professional.html:38
+#: medical_prescription/user/templates/register_patient.html:38
+msgid "Email"
+msgstr "Email"
+
+#: medical_prescription/user/templates/register_health_professional.html:77
+#: medical_prescription/user/templates/register_patient.html:77
+msgid "Confirme sua senha"
+msgstr "Confirm your New Password"
+
+#: medical_prescription/user/templates/register_health_professional.html:88
+msgid "CRM"
+msgstr ""
+
+#: medical_prescription/user/templates/register_health_professional.html:98
+msgid "Estado"
+msgstr "State"
+
+#: medical_prescription/user/templates/register_health_professional.html:105
+msgid "Já possui conta?Faça login agora!"
+msgstr "Have an Account?"
+
+#: medical_prescription/user/templates/register_patient.html:6
+msgid "Cadastro Paciente"
+msgstr "Register Patient"
+
+#: medical_prescription/user/templates/register_patient.html:88
+msgid "RG"
+msgstr ""
+
+#: medical_prescription/user/templates/reset_password.html:15
+msgid "Recupere sua senha"
+msgstr "Forgot your password?"
+
+#: medical_prescription/user/templates/reset_password.html:42
+msgid "Contate-nos"
+msgstr "Contact Us"
+
+#~ msgid "Confirmar senha"
+#~ msgstr "Confirm your New Password"
