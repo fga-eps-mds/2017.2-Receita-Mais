@@ -18,11 +18,13 @@ class ConfirmPasswordForm(forms.Form):
     Form to confirm password.
     """
 
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}),
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                 'type': 'password'}),
                                label='')
-    password_confirmation = forms.CharField(widget=forms.PasswordInput(
-                            attrs={'placehold': 'password confirmation'}),
-                            label='')
+
+    password_confirmation = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
+                                                                       'type': 'password'}),
+                                            label='')
 
     def clean(self, *args, **kwargs):
         logger.debug("Start clean data in ConfirmPasswordForm.")
