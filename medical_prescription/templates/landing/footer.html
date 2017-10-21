@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load i18n %}
 
 <!--========== FOOTER ==========-->
 <footer class="g-bg-color--dark">
@@ -6,24 +6,37 @@
     <div class="g-hor-divider__dashed--white-opacity-lightest">
         <div class="container g-padding-y-60--xs">
             <div class="row">
-                <div class="col-sm-4 g-margin-b-20--xs g-margin-b-0--md">
+                <div class="col-sm-3 g-margin-b-10--xs g-margin-b-10--md">
                     <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
-                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="">Home</a></li>
+                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="">{% trans "Home" %}</a></li>
 
                     </ul>
                 </div>
-                <div class="col-sm-4 g-margin-b-20--xs g-margin-b-0--md">
+                <div class="col-sm-3 g-margin-b-10--xs g-margin-b-10--md">
                     <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
-                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="">Sobre o projeto</a></li>
-
+                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="">{% trans "Sobre o projeto" %}</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-4 g-margin-b-20--xs g-margin-b-0--md">
+                <div class="col-sm-3 g-margin-b-10--xs g-margin-b-10--md">
                     <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
-                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="">Sobre a equipe</a></li>
+                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="">{% trans "Sobre a equipe" %}</a></li>
                     </ul>
                 </div>
-
+                <div class="g-margin-b-12--xs g-margin-b-0--md" align="right">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}" />
+                        <select name="language">
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>/
+                            {% endfor %}
+                        </select>
+                          <button class="btn btn-primary">{% trans "Enviar" %}</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -31,8 +44,8 @@
 
     <!-- Copyright -->
     <div class="container g-padding-y-50--xs">
-                <p class="g-font-size-10--xs g-margin-b-0--xs g-color--white-opacity-light"><a href="http://keenthemes.com/preview/Megakit/">Megakit</a> Theme Powered by: <a href="http://www.keenthemes.com/">KeenThemes.com</a></p>
+        <p class="g-font-size-10--xs g-margin-b-0--xs g-color--white-opacity-light"><a href="http://keenthemes.com/preview/Megakit/">Megakit</a> Theme Powered by: <a href="http://www.keenthemes.com/">KeenThemes.com</a></p>
 
-    <!-- End Copyright -->
-</footer>
-<!--========== END FOOTER ==========-->
+        <!-- End Copyright -->
+    </footer>
+    <!--========== END FOOTER ==========-->
