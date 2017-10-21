@@ -11,7 +11,9 @@ class AutoCompleteExam(View):
             queryset = Exam.objects.filter(description__icontains=search)[:5]
             list = []
             for exam in queryset:
-                list.append(exam.description)
+                exam_item = {}
+                exam_item['value'] = exam.description
+                list.append(exam_item)
             data = {
                 'list': list,
             }
