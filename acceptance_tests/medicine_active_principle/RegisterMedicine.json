@@ -1,0 +1,105 @@
+{
+  "CreationDate": "2017-10-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/dashboard_health_professional/health_professional/",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Criar novo medicamento",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Criar novo medicamento",
+      "Value": "Criar novo medicamento"
+    },
+    {
+      "Command": "click",
+      "Target": "css=span.label.label-primary",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=span.label.label-primary",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Tylenol"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_active_ingredient",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_active_ingredient",
+      "Value": "dipirona"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/form/font[3]/span",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/form/font[3]/span",
+      "Value": "Laboratório"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_laboratory",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_laboratory",
+      "Value": "lablab"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/form/font[4]/span",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/form/font[4]/span",
+      "Value": "Descrição"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_description",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_description",
+      "Value": "Remédio para febre"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/form/font[5]/span",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/div[1]/section/div/form/font[5]/span",
+      "Value": "Restrição"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.btn.btn-success",
+      "Value": ""
+    }
+  ]
+}

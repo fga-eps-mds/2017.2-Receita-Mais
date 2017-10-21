@@ -1,0 +1,45 @@
+{
+  "CreationDate": "2017-10-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/dashboard_health_professional/health_professional/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link= Medicamentos",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Visualizar medicamentos",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Visualizar medicamentos",
+      "Value": "Visualizar medicamentos"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "id=tag-geral",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "id=tag-geral",
+      "Value": "Gerais"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Customizados",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Customizados",
+      "Value": "Customizados"
+    }
+  ]
+}

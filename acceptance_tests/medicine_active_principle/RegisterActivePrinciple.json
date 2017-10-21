@@ -1,0 +1,50 @@
+{
+  "CreationDate": "2017-10-20",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/dashboard_health_professional/health_professional/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link= Medicamentos",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Criar princípios ativos",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Criar princípios ativos",
+      "Value": "Criar princípios ativos"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/form/p/label",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/div[1]/section/form/p/label",
+      "Value": "Name:"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "amoxilina"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.save.btn.btn-success",
+      "Value": ""
+    }
+  ]
+}

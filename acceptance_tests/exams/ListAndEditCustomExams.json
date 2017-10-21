@@ -1,0 +1,75 @@
+{
+  "CreationDate": "2017-10-20",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/exam/update_custom_exams/1/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link= Exames",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Visualizar Exames Personalizados",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Visualizar Exames Personalizados",
+      "Value": "Visualizar Exames Personalizados"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Editar",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Tomografia de Teste"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/form/div[2]/div/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/div[1]/section/form/div[2]/div/h4",
+      "Value": "Descrição"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_description",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_description",
+      "Value": "Isso é um teste. Testando de novo."
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.btn.btn-primary",
+      "Value": ""
+    }
+  ]
+}

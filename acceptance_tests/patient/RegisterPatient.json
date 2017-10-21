@@ -1,0 +1,190 @@
+{
+  "CreationDate": "2017-10-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://localhost:8000/user/register_patient/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=p.text-uppercase.g-font-size-14--xs.g-font-weight--700.g-color--white-opacity.g-letter-spacing--2.g-margin-b-25--xs",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=p.text-uppercase.g-font-size-14--xs.g-font-weight--700.g-color--white-opacity.g-letter-spacing--2.g-margin-b-25--xs",
+      "Value": "CADASTRO PACIENTE"
+    },
+    {
+      "Command": "click",
+      "Target": "css=h2.g-font-size-32--xs.g-font-size-36--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h2.g-font-size-32--xs.g-font-size-36--sm.g-color--white",
+      "Value": "Dados Cadastrais"
+    },
+    {
+      "Command": "click",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[1]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Thiago Nogueira"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=id_sex",
+      "Value": "label=F"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "select",
+      "Target": "id=id_sex",
+      "Value": "label=M"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_email",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_email",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_email",
+      "Value": "thiago@test.com"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div[1]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_date_of_birth",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_date_of_birth",
+      "Value": "10/10/2017"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_phone",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_phone",
+      "Value": "6136151622"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[4]/div[1]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_password",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[4]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_confirm_password",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_confirm_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[5]/div/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_id_document",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_id_document",
+      "Value": "123456789"
+    },
+    {
+      "Command": "click",
+      "Target": "css=form.center-block.g-width-500--sm.g-width-550--md",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=button.text-uppercase.s-btn.s-btn--md.s-btn--white-bg.g-radius--50.g-padding-x-70--xs.g-margin-b-20--xs",
+      "Value": ""
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "CreationDate": "2017-10-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Cadastro",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Cadastro",
+      "Value": "Cadastro"
+    },
+    {
+      "Command": "click",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=h4.g-font-size-14--xs.g-font-size-14--sm.g-color--white",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_name",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_name",
+      "Value": "Medico da Silva"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[1]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[1]/div[2]/h4",
+      "Value": "Sexo"
+    },
+    {
+      "Command": "select",
+      "Target": "id=id_sex",
+      "Value": "label=F"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_sex",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[2]/h4",
+      "Value": "Email"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_email",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_email",
+      "Value": "med@med.com"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div[1]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_date_of_birth",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_date_of_birth",
+      "Value": "19/09/1998"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[3]/div[2]/h4",
+      "Value": "Telefone:"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_phone",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_phone",
+      "Value": "61982224133"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[4]/div[1]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[4]/div[1]/h4",
+      "Value": "Senha"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_password",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[4]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_confirm_password",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_confirm_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[5]/div[1]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[5]/div[1]/h4",
+      "Value": "CRM"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_crm",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_crm",
+      "Value": "12345"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div[2]/div/div/form/div[5]/div[2]/h4",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[2]/div/div/form/div[5]/div[2]/h4",
+      "Value": "Estado"
+    },
+    {
+      "Command": "select",
+      "Target": "id=id_crm_state",
+      "Value": "label=MG"
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_crm_state",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=button.text-uppercase.s-btn.s-btn--md.s-btn--white-bg.g-radius--50.g-padding-x-70--xs.g-margin-b-20--xs",
+      "Value": ""
+    }
+  ]
+}

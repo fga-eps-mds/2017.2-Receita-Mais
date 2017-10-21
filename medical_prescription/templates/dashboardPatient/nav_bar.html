@@ -1,65 +1,115 @@
 {% load static %} {% load staticfiles %} {% load i18n %} 
 
-<nav class="navbar navbar-transparent navbar-absolute">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"> Material Dashboard </a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">dashboard</i>
-                        <p class="hidden-lg hidden-md">Dashboard</p>
-                    </a>
-                </li>
-                <li class="dropdown">
+<!-- Main Header -->
+<header class="main-header">
+
+    <!-- Logo -->
+    <a href="" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>R+</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Receita Mais</b></span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+
+            <ul class="nav navbar-nav">
+                <li><a href="#">Exames</a></li>
+                <li><a href="#">Receitas</a></li>
+                <li><a href="#">Mensagens</a></li>
+
+                <!-- Messages: style can be found in dropdown.less-->
+                <li class="dropdown messages-menu">
+                    <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">notifications</i>
-                        <span class="notification">5</span>
-                        <p class="hidden-lg hidden-md">Notifications</p>
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="label label-success"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li class="header"></li>
                         <li>
-                            <a href="#">Mike John responded to your email</a>
+                            <!-- inner menu: contains the messages -->
+                            <ul class="menu">
+                                <li>
+                                    <!-- start message -->
+
+                                    <!-- end message -->
+                            </ul>
+                            <!-- /.menu -->
+                            </li>
+                            <li class="footer"><a href="#">Veja todas as mensagens</a></li>
+                    </ul>
+                </li>
+
+                <!-- /.messages-menu -->
+
+                <!-- Notifications Menu -->
+                <li class="dropdown notifications-menu">
+                    <!-- Menu toggle button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="label label-warning"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header"></li>
+                        <li>
+                            <!-- Inner Menu: contains the notifications -->
+                            <ul class="menu">
+                                <li>
+                                    <!-- start notification -->
+
+                                </li>
+                                <!-- end notification -->
+                            </ul>
                         </li>
-                        <li>
-                            <a href="#">You have 5 new tasks</a>
+                        <li class="footer"><a href="#">Veja todas as notificações !</a></li>
+                    </ul>
+                </li>
+
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="{% static 'img/user.png' %}" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">{{ request.user.name }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src= "{% static 'img/user.png' %}" class="img-circle" alt="User Image">
+
+                            <p>
+                                 {{ request.user.name }}
+                            </p>
                         </li>
-                        <li>
-                            <a href="#">You're now friend with Andrew</a>
-                        </li>
-                        <li>
-                            <a href="#">Another Notification</a>
-                        </li>
-                        <li>
-                            <a href="#">Another One</a>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
+                                </div>
+                                <div class="pull-left">
+                                    <a href="{% url 'edit_hp_password' request.user.email %}" class="btn btn-default btn-flat">Editar Senha</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">person</i>
-                        <p class="hidden-lg hidden-md">Profile</p>
-                    </a>
-                </li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group  is-empty">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <span class="material-input"></span>
-                </div>
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
-                </button>
-            </form>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>

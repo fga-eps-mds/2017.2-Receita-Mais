@@ -1,0 +1,145 @@
+{
+  "CreationDate": "2017-10-21",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://localhost:8000",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=div.row",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Paciente ",
+      "Value": "Paciente "
+    },
+    {
+      "Command": "click",
+      "Target": "link=Paciente ",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Login",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_email",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_email",
+      "Value": "thiago@teste.com"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "123456"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.text-uppercase.btn-block.s-btn.s-btn--md.s-btn--white-bg.g-radius--50.g-padding-x-50--xs.g-margin-b-20--xs",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/html/body/div/header/a/span[2]/b",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/header/a/span[2]/b",
+      "Value": "Receita Mais"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/aside/section/div/div[2]/p",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/aside/section/div/div[2]/p",
+      "Value": "Usuário"
+    },
+    {
+      "Command": "click",
+      "Target": "css=div.pull-left.info",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link=Dashboard",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Dashboard",
+      "Value": "Dashboard"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/aside/section/ul/li[3]/a/span",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Exames",
+      "Value": "Exames"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Exames",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/html/body/div/aside/section/ul/li[5]/a/span",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link=Exames",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Receitas",
+      "Value": "Receitas"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Receitas",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Mensagens",
+      "Value": "Mensagens"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Mensagens",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=span.hidden-xs",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Logout",
+      "Value": "Logout"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Logout",
+      "Value": ""
+    }
+  ]
+}
