@@ -2,4 +2,5 @@ from .createprescription import CreatePrescriptionView
 from .autocompletecid import AutoCompleteCid
 from .autocompleteexam import AutoCompleteExam
 from .autocompletepatient import AutoCompletePatient
-from .create2prescription import CreateTestePrescriptionView
+from .createprescription import CreatePrescriptionView
+from .openprescriptionview import OpenPrescriptionView
