@@ -1,37 +1,70 @@
+# Django imports
 from django.test import TestCase
-from django.test.client import RequestFactory, Client
+from django.test.client import RequestFactory
+from django.contrib.auth.models import AnonymousUser
 
+# Local Django imports
 from exam.views import CreateCustomExamsView
-from user.models import HealthProfessional
+from user.views import LoginView
+from user.models import User, Patient, HealthProfessional
 
 
 class CreateCustomExamsViewTest(TestCase):
-    """
-    Testing methods of Class CreateCustomExamsView.
-    """
     def setUp(self):
-
-        # Creating user in database.
-        self.user = HealthProfessional()
-        self.user.email = "test@test.com"
-        self.user.password = "test404"
-        self.user.crm = "54321"
-        self.user.save()
-
-        self.description = "Examina alguma coisa"
-        self.name = "Alguma coisa"
-
         self.factory = RequestFactory()
-        self.my_view = CreateCustomExamsView()
-        self.client = Client()
+        self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com', password='senha12')
+        self.patient = Patient.objects.create_user(email='patient@patient.com', password='senha12')
+        self.user = User.objects.create_user(email='user@user.com', password='senha12')
+        self.description = "Examina alguma coisa"
 
-    # Testing method 'get' in CreateCustomExamsView.
-    def test_get(self):
+    def test_get_without_login(self):
         request = self.factory.get('/exam/create_custom_exams/')
-        response = self.my_view.get(request)
+        request.user = AnonymousUser()
 
+        response = LoginView.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_post(self):
-        response = self.client.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
+    def test_get_with_patient(self):
+        request = self.factory.get('/exam/create_custom_exams/')
+        request.user = self.patient
+
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_with_user(self):
+        request = self.factory.get('/exam/create_custom_exams/')
+        request.user = self.user
+
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_with_health_professional(self):
+        request = self.factory.get('/exam/create_custom_exams/')
+        request.user = self.health_professional
+
+        response = CreateCustomExamsView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_without_login(self):
+        request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
+        request.user = AnonymousUser()
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_with_patient(self):
+        request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
+        request.user = self.patient
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_with_user(self):
+        request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
+        request.user = self.user
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_with_health_professional(self):
+        request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
+        request.user = self.health_professional
+        response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 200)

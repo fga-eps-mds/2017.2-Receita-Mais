@@ -1,34 +1,46 @@
 # Django imports
 from django.test import TestCase
-from django.test.client import RequestFactory, Client
+from django.test.client import RequestFactory
+from django.contrib.auth.models import AnonymousUser
 
 # Local Django imports
+from .views import ListDisease
 from user.views import LoginView
-from user.models import Patient, User, HealthProfessional
+from user.models import User, Patient, HealthProfessional
 
 
 class ListDiseaseViewTest(TestCase):
     def setUp(self):
         # Creating user in database.
-        self.user = HealthProfessional()
-        user = User.objects.create(email='teste@teste.com')
-        user.set_password('111555999')
-        self.user.is_active = True
-        self.user.save()
-
         self.factory = RequestFactory()
-        self.login_view = LoginView()
-        self.client = Client()
+        self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com', password='senha12')
+        self.patient = Patient.objects.create_user(email='patient@patient.com', password='senha12')
+        self.user = User.objects.create_user(email='user@user.com', password='senha12')
 
     def test_get_disease_without_login(self):
-        # Test if get request of disease list without login is redirect to landing page.
-        self.resp = self.client.get('/disease/list_disease/')
-        self.assertRedirects(self.resp, '/?next=/disease/list_disease/')
+        request = self.factory.get('/disease/list_disease/')
+        request.user = AnonymousUser()
 
-'''
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
     def test_get_disease_with_patient(self):
-        # Test if get request of disease list with patient is redirect to login health professional page.
-        self.client.login(email='teste@teste.com', password='111555999')
-        self.resp = self.client.get('/disease/list_disease/')
-        self.assertRedirects(self.resp, '/user/login_healthprofessional/')
-'''
+        request = self.factory.get('/disease/list_disease/')
+        request.user = self.patient
+
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_disease_with_user(self):
+        request = self.factory.get('/disease/list_disease/')
+        request.user = self.user
+
+        response = LoginView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_disease_with_health_professional(self):
+        request = self.factory.get('/disease/list_disease/')
+        request.user = self.health_professional
+
+        response = ListDisease.as_view()(request)
+        self.assertEqual(response.status_code, 200)

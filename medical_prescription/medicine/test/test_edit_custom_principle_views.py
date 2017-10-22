@@ -43,4 +43,4 @@ class TestEditCustom(TestCase):
     def test_post_invalid(self):
         response = self.client.post('/medicine/edit/2/',
                                     {'name': self.name_valid})
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 302)
