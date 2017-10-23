@@ -5,7 +5,7 @@ services:
     image: postgres
   web:
     build: .
-    command: python3 medical_prescription/manage.py runserver 0.0.0.0:8000
+    command: ./init.sh
     volumes:
       - .:/code
     ports:

@@ -1,0 +1,26 @@
+.prescription-legth-dialog{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  height: 100%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+.prescription-legth-content{
+  margin-left: 0%;
+  margin-right: 0%;
+  width: 100%;
+  height: 100%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial
+}
+.modal-body{
+    height: 600px;
+    overflow-y: auto;
+}

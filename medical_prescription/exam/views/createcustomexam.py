@@ -25,7 +25,7 @@ class CreateCustomExamsView(FormView):
         if form.is_valid():
             description = form.cleaned_data.get('description')
             name = form.cleaned_data.get('name')
-            user = HealthProfessional.objects.get(email=request.user)
+            user = request.user.healthprofessional
 
             health_professional_FK = user
 
