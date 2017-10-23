@@ -1,0 +1,23 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+
+<form class="post-form" method='POST' action=''>
+  <div class="box-body">
+
+    <div class="form-group">
+      {% csrf_token %}
+      {% for error in form.email.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      <label for="" class="col-sm-2 control-label">{% trans "Email do Paciente:"%}</label>
+      <div class="col-sm-10">
+        {{ form.email }}
+      </div>
+    </div>
+
+  </div>
+  <!-- /.box-body -->
+<button type="submit" class="save btn btn-success">{% trans "Adicionar"%}</button>
+  <!-- /.box-footer -->
+</form>
+
+{% endblock %}
