@@ -21,22 +21,22 @@ class ListDiseaseViewTest(TestCase):
         request = self.factory.get('/disease/list_disease/')
         request.user = AnonymousUser()
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListDisease.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_disease_with_patient(self):
         request = self.factory.get('/disease/list_disease/')
         request.user = self.patient
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListDisease.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_disease_with_user(self):
         request = self.factory.get('/disease/list_disease/')
         request.user = self.user
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListDisease.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_disease_with_health_professional(self):
         request = self.factory.get('/disease/list_disease/')
