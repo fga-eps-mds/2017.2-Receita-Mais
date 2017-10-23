@@ -8,11 +8,10 @@ $(function () {
       url: btn.attr("data-url"),
       type: 'get',
       dataType: 'json',
-      beforeSend: function () {
+      async: true,
+      success: function (data) {
         $("#modal-prescription .modal-content").html("");
         $("#modal-prescription").modal("show");
-      },
-      success: function (data) {
         $("#modal-prescription .modal-content").html(data.html_form);
       }
     });
@@ -25,6 +24,7 @@ $(function () {
       data: form.serialize(),
       type: form.attr("method"),
       dataType: 'json',
+      async: true,
       success: function (data) {
         if (data.form_is_valid) {
           $("#prescription-table tbody").html(data.html_prescription_list);

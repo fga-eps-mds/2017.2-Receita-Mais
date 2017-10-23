@@ -16,27 +16,3 @@ $.ui.autocomplete.prototype._renderItem = function(ul, item) {
     .append(": <br>" + description + "")
     .appendTo(ul);
 };
-
-$('.exam-field').focus(function() {
-  console.log(this)
-  $(this).autocomplete({
-    source: function(request, response) {
-      $.ajax({
-        url: "ajax/autocomplete_exam/",
-        dataType: "json",
-        data: {
-          'search': request.term
-        },
-        success: function(data) {
-          console.log(data.list);
-          response(data.list);
-        }
-      });
-    },
-    select: function(event, ui) {
-      console.log(ui)
-      $(this).prop("readonly", true);
-    },
-    minLength: 2
-  });
-});

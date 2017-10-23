@@ -1,14 +1,20 @@
-<!-- {% load staticfiles %} {% load static %} -->
+{% load static %}
 
 <link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
 
-<script src="{% static "prescription/js/autocompleteexam.js" %}" type="text/javascript"></script>
-<script src="{% static "prescription/js/formset.js" %}"></script>
 <script>
-  $('#add_more').click(function() {
-    cloneMore('div.table:last', 'form');
-  });
+        // This is an alternative to loading scripts while maintaining asynchrony in JavaScript.
+        var configautocompleteexam = "{% static "prescription/js/configautocompleteexam.js" %}";
+        var formset = "{% static "prescription/js/formset.js" %}";
+        $.getScript(configautocompleteexam);
+        $.getScript(formset);
+
+        // Methods to clone and autocomplete.
+        $('#add_more').click(function() {
+          cloneMore('div.table:last', 'form', "{% url 'autocomplete_exam' %}");
+        });
+        autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}");
 </script>
 
 <div>

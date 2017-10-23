@@ -1,5 +1,7 @@
+import json
+
 from django.views.generic import View
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 from exam.models import CustomExam
 
@@ -10,11 +12,11 @@ class AutoCompleteExam(View):
     """
     def get(self, request, *args, **kwargs):
         if request.is_ajax():
-            search = request.GET.get('search', '')
+            search = request.GET.get('term', '')
 
             # TODO(Ronyell) Change logic to all exam.
-            queryset = CustomExam.objects.filter(description__icontains=search)[:5]
-            list = []
+            queryset = CustomExam.objects.filter(name__icontains=search)[:5]
+            list_exam = []
 
             # TODO(Ronyell) Change the required data.
             # Encapsulates in a json needed to be sent.
@@ -25,9 +27,7 @@ class AutoCompleteExam(View):
                 exam_item['description'] = exam.description
                 exam_item['name'] = exam.name
 
-                list.append(exam_item)
-            data = {
-                'list': list,
-            }
-            print(list)
-            return JsonResponse(data)
+                list_exam.append(exam_item)
+            data = json.dumps(list_exam)
+            mimetype = 'application/json'
+            return HttpResponse(data, mimetype)
