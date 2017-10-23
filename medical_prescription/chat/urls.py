@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from chat.views import InboxView
+from chat.views import InboxView, ComposeView
 
 urlpatterns = (
-    url(r'^chat/$', InboxView.as_view(), name='chat'),
+    url(r'^inbox/$', InboxView.as_view(), name='inbox'),
+    url(r'^compose/$', ComposeView.as_view(), name='compose'),
 )

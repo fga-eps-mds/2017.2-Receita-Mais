@@ -7,8 +7,8 @@ class InboxView(ListView):
         View for list messages in inbox.
     '''
 
-    template_name = 'chat_box.html'
-    context_object_name = 'chat'
+    template_name = 'inbox.html'
+    context_object_name = 'inbox'
     model = Message
     paginate_by = 40
 
