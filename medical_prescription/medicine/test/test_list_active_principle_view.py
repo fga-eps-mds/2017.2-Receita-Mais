@@ -20,22 +20,15 @@ class ListActivePrincipleViewTest(TestCase):
         request = self.factory.get('/medicine/list/')
         request.user = AnonymousUser()
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_with_patient(self):
         request = self.factory.get('/medicine/list/')
         request.user = self.patient
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
-
-    def test_get_with_user(self):
-        request = self.factory.get('/medicine/list/')
-        request.user = self.user
-
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_with_health_professional(self):
         request = self.factory.get('/medicine/list/')
