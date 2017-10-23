@@ -5,7 +5,6 @@ from django.contrib.auth.models import AnonymousUser
 
 # Local Django imports
 from exam.views import ListExams
-from user.views import LoginView
 from user.models import User, Patient, HealthProfessional
 
 
@@ -20,22 +19,22 @@ class ListExamsTest(TestCase):
         request = self.factory.get('/exam/list_exams/')
         request.user = AnonymousUser()
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListExams.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_exam_with_patient(self):
         request = self.factory.get('/exam/list_exams/')
         request.user = self.patient
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListExams.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_exam_with_user(self):
         request = self.factory.get('/exam/list_exams/')
         request.user = self.user
 
-        response = LoginView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        response = ListExams.as_view()(request)
+        self.assertEqual(response.status_code, 302)
 
     def test_get_exam_with_health_professional(self):
         request = self.factory.get('/exam/list_exams/')
