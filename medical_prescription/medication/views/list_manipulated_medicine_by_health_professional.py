@@ -7,8 +7,8 @@ class ListManipulatedMedicinenByHealthProfessional(ListView):
         View for listing medications created by the Health Professional.
     '''
 
-    template_name = 'list_manipulated_medicine.html'
-    context_object_name = 'list_manipulated_medicine'
+    template_name = 'list_manipulated_medicines.html'
+    context_object_name = 'list_medicines'
     model = ManipulatedMedicine
     paginate_by = 20
 

@@ -1,19 +1,19 @@
 from django.views.generic import UpdateView
-from medication.models import Medication
+from medication.models import Medicine
 from medication.forms import EditForm
 from django.urls import reverse
 
 
-class UpdateMedication(UpdateView):
+class UpdateMedicine(UpdateView):
     '''
-        Edit Medication attributes with this class.
+        Edit Medicine attributes with this class.
     '''
 
-    sucess_url = 'list_medication'
-    model = Medication
-    template_name = 'edit_medication.html'
+    sucess_url = 'list_medicine'
+    model = Medicine
+    template_name = 'edit_medicine.html'
     form_class = EditForm
 
-    # Redirect for list _medications_by_health_professional.
+    # Redirect for list _medicine_by_health_professional.
     def get_success_url(self):
         return reverse(self.sucess_url)

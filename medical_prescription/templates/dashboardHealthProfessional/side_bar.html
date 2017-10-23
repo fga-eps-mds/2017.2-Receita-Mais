@@ -54,8 +54,9 @@
               </span>
           </a>
                 <ul class="treeview-menu">
-                    <li><a href="{% url 'create_medication' %}">{% trans "Criar novo medicamento"%}</a></li>
-                    <li><a href="{% url 'list_all_medications' %}">{% trans "Visualizar medicamentos"%}</a></li>
+                    <li><a href="{% url 'create_medicine' %}">{% trans "Criar novo medicamento"%}</a></li>
+                    <li><a href="{% url 'list_all_medicines' %}">{% trans "Visualizar medicamentos"%}</a></li>
+                    <li><a href="{% url 'list_manipulated_medicines' %}">{% trans "Visualizar manipulados"%}</a></li>
                     <li><a href="{% url 'create_activePrinciple' %}">{% trans "Criar princípios ativos"%}</a></li>
                     <li><a href="{% url 'activeprinciple_list' %}">{% trans "Visualizar princípios ativos"%}</a></li>
                 </ul>

@@ -12,46 +12,42 @@
     <form action=''  method="post">
 
       {% csrf_token %}
-      <!-- Nome -->
       <font size="5">
-        <span class = "label label-primary" >{% trans "Nome" %}</span>
+        <span class="label label-primary">{% trans "Nome da Fórmula" %}</span>
       </font>
-      {{ form.name }}
+      {{ form.recipe_name }}
 
       <br>
 
-      <!--Ingrediente Ativo-->
       <font size="5">
-        <span class="label label-primary">{% trans "Princípio Ativo" %}</span>
+        <span class="label label-primary">{% trans "Forma Física" %}</span>
       </font>
-      {{ form.active_ingredient }}
+      {{ form.physical_form }}
 
       <br>
 
-      <!-- Laboratório -->
       <font size="5">
-        <span class = "label label-primary">{% trans "Laboratório" %}</span>
+        <span class="label label-primary">{% trans "Quantidade" %}</span>
       </font>
       <br>
 
-      {{ form.laboratory }}
+      {{ form.quantity }}
       <br>
 
-      <!-- Descrição -->
 
       <font size="5">
-        <span class ="label label-primary">{% trans "Descrição" %}</span>
+        <span class="label label-primary">{% trans "Unidade de Medida" %}</span>
       </font>
       <br>
-      {{ form.description }}
+      {{ form.measurement }}
 
       <br>
 
-      <!-- Restrição -->
+
       <font size ="5">
-        <span class= "label label-primary">{% trans "Restrição" %}</span>
+        <span class="label label-primary">{% trans "Composição" %}</span>
       </font>
-       {{ form.is_restricted }}
+       {{ form.composition }}
 
 
        <br><br>

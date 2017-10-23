@@ -1,5 +1,9 @@
+# django
 from django.contrib import admin
-from .models import Medication
-# Register your models here.
 
-admin.site.register(Medication)
+# local django
+from .models import (Medicine,
+                     ManipulatedMedicine)
+
+admin.site.register(Medicine)
+admin.site.register(ManipulatedMedicine)

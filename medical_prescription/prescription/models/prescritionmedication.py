@@ -1,9 +1,9 @@
 from django.db import models
 
-from medication.models import Medication
+from medication.models import Medicine
 from prescription.models import Prescription
 
 
 class PrescriptionMedication(models.Model):
     prescription = models.ForeignKey(Prescription)
-    medication = models.ForeignKey(Medication)
+    medicine = models.ForeignKey(Medicine)

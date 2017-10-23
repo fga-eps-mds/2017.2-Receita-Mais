@@ -2,10 +2,10 @@
 
   <ul class="nav nav-tabs">
    <li class="active">
-     <a href="{% url 'list_all_medications' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
+     <a href="{% url 'list_all_medicines' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
    </li>
    <li id="tag-custom">
-     <a data-toggle="nab-tabs" href="{% url 'list_medication' %}">{% trans "Customizados" %}</a>
+     <a data-toggle="nab-tabs" href="{% url 'list_manipulated_medicines' %}">{% trans "Manipulados" %}</a>
    </li>
  </ul>
  <div class="panel-body">
@@ -19,10 +19,10 @@
 
     <tbody>
 
-      {% for medication in list_medications %}
+      {% for medicine in list_medicines %}
         <tr class='clickable-row'>
-          <td>{{ medication.name }}</td>
-          <td>{{ medication.laboratory }}</td>
+          <td>{{ medicine.name }}</td>
+          <td>{{ medicine.laboratory }}</td>
 
 
           {% if medication.is_restricted %}
