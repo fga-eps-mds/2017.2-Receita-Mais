@@ -1,0 +1,2 @@
+# Local Django
+from . import *
