@@ -1,15 +1,15 @@
-from medication.models import Medication
+from medication.models import ManipulatedMedicine
 from django.views.generic import ListView
 
 
-class ListMedicationByHealthProfessional(ListView):
+class ListManipulatedMedicinenByHealthProfessional(ListView):
     '''
         View for listing medications created by the Health Professional.
     '''
 
-    template_name = 'list_medication.html'
-    context_object_name = 'list_medications'
-    model = Medication
+    template_name = 'list_manipulated_medicine.html'
+    context_object_name = 'list_manipulated_medicine'
+    model = ManipulatedMedicine
     paginate_by = 20
 
     # Listing objects created by the logged Health Professional.

@@ -1,14 +1,14 @@
 from django.views.generic import ListView
-from medication.models import Medication
+from medication.models import Medicine
 
 
-class ListAllMedications(ListView):
+class ListAllMedicines(ListView):
     '''
         View for list all medicatons in database.
     '''
-    template_name = 'list_all_medications.html'
-    context_object_name = 'list_medications'
-    model = Medication
+    template_name = 'list_all_medicines.html'
+    context_object_name = 'list_medicines'
+    model = Medicine
     paginate_by = 20
 
     # Listing all objects Medication in database.
