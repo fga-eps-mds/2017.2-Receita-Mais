@@ -10,7 +10,7 @@ from django.shortcuts import redirect, render
 
 # Local Django
 from user.forms import AddPatientForm
-from user.models import User
+from user.models import User, AssociatedHealthProfessionalAndPatient, Patient, HealthProfessional
 from user.models import SendInvitationProfile
 
 
@@ -27,20 +27,21 @@ class AddPatientView(FormView):
 
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            email_from_database = User.objects.filter(email=email)
+            email_from_database = Patient.objects.filter(email=email, is_active=True)
 
             if email_from_database.exists():
-                profile = User.objects.get(email=email)
+                patient_profile = Patient.objects.get(email=email)
+                AddPatientView.create_link_patient_health_professional(request.user, patient_profile)
+                AddPatientView.activate_link_patient_health_professional(patient_profile.email)
             else:
-                profile = AddPatientView.create_send_invitation_profile(email)
-                AddPatientView.send_invitation_email(email, profile)
+                patient_profile = AddPatientView.create_send_invitation_profile(email)
+                AddPatientView.send_invitation_email(email, patient_profile)
 
         else:
             # Nothing to do.
             pass
 
         return redirect('http://0.0.0.0:8000/dashboard_health_professional/health_professional/')
-
 
     def create_send_invitation_profile(email):
         # Prepare the information needed to send the account verification
@@ -51,11 +52,10 @@ class AddPatientView(FormView):
                                       encode('utf‌​-8')).hexdigest()
         key_expires = datetime.datetime.today() + datetime.timedelta(2)
 
-        user = User(email=email, is_active=False)
-        user.save()
+        patient = Patient.objects.create_user(email=email, is_active=False)
 
         # Creating the temporary user.
-        new_profile = SendInvitationProfile(user=user, activation_key=activation_key,
+        new_profile = SendInvitationProfile(patient=patient, activation_key=activation_key,
                                             key_expires=key_expires)
         new_profile.save()
 
@@ -71,3 +71,13 @@ class AddPatientView(FormView):
 
         send_mail(email_subject, email_body % SendInvitationProfile.activation_key,
                   'medicalprescriptionapp@gmail.com', [email], fail_silently=False)
+
+    def create_link_patient_health_professional(HealthProfessional, Patient):
+        link = AssociatedHealthProfessionalAndPatient(associated_health_professional=HealthProfessional,
+                                                      associated_patient=Patient, is_active=False)
+        link.save()
+
+    def activate_link_patient_health_professional(email):
+        patient_profile = Patient.objects.get(email=email)
+        AssociatedHealthProfessionalAndPatient.objects.filter(associated_patient=patient_profile,
+                                                              is_active=False).update(is_active=True)
