@@ -1,20 +1,18 @@
-"""
 # Django
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth.decorators import login_required
 
 # Local Django
-from exam.models import CustomExam
 from chat.forms import CreateMessage
-from user.models import HealthProfessional
+from chat.models import Message
 
 login_required()
 
 
 class ComposeView(FormView):
-    form_class = CreateCustomExams
-    template_name = 'create_custom_exams.html'
+    form_class = CreateMessage
+    template_name = 'compose.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
@@ -24,16 +22,14 @@ class ComposeView(FormView):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            description = form.cleaned_data.get('description')
-            name = form.cleaned_data.get('name')
-            user = request.user.healthprofessional
+            text = form.cleaned_data.get('text')
+            subject = form.cleaned_data.get('subject')
+            user_to = form.cleaned_data.get('user_to')
+            user_from = request.user.healthprofessional
 
-            health_professional_FK = user
-
-            CustomExam.objects.create(name=name, description=description,
-                                      health_professional_FK=health_professional_FK)
+            Message.objects.create(text=text, subject=subject,
+                                   user_to=user_to, user_from=user_from)
 
             return redirect('/dashboard_health_professional/health_professional')
 
         return render(request, self.template_name, {'form': form})
-"""

@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 # local django
 from chat import constants
 from chat.models import Message
+from user.models import User
 
 
 class MessageValidator():
@@ -17,21 +18,17 @@ class MessageValidator():
         Validating text.
         """
 
-        if text is not None and len(text) > constants.MAX_LENGTH_TEXT_SUBJECT:
+        if text is not None and len(text) > constants.MAX_LENGTH_TEXT_MESSAGE:
             raise forms.ValidationError({'text': [_(constants.TEXT_SIZE)]})
 
-    def validator_user_to(self, name):
+    def validator_user_to(self, user_to):
         """
         Validating user.
         """
-        user_base = Message.objects.filter(name=name)
+        email_from_database = User.objects.filter(email=user_to)
 
-        if name is not None and len(name) > constants.NAME_MAX_LENGTH:
-            raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})
-        elif name is not None and len(name) < constants.NAME_MIN_LENGTH:
-            raise forms.ValidationError({'name': [_(constants.NAME_SIZE)]})
-        elif not user_base.exists():
-            raise forms.ValidationError({'name': [_(constants.USER_EXISTS)]})
+        if not email_from_database.exists():
+            raise forms.ValidationError({'user_to': [_(constants.USER_EXISTS)]})
 
     def validator_subject(self, subject):
         """

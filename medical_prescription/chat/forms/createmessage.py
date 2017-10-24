@@ -3,15 +3,23 @@ from django import forms
 
 # local django
 from chat.models import Message
-
-from exam.validators import CustomExamValidator
+from django.utils.translation import ugettext_lazy as _
+from chat.validators import MessageValidator
 
 
 class CreateMessage(forms.ModelForm):
     """
     Form to create a custom exam.
     """
-    description = forms.CharField(widget=forms.Textarea)
+    subject = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                            'type': 'text',
+                                                            'placeholder': _('Assunto:')}))
+    user_to = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                            'type': 'text',
+                                                            'placeholder': _('Para:')}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
+                                                         'type': 'text',
+                                                         'placeholder': _('Insira aqui sua mensagem')}))
 
     class Meta:
         # Define model to form.
@@ -35,9 +43,9 @@ class CreateMessage(forms.ModelForm):
         Checks validator in all fields.
         """
 
-        validator = CustomExamValidator()
+        validator = MessageValidator()
 
         # Fields common all users.
-        validator.validator_name(text)
+        validator.validator_text(text)
         validator.validator_subject(subject)
         validator.validator_user_to(user_to)

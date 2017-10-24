@@ -1,2 +1,2 @@
 # Local Django
-from . import *
+from .messagevalidator import MessageValidator
