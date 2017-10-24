@@ -2,10 +2,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth.decorators import login_required
+from datetime import date
 
 # Local Django
 from chat.forms import CreateMessage
 from chat.models import Message
+from user.models import User
 
 login_required()
 
@@ -24,11 +26,12 @@ class ComposeView(FormView):
         if form.is_valid():
             text = form.cleaned_data.get('text')
             subject = form.cleaned_data.get('subject')
-            user_to = form.cleaned_data.get('user_to')
-            user_from = request.user.healthprofessional
+            user_to_email = form.cleaned_data.get('user_to')
+            user_from = request.user
+            user_to = User.objects.get(email=user_to_email)
 
             Message.objects.create(text=text, subject=subject,
-                                   user_to=user_to, user_from=user_from)
+                                   user_to=user_to, user_from=user_from, date=date.today())
 
             return redirect('/dashboard_health_professional/health_professional')
 

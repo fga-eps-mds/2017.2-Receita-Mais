@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from chat.validators import MessageValidator
 
 
-class CreateMessage(forms.ModelForm):
+class CreateMessage(forms.Form):
     """
     Form to create a custom exam.
     """
@@ -21,11 +21,6 @@ class CreateMessage(forms.ModelForm):
                                                          'type': 'text',
                                                          'placeholder': _('Insira aqui sua mensagem')}))
 
-    class Meta:
-        # Define model to form.
-        model = Message
-        fields = ('text', 'subject', 'user_to')
-
     def clean(self):
         """
         Get Custom Exam fields.
@@ -33,7 +28,7 @@ class CreateMessage(forms.ModelForm):
 
         text = self.cleaned_data.get('text')
         subject = self.cleaned_data.get('subject')
-        user_to = self.cleaned_data.get('subject')
+        user_to = self.cleaned_data.get('user_to')
 
         # Verify validations in form.
         self.validator_all(text, subject, user_to)
