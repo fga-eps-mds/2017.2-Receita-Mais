@@ -2,7 +2,7 @@
 from django.db import models
 
 # local django
-from medication import constants
+from medicine import constants
 
 
 class Medicine(models.Model):

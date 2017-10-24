@@ -1,7 +1,7 @@
 from django.views.generic import CreateView
 from django.urls import reverse
 
-from medication.forms import CreateManipulatedMedicineForm
+from medicine.forms import CreateManipulatedMedicineForm
 
 
 class CreateMedicineView(CreateView):
@@ -10,7 +10,7 @@ class CreateMedicineView(CreateView):
     form_class = CreateManipulatedMedicineForm
 
     def get_success_url(self):
-        return reverse('list_medicine')
+        return reverse('list_all_medicines')
 
     def form_valid(self, form):
         form.instance.health_professional = self.request.user.healthprofessional

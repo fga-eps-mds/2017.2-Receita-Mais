@@ -1,4 +1,0 @@
-from .create_medicine import CreateMedicineView
-from .list_manipulated_medicine_by_health_professional import ListManipulatedMedicinenByHealthProfessional
-from .edit import UpdateMedicine
-from .list_all_medicines import ListAllMedicines

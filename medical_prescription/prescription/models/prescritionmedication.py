@@ -1,6 +1,6 @@
 from django.db import models
 
-from medication.models import Medicine
+from medicine.models import Medicine
 from prescription.models import Prescription
 
 

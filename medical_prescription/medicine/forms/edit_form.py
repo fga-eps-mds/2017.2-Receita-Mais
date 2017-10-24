@@ -1,11 +1,11 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from medication.models import ManipulatedMedicine
-from medication import constants
+from medicine.models import ManipulatedMedicine
+from medicine import constants
 
 
-class CreateManipulatedMedicineForm(forms.ModelForm):
+class EditForm(forms.ModelForm):
 
     recipe_name = forms.CharField(max_length=constants.MAX_LENGTH_NAME,
                                   widget=forms.TextInput(attrs={'class': 'form-control',

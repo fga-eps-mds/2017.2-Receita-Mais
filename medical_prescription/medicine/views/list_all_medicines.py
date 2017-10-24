@@ -1,5 +1,6 @@
 from django.views.generic import ListView
-from medication.models import Medicine
+
+from medicine.models import Medicine
 
 
 class ListAllMedicines(ListView):

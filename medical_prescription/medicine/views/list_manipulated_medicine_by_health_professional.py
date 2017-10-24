@@ -1,5 +1,6 @@
-from medication.models import ManipulatedMedicine
 from django.views.generic import ListView
+
+from medicine.models import ManipulatedMedicine
 
 
 class ListManipulatedMedicinenByHealthProfessional(ListView):

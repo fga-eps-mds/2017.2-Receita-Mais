@@ -1,17 +1,17 @@
 from django.test import TestCase, RequestFactory
-from medication.views import CreateMedicationView
-from medication.forms import CreateMedicationForm
+from medicine.views import CreateMedicineView
+from medicine.forms import CreateManipulatedMedicineForm
 from user.models import HealthProfessional
 
 
-class TesteCreateMedication(TestCase):
+class TesteCreateMedicine(TestCase):
 
     def setUp(self):
 
         self.factory = RequestFactory()
 
-        self.form_class = CreateMedicationForm
-        self.class_name = CreateMedicationView
+        self.form_class = CreateManipulatedMedicineForm
+        self.class_name = CreateMedicineView
 
         # Creating a Health Professional
         self.health_professional = HealthProfessional()
@@ -28,4 +28,4 @@ class TesteCreateMedication(TestCase):
 
     def test_redirect_true(self):
         my_class = self.class_name()
-        self.assertEqual(my_class.get_success_url(), '/pt-br/medication/list_medication/')
+        self.assertEqual(my_class.get_success_url(), '/pt-br/medicine/list_all_medicines/')
