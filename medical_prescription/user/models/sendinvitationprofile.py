@@ -16,7 +16,7 @@ class SendInvitationProfile(models.Model):
     key_expires = models.DateTimeField(default=datetime.date.today())
 
     def __str__(self):
-        return self.user.email
+        return self.patient.email
 
     class Meta:
         verbose_name_plural = u'Send Invitation Profile'
