@@ -17,6 +17,7 @@ function cloneMore(selector, prefix, functionJson) {
       'id': id
     }).val('').removeAttr('checked');
     $(this).prop("readonly", false);
+    console.log(functionJson);
     autocompleteElement(this, functionJson);
   });
   total++;

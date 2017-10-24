@@ -27,8 +27,7 @@ class CreateManipulatedMedicineForm(forms.ModelForm):
                                                                 'type': 'text',
                                                                 'placeholder': _('Unidade de Medida')}))
 
-    composition = forms.CharField(max_length=constants.MAX_LENGTH_PHYSICAL_FORM,
-                                  widget=forms.Textarea(
+    composition = forms.CharField(widget=forms.Textarea(
                                          attrs={'class': 'form-control',
                                                 'cols': '10',
                                                 'rows': '5'}))

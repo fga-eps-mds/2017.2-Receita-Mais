@@ -1,9 +1,7 @@
 from django import forms
 
-from prescription.models import Prescription
 
-
-class CreatePrescriptionExamForm(forms.Form):
+class CreatePrescriptionForm(forms.Form):
     """
     Form to create prescription.
     """

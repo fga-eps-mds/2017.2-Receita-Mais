@@ -7,24 +7,24 @@ from django.forms import formset_factory
 
 # Local Django
 from prescription.forms import (CreatePrescriptionForm,
-                                ExamPrescriptionForm
+                                MedicinePrescriptionForm
                                 )
 
 
-class CreatePrescriptionView(FormView):
+class CreatePrescriptionMedicine(FormView):
     """
     Responsible for rendering to fields.
     """
-    template_name = 'show_prescription.html'
+    template_name = 'show_prescription_medicine.html'
     # Defines that this form will have multiple instances.
-    ExamPrescriptionFormSet = formset_factory(ExamPrescriptionForm)
+    MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
 
     def get(self, request, *args, **kwargs):
         """
         Rendering form in view.
         """
         form = CreatePrescriptionForm(request.GET or None)
-        formset = self.ExamPrescriptionFormSet(request.GET or None)
+        formset = self.MedicinePrescriptionFormSet(request.GET or None)
 
         data = dict()
         context = {'form': form,
@@ -38,7 +38,7 @@ class CreatePrescriptionView(FormView):
         Save data in the form in database.
         """
         form = CreatePrescriptionForm(request.POST or None)
-        formset = self.ExamPrescriptionFormSet(request.POST or None)
+        formset = self.MedicinePrescriptionFormSet(request.POST or None)
         data = dict()
 
         # Checks whether the completed forms are valid.
