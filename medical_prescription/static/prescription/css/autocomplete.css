@@ -11,11 +11,11 @@
   z-index: 215000000 !important;
   background-color: #ffffff;
   max-height: 250px;
+  max-width: 75%;
   overflow-y: auto;
   /* prevent horizontal scrollbar */
   overflow-x: hidden;
   /* add padding for vertical scrollbar */
-  padding: 0;
   list-style-type: none;
   margin-top: 0%;
   margin-bottom: 0%;
