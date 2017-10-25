@@ -62,7 +62,7 @@ class PatientForm(UserForm):
         validator = PatientValidator()
 
         # Fields common all users.
-        validator.validator_email(email)
+        # validator.validator_email(email)
         validator.validator_password(password, password_confirmation)
         validator.validator_name(name)
         validator.validator_phone_number(phone)
