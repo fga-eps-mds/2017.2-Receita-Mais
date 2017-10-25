@@ -7,7 +7,6 @@ import random
 from django.views.generic import FormView
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
-from django.contrib import messages
 
 # Local Django
 from user.forms import AddPatientForm
@@ -40,17 +39,15 @@ class AddPatientView(FormView):
                                                                                               associated_health_professional=health_professional_profile)
 
                 if relationship_database.exists():
-                    messages.success(
-                        request, 'O paciente já está adicionado à sua lista de pacientes.', extra_tags='alert')
+                    # message = 'O paciente já está adicionado à sua lista de pacientes.'
+                    pass
                 else:
                     AddPatientView.relationship_does_not_exist(patient_profile, health_professional_profile)
-                    messages.success(
-                        request, 'O paciente foi adicionado à sua lista de pacientes.', extra_tags='alert')
+                    # message = 'O paciente foi adicionado à sua lista de pacientes.'
 
             else:
                 AddPatientView.email_does_not_exist(email, health_professional_profile)
-                messages.success(
-                    request, 'Um email de cadastro foi enviado ao paciente.', extra_tags='alert')
+                # message = 'Um email de cadastro foi enviado ao paciente.'
 
         else:
             # Nothing to do.

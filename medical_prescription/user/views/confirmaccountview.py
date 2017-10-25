@@ -12,6 +12,7 @@ from django.contrib import messages
 
 # Local Django
 from user.models import User, UserActivateProfile
+from . import AddPatientView
 
 
 # This class is responsible for doing user account activation.
@@ -73,6 +74,7 @@ class ConfirmAccountView(View):
         if user_profile.key_expires > timezone.now():
             user.is_active = True
             user.save()
+            AddPatientView.activate_link_patient_health_professional(user.email)
             user_profile.delete()
             messages.success(
                 request, 'Conta ativada com sucesso!Realize login para acessar o sistema.', extra_tags='alert')
