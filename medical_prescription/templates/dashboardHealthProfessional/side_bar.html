@@ -34,7 +34,18 @@
       <li class="header">HEADER</li>
       <!-- Optionally, you can add icons to the links -->
       <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      <li><a href="#"><i class="fa fa-wechat"></i> <span>{% trans "Conversas"%}</span></a></li>
+      <li class="treeview">
+        <a href="pages/mailbox/mailbox.html">
+          <i class="fa fa-envelope"></i> <span>{% trans "Conversas" %} </span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{% url 'inbox' %}">{% trans "Caixa de Entrada"%}</a></li>
+          <li><a href="{% url 'compose' %}">{% trans "Nova Mensagem"%}</a></li>
+        </ul>
+      </li>
       <li><a href="#"><i class="fa fa-users"></i> <span>{% trans "Paciente"%}s</span></a></li>
       <li class="treeview">
         <a href="#"><i class="fa fa-files-o"></i> <span>{% trans "Receitas"%}</span>
@@ -84,18 +95,7 @@
           <li><a href="{% url 'list_custom_exams' %}">{% trans "Visualizar Exames Personalizados"%}</a></li>
         </ul>
       </li>
-      <li class="treeview">
-        <a href="pages/mailbox/mailbox.html">
-          <i class="fa fa-envelope"></i> <span>Mailbox</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{% url 'inbox' %}">{% trans "Caixa de Entrada"%}</a></li>
-          <li><a href="{% url 'compose' %}">{% trans "Nova Mensagem"%}</a></li>
-        </ul>
-      </li>
+
     </ul>
 
     <!-- /.sidebar-menu -->
