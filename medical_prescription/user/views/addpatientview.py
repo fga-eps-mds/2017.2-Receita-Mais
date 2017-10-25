@@ -6,7 +6,8 @@ import random
 # Django
 from django.views.generic import FormView
 from django.core.mail import send_mail
-from django.shortcuts import redirect, render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 # Local Django
 from user.forms import AddPatientForm
@@ -39,32 +40,57 @@ class AddPatientView(FormView):
                                                                                               associated_health_professional=health_professional_profile)
 
                 if relationship_database.exists():
-                    # message = 'O paciente já está adicionado à sua lista de pacientes.'
-                    pass
+                    message = AddPatientView.relationship_exists(patient_profile)
                 else:
-                    AddPatientView.relationship_does_not_exist(patient_profile, health_professional_profile)
-                    # message = 'O paciente foi adicionado à sua lista de pacientes.'
+                    message = AddPatientView.relationship_does_not_exist(patient_profile,
+                                                                         health_professional_profile)
 
             else:
-                AddPatientView.email_does_not_exist(email, health_professional_profile)
-                # message = 'Um email de cadastro foi enviado ao paciente.'
+                message = AddPatientView.patient_does_not_exist(email,
+                                                                health_professional_profile)
 
         else:
             # Nothing to do.
             pass
 
-        return redirect('http://0.0.0.0:8000/dashboard_health_professional/health_professional/')
+        messages.info(request, message, extra_tags='alert')
+        return redirect('/')
+
+    def relationship_exists(patient_profile):
+        if patient_profile.is_active:
+            message = 'O paciente já está adicionado em sua lista de pacientes.'
+        else:
+            profile = SendInvitationProfile.objects.get(patient=patient_profile)
+            AddPatientView.send_invitation_email(patient_profile.email, profile)
+            message = 'Um link de cadastro foi enviado ao paciente'
+
+        return message
 
     def relationship_does_not_exist(patient_profile, health_professional_profile):
-        AddPatientView.create_link_patient_health_professional(health_professional_profile, patient_profile)
-        AddPatientView.activate_link_patient_health_professional(patient_profile.email)
 
-    def email_does_not_exist(email, health_professional_profile):
+        AddPatientView.create_link_patient_health_professional(health_professional_profile,
+                                                               patient_profile)
+
+        if patient_profile.is_active:
+            AddPatientView.activate_link_patient_health_professional(patient_profile.email)
+            message = 'O paciente foi adicionado à sua lista de pacientes.'
+        else:
+            profile = SendInvitationProfile.objects.get(patient=patient_profile)
+            AddPatientView.send_invitation_email(patient_profile.email, profile)
+            message = 'Um link de cadastro foi enviado ao paciente'
+
+        return message
+
+    def patient_does_not_exist(email, health_professional_profile):
         send_invitation_profile = AddPatientView.create_send_invitation_profile(email)
         AddPatientView.send_invitation_email(email, send_invitation_profile)
         patient_profile = Patient.objects.get(email=email)
-        AddPatientView.create_link_patient_health_professional(health_professional_profile, patient_profile)
+        AddPatientView.create_link_patient_health_professional(health_professional_profile,
+                                                               patient_profile)
 
+        message = 'Um link de cadastro foi enviado ao paciente.'
+
+        return message
 
     def create_send_invitation_profile(email):
         # Prepare the information needed to send the account verification
@@ -79,7 +105,8 @@ class AddPatientView(FormView):
         patient.save()
 
         # Creating the temporary user.
-        new_profile = SendInvitationProfile(patient=patient, activation_key=activation_key,
+        new_profile = SendInvitationProfile(patient=patient,
+                                            activation_key=activation_key,
                                             key_expires=key_expires)
         new_profile.save()
 

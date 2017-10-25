@@ -30,7 +30,7 @@ class RegisterPatientView(FormView):
             patient = patient_profile.patient
         except:
             messages.success(
-                request, 'Não há convites!', extra_tags='alert')
+                request, 'Não há convites para esta conta!', extra_tags='alert')
             return redirect('/')
 
         form = self.form_class(initial=self.initial)
@@ -46,7 +46,7 @@ class RegisterPatientView(FormView):
             patient = patient_profile.patient
         except:
             messages.success(
-                request, 'Não há convites!', extra_tags='alert')
+                request, 'Não há convites para esta conta!', extra_tags='alert')
             return redirect('/')
 
         if patient_profile.key_expires < timezone.now():

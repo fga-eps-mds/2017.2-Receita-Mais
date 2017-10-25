@@ -26,6 +26,7 @@ class PatientForm(UserForm):
     id_document = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                                 'placeholder': '* 00000'}))
     date_of_birth = FormattedDateField(initial=date.today)
+    email = forms.EmailField()
 
     class Meta:
         # Define model to patient.
