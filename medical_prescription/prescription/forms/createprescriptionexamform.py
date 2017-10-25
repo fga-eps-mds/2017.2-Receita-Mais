@@ -1,6 +1,8 @@
+# Django
 from django import forms
 
-from prescription.models import Prescription
+# Django Local
+from prescription.validators import PrescriptionValidator
 
 
 class CreatePrescriptionExamForm(forms.Form):
@@ -13,6 +15,8 @@ class CreatePrescriptionExamForm(forms.Form):
     cid = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
                                                         'placeholder': 'CID'}), required=False)
 
+    validator = PrescriptionValidator()
+
     def clean(self):
         """
         Get prescription fields.
@@ -21,3 +25,7 @@ class CreatePrescriptionExamForm(forms.Form):
         cid = self.cleaned_data.get('cid')
 
         # TODO(Ronyell) Validating forms.
+        self.validator_all(patient, cid)
+
+    def validator_all(self, patient, cid):
+        self.validator.validator_cid(cid)
