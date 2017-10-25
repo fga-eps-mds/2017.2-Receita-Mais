@@ -1,3 +1,14 @@
+function autocomplete_patient(ul, item){
+  $.ui.autocomplete.prototype._renderItem = function(ul, item) {
+      item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+    
+      return $("<li></li>")
+        .data("item.autocomplete", item)
+        .append("<a>" + item.label + "</a>")
+        .appendTo(ul);
+    };
+  }
+
 function updateElementIndex(el, prefix, ndx) {
   var id_regex = new RegExp('(' + prefix + '-\\d+)');
   var replacement = prefix + '-' + ndx;
@@ -6,7 +17,7 @@ function updateElementIndex(el, prefix, ndx) {
   if (el.name) el.name = el.name.replace(id_regex, replacement);
 }
 
-function cloneMore(selector, prefix, functionJson) {
+function cloneMore(selector, prefix, functionJson, field) {
   var newElement = $(selector).clone(false);
   var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
   newElement.find(':input').each(function() {
@@ -17,8 +28,9 @@ function cloneMore(selector, prefix, functionJson) {
       'id': id
     }).val('').removeAttr('checked');
     $(this).prop("readonly", false);
-    console.log(functionJson);
-    autocompleteElement(this, functionJson);
+    if (id.includes(field)){
+      autocompleteElement(this, functionJson, field);
+    }
   });
   total++;
   $('#id_' + prefix + '-TOTAL_FORMS').val(total);
@@ -46,13 +58,18 @@ function deleteForm(prefix, btn) {
   return false;
 }
 
-function autocompleteElement(element, functionJson) {
+function autocompleteElement(element, functionJson, field) {
   $(element).autocomplete({
     source: functionJson,
     select: function(event, ui) {
       $(this).prop("readonly", true);
     },
-    minLength: 2
+    minLength: 2, 
+    create: function() {
+            $(this).data('ui-autocomplete')._renderItem  = function (ul, item) {
+              return autocomplete_patient(ul, item);
+            };
+  }
   });
 };
 

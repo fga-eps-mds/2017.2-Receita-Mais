@@ -1,7 +1,9 @@
-from django.views.generic import View
-from django.http import JsonResponse
+import json
 
 from user.models import User
+
+from django.http import HttpResponse
+from django.views.generic import View
 
 
 class AutoCompletePatient(View):
@@ -10,18 +12,22 @@ class AutoCompletePatient(View):
     """
     def get(self, request, *args, **kwargs):
         if request.is_ajax():
-            search = request.GET.get('search', '')
+            search = request.GET.get('term', '')
 
             # TODO(Ronyell) Modifying User to Patiente.
             queryset = User.objects.filter(name__icontains=search)[:5]
-            list = []
+            list_patients = []
 
             # TODO(Ronyell) Change the required data.
             # Encapsulates in a json needed to be sent.
             for patient in queryset:
-                list.append(patient.name)
-            data = {
-                'list': list,
-            }
-            print(list)
-            return JsonResponse(data)
+                patient_item = {}
+                patient_item['id'] = patient.id
+                patient_item['name'] = patient.name
+                patient_item['value'] = patient.name
+
+                list_patients.append(patient_item)
+            
+            data = json.dumps(list_patients)
+            mimetype = 'application/json'
+            return HttpResponse(data, mimetype)

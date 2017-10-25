@@ -6,12 +6,21 @@ from django.http import HttpResponse
 from medicine.models import (
                             ManipulatedMedicine
                             )
+from prescription import constants
 
 
 class AutoCompleteManipulatedMedicine(View):
     """
     Responsible for getting Medicines similar to digits entered to help the user.
     """
+
+    # Print only the first 175 characters of the composition.
+    def parse_composition(self, composition):
+        if len(composition) > constants.MAX_LENGTH_COMPOSITION_AUTOCOMPLETE:
+            return composition[:175] + '...'
+        else:
+            return composition
+
     def get(self, request, *args, **kwargs):
         if request.is_ajax():
             search = request.GET.get('term', '')
@@ -28,7 +37,8 @@ class AutoCompleteManipulatedMedicine(View):
                 manipulated_medicine_item['physical_form'] = manipulated_medicine.physical_form
                 manipulated_medicine_item['quantity'] = manipulated_medicine.quantity
                 manipulated_medicine_item['measurement'] = manipulated_medicine.measurement
-                manipulated_medicine_item['composition'] = manipulated_medicine.composition
+                manipulated_medicine_item['composition'] = self.parse_composition(manipulated_medicine.composition)
+
                 list_manipulated_medicines.append(manipulated_medicine_item)
 
             data = json.dumps(list_manipulated_medicines)

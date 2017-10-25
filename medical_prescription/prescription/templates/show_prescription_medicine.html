@@ -6,15 +6,18 @@
 <script>
         // This is an alternative to loading scripts while maintaining asynchrony in JavaScript.
         var configautocompletemanipulatedmedicine = "{% static "prescription/js/configautocompletemanipulatedmedicine.js" %}";
+        var configautocompletepatient = "{% static "prescription/js/configautocompletepatient.js" %}";
         var formset = "{% static "prescription/js/formset.js" %}";
-        $.getScript(configautocompletemanipulatedmedicine);
+        //$.getScript(configautocompletemanipulatedmedicine);
+        //$.getScript(configautocompletepatient);
         $.getScript(formset);
 
         // Methods to clone and autocomplete.
         $('#add_more').click(function() {
-          cloneMore('div.table:last', 'form', "{% url 'autocomplete_manipulated_medicine' %}");
+          cloneMore('div.table:last', 'form', "{% url 'autocomplete_manipulated_medicine' %}", "medicine");
         });
         autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_manipulated_medicine' %}");
+        autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}");
 </script>
 
 <div>
