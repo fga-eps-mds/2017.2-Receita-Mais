@@ -7,7 +7,7 @@ from .usermanager import UserManager
 
 
 class Patient(User):
-    id_document = models.CharField(blank=False, max_length=32, default='')
+    CPF_document = models.CharField(blank=False, max_length=11, default='')
     CEP = models.PositiveIntegerField(blank=False, validators=[MaxValueValidator(99999999)])
     UF = models.CharField(blank=False, max_length=2, default='')
     city = models.CharField(blank=False, max_length=50, default='')
