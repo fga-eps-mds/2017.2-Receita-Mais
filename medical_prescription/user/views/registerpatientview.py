@@ -38,10 +38,17 @@ class RegisterPatientView(FormView):
             phone = patient_form.cleaned_data.get('phone')
             date_of_birth = patient_form.cleaned_data.get('date_of_birth')
             id_document = patient_form.cleaned_data.get('id_document')
+            CEP = patient_form.cleaned_data.get('CEP')
+            UF = patient_form.cleaned_data.get('UF')
+            city = patient_form.cleaned_data.get('city')
+            neighborhood = patient_form.cleaned_data.get('neighborhood')
+            complement = patient_form.cleaned_data.get('complement')
 
             Patient.objects.create_user(email=email, password=password, name=name,
                                         sex=sex, date_of_birth=date_of_birth,
-                                        phone=phone, id_document=id_document)
+                                        phone=phone, id_document=id_document,
+                                        CEP=CEP, UF=UF, city=city,
+                                        neighborhood=neighborhood, complement=complement)
 
             logger.debug("Exit post method - Successful user registration.")
             logger.debug("Exit post method - Not successful user registration.")

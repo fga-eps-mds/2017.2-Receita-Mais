@@ -32,7 +32,8 @@ class PatientForm(UserForm):
         model = Patient
         fields = [
                 'name', 'email', 'date_of_birth', 'phone', 'sex',
-                'id_document', 'password'
+                'id_document', 'password', 'CEP', 'UF', 'city', 'neighborhood',
+                'complement'
                 ]
 
     def clean(self):
@@ -48,6 +49,11 @@ class PatientForm(UserForm):
         password_confirmation = self.cleaned_data.get('confirm_password')
         id_document = self.cleaned_data.get('id_document')
         date_of_birth = self.cleaned_data.get('date_of_birth')
+        CEP = self.cleaned_data.get('CEP')
+        UF = self.cleaned_data.get('UF')
+        city = self.cleaned_data.get('city')
+        neighborhood = self.cleaned_data.get('neighborhood')
+        complement = self.cleaned_data.get('complement')
 
         # Verify validations in form.
         self.validator_all(name, phone, email, password, password_confirmation, id_document, date_of_birth)
