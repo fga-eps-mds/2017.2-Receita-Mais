@@ -14,5 +14,6 @@ class ExamPrescriptionValidator():
         if exam is not None:
             exam_database = Exam.objects.filter(description=exam)
 
-            if not exam_database.exists:
+            if not exam_database.exists() or exam_database is None:
+                print("PASSA AQUI")
                 raise forms.ValidationError(constants.EXAM_INVALID)

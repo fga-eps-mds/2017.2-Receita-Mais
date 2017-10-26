@@ -14,5 +14,9 @@ class PrescriptionValidator():
         if cid is not None:
             disease_cid_database = Disease.objects.filter(id_cid_10=cid)
 
-            if not disease_cid_database.exists:
+            if not disease_cid_database.exists():
                 raise forms.ValidationError(constants.CID_INVALID)
+
+    def validator_pacient(self, patient):
+        if patient is None:
+            raise forms.ValidationError(constants.PATIENT_INVALID)
