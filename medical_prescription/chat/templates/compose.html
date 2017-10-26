@@ -1,8 +1,12 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
 <section class="content">
-  <div class="row">
 
+  <link rel="stylesheet" href = "{% static "chat/css/jquery-ui.css" %}" />
+  <script src ="{% static "chat/js/jquery.js" %}"></script>
+  <script src = "{% static "chat/js/jquery-ui.js" %}"> </script>
+  <script src = "{% static "chat/js/autocompleteemail.js" %}"></script>
+  <div class="row">
     <!-- /.col -->
     <div class="col-md-9">
       <div class="box box-primary">

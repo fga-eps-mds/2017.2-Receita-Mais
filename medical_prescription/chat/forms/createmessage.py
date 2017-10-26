@@ -2,7 +2,6 @@
 from django import forms
 
 # local django
-from chat.models import Message
 from django.utils.translation import ugettext_lazy as _
 from chat.validators import MessageValidator
 
@@ -15,11 +14,12 @@ class CreateMessage(forms.Form):
                                                             'type': 'text',
                                                             'placeholder': _('Assunto:')}))
     user_to = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control',
-                                                            'type': 'text',
-                                                            'placeholder': _('Para:')}))
+                                                             'type': 'email',
+                                                             'id': 'send_email',
+                                                             'placeholder': _('Para:')}))
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
-                                                         'type': 'text',
-                                                         'placeholder': _('Insira aqui sua mensagem')}))
+                                                        'type': 'text',
+                                                        'placeholder': _('Insira aqui sua mensagem')}))
 
     def clean(self):
         """
