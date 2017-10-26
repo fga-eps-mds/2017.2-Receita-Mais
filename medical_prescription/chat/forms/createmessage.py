@@ -20,6 +20,7 @@ class CreateMessage(forms.Form):
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
                                                         'type': 'text',
                                                         'placeholder': _('Insira aqui sua mensagem')}))
+    image = forms.FileField(required=False)
 
     def clean(self):
         """
