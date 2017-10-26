@@ -3,6 +3,7 @@ from user.views import ResetPasswordView
 from user.forms import ResetPasswordForm
 from user.models import User
 
+
 class TestResetPassword(TestCase):
 
     def setUp(self):

@@ -5,7 +5,7 @@ from chat import constants
 
 class Message(models.Model):
 
-    # TODO (Felipe) add file field and IMAGE (PIL).
+    # TODO (Felipe) add file field.
 
     user_from = models.ForeignKey(User, related_name="user_from")
     user_to = models.ForeignKey(User, related_name="user_to")

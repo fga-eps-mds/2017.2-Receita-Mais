@@ -4,7 +4,7 @@ from chat.models import Message
 
 class InboxView(ListView):
     '''
-        View for list messages in inbox.
+    View for list messages in inbox.
     '''
 
     template_name = 'inbox.html'
