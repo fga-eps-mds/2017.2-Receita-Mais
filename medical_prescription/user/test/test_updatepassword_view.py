@@ -21,7 +21,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
         self.user = User.objects.create_user(email='user@user.com',
                                              password='senha12')
 
-    def _without_login(self):
+    def get_without_login(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = AnonymousUser()
 
@@ -29,7 +29,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
                                                                              email=self.health_professional.email)
         self.assertEqual(response.status_code, 302)
 
-    def test_edit_health_professional_with_patient(self):
+    def test_get_health_professional_with_patient(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -37,7 +37,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
             UpdateUserPassword.edit_health_professional_password_view(request,
                                                                       email=self.health_professional.email)
 
-    def test_edit_health_professional_with_user(self):
+    def test_get_health_professional_with_user(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.user
 
@@ -45,7 +45,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
             UpdateUserPassword.edit_health_professional_password_view(request,
                                                                       email=self.health_professional.email)
 
-    def test_edit_health_professional_with_own_health_professional(self):
+    def test_get_health_professional_with_own_health_professional(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
@@ -53,8 +53,48 @@ class TestUpdateHealthProfessionalPassword(TestCase):
                                                                              email=self.health_professional.email)
         self.assertEqual(response.status_code, 200)
 
-    def test_edit_health_professional_with_health_professional(self):
+    def test_get_health_professional_with_health_professional(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
+        request.user = self.health_professional
+
+        with self.assertRaises(PermissionDenied):
+            UpdateUserPassword.edit_health_professional_password_view(request,
+                                                                      email='teste@teste.com')
+
+    def post_without_login(self):
+        request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
+        request.user = AnonymousUser()
+
+        response = UpdateUserPassword.edit_health_professional_password_view(request,
+                                                                             email=self.health_professional.email)
+        self.assertEqual(response.status_code, 302)
+
+    def test_post_health_professional_with_patient(self):
+        request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
+        request.user = self.patient
+
+        with self.assertRaises(PermissionDenied):
+            UpdateUserPassword.edit_health_professional_password_view(request,
+                                                                      email=self.health_professional.email)
+
+    def test_post_health_professional_with_user(self):
+        request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
+        request.user = self.user
+
+        with self.assertRaises(PermissionDenied):
+            UpdateUserPassword.edit_health_professional_password_view(request,
+                                                                      email=self.health_professional.email)
+
+    def test_post_health_professional_with_own_health_professional(self):
+        request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
+        request.user = self.health_professional
+
+        response = UpdateUserPassword.edit_health_professional_password_view(request,
+                                                                             email=self.health_professional.email)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_health_professional_with_health_professional(self):
+        request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
         with self.assertRaises(PermissionDenied):
@@ -113,3 +153,43 @@ class UpdatePatientPassword(TestCase):
         with self.assertRaises(PermissionDenied):
             UpdateUserPassword.edit_patient_password_view(request,
                                                           email='teste@teste.com')
+
+    def post_without_login(self):
+        request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
+        request.user = AnonymousUser()
+
+        response = UpdateUserPassword.edit_patient_password_view(request,
+                                                                 email=self.health_professional.email)
+        self.assertEqual(response.status_code, 302)
+
+    def test_post_patient_with_patient(self):
+        request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
+        request.user = self.patient
+
+        with self.assertRaises(PermissionDenied):
+            UpdateUserPassword.edit_patient_password_view(request,
+                                                          email="teste@teste.com")
+
+    def test_post_patient_with_user(self):
+        request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
+        request.user = self.user
+
+        with self.assertRaises(PermissionDenied):
+            UpdateUserPassword.edit_patient_password_view(request,
+                                                          email=self.patient.email)
+
+    def test_post_patient_with_own_patient(self):
+        request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
+        request.user = self.patient
+
+        response = UpdateUserPassword.edit_patient_password_view(request,
+                                                                 email=self.patient.email)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_patient_with_health_professional(self):
+        request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
+        request.user = self.health_professional
+
+        with self.assertRaises(PermissionDenied):
+            UpdateUserPassword.edit_patient_password_view(request,
+                                                          email=self.health_professional.email)
