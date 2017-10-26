@@ -44,6 +44,7 @@ class CreatePrescriptionView(FormView):
         # Checks whether the completed forms are valid.
         if form.is_valid():
             print(form.cleaned_data)
+
         for atomic_form in formset:
             if atomic_form.is_valid():
                 print(atomic_form.cleaned_data)

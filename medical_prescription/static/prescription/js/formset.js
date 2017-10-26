@@ -64,6 +64,7 @@ function autocompleteElement(element, functionJson, field) {
     source: functionJson,
     select: function(event, ui) {
       $(this).prop("readonly", true);
+      select_type_field(this, field, ui);
     },
     minLength: 2,
     create: function() {
@@ -83,7 +84,6 @@ function autocomplete_medicine(ul, item) {
   });
 
   var description = '<font size="2" color="gray">' + item.composition + '</font>';
-
   return $("<li></li>")
     .data("item.autocomplete", item)
     .append($img)
@@ -107,7 +107,6 @@ function autocomplete_cid(ul, item) {
 }
 
 function select_field(ul, item, field) {
-  console.log(field)
   switch (field) {
     case 'medicine':
       return autocomplete_medicine(ul, item);
@@ -121,5 +120,12 @@ function select_field(ul, item, field) {
       return autocomplete_cid(ul, item);
     default:
       return;
+  }
+}
+
+function select_type_field(element, field, ui) {
+  switch (field) {
+    case 'medicine':
+      $("#" + element.id + "_id").val(ui.item.id);
   }
 }

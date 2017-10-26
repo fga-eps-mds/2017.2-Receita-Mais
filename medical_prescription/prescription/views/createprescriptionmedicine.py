@@ -1,3 +1,5 @@
+import json
+
 # Django
 from django.views.generic import FormView
 from django.template.loader import render_to_string
@@ -42,14 +44,26 @@ class CreatePrescriptionMedicine(FormView):
         data = dict()
 
         # Checks whether the completed forms are valid.
-        if form.is_valid():
-            print(form.cleaned_data)
-        for atomic_form in formset:
-            if atomic_form.is_valid():
-                print(atomic_form.cleaned_data)
 
+        default_is_valid = False
+        atomic_is_valid = True
+        if form.is_valid():
+            default_is_valid = True
+            print(form.cleaned_data)
+            for atomic_form in formset:
+                actual_atomic_is_valid = False
+                if atomic_form.is_valid():
+                    if not default_is_valid:
+                        # Save default prescription
+                        pass
+                    actual_atomic_is_valid = True
+                    # Save atomic_form
+                    print(atomic_form.cleaned_data)
+                atomic_is_valid = atomic_is_valid and actual_atomic_is_valid
+
+        data['form_is_valid'] = default_is_valid and atomic_is_valid
         context = {'form': form,
                    'formset': formset}
-        data['html_form'] = render_to_string(self.template_name, context, request)
+        data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
         return JsonResponse(data)

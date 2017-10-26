@@ -8,14 +8,9 @@ class CreatePrescriptionForm(forms.Form):
     patient = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control patient-field',
                                                             'placeholder': 'Nome do Paciente:'}), required=False)
 
+    patient_id = forms.IntegerField(widget=forms.HiddenInput())
+
     cid = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
                                                         'placeholder': 'CID'}), required=False)
 
-    def clean(self):
-        """
-        Get prescription fields.
-        """
-        patient = self.cleaned_data.get('patient')
-        cid = self.cleaned_data.get('cid')
-
-        # TODO(Ronyell) Validating forms.
+    cid_id = forms.IntegerField(widget=forms.HiddenInput())

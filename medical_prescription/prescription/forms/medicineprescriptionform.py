@@ -1,5 +1,6 @@
 # django.
 from django import forms
+from prescription import constants
 
 
 class MedicinePrescriptionForm(forms.Form):
@@ -9,8 +10,9 @@ class MedicinePrescriptionForm(forms.Form):
     medicine = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
                                                              'placeholder': 'Medicamento'}))
 
-    quantity = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
-                                                                'placeholder': 'Quantidade'}))
+    medicine_id = forms.IntegerField(widget=forms.HiddenInput())
+
+    quantity = forms.ChoiceField(choices=constants.QUANTITY_CHOICES)
 
     posology = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
-                                                                'placeholder': 'Posologia'}))
+                                                             'placeholder': 'Posologia'}))

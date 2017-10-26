@@ -33,14 +33,12 @@ class AutoCompleteManipulatedMedicine(View):
                 manipulated_medicine_item = {}
                 manipulated_medicine_item['value'] = manipulated_medicine.recipe_name
                 manipulated_medicine_item['id'] = manipulated_medicine.id
-                manipulated_medicine_item['recipe_name'] = manipulated_medicine.recipe_name
-                manipulated_medicine_item['physical_form'] = manipulated_medicine.physical_form
-                manipulated_medicine_item['quantity'] = manipulated_medicine.quantity
-                manipulated_medicine_item['measurement'] = manipulated_medicine.measurement
+                manipulated_medicine_item['category'] = 'manipulated_medicine'
                 manipulated_medicine_item['composition'] = self.parse_composition(manipulated_medicine.composition)
 
                 list_manipulated_medicines.append(manipulated_medicine_item)
 
             data = json.dumps(list_manipulated_medicines)
+            print (data)
             mimetype = 'application/json'
             return HttpResponse(data, mimetype)

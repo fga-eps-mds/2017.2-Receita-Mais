@@ -21,7 +21,7 @@
     <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
     <h3 class="modal-title">Prescrição</h3>
   </div>
-  <form class="js-book-prescription-form" action="{% url 'create_modal' %}" method="post">
+  <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
   <div class="row">
       <div class="modal-body modal-open">
         {% csrf_token %}
