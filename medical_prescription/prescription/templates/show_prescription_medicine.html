@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
 
 <script>
         var formset = "{% static "prescription/js/formset.js" %}";
@@ -9,9 +10,9 @@
 
         // Methods to clone and autocomplete.
         $('#add_more').click(function() {
-          cloneMore('div.table:last', 'form', "{% url 'autocomplete_manipulated_medicine' %}", "medicine");
+          cloneMore('div.table:last', 'form', "{% url 'autocomplete_medicine' %}", "medicine");
         });
-        autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_manipulated_medicine' %}", "medicine");
+        autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_medicine' %}", "medicine");
         autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
         autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 </script>
@@ -25,23 +26,54 @@
   <div class="row">
       <div class="modal-body modal-open">
         {% csrf_token %}
-        {{ form.as_p }}
-
-      
-
-        {{ formset.management_form }} {% for atom_form in formset %}
-        <div class="table">
-          <table class='no_error'>
-            {% for label in atom_form %}
-            <div class="form-group">
-              {% for error in label.errors %}
-              <div class="alert alert-danger" role="alert">{{error}}</div>
-              {% endfor %} {{label}}
-            </div>
-            {% endfor %}
-          </table>
+        <div class="form-group">
+          {% for error in form.patient.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ form.patient.name }}"> Paciente: </label> {{form.patient}}
         </div>
-        <input class='remove-form-row' type="button" value="Remove-me"> {% endfor %}
+
+        <div class="form-group ">
+          {% for error in form.cid.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ form.cid.name }}"> Doença: </label> {{form.cid}}
+        </div>
+
+        <!-- Hidden fields -->
+          {{form.cid_id}}
+          {{form.patient_id}}
+
+        {{ formset.management_form }}
+        {% for atom_form in formset %}
+        <div class="table">
+              <div class="form-group">
+                {% for error in atom_form.medicine.errors %}
+                <div class="alert alert-danger" role="alert">{{error}}</div>
+                {% endfor %}
+                {{atom_form.medicine}}
+             </div>
+
+      <div class="row g-row-col-5 g-margin-b-50--xs">
+        <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+            {% for error in atom_form.posology.errors %}
+            <div class="alert alert-danger" role="alert">{{error}}</div>
+            {% endfor %}
+            {{atom_form.posology}}
+          </div>
+            <div class="col-sm-2">
+               {% for error in atom_form.quantity.errors %}
+               <div class="alert alert-danger" role="alert">{{error}}</div>
+               {% endfor %}{{atom_form.quantity}}
+             </div>
+      </div>
+
+          <!-- Hidden fields -->
+            {{atom_form.medicine_id}}
+            {{atom_form.medicine_type}}
+
+        </div>
+        {% endfor %}
         <input type="button" value="Add More" id="add_more">
     </div>
   </div>

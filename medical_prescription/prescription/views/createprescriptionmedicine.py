@@ -11,6 +11,7 @@ from prescription.forms import (CreatePrescriptionForm,
                                 )
 from prescription.models import (PrescriptionMedicine,
                                  PrescriptionHasManipulatedMedicine,
+                                 PrescriptionHasMedicine
                                  )
 
 
@@ -22,7 +23,10 @@ class CreatePrescriptionMedicine(FormView):
     # Defines that this form will have multiple instances.
     MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
 
-    def create_prescription_medicine_object(self, form):
+    def create_prescription_medicine(self, form):
+        """
+        Creates the base of the prescription
+        """
         patient_id = form.cleaned_data.get('patient_id')
         cid_id = form.cleaned_data.get('cid_id')
 
@@ -30,17 +34,45 @@ class CreatePrescriptionMedicine(FormView):
         prescription_medicine_object.save()
         return prescription_medicine_object
 
-    def create_prescription_has_manipulated_medicine_object(self, atomic_form, prescription_medicine):
-        medicine_id = atomic_form.cleaned_data.get('medicine_id')
-        posology = atomic_form.cleaned_data.get('posology')
-        quantity = atomic_form.cleaned_data.get('quantity')
-
+    def create_prescription_has_manipulated_medicine(self, medicine_id, quantity, posology, prescription_medicine):
         prescription_has_manipulatedmedicine_object = PrescriptionHasManipulatedMedicine(
             manipulated_medicine_id=medicine_id,
             posology=posology, quantity=quantity,
             prescription_medicine=prescription_medicine)
 
         prescription_has_manipulatedmedicine_object.save()
+
+    def create_prescription_has_medicine(self, medicine_id, quantity, posology, prescription_medicine):
+        prescription_has_medicine_object = PrescriptionHasMedicine(
+            medicine_id=medicine_id,
+            posology=posology, quantity=quantity,
+            prescription_medicine=prescription_medicine)
+
+        prescription_has_medicine_object.save()
+
+    def add_medicine_in_prescription(self, atomic_form, prescription_medicine):
+        """
+        Defines which type of drug will be added to the prescription and adds it.
+        """
+
+        medicine_type = atomic_form.cleaned_data.get('medicine_type')
+        medicine_id = atomic_form.cleaned_data.get('medicine_id')
+        quantity = atomic_form.cleaned_data.get('quantity')
+        posology = atomic_form.cleaned_data.get('posology')
+
+        if medicine_type == 'medicine':
+            self.create_prescription_has_medicine(medicine_id,
+                                                  quantity,
+                                                  posology,
+                                                  prescription_medicine)
+        elif medicine_type == 'manipulated_medicine':
+            self.create_prescription_has_manipulated_medicine(medicine_id,
+                                                              quantity,
+                                                              posology,
+                                                              prescription_medicine)
+        else:
+            # Nothing to do.
+            pass
 
     def get(self, request, *args, **kwargs):
         """
@@ -70,13 +102,12 @@ class CreatePrescriptionMedicine(FormView):
         atomic_is_valid = False
         if form.is_valid():
             default_is_valid = True
-            print(form.cleaned_data)
             if formset.is_valid():
                 atomic_is_valid = True
-                prescription_medicine_object = self.create_prescription_medicine_object(form)
+                prescription_medicine_object = self.create_prescription_medicine(form)
 
                 for atomic_form in formset:
-                    self.create_prescription_has_manipulated_medicine_object(atomic_form, prescription_medicine_object)
+                    self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
 
         data['form_is_valid'] = default_is_valid and atomic_is_valid
         context = {'form': form,

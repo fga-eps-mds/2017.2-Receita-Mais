@@ -7,12 +7,15 @@ class MedicinePrescriptionForm(forms.Form):
     """
     Form to associate medicine to prescription.
     """
-    medicine = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
+    medicine = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
                                                              'placeholder': 'Medicamento'}))
 
     medicine_id = forms.IntegerField(widget=forms.HiddenInput())
 
-    quantity = forms.ChoiceField(choices=constants.QUANTITY_CHOICES)
+    medicine_type = forms.CharField(widget=forms.HiddenInput())
 
-    posology = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
+    quantity = forms.ChoiceField(choices=constants.QUANTITY_CHOICES,
+                                 widget=forms.Select(attrs={'class': 'select-quantity'}))
+
+    posology = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control',
                                                              'placeholder': 'Posologia'}))
