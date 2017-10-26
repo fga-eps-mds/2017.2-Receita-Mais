@@ -1,13 +1,13 @@
 # Django imports
 from django.test import TestCase
-from django.test.client import RequestFactory, Client
+from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
 
 
 # Local Django imports
 from exam.views import UpdateCustomExam
 from exam.models import CustomExam
-from user.models import User, Patient, HealthProfessional
+from user.models import Patient, HealthProfessional
 
 
 class UpdateCustomExamsViewTest(TestCase):
@@ -31,47 +31,47 @@ class UpdateCustomExamsViewTest(TestCase):
 
     # Testing view calls
     def test_get_without_login(self):
-        request = self.factory.get('/exam/update_custom_exams/1/')
+        request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = AnonymousUser()
 
-        response = UpdateCustomExam.as_view()(request)
+        response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
     def test_get_with_patient(self):
-        request = self.factory.get('/exam/update_custom_exams/1/')
+        request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
-        response = UpdateCustomExam.as_view()(request)
+        response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    '''def test_get_with_health_professional(self):
-        request = self.factory.get('/exam/update_custom_exams/1/')
+    def test_get_with_health_professional(self):
+        request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 
-        response = UpdateCustomExam.as_view()(request)
-        self.assertEqual(response.status_code, 200)'''
+        response = UpdateCustomExam.as_view()(request, pk=1)
+        self.assertEqual(response.status_code, 200)
 
     # Testing method 'post' in UpdateCustomExam.
     def test_post_without_login(self):
-        request = self.factory.post('/exam/update_custom_exams/1/',
+        request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
                                     {'name': self.name, 'description': self.description})
         request.user = AnonymousUser()
 
-        response = UpdateCustomExam.as_view()(request)
+        response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
     def test_post_with_patient(self):
-        request = self.factory.post('/exam/update_custom_exams/1/',
+        request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
                                     {'name': self.name, 'description': self.description})
         request.user = self.patient
 
-        response = UpdateCustomExam.as_view()(request)
+        response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    '''def test_post_with_health_professional(self):
-        request = self.factory.post('/exam/update_custom_exams/1/',
+    def test_post_with_health_professional(self):
+        request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
                                     {'name': self.name, 'description': self.description})
         request.user = self.health_professional
 
-        response = UpdateCustomExam.as_view()(request)
-        self.assertEqual(response.status_code, 200)'''
+        response = UpdateCustomExam.as_view()(request, pk=1)
+        self.assertEqual(response.status_code, 302)  # Status code isn't '200' because the view is redirected
