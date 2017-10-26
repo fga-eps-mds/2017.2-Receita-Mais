@@ -11,3 +11,7 @@ class AssociatedHealthProfessionalAndPatient(models.Model):
     associated_patient = models.ForeignKey(Patient)
     associated_health_professional = models.ForeignKey(HealthProfessional)
     is_active = models.BooleanField(default=False)
+
+    # Ordering by email.
+    class Meta:
+        ordering = ["associated_patient"]

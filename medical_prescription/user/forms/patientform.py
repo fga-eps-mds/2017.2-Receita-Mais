@@ -1,5 +1,4 @@
 # standard library
-from datetime import date
 import logging
 
 # django
@@ -7,9 +6,7 @@ from django import forms
 
 # local django
 from user.models import Patient
-from user.forms import (UserForm,
-                        FormattedDateField
-                        )
+from user.forms import UserForm
 from user.validators import PatientValidator
 from user import constants
 
@@ -25,7 +22,6 @@ class PatientForm(UserForm):
     """
     id_document = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                                 'placeholder': '* 00000'}))
-    date_of_birth = FormattedDateField(initial=date.today)
     email = forms.EmailField()
 
     class Meta:
