@@ -2,9 +2,14 @@
 
 <form class="post-form" method='POST' action=''>
   <div class="box-body">
-
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'messages/css/messages.css' %}">
     <div class="form-group">
       {% csrf_token %}
+      {% for message in messages %}
+        <div class="isa_info">
+          <i class="fa fa-info-circle"></i>{{ message }}</div>
+      {% endfor %}
       {% for error in form.email.errors %}
           <div class="alert alert-danger" role="alert">{{ error }}</div>
       {% endfor %}

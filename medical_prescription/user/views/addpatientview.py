@@ -54,7 +54,7 @@ class AddPatientView(FormView):
             pass
 
         messages.info(request, message, extra_tags='alert')
-        return redirect('/')
+        return redirect('/user/addpatient/')
 
     def relationship_exists(patient_profile):
         if patient_profile.is_active:
@@ -129,5 +129,8 @@ class AddPatientView(FormView):
         link.save()
 
     def activate_link_patient_health_professional(email):
-        patient_profile = Patient.objects.get(email=email)
-        AssociatedHealthProfessionalAndPatient.objects.filter(associated_patient=patient_profile).update(is_active=True)
+        patient_from_database = Patient.objects.filter(email=email)
+
+        if patient_from_database.exists():
+            patient_profile = Patient.objects.get(email=email)
+            AssociatedHealthProfessionalAndPatient.objects.filter(associated_patient=patient_profile).update(is_active=True)
