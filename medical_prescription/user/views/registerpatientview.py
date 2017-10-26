@@ -37,7 +37,7 @@ class RegisterPatientView(FormView):
             sex = patient_form.cleaned_data.get('sex')
             phone = patient_form.cleaned_data.get('phone')
             date_of_birth = patient_form.cleaned_data.get('date_of_birth')
-            id_document = patient_form.cleaned_data.get('id_document')
+            CPF_document = patient_form.cleaned_data.get('CPF_document')
             CEP = patient_form.cleaned_data.get('CEP')
             UF = patient_form.cleaned_data.get('UF')
             city = patient_form.cleaned_data.get('city')
@@ -46,7 +46,7 @@ class RegisterPatientView(FormView):
 
             Patient.objects.create_user(email=email, password=password, name=name,
                                         sex=sex, date_of_birth=date_of_birth,
-                                        phone=phone, id_document=id_document,
+                                        phone=phone, CPF_document=CPF_document,
                                         CEP=CEP, UF=UF, city=city,
                                         neighborhood=neighborhood, complement=complement)
 
