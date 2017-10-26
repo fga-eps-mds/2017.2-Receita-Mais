@@ -127,5 +127,18 @@ function select_type_field(element, field, ui) {
   switch (field) {
     case 'medicine':
       $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'patient':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'disease':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'exam':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'cid':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
   }
 }
