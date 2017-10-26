@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(constants.DEFAULT_LOGGER)
 
 
+# This class makes the patient register.
 class RegisterPatientView(FormView):
     form_class = PatientForm
     template_name = 'register_patient.html'
@@ -33,6 +34,7 @@ class RegisterPatientView(FormView):
                 request, 'Não há convites para esta conta!', extra_tags='alert')
             return redirect('/')
 
+        # Defining the email field with the invitated patient email.
         form = self.form_class(initial=self.initial)
         form.fields["email"].initial = patient.email
         form.fields['email'].widget.attrs['readonly'] = True
@@ -49,6 +51,8 @@ class RegisterPatientView(FormView):
                 request, 'Não há convites para esta conta!', extra_tags='alert')
             return redirect('/')
 
+        # If the time to make the register is expired, a error message is
+        # displayed.
         if patient_profile.key_expires < timezone.now():
             messages.success(
                 request, 'Tempo de registro expirado!', extra_tags='alert')
@@ -65,6 +69,8 @@ class RegisterPatientView(FormView):
 
         return render(request, self.template_name, {'form': patient_form})
 
+    # This method is responsible for make the register of the invited patient
+    # informations in database.
     def register_patient(patient, patient_form, patient_profile):
         patient.name = patient_form.cleaned_data.get('name')
         patient.sex = patient_form.cleaned_data.get('sex')
@@ -75,10 +81,10 @@ class RegisterPatientView(FormView):
         password = patient_form.cleaned_data.get('password')
         patient.set_password(password)
 
-        patient.is_active = True
         patient.save()
-        patient_profile.delete()
 
+        # Calls the method responsible for make all the activation account
+        # process.
         ConfirmAccountView.activate_account_request(patient.email)
 
         logger.debug("Exit post method - Successful user registration.")

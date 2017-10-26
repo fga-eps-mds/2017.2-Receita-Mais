@@ -74,6 +74,7 @@ class ConfirmAccountView(View):
         if user_profile.key_expires > timezone.now():
             user.is_active = True
             user.save()
+            # Calling the method that activate the users relationship.
             AddPatientView.activate_link_patient_health_professional(user.email)
             user_profile.delete()
             messages.success(

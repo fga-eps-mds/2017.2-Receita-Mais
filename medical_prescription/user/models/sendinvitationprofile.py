@@ -8,8 +8,8 @@ from django.db import models
 from user.models import Patient
 
 
-# This class defines the temporary user fields required for account activation.
-# This is a temporary profile, which is deleted when account is confirmated.
+# This class defines the fields necessary to invite a patient to register in
+# the system.
 class SendInvitationProfile(models.Model):
     patient = models.OneToOneField(Patient)
     activation_key = models.CharField(blank=False, max_length=100)
