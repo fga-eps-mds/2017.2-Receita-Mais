@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.test.client import RequestFactory, Client
+from django.test.client import RequestFactory
 
 from user.models import HealthProfessional
 from medication.models import Medication
@@ -33,7 +33,3 @@ class TestMedicationList(TestCase):
 
     def teste_len_false(self):
         self.assertNotEqual(len(self.health_professional_medications), 50)
-
-    '''def teste_get(self):
-        self.client.login(email='test@test.com', password='test404')
-        self.assertTrue('list_medications' in self.resp.context)'''

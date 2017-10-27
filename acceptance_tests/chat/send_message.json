@@ -1,0 +1,30 @@
+{
+  "CreationDate": "2017-10-24",
+  "Commands": [
+    {
+      "Command": "type",
+      "Target": "id=id_user_to",
+      "Value": "bumbleblo2013@gmail.com"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_subject",
+      "Value": "Assunto"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_text",
+      "Value": "MEU TEXTO"
+    },
+    {
+      "Command": "click",
+      "Target": "css=button.btn.btn-primary",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div[1]/div[1]/section/p",
+      "Value": "Em breve!"
+    }
+  ]
+}
