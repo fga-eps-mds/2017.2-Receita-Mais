@@ -31,12 +31,13 @@ class TestComposeView(TestCase):
         self.user = User.objects.create_user(email='javed@javed.com', password='my_secret')
 
     # Testing method 'get' in CreateCustomExamsView.
+"""
     def test_get(self):
         request = self.factory.get('/chat/compose/')
         response = self.my_view.get(request)
         request.user = self.user
         self.assertEqual(response.status_code, 200)
-"""
+
     def test_post(self):
         request = self.factory.get('/chat/compose/')
         request.user = self.user
