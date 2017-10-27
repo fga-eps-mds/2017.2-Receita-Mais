@@ -27,8 +27,26 @@ class PatientForm(UserForm):
     """
     Form to register patientl.
     """
-    CPF_document = BRCPFField(max_length=14, min_length=11)
-    date_of_birth = FormattedDateField(initial=date.today)
+    CPF_document = BRCPFField(max_length=14, min_length=11,
+                              widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                            'type': 'number',
+                                                            'placeholder': '* 12345678911'}))
+
+    CEP = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                        'placeholder': '* 12345678911'}))
+
+    UF = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                       'placeholder': '* DF'}))
+
+    city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                         'placeholder': '* Brasília'}))
+
+    neighborhood = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                 'placeholder': '* Asa Norte'}))
+
+    complement = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                               'size': 200,
+                                                               'placeholder': '* Qd 70, Lt 8 Casa 2'}))
 
     class Meta:
         # Define model to patient.
