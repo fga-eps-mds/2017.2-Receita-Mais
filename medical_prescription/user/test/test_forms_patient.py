@@ -38,11 +38,11 @@ class TestPatientForm(TestCase):
         self.sex_valid = 'M'
         self.sex_invalid = 'A'
 
-        self.id_document_valid = '12345678910654'
-        self.id_document_invalid = '1'
-        self.id_document_invalid_MIN = '1'
-        self.id_document_invalid_MAX = '123456789101112131415161718192021222324252627282930'
-        self.id_document_invalid_TYPE = '252627282930asdf'
+        self.CPF_document_valid = '61367541000'
+        self.CPF_document_invalid = '11111111111'
+        self.CPF_document_invalid_MIN = '111111111'
+        self.CPF_document_invalid_MAX = '11111111111'
+        self.CPF_document_invalid_TYPE = '252627282930asdf'
 
         self.CEP_valid = 72850735
         self.CEP_invalid = '7285073A'
@@ -64,8 +64,9 @@ class TestPatientForm(TestCase):
 
         self.complement_valid = 'Rua 01, Quadra 10, Lote 15'
         self.complement_invalid = ''
-        self.complement_invalid_MAX = '''aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'''
+        self.complement_invalid_MAX = '''aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'''
 
         user = User()
         user.email = "admin@hotmail.com"
@@ -77,7 +78,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -94,7 +95,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -111,7 +112,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -128,7 +129,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -145,7 +146,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -162,7 +163,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -179,7 +180,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -196,7 +197,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_invalid_TYPE,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -213,7 +214,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_invalid_MAX,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -230,7 +231,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_invalid_MIN,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -247,7 +248,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_invalid_BASE,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -264,7 +265,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_TYPE,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -281,7 +282,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_MIN,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -298,7 +299,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_MAX,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -315,7 +316,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_MAX,
                      'confirm_password': self.password_invalid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -326,13 +327,13 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_id_document_is_not_valid_TYPE(self):
+    def test_forms_patient_CPF_document_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_invalid_TYPE,
+                     'CPF_document': self.CPF_document_invalid_TYPE,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -343,13 +344,13 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_id_document_is_not_valid_MIN(self):
+    def test_forms_patient_CPF_document_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_invalid_MIN,
+                     'CPF_document': self.CPF_document_invalid_MIN,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -360,13 +361,13 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_id_document_is_not_valid_MAX(self):
+    def test_forms_patient_CPF_document_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_invalid_MAX,
+                     'CPF_document': self.CPF_document_invalid_MAX,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -383,7 +384,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_invalid_FORMAT,
                      'CEP': self.CEP_valid,
@@ -400,7 +401,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_invalid_MIN,
                      'CEP': self.CEP_valid,
@@ -417,7 +418,7 @@ class TestPatientForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_invalid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
@@ -428,152 +429,16 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_invalid_0(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_invalid,
-                     'password': self.password_invalid,
-                     'confirm_password': self.password_invalid,
-                     'id_document': self.id_document_invalid,
-                     'sex': self.sex_invalid,
-                     'date_of_birth': self.date_of_birth_invalid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_1(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_invalid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_2(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_invalid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_3(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_invalid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_4(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_invalid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_5(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_invalid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_6(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_invalid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_7(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_invalid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_invalid_8(self):
+    def test_forms_patient_CEP_is_not_valid(self):
         form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_invalid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_invalid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
+                     'CEP': self.CEP_invalid,
                      'UF': self.UF_valid,
                      'city': self.city_valid,
                      'neighborhood': self.neighborhood_valid,
@@ -581,16 +446,16 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_invalid_9(self):
+    def test_forms_patient_CEP_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
+                     'phone': self.phone_valid,
                      'email': self.email_valid,
-                     'password': self.password_invalid,
+                     'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
+                     'CEP': self.CEP_invalid_MAX,
                      'UF': self.UF_valid,
                      'city': self.city_valid,
                      'neighborhood': self.neighborhood_valid,
@@ -598,53 +463,138 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_invalid_10(self):
+    def test_forms_patient_UF_is_not_valid(self):
         form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
+                     'phone': self.phone_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
-                     'confirm_password': self.password_invalid,
-                     'id_document': self.id_document_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
+                     'UF': self.UF_invalid,
                      'city': self.city_valid,
                      'neighborhood': self.neighborhood_valid,
                      'complement': self.complement_valid}
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_invalid_11(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_invalid,
+    def test_forms_patient_UF_is_not_valid_MAX(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_invalid,
+                     'CPF_document': self.CPF_document_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
+                     'UF': self.UF_invalid_MAX,
                      'city': self.city_valid,
                      'neighborhood': self.neighborhood_valid,
                      'complement': self.complement_valid}
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_invalid_12(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_invalid,
+    def test_forms_patient_city_is_not_valid(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
-                     'id_document': self.id_document_valid,
-                     'sex': self.sex_invalid,
+                     'CPF_document': self.CPF_document_valid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid,
+                     'CEP': self.CEP_valid,
+                     'UF': self.UF_valid,
+                     'city': self.city_invalid,
+                     'neighborhood': self.neighborhood_valid,
+                     'complement': self.complement_valid}
+        form = PatientForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_forms_patient_city_is_not_valid_MAX(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_valid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid,
+                     'CEP': self.CEP_valid,
+                     'UF': self.UF_valid,
+                     'city': self.city_invalid_MAX,
+                     'neighborhood': self.neighborhood_valid,
+                     'complement': self.complement_valid}
+        form = PatientForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_forms_patient_neighborhood_is_not_valid(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_valid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid,
+                     'CEP': self.CEP_valid,
+                     'UF': self.UF_valid,
+                     'city': self.city_valid,
+                     'neighborhood': self.neighborhood_invalid,
+                     'complement': self.complement_valid}
+        form = PatientForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_forms_patient_neighborhood_is_not_valid_MAX(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_valid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid,
+                     'CEP': self.CEP_valid,
+                     'UF': self.UF_valid,
+                     'city': self.city_valid,
+                     'neighborhood': self.neighborhood_invalid_MAX,
+                     'complement': self.complement_valid}
+        form = PatientForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_forms_patient_complement_is_not_valid(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_valid,
+                     'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid,
                      'CEP': self.CEP_valid,
                      'UF': self.UF_valid,
                      'city': self.city_valid,
                      'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
+                     'complement': self.complement_invalid}
+        form = PatientForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_forms_patient_complement_is_not_valid_MAX(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_valid,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid,
+                     'CEP': self.CEP_valid,
+                     'UF': self.UF_valid,
+                     'city': self.city_valid,
+                     'neighborhood': self.neighborhood_valid,
+                     'complement': self.complement_invalid_MAX}
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
