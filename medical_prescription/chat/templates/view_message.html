@@ -21,7 +21,7 @@
 
         <div class="box-body no-padding">
           <div class="mailbox-read-info">
-            <h3>Título: {{message.subject}} </h3>
+            <h3>Título: {{list.subject}} </h3>
           </div>
           <!-- /.mailbox-read-message -->
         </div>
@@ -40,6 +40,37 @@
         </div>
         {% endfor %}
         <!-- /.box-body -->
+
+        <div class="box-body">
+          <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+            {% csrf_token %}
+
+            <div class="form-group">
+              {% for error in form.text.errors %}
+                  <div class="alert alert-danger" role="alert">{{ error }}</div>
+              {% endfor %}
+              {{ form.text }}
+            </div>
+            </li>
+
+            <div class="form-group">
+              {% for error in form.image.errors %}
+                  <div class="alert alert-danger" role="alert">{{ error }}</div>
+              {% endfor %}
+              {{ form.image }}
+            </div>
+            </li>
+
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i>Responder</button>
+              </div>
+            </div>
+            <!-- /.box-footer -->
+          </form>
+        </div>
+
       </div>
       <!-- /. box -->
     </div>
