@@ -1,15 +1,12 @@
 # Django
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
-from django.contrib.auth.decorators import login_required
 from datetime import date
 
 # Local Django
 from chat.forms import CreateMessage
-from chat.models import Message
+from chat.models import Message, Response
 from user.models import User
-
-login_required()
 
 
 class ComposeView(FormView):
@@ -24,14 +21,29 @@ class ComposeView(FormView):
         form = self.form_class(request.POST)
 
         if form.is_valid():
+
             text = form.cleaned_data.get('text')
             subject = form.cleaned_data.get('subject')
             user_to_email = form.cleaned_data.get('user_to')
             user_from = request.user
             user_to = User.objects.get(email=user_to_email)
 
-            Message.objects.create(text=text, subject=subject,
-                                   user_to=user_to, user_from=user_from, date=date.today())
+            message = Message()
+            message.subject = subject
+            message.user_to = user_to
+            message.user_from = user_from
+            message.date = date.today()
+
+            response = Response()
+            response.user_from = user_from
+            response.user_to = user_to
+            response.text = text
+            response.dat = date.today()
+
+            response.save()
+            message.save()
+
+            message.messages.add(response)
 
             return redirect('/dashboard_health_professional/health_professional')
 
