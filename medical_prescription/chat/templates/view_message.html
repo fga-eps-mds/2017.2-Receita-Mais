@@ -18,19 +18,27 @@
             <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
           </div>
         </div>
-        <!-- /.box-header -->
+
         <div class="box-body no-padding">
           <div class="mailbox-read-info">
             <h3>Título: {{message.subject}} </h3>
-            <h5>De: {{message.user_from}}
-                      <span class="mailbox-read-time pull-right">{{message.date|date}} </span></h5>
-          </div>
-
-          <div class="mailbox-read-message">
-            <p>{{message.text}}</p>
           </div>
           <!-- /.mailbox-read-message -->
         </div>
+        <!-- /.box-header -->
+        {% for element in list.messages.all %}
+        <div class="box-body no-padding">
+          <div class="mailbox-read-info">
+            <h5>De: {{element.user_from}}
+                      <span class="mailbox-read-time pull-right">{{element.date|date}} </span></h5>
+          </div>
+
+          <div class="mailbox-read-message">
+            <p>{{element.text}}</p>
+          </div>
+          <!-- /.mailbox-read-message -->
+        </div>
+        {% endfor %}
         <!-- /.box-body -->
       </div>
       <!-- /. box -->

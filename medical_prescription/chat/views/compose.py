@@ -39,8 +39,8 @@ class ComposeView(FormView):
             response.user_to = user_to
             response.text = text
             response.dat = date.today()
-
             response.save()
+
             message.save()
 
             message.messages.add(response)
