@@ -1,12 +1,9 @@
   $(document).ready(function($) {
 
     //Criando mascara para os campos do formulário
-    var $id_CPF = $("#id_CPF_document");
-    $id_CPF.mask('000.000.000-00', {reverse: true});
     var $date_of_birth = $("#id_date_of_birth");
     $date_of_birth.mask('00/00/0000');
-    var $phone = $("#id_phone");
-    $phone.mask('(00) 0000-00000');
+
     function limpa_formulário_cep() {
       // Limpa valores do formulário de cep.
       $("#rua").val("");
