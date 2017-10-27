@@ -1,0 +1,8 @@
+System check identified some issues:
+
+WARNINGS:
+[33;1muser.ResetPasswordProfile.key_expires: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`[0m
+[33;1muser.UserActivateProfile.key_expires: (fields.W161) Fixed default value provided.
+	HINT: It seems you set a fixed date / time / datetime value as default for this field. This may not be what you want. If you want to have the current date as default, use `django.utils.timezone.now`[0m
+[{"model": "exam.exam", "pk": 1, "fields": {"is_active": true, "description": "CodaMais"}}, {"model": "exam.exam", "pk": 34, "fields": {"is_active": true, "description": "CodaMais"}}, {"model": "exam.defaultexam", "pk": 1, "fields": {"id_tuss": "123"}}, {"model": "exam.defaultexam", "pk": 34, "fields": {"id_tuss": "1232"}}]

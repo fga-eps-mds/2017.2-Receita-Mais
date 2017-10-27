@@ -1,0 +1,17 @@
+.transparent-input {
+  background-color: rgba(0, 100, 0, 0);
+  border: none;
+}
+
+.transparent-input:focus {
+  border-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0px #719ECE;
+  background-color: rgba(211,211,211, 1);
+}
+
+.transparent-input:read-only {
+    background-color: rgba(0, 0, 0, 0);
+}
+.transparent-input:-moz-read-only { /* For Firefox */
+    background-color: rgba(0, 0, 0, 0);
+}

@@ -5,4 +5,4 @@ from medicine.models import ActivePrinciple
 
 
 class CustomActivePrinciple(ActivePrinciple):
-    created_by = models.ForeignKey('user.HealthProfessional')
+    created_by = models.ForeignKey(HealthProfessional)

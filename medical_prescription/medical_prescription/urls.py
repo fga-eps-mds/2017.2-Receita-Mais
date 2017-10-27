@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^disease/', include('disease.urls')),
     url(r'^$', home, name='landing_page'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^prescription/', include('prescription.urls')),
 ]
 
 urlpatterns += i18n_patterns(
@@ -26,5 +27,6 @@ urlpatterns += i18n_patterns(
     url(r'^exam/', include('exam.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^disease/', include('disease.urls')),
+    url(r'^prescription/', include('prescription.urls')),
     url(r'^$', home, name='landing_page'),
 )

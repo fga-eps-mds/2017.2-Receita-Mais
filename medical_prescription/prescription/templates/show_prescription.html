@@ -1,0 +1,64 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
+
+<script>
+        // This is an alternative to loading scripts while maintaining asynchrony in JavaScript.
+        var configautocompleteexam = "{% static "prescription/js/configautocompleteexam.js" %}";
+        var formset = "{% static "prescription/js/formset.js" %}";
+        $.getScript(configautocompleteexam);
+        $.getScript(formset);
+
+        // Methods to clone and autocomplete.
+        $('#add_more').click(function() {
+          cloneMore('div.table:last', 'form', "{% url 'autocomplete_exam' %}");
+        });
+        autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}");
+</script>
+
+<div>
+  <div class="modal-header">
+    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+    <h3 class="modal-title">Prescrição</h3>
+  </div>
+  <form class="js-book-prescription-form" action="{% url 'create_modal' %}" method="post">
+  <div class="row">
+      <div class="modal-body modal-open">
+        {% csrf_token %}
+
+        <div class="form-group">
+          {% for error in form.patient.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ form.patient.name }}"> Paciente: </label> {{form.patient}}
+        </div>
+
+        <div class="form-group ">
+          {% for error in form.cid.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ form.cid.name }}"> Doença: </label> {{form.cid}}
+        </div>
+
+        {{ formset.management_form }} {% for atom_form in formset %}
+        <div class="table">
+          <table class='no_error'>
+            {% for label in atom_form %}
+            <div class="form-group">
+              {% for error in label.errors %}
+              <div class="alert alert-danger" role="alert">{{error}}</div>
+              {% endfor %} {{label}}
+            </div>
+            {% endfor %}
+          </table>
+        </div>
+        <input class='remove-form-row' type="button" value="Remove-me"> {% endfor %}
+        <input type="button" value="Add More" id="add_more">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+</form>
+</div>

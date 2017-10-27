@@ -1,6 +1,6 @@
 [
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 1,
         "fields": {
             "id_tuss": "10101012",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 2,
         "fields": {
             "id_tuss": "10102019",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 3,
         "fields": {
             "id_tuss": "10103015",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 4,
         "fields": {
             "id_tuss": "10103023",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 5,
         "fields": {
             "id_tuss": "10104020",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 6,
         "fields": {
             "id_tuss": "10104011",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 7,
         "fields": {
             "id_tuss": "31101402",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 8,
         "fields": {
             "id_tuss": "31008011",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 9,
         "fields": {
             "id_tuss": "30909031",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "exam.Exam",
+        "model": "exam.DefaultExam",
         "pk": 10,
         "fields": {
             "id_tuss": "31008020",
