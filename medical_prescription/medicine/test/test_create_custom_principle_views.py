@@ -1,9 +1,14 @@
+# Django imports
 from django.test import TestCase
-from django.test.client import RequestFactory, Client
+from django.test.client import RequestFactory
+from django.contrib.auth.models import AnonymousUser
+from unittest.mock import patch, MagicMock
 
+# Local Django imports
 from medicine.forms import CustomActivePrincipleForm
+from medicine.views import CreateCustomActivePrinciple
+from user.models import Patient, HealthProfessional
 from medicine.models import CustomActivePrinciple
-from user.models import HealthProfessional
 
 
 class TestCreateCustom(TestCase):
@@ -14,45 +19,94 @@ class TestCreateCustom(TestCase):
     def setUp(self):
         self.my_view = CustomActivePrincipleForm()
         self.name_valid = "Alguma coisa"
-        self.name_exists = "Invalido"
-
-        self.name_max = """aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                aaaaaaaaaaaaaaaaaaaaaaaa+1"""
-
-        user = HealthProfessional()
-        user.crm = "54321"
-        user.email = "test@test.com"
-        user.password = "test404"
-        user.pk = '1'
-        user.save()
-
-        custom_principle = CustomActivePrinciple()
-        custom_principle.name = "Teste"
-        custom_principle.pk = "1"
-        custom_principle.created_by = user
-        custom_principle.save()
 
         self.factory = RequestFactory()
-        self.my_view = CustomActivePrincipleForm()
-        self.client = Client()
-        self.client.login(email='test@test.com', password='test404')
-        """
-    # Testing method 'get'.
-    def test_get(self):
-        request = self.factory.get('/medicine/create/')
-        response = self.my_view.get(request)
+        self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com', password='senha12')
+        self.patient = Patient.objects.create_user(email='patient@patient.com', password='senha12')
 
+    def test_get_without_login(self):
+        request = self.factory.get('/medicine/create/')
+        request.user = AnonymousUser()
+
+        response = CreateCustomActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
+
+    def test_get_with_patient(self):
+        request = self.factory.get('/medicine/create/')
+        request.user = self.patient
+
+        response = CreateCustomActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
+
+    def test_get_with_health_professional(self):
+        request = self.factory.get('/medicine/create/')
+        request.user = self.health_professional
+
+        response = CreateCustomActivePrinciple.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
-    # Testing method 'post'.
-    def test_post(self):
-        self.client.login(email='test@test.com', password='test404')
-        response = self.client.post('/medicine/create/',
-                                    {'name': self.name_valid, 'created_by': 'test@test.com'})
-        self.assertEqual(response.status_code, 302)
+    @patch('medicine.models.CustomActivePrinciple.save', MagicMock(name="save"))
+    def test_post_with_health_professional(self):
         """
-    # Testing method 'post'.
-    def test_post_invalid(self):
-        response = self.client.post('/medicine/create/asdasd',
-                                    {'name': self.name_valid, 'created_by': 'test@test.com'})
-        self.assertEqual(response.status_code, 404)
+        Test post requests
+        """
+        # Create the request
+        data = {
+            'name': self.name_valid,
+            'created_by': 'doctor@doctor.com'
+        }
+
+        request = self.factory.post('/medicine/create/', data)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CreateCustomActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
+
+        # Check save was called
+        self.assertTrue(CustomActivePrinciple.save.called)
+        self.assertEqual(CustomActivePrinciple.save.call_count, 1)
+
+    @patch('medicine.models.CustomActivePrinciple.save', MagicMock(name="save"))
+    def test_post_without_login(self):
+        """
+        Test post requests
+        """
+        # Create the request
+        data = {
+            'name': self.name_valid,
+            'created_by': 'doctor@doctor.com'
+        }
+
+        request = self.factory.post('/medicine/create/', data)
+        request.user = AnonymousUser()
+
+        # Get the response
+        response = CreateCustomActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
+
+        # Check save was called
+        self.assertFalse(CustomActivePrinciple.save.called)
+        self.assertEqual(CustomActivePrinciple.save.call_count, 0)
+
+    @patch('medicine.models.CustomActivePrinciple.save', MagicMock(name="save"))
+    def test_post_with_patient(self):
+        """
+        Test post requests
+        """
+        # Create the request
+        data = {
+            'name': self.name_valid,
+            'created_by': 'doctor@doctor.com'
+        }
+
+        request = self.factory.post('/medicine/create/', data)
+        request.user = self.patient
+
+        # Get the response
+        response = CreateCustomActivePrinciple.as_view()(request)
+        self.assertEqual(response.status_code, 302)
+
+        # Check save was called
+        self.assertFalse(CustomActivePrinciple.save.called)
+        self.assertEqual(CustomActivePrinciple.save.call_count, 0)

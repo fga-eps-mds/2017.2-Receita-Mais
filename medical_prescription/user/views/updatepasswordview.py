@@ -2,15 +2,23 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import UpdateView
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+
 
 # Local Django
 from user.forms import UpdatePasswordForm
+from user.decorators import (
+    health_professional_is_account_owner_with_email,
+    patient_is_account_owner_with_email
+    )
 
 
 # This class is responsible for making the user password change.
 class UpdateUserPassword(UpdateView):
 
     # This method is responsible for making the patient password change.
+    @login_required
+    @patient_is_account_owner_with_email
     def edit_patient_password_view(request, email):
 
         # Getting the corresponding form to make the password change.
@@ -38,6 +46,8 @@ class UpdateUserPassword(UpdateView):
         return render(request, 'edit_patient_password.html', {'form': form})
 
     # This method is responsible for making the health professional password change.
+    @login_required
+    @health_professional_is_account_owner_with_email
     def edit_health_professional_password_view(request, email):
 
         # Getting the corresponding form to make the password change.
