@@ -2,24 +2,28 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from datetime import date
 
 # Local Django
 from chat.forms import CreateMessage
 from chat.models import Message
 from user.models import User
-
-login_required()
+from user.decorators import is_health_professional
 
 
 class ComposeView(FormView):
     form_class = CreateMessage
     template_name = 'compose.html'
 
+    @method_decorator(login_required)
+    @method_decorator(is_health_professional)
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
+    @method_decorator(login_required)
+    @method_decorator(is_health_professional)
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
