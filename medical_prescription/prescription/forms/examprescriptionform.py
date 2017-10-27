@@ -15,7 +15,7 @@ class ExamPrescriptionForm(forms.Form):
     validator = ExamPrescriptionValidator()
 
     def clean(self):
-        exam = self.cleaned_data['exam']
+        exam = self.cleaned_data.get('exam')
 
         self.validator_all(exam)
 
