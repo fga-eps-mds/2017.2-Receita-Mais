@@ -21,14 +21,15 @@ class AutoCompleteMedicine(View):
             list_medicines = []
 
             self.get_medicines(search, list_medicines)
-            self.get_manipulated_medicines(search, list_medicines)
+            self.get_manipulated_medicines(search, request.user, list_medicines)
 
             data = json.dumps(list_medicines)
             mimetype = 'application/json'
             return HttpResponse(data, mimetype)
 
-    def get_manipulated_medicines(self, search, list_medicines):
-        queryset = ManipulatedMedicine.objects.filter(recipe_name__icontains=search)[:5]
+    def get_manipulated_medicines(self, search, health_professional, list_medicines):
+        queryset = ManipulatedMedicine.objects.filter(recipe_name__icontains=search,
+                                                      health_professional=health_professional)[:5]
 
         # Encapsulates in a json needed to be sent.
         for manipulated_medicine in queryset:

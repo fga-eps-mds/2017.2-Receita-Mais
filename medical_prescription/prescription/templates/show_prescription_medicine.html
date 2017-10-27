@@ -6,7 +6,10 @@
 
 <script>
         var formset = "{% static "prescription/js/formset.js" %}";
+        var sortable = "{% static "prescription/js/sortable.js" %}";
+
         $.getScript(formset);
+        $.getScript(sortable);
 
         // Methods to clone and autocomplete.
         $('#add_more').click(function() {
@@ -46,33 +49,37 @@
 
         {{ formset.management_form }}
         {% for atom_form in formset %}
-        <div class="table">
-              <div class="form-group">
-                {% for error in atom_form.medicine.errors %}
-                <div class="alert alert-danger" role="alert">{{error}}</div>
-                {% endfor %}
-                {{atom_form.medicine}}
-             </div>
+        <ul id='object_medicine' class='list-medicine'>
+          <div class="table">
+          <li>
+                  <div class="form-group">
+                    {% for error in atom_form.medicine.errors %}
+                    <div class="alert alert-danger" role="alert">{{error}}</div>
+                    {% endfor %}
+                    {{atom_form.medicine}}
+                 </div>
 
-      <div class="row g-row-col-5 g-margin-b-50--xs">
-        <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
-            {% for error in atom_form.posology.errors %}
-            <div class="alert alert-danger" role="alert">{{error}}</div>
-            {% endfor %}
-            {{atom_form.posology}}
-          </div>
-            <div class="col-sm-2">
-               {% for error in atom_form.quantity.errors %}
-               <div class="alert alert-danger" role="alert">{{error}}</div>
-               {% endfor %}{{atom_form.quantity}}
-             </div>
-      </div>
+                  <div class="row g-row-col-5 g-margin-b-50--xs">
+                    <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+                        {% for error in atom_form.posology.errors %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                        {% endfor %}
+                        {{atom_form.posology}}
+                      </div>
+                        <div class="col-sm-2">
+                           {% for error in atom_form.quantity.errors %}
+                           <div class="alert alert-danger" role="alert">{{error}}</div>
+                           {% endfor %}{{atom_form.quantity}}
+                         </div>
+                  </div>
 
-          <!-- Hidden fields -->
-            {{atom_form.medicine_id}}
-            {{atom_form.medicine_type}}
+              <!-- Hidden fields -->
+                {{atom_form.medicine_id}}
+                {{atom_form.medicine_type}}
 
+          </li>
         </div>
+        </ul>
         {% endfor %}
         <input type="button" value="Add More" id="add_more">
     </div>
