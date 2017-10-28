@@ -10,15 +10,16 @@ from user.decorators import is_health_professional
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_health_professional, name='dispatch')
-class InboxView(ListView):
+class OutboxView(ListView):
     '''
-    View for list messages in inbox.
+    View for list messages in outbox.
     '''
 
-    template_name = 'inbox.html'
-    context_object_name = 'inbox'
+    template_name = 'outbox.html'
+    context_object_name = 'outbox'
     model = Message
     paginate_by = 40
 
+    # Return all send Message for the HealthProfessional.
     def get_queryset(self):
-        return self.model.objects.filter(user_to=self.request.user)
+        return self.model.objects.filter(user_from=self.request.user)

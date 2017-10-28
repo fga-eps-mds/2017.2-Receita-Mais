@@ -35,6 +35,9 @@
       <li class="header">Menu</li>
       <!-- Optionally, you can add icons to the links -->
       <li class="active"><a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+      <li class="active">
+        <a href="{% url 'inbox_patient' %}"><i class="fa fa-envelope"></i><span>{% trans "Caixa de Entrada" %}</span></a>
+      </li>
       <li><a href="#"><i class="fa fa-wechat"></i><span>Conversas</span></a></li>
       <li><a href="#"><i class="fa fa-users"></i><span>Exames</span></a></li>
       <li><a href="{% url 'edit_patient_password' request.user.email %}"><i class="fa fa-users"></i><span>Configurações</span></a></li>

@@ -5,7 +5,9 @@ from user.models import User
 
 
 class AutoCompleteEmail(View):
-
+    """
+    Return a query of email users.
+    """
     def get(self, request, *args, **kwargs):
 
         if request.is_ajax():

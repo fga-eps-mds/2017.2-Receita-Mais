@@ -43,17 +43,19 @@
             </div>
             <div class="table-responsive mailbox-messages">
               <table class="table table-hover table-striped">
+                {% for message in inbox %}
                 <tbody>
                   <tr>
                     <td><input type="checkbox"></td>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
+                    <td class="mailbox-subject"><b>{{message.subject}}</b>
                     </td>
                     <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
+                    <td class="mailbox-date">{{message.date}}</td>
                   </tr>
                 </tbody>
+                {% endfor %}
               </table>
               <!-- /.table -->
             </div>
