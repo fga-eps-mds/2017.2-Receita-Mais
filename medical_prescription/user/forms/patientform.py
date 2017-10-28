@@ -14,6 +14,10 @@ from user.validators import PatientValidator
 from user import constants
 
 
+# LocalFlavor
+from localflavor.br.forms import BRCPFField
+
+
 # Set level logger.
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(constants.DEFAULT_LOGGER)
@@ -23,16 +27,34 @@ class PatientForm(UserForm):
     """
     Form to register patientl.
     """
-    id_document = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
-                                                                'placeholder': '* 00000'}))
-    date_of_birth = FormattedDateField(initial=date.today)
+    CPF_document = BRCPFField(max_length=14, min_length=11,
+                              widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                            'type': 'number',
+                                                            'placeholder': '* 12345678911'}))
+
+    CEP = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                        'placeholder': '* 12345678911'}))
+
+    UF = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                       'placeholder': '* DF'}))
+
+    city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                         'placeholder': '* Brasília'}))
+
+    neighborhood = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                                 'placeholder': '* Asa Norte'}))
+
+    complement = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                                                               'size': 200,
+                                                               'placeholder': '* Qd 70, Lt 8 Casa 2'}))
 
     class Meta:
         # Define model to patient.
         model = Patient
         fields = [
                 'name', 'email', 'date_of_birth', 'phone', 'sex',
-                'id_document', 'password'
+                'CPF_document', 'password', 'CEP', 'UF', 'city', 'neighborhood',
+                'complement'
                 ]
 
     def clean(self):
@@ -46,14 +68,18 @@ class PatientForm(UserForm):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('confirm_password')
-        id_document = self.cleaned_data.get('id_document')
         date_of_birth = self.cleaned_data.get('date_of_birth')
+        CEP = self.cleaned_data.get('CEP')
+        UF = self.cleaned_data.get('UF')
+        city = self.cleaned_data.get('city')
+        neighborhood = self.cleaned_data.get('neighborhood')
+        complement = self.cleaned_data.get('complement')
 
         # Verify validations in form.
-        self.validator_all(name, phone, email, password, password_confirmation, id_document, date_of_birth)
+        self.validator_all(name, phone, email, password, password_confirmation, date_of_birth)
         logger.debug("Exit clean data in PatientForm.")
 
-    def validator_all(self, name, phone, email, password, password_confirmation, id_document, date_of_birth):
+    def validator_all(self, name, phone, email, password, password_confirmation, date_of_birth):
         """
         Checks validator in all fields.
         """
@@ -67,7 +93,3 @@ class PatientForm(UserForm):
         validator.validator_name(name)
         validator.validator_phone_number(phone)
         validator.validator_date_of_birth(date_of_birth)
-
-        # Fields specify to the patient.
-        validator.validator_document(id_document)
-        logger.debug("Exit validations in PatientForm.")
