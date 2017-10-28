@@ -1,6 +1,7 @@
 # django
 from django import forms
 import logging
+from django.utils.translation import ugettext_lazy as _
 
 # local django
 from user import constants
