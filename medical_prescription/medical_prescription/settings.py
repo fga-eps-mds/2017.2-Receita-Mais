@@ -102,6 +102,7 @@ TEMPLATES = [
             'user/templates',
             'dashboardPatient/templates',
             'dashboardHealthProfessional/templates',
+            'prescription/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
