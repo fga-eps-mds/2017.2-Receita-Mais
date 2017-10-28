@@ -12,6 +12,7 @@ from prescription.models import (PrescriptionDefaultExam,
                                  PrescriptionCustomExam,
                                  Prescription
                                  )
+from exam.models import CustomExam
 
 
 class CreatePrescriptionExamView(FormView):
@@ -33,7 +34,7 @@ class CreatePrescriptionExamView(FormView):
         prescription_base_object.save()
         return prescription_base_object
 
-    def create_many_to_many_exam(self, form, exam_prescription):
+    def create_many_to_many_exam(self, form, exam_prescription, request):
         """
         Defines which type of exam will be added to the prescription and create it.
         """
@@ -47,7 +48,8 @@ class CreatePrescriptionExamView(FormView):
         elif exam_type == 'custom_exam':
             name = form.cleaned_data.get('name')
             self.create_prescription_custom_exam(exam_prescription,
-                                                 name)
+                                                 name,
+                                                 request)
         else:
             # Nothing to do.
             pass
@@ -55,15 +57,16 @@ class CreatePrescriptionExamView(FormView):
     def create_prescription_default_exam(self, prescription, id_tuss):
         prescription_default_exam_object = PrescriptionDefaultExam(
             prescription=prescription,
-            id_tuss=id_tuss
+            exam=id_tuss
             )
 
         prescription_default_exam_object.save()
 
-    def create_prescription_custom_exam(self, prescription, name):
+    def create_prescription_custom_exam(self, prescription, name, request):
+        custom_exam = CustomExam.objects.get(health_professional_FK=request.user, name=name)
         prescription_custom_exam_object = PrescriptionCustomExam(
             prescription=prescription,
-            name=name
+            exam=custom_exam
             )
 
         prescription_custom_exam_object.save()
@@ -94,10 +97,14 @@ class CreatePrescriptionExamView(FormView):
 
         if not form.is_valid():
             form_is_validated = False
+        else:
             if not formset.is_valid():
                 form_is_validated = False
             else:
                 prescription_base_object = self.create_base_prescription(form)
+
+                for exam_form in formset:
+                    self.create_many_to_many_exam(exam_form, prescription_base_object, request)
 
         data['form_is_valid'] = form_is_validated
         context = {'form': form,
