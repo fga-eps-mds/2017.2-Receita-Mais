@@ -15,19 +15,24 @@
         $('#add_more').click(function() {
           cloneMore('div.table:last', 'form', "{% url 'autocomplete_medicine' %}", "medicine");
         });
+
+        $('#add_more_reccomendation').click(function() {
+          cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
+        });
         autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_medicine' %}", "medicine");
         autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
         autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 </script>
 
-<div>
-  <div class="modal-header">
-    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-    <h3 class="modal-title">Prescrição</h3>
-  </div>
+
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
-  <div class="row">
+    <div class="modal-header">
+      <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+      <h3 class="modal-title">Prescrição</h3>
+    </div>
+
       <div class="modal-body modal-open">
+
         {% csrf_token %}
         <div class="form-group">
           {% for error in form.patient.errors %}
@@ -46,46 +51,98 @@
         <!-- Hidden fields -->
           {{form.cid_id}}
           {{form.patient_id}}
+        <hr>
 
-        {{ formset.management_form }}
-        {% for atom_form in formset %}
-        <ul id='object_medicine' class='list-medicine'>
-          <div class="table">
-          <li>
-                  <div class="form-group">
-                    {% for error in atom_form.medicine.errors %}
-                    <div class="alert alert-danger" role="alert">{{error}}</div>
-                    {% endfor %}
-                    {{atom_form.medicine}}
-                 </div>
-
-                  <div class="row g-row-col-5 g-margin-b-50--xs">
-                    <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
-                        {% for error in atom_form.posology.errors %}
-                        <div class="alert alert-danger" role="alert">{{error}}</div>
-                        {% endfor %}
-                        {{atom_form.posology}}
-                      </div>
-                        <div class="col-sm-2">
-                           {% for error in atom_form.quantity.errors %}
-                           <div class="alert alert-danger" role="alert">{{error}}</div>
-                           {% endfor %}{{atom_form.quantity}}
-                         </div>
-                  </div>
-
-              <!-- Hidden fields -->
-                {{atom_form.medicine_id}}
-                {{atom_form.medicine_type}}
-
-          </li>
-        </div>
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a data-toggle="tab" href="#home">Medicamento</a></li>
+            <li><a data-toggle="tab" href="#menu2">Exames</a></li>
+            <li><a data-toggle="tab" href="#menu3">Recomendações</a></li>
         </ul>
-        {% endfor %}
-        <input type="button" value="Add More" id="add_more">
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <br>
+
+                  {{ formset.management_form }}
+                  {% for atom_form in formset %}
+                  <ul id='object_medicine' class='list-medicine'>
+                    <div class="table">
+                    <li>
+                          <div class="form-group">
+                              {% for error in atom_form.medicine.errors %}
+                              <div class="alert alert-danger" role="alert">{{error}}</div>
+                              {% endfor %}
+                              {{atom_form.medicine}}
+                           </div>
+
+                            <div class="row g-row-col-5 g-margin-b-50--xs">
+                              <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+                                  {% for error in atom_form.posology.errors %}
+                                  <div class="alert alert-danger" role="alert">{{error}}</div>
+                                  {% endfor %}
+                                  {{atom_form.posology}}
+                                </div>
+                                  <div class="col-sm-2">
+                                     {% for error in atom_form.quantity.errors %}
+                                     <div class="alert alert-danger" role="alert">{{error}}</div>
+                                     {% endfor %}{{atom_form.quantity}}
+                                   </div>
+                            </div>
+
+                        <!-- Hidden fields -->
+                          {{atom_form.medicine_id}}
+                          {{atom_form.medicine_type}}
+                          <hr>
+                    </li>
+                  </div>
+                  </ul>
+                  {% endfor %}
+
+                  <div class="input-group-btn" align="center">
+                      <br>
+                      <button class="btn btn-success" value="Add More" id="add_more" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                      <br>
+                  </div>
+            </div>
+
+            <div id="menu2" class="tab-pane fade">
+                <h3>EXAMES AQUI</h3>
+            </div>
+
+            <div id="menu3" class="tab-pane fade">
+
+                {{ formrecommendation.management_form }}
+                {% for recommendationField in formrecommendation %}
+
+                <ul id='object_recommendation'>
+                  <div class="table_recommendation">
+                    <li>
+                      <div class="form-group">
+                          {% for error in recommendationField.recommendation.errors %}
+                          <div class="alert alert-danger" role="alert">{{error}}</div>
+                          {% endfor %}
+                          {{recommendationField.recommendation}}
+                       </div>
+                     </li>
+                  </div>
+                </ul>
+
+
+                {% endfor %}
+
+                <div class="input-group-btn" align="center">
+                    <br>
+                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_reccomendation" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    <br>
+                </div>
+
+
+            </div>
+
+        </div>
     </div>
-  </div>
+
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Salvar</button>
   </div>
 </form>
-</div>

@@ -7,7 +7,7 @@ from medicine.models import ManipulatedMedicine
 from user.models import Patient, HealthProfessional
 from prescription.forms import MedicinePrescriptionForm
 from prescription.views import CreatePrescriptionMedicine
-from prescription.models import PrescriptionMedicine
+from prescription.models import PrescriptionMedicine, Prescription
 
 
 class TestCreatePrescriptionMedicine(TestCase):
@@ -53,6 +53,11 @@ class TestCreatePrescriptionMedicine(TestCase):
         self.disease.description = "A random disease"
         self.disease.save()
 
+        self.prescription = Prescription()
+        self.prescription.patient = self.patient
+        self.prescription.cid = self.disease
+        self.prescription.save()
+
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12')
 
@@ -62,7 +67,9 @@ class TestCreatePrescriptionMedicine(TestCase):
         self.assertEqual(response.status_code, 200)
 
     @patch('prescription.models.PrescriptionMedicine.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
     def test_post_with_health_professional(self):
+        print("============== AQUI =============")
         context = {'form-TOTAL_FORMS': 1,
                    'form-INITIAL_FORMS': 0,
                    'patient_id': 1,
@@ -70,8 +77,12 @@ class TestCreatePrescriptionMedicine(TestCase):
                    'medicine_type': 'manipulated_medicine',
                    'medicine_id': 1,
                    'quantity': 10,
-                   'posology': 'nao fazer nada'
+                   'posology': 'nao fazer nada',
+                   'recommendation': 'Tomar o remedio pelas manhas',
+                   'prescription': self.prescription,
                    }
+
+
 
         request = self.factory.post('/prescription/create_modal/', context)
         request.user = self.health_professional
