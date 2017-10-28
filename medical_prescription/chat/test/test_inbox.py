@@ -1,10 +1,10 @@
 from django.test import TestCase, RequestFactory
 from chat.models import Message
 from user.models import Patient, HealthProfessional
-from chat.views import InboxView
+from chat.views import InboxHealthProfessionalView
 
 
-class TesteInbox(TestCase):
+class TesteInboxHealthProfessional(TestCase):
 
     def setUp(self):
 
@@ -21,7 +21,7 @@ class TesteInbox(TestCase):
                                                               is_active=True)
         self.professional.save()
 
-        self.view = InboxView()
+        self.view = InboxHealthProfessionalView()
         self.factory = RequestFactory()
 
         # Create Message.
@@ -39,7 +39,6 @@ class TesteInbox(TestCase):
         self.view.request = request
 
         query = self.view.get_queryset()
-        print(query)
 
         self.assertTrue(query.exists())
 

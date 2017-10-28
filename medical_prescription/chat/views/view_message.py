@@ -1,8 +1,6 @@
 # Django
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
-from django.shortcuts import render, redirect
-from django.urls import reverse
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -10,24 +8,18 @@ from django.utils.decorators import method_decorator
 # Local Django
 from chat.models import Message, Response
 from chat.forms import CreateResponse
-from user.decorators import is_health_professional
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(is_health_professional, name='dispatch')
 class MessageDetailView(DetailView, FormMixin):
 
     form_class = CreateResponse
     context_object_name = 'list'
     model = Message
     paginate_by = 40
-    template_name = 'view_message.html'
 
     def get_queryset(self):
         return self.model.objects.filter(user_to=self.request.user)
-
-    def get_success_url(self):
-        return reverse('view_message', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super(MessageDetailView, self).get_context_data(**kwargs)
