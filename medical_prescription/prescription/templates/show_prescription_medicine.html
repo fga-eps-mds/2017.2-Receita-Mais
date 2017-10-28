@@ -1,0 +1,91 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
+
+<script>
+        var formset = "{% static "prescription/js/formset.js" %}";
+        var sortable = "{% static "prescription/js/sortable.js" %}";
+
+        $.getScript(formset);
+        $.getScript(sortable);
+
+        // Methods to clone and autocomplete.
+        $('#add_more').click(function() {
+          cloneMore('div.table:last', 'form', "{% url 'autocomplete_medicine' %}", "medicine");
+        });
+        autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_medicine' %}", "medicine");
+        autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
+        autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
+</script>
+
+<div>
+  <div class="modal-header">
+    <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+    <h3 class="modal-title">Prescrição</h3>
+  </div>
+  <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
+  <div class="row">
+      <div class="modal-body modal-open">
+        {% csrf_token %}
+        <div class="form-group">
+          {% for error in form.patient.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ form.patient.name }}"> Paciente: </label> {{form.patient}}
+        </div>
+
+        <div class="form-group ">
+          {% for error in form.cid.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ form.cid.name }}"> Doença: </label> {{form.cid}}
+        </div>
+
+        <!-- Hidden fields -->
+          {{form.cid_id}}
+          {{form.patient_id}}
+
+        {{ formset.management_form }}
+        {% for atom_form in formset %}
+        <ul id='object_medicine' class='list-medicine'>
+          <div class="table">
+          <li>
+                  <div class="form-group">
+                    {% for error in atom_form.medicine.errors %}
+                    <div class="alert alert-danger" role="alert">{{error}}</div>
+                    {% endfor %}
+                    {{atom_form.medicine}}
+                 </div>
+
+                  <div class="row g-row-col-5 g-margin-b-50--xs">
+                    <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
+                        {% for error in atom_form.posology.errors %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                        {% endfor %}
+                        {{atom_form.posology}}
+                      </div>
+                        <div class="col-sm-2">
+                           {% for error in atom_form.quantity.errors %}
+                           <div class="alert alert-danger" role="alert">{{error}}</div>
+                           {% endfor %}{{atom_form.quantity}}
+                         </div>
+                  </div>
+
+              <!-- Hidden fields -->
+                {{atom_form.medicine_id}}
+                {{atom_form.medicine_type}}
+
+          </li>
+        </div>
+        </ul>
+        {% endfor %}
+        <input type="button" value="Add More" id="add_more">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+</form>
+</div>

@@ -1,0 +1,58 @@
+{% extends "dashboardHealthProfessional/template.html" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+{% load i18n %}
+
+<!-- Panel -->
+
+{% csrf_token %}
+<div class = "col-sm-4 center-block center">
+    <form action=''  method="post">
+
+      {% csrf_token %}
+      <font size="5">
+        <span class="label label-primary">{% trans "Nome da Fórmula" %}</span>
+      </font>
+      {{ form.recipe_name }}
+
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Forma Física" %}</span>
+      </font>
+      {{ form.physical_form }}
+
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Quantidade" %}</span>
+      </font>
+      <br>
+
+      {{ form.quantity }}
+      <br>
+
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Unidade de Medida" %}</span>
+      </font>
+      <br>
+      {{ form.measurement }}
+
+      <br>
+
+
+      <font size ="5">
+        <span class="label label-primary">{% trans "Composição" %}</span>
+      </font>
+       {{ form.composition }}
+
+
+       <br><br>
+
+       <button type ="submit" value="Update" class = "btn btn-success">{% trans "Enviar" %}</button>
+    </form>
+</div>
+{% endblock %}

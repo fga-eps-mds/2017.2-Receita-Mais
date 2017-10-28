@@ -1,2 +1,3 @@
-from .createprescriptionexamform import CreatePrescriptionExamForm
+from .createprescriptionform import CreatePrescriptionForm
 from .examprescriptionform import ExamPrescriptionForm
+from .medicineprescriptionform import MedicinePrescriptionForm

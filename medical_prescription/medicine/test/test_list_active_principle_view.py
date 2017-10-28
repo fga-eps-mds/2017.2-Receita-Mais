@@ -4,7 +4,6 @@ from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
 
 from medicine.models import ActivePrinciple
-from user.views import LoginView
 from user.models import User, Patient, HealthProfessional
 from medicine.views import ListActivePrinciple
 

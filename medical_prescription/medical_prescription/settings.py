@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'dashboardHealthProfessional',
     'exam',
     'disease',
-    'medication',
     'prescription',
     'chat',
 ]
