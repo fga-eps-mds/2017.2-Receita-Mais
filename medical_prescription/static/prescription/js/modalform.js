@@ -27,10 +27,10 @@ $(function () {
       async: true,
       success: function (data) {
         if (data.form_is_valid) {
-          $("#prescription-table tbody").html(data.html_prescription_list);
           $("#modal-prescription").modal("hide");
         }
         else {
+          $("#modal-prescription").modal("show");
           $("#modal-prescription .modal-content").html(data.html_form);
         }
       }

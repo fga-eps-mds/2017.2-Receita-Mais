@@ -6,7 +6,7 @@ function updateElementIndex(el, prefix, ndx) {
   if (el.name) el.name = el.name.replace(id_regex, replacement);
 }
 
-function cloneMore(selector, prefix, functionJson) {
+function cloneMore(selector, prefix, functionJson, field) {
   var newElement = $(selector).clone(false);
   var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
   newElement.find(':input').each(function() {
@@ -17,7 +17,9 @@ function cloneMore(selector, prefix, functionJson) {
       'id': id
     }).val('').removeAttr('checked');
     $(this).prop("readonly", false);
-    autocompleteElement(this, functionJson);
+    if (id.includes(field)) {
+      autocompleteElement(this, functionJson, field);
+    }
   });
   total++;
   $('#id_' + prefix + '-TOTAL_FORMS').val(total);
@@ -45,16 +47,6 @@ function deleteForm(prefix, btn) {
   return false;
 }
 
-function autocompleteElement(element, functionJson) {
-  $(element).autocomplete({
-    source: functionJson,
-    select: function(event, ui) {
-      $(this).prop("readonly", true);
-    },
-    minLength: 2
-  });
-};
-
 $(document).on('click', '.add-form-row', function(e) {
   e.preventDefault();
   cloneMore('.form-row:last', 'form');
@@ -66,3 +58,88 @@ $(document).on('click', '.remove-form-row', function(e) {
   deleteForm('form', $(this));
   return false;
 });
+
+function autocompleteElement(element, functionJson, field) {
+  $(element).autocomplete({
+    source: functionJson,
+    select: function(event, ui) {
+      $(this).prop("readonly", true);
+      select_type_field(this, field, ui);
+    },
+    minLength: 2,
+    create: function() {
+      $(this).data('ui-autocomplete')._renderItem = function(ul, item) {
+        item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+        return select_field(ul, item, field);
+      };
+    }
+  });
+};
+
+function autocomplete_medicine(ul, item) {
+  $img = $('<img>');
+  $img.attr({
+    src: 'https://mt.googleapis.com/vt/icon/name=icons/onion/73-hospitals.png',
+    alt: item.label
+  });
+
+  var description = '<font size="2" color="gray">' + item.description + '</font>';
+  return $("<li></li>")
+    .data("item.autocomplete", item)
+    .append($img)
+    .append("<a>" + item.label + "</a>")
+    .append(": <br>" + description + "")
+    .appendTo(ul);
+}
+
+function autocomplete_patient(ul, item) {
+  return $("<li></li>")
+    .data("item.autocomplete", item)
+    .append("<a>" + item.label + "</a>")
+    .appendTo(ul);
+}
+
+function autocomplete_cid(ul, item) {
+  return $("<li></li>")
+    .data("item.autocomplete", item)
+    .append("<a>" + item.label + "</a>")
+    .appendTo(ul);
+}
+
+function select_field(ul, item, field) {
+  switch (field) {
+    case 'medicine':
+      return autocomplete_medicine(ul, item);
+    case 'patient':
+      return autocomplete_patient(ul, item);
+    case 'disease':
+      return autocomplete_disease(ul, item);
+    case 'exam':
+      return autocomplete_exam(ul, item);
+    case 'cid':
+      return autocomplete_cid(ul, item);
+    default:
+      return;
+  }
+}
+
+function select_type_field(element, field, ui) {
+  switch (field) {
+    case 'medicine':
+      $("#" + element.id + "_id").val(ui.item.id);
+      $("#" + element.id + "_type").val(ui.item.type);
+      break;
+    case 'patient':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'disease':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'exam':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+    case 'cid':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
+  }
+}

@@ -5,5 +5,5 @@ from disease.models import Disease
 
 
 class Prescription(models.Model):
-    patient = models.ForeignKey(Patient, null=True)
-    cid = models.ForeignKey(Disease, null=True)
+    patient = models.ForeignKey(Patient, blank=True, null=True)
+    cid = models.ForeignKey(Disease, blank=True, null=True)
