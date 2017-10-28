@@ -1,33 +1,61 @@
 import json
 
+# Django imports
 from django.views.generic import View
 from django.http import HttpResponse
 
+# Local Django imports
 from exam.models import DefaultExam, CustomExam
+from prescription import constants
 
 
 class AutoCompleteExam(View):
     """
     Responsible for getting Exams similar to digits entered to help the user.
     """
+
     def get(self, request, *args, **kwargs):
         if request.is_ajax():
             search = request.GET.get('term', '')
+            list_exams = []
 
-            # TODO(Ronyell) Change logic to all exam.
-            queryset = DefaultExam.objects.filter(description__icontains=search)[:5]
-            list_exam = []
+            self.get_default_exams(search, list_exams)
+            self.get_custom_exams(search, request.user, list_exams)
 
-            # TODO(Ronyell) Change the required data.
-            # Encapsulates in a json needed to be sent.
-            for exam in queryset:
-                exam_item = {}
-                exam_item['value'] = exam.description
-                exam_item['id'] = exam.auto_increment_id
-                exam_item['description'] = exam.description
-                exam_item['name'] = exam.id_tuss
-
-                list_exam.append(exam_item)
-            data = json.dumps(list_exam)
+            data = json.dumps(list_exams)
             mimetype = 'application/json'
             return HttpResponse(data, mimetype)
+
+    def get_custom_exams(self, search, health_professional, list_exams):
+        queryset = CustomExam.objects.filter(description__icontains=search,
+                                             health_professional_FK=health_professional)[:5]
+
+        # Encapsulates in a json needed to be sent.
+        for custom_exam in queryset:
+            custom_exam_item = {}
+            custom_exam_item['name'] = custom_exam.name
+            custom_exam_item['type'] = 'custom_exam'
+            custom_exam_item['value'] = self.parse_description(custom_exam.description)
+            custom_exam_item['description'] = self.parse_description(custom_exam.description)
+
+            list_exams.append(custom_exam_item)
+
+    def get_default_exams(self, search, list_exams):
+        queryset = DefaultExam.objects.filter(description__icontains=search)[:5]
+
+        # Encapsulates in a json needed to be sent.
+        for default_exam in queryset:
+            default_exam_item = {}
+            default_exam_item['id_tuss'] = default_exam.id_tuss
+            default_exam_item['type'] = 'default_exam'
+            default_exam_item['value'] = self.parse_description(default_exam_item.description)
+            default_exam_item['description'] = self.parse_description(default_exam.description)
+
+            list_exams.append(default_exam_item)
+
+    # Print only the first 175 characters of the composition.
+    def parse_description(self, description):
+        if len(description) > constants.MAX_LENGTH_DESCRIPTION_AUTOCOMPLETE:
+            return description[:175] + '...'
+        else:
+            return description

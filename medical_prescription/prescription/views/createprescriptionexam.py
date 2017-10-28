@@ -8,8 +8,9 @@ from django.forms import formset_factory
 from prescription.forms import (CreatePrescriptionExamForm,
                                 ExamPrescriptionForm
                                 )
-from prescription.models import (Prescription,
-                                 PrescriptionExam
+from prescription.models import (PrescriptionDefaultExam,
+                                 PrescriptionCustomExam,
+                                 Prescription
                                  )
 
 
@@ -32,8 +33,40 @@ class CreatePrescriptionExamView(FormView):
         prescription_base_object.save()
         return prescription_base_object
 
-    def create_many_to_many_exam(self, form, prescription):
-        pass
+    def create_many_to_many_exam(self, form, exam_prescription):
+        """
+        Defines which type of exam will be added to the prescription and create it.
+        """
+
+        exam_type = form.cleaned_data.get('exam_type')
+
+        if exam_type == 'default_exam':
+            id_tuss = form.cleaned_data.get('id_tuss')
+            self.create_prescription_default_exam(exam_prescription,
+                                                  id_tuss)
+        elif exam_type == 'custom_exam':
+            name = form.cleaned_data.get('name')
+            self.create_prescription_custom_exam(exam_prescription,
+                                                 name)
+        else:
+            # Nothing to do.
+            pass
+
+    def create_prescription_default_exam(self, prescription, id_tuss):
+        prescription_default_exam_object = PrescriptionDefaultExam(
+            prescription=prescription,
+            id_tuss=id_tuss
+            )
+
+        prescription_default_exam_object.save()
+
+    def create_prescription_custom_exam(self, prescription, name):
+        prescription_custom_exam_object = PrescriptionCustomExam(
+            prescription=prescription,
+            name=name
+            )
+
+        prescription_custom_exam_object.save()
 
     def get(self, request, *args, **kwargs):
         """
