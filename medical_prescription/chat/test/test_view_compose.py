@@ -33,17 +33,17 @@ class TestComposeView(TestCase):
         request.user = self.user
         response = self.my_view.get(request)
         self.assertEqual(response.status_code, 200)
+"""
+    def test_post(self):
+        request = self.factory.post('chat/compose',
+                                    {'user_from': 'test@test.com',
+                                     'user_to': 'test@test.com',
+                                     'subject': 'test suject'})
+        request.user = self.user
 
-    # def test_post(self):
-    #     request = self.factory.post('chat/compose',
-    #                                 {'text': 'my text',
-    #                                  'user_to': 'test@test.com',
-    #                                  'subject': 'test suject'})
-    #     request.user = self.user
-    #
-    #     response = self.my_view_class.as_view()(request)
-    #     self.assertEqual(response.status_code, 302)
-
+        response = self.my_view_class.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+"""
     def test_create_message(self):
         message = self.my_view_class.create_message('teste subject', self.user, self.user)
         self.assertEqual(message.user_to, self.user)
