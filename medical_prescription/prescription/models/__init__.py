@@ -1,3 +1,4 @@
 from .prescription import Prescription
-from .prescriptionexam import PrescriptionExam
+from .prescriptiondefaultexam import PrescriptionDefaultExam
+from .prescriptioncustomexam import PrescriptionCustomExam
 from .prescritionmedication import PrescriptionMedication
