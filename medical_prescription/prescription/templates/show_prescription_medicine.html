@@ -17,7 +17,7 @@
         });
 
         $('#add_more_reccomendation').click(function() {
-          cloneMore('div.table:last', 'form', "", "medicine");
+          cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
         });
         autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_medicine' %}", "medicine");
         autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
@@ -116,19 +116,25 @@
                 {{ formrecommendation.management_form }}
                 {% for recommendationField in formrecommendation %}
 
-                <div class="form-group">
-                    {% for error in recommendationField.recommendation.errors %}
-                    <div class="alert alert-danger" role="alert">{{error}}</div>
-                    {% endfor %}
-                    {{recommendationField.recommendation}}
-                 </div>
+                <ul id='object_recommendation'>
+                  <div class="table_recommendation">
+                    <li>
+                      <div class="form-group">
+                          {% for error in recommendationField.recommendation.errors %}
+                          <div class="alert alert-danger" role="alert">{{error}}</div>
+                          {% endfor %}
+                          {{recommendationField.recommendation}}
+                       </div>
+                     </li>
+                  </div>
+                </ul>
 
 
                 {% endfor %}
 
                 <div class="input-group-btn" align="center">
                     <br>
-                    <button class="btn btn-success" value="Add More" id="add_more" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_reccomendation" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                     <br>
                 </div>
 
