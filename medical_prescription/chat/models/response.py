@@ -4,8 +4,9 @@ from user.models import User
 
 
 class Response(models.Model):
-
-    # TODO(FELIPE) Create file field.
+    """
+    Create a Response model in database.
+    """
 
     user_from = models.ForeignKey(User, related_name="user_response_from")
     user_to = models.ForeignKey(User, related_name="user_response_to")

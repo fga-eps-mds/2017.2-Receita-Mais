@@ -8,27 +8,23 @@ from chat.validators import MessageValidator
 
 class CreateResponse(forms.Form):
     """
-    Form to create a custom exam.
+    Form to create a Reponse.
     """
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
                                                         'type': 'text',
                                                         'placeholder': _('Insira aqui sua mensagem')}))
     image = forms.FileField(required=False)
 
+    # Get Messages fields.
     def clean(self):
-        """
-        Get Custom Exam fields.
-        """
 
         text = self.cleaned_data.get('text')
 
         # Verify validations in form.
         self.validator_all(text)
 
+    # Checks validator in all fields.
     def validator_all(self, text):
-        """
-        Checks validator in all fields.
-        """
 
         validator = MessageValidator()
 

@@ -20,5 +20,6 @@ class OutboxView(ListView):
     model = Message
     paginate_by = 40
 
+    # Return all send Message for the HealthProfessional.
     def get_queryset(self):
         return self.model.objects.filter(user_from=self.request.user)

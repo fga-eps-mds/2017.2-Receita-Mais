@@ -20,5 +20,6 @@ class InboxHealthProfessionalView(ListView):
     model = Message
     paginate_by = 40
 
+    # Return all Messages for the user.
     def get_queryset(self):
         return self.model.objects.filter(user_to=self.request.user)

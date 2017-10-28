@@ -13,12 +13,16 @@ from chat.forms import CreateResponse
 
 @method_decorator(login_required, name='dispatch')
 class MessageDetailView(DetailView, FormMixin):
+    """
+    Class for detail Message from the User.
+    """
 
     form_class = CreateResponse
     context_object_name = 'list'
     model = Message
     paginate_by = 40
 
+    # Return a query of Message from the user.
     def get_queryset(self):
         return self.model.objects.filter(user_to=self.request.user)
 

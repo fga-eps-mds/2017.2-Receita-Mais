@@ -1,7 +1,6 @@
 # Django
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
-from django.shortcuts import render, redirect
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.decorators import login_required
@@ -16,6 +15,9 @@ from user.decorators import is_health_professional
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_health_professional, name='dispatch')
 class SentMessageDetailView(DetailView, FormMixin):
+    """
+    Create a Message.
+    """
 
     form_class = CreateResponse
     context_object_name = 'list'

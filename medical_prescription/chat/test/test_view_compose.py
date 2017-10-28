@@ -55,16 +55,3 @@ class TestComposeView(TestCase):
 
         response = self.my_view_class.as_view()(request)
         self.assertEqual(response.status_code, 200)
-"""
-    def test_create_message(self):
-        message = self.my_view_class.create_message('teste subject', self.user, self.user)
-        self.assertEqual(message.user_to, self.user)
-        self.assertEqual(message.user_from, self.user)
-        self.assertEqual(message.subject, 'teste subject')
-
-    def test_create_response(self):
-        response = self.my_view_class.create_response(self.user, self.user, 'my text')
-        self.assertEqual(response.user_to, self.user)
-        self.assertEqual(response.user_from, self.user)
-        self.assertEqual(response.text, 'my text')
-"""

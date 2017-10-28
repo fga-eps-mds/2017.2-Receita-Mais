@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_health_professional, name='dispatch')
 class ViewMessageHealthProfessional(MessageDetailView):
+    """
+    Display details of the Message for HealthProfessional.
+    """
 
     template_name = 'view_message_health_professional.html'
 

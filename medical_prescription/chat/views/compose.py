@@ -15,6 +15,10 @@ from user.decorators import is_health_professional
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_health_professional, name='dispatch')
 class ComposeView(FormView):
+    """
+    Create a Message.
+    """
+
     form_class = CreateMessage
     template_name = 'compose.html'
 
@@ -29,6 +33,7 @@ class ComposeView(FormView):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
+        # Validanting form.
         if form.is_valid():
 
             text = form.cleaned_data.get('text')
@@ -37,6 +42,7 @@ class ComposeView(FormView):
             user_from = request.user
             user_to = User.objects.get(email=user_to_email)
 
+            # Create a Message
             message = Message()
             message.subject = subject
             message.user_to = user_to

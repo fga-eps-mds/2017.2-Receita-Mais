@@ -5,6 +5,9 @@ from chat import constants
 
 
 class Message(models.Model):
+    """
+    Create a Message model in database.
+    """
 
     user_from = models.ForeignKey(User, related_name="user_from")
     user_to = models.ForeignKey(User, related_name="user_to")
@@ -13,4 +16,5 @@ class Message(models.Model):
 
     date = models.DateField(auto_now=True)
 
+    # List of response in Message.
     messages = models.ManyToManyField(Response, default=None)
