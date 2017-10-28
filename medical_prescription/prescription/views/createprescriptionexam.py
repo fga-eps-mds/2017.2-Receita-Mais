@@ -27,10 +27,11 @@ class CreatePrescriptionExamView(FormView):
         """
         Creates the base of the prescription
         """
-        patient_id = form.cleaned_data.get('patient_id')
-        cid_id = form.cleaned_data.get('cid_id')
+        patient_id = form.cleaned_data.get('patient')
+        print("\n\n"+str(patient_id)+"\n\n")
+        cid_id = form.cleaned_data.get('cid')
 
-        prescription_base_object = Prescription(patient_id=patient_id, cid_id=cid_id)
+        prescription_base_object = Prescription(patient=patient_id, cid_id=cid_id)
         prescription_base_object.save()
         return prescription_base_object
 
