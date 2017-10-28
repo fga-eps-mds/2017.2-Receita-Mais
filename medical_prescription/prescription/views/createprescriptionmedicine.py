@@ -92,10 +92,10 @@ class CreatePrescriptionMedicine(FormView):
 
         recommendation = formrecommendation.cleaned_data.get('recommendation')
 
-        prescription_reccomendation_object = PrescriptionRecommendation(
+        prescription_recommendation_object = PrescriptionRecommendation(
             prescription=prescription_object,recommendation=recommendation)
 
-        prescription_reccomendation_object.save()
+        prescription_recommendation_object.save()
 
 
 
