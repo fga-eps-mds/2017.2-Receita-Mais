@@ -1,63 +1,61 @@
   $(document).ready(function($) {
 
-    //Criando mascara para os campos do formulário
+    //Creating mascara for form fields
     var $date_of_birth = $("#id_date_of_birth");
     $date_of_birth.mask('00/00/0000');
 
     function limpa_formulário_cep() {
-      // Limpa valores do formulário de cep.
+      // Cleans cep form values.
       $("#rua").val("");
       $("#bairro").val("");
       $("#cidade").val("");
       $("#id_UF").val("");
     }
 
-    //Quando o campo cep perde o foco.
+    //When the cep field loses focus.
     $("#id_CEP").blur(function() {
 
-      //Nova variável "cep" somente com dígitos.
+      //New variable "cep" with digits only.
       var cep = $(this).val().replace(/\D/g, '');
 
-      //Verifica se campo cep possui valor informado.
+
       if (cep != "") {
 
-        //Expressão regular para validar o CEP.
+        //Regular expression to validate the CEP.
         var validacep = /^[0-9]{8}$/;
 
-        //Valida o formato do CEP.
+        // Validate the format of the CEP.
         if (validacep.test(cep)) {
 
-          //Preenche os campos com "..." enquanto consulta webservice.
+          // Fill fields while querying API.
           $("#id_complement").val("Buscando...");
           $("#id_neighborhood").val("Buscando...");
           $("#id_city").val("Buscando...");
           $("#id_UF").val("Buscando...");
 
-          //Consulta o webservice viacep.com.br/
+          // Check the webservice viacep.com.br/
           $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
 
             if (!("erro" in dados)) {
-              //Atualiza os campos com os valores da consulta.
+              // Refreshes fields with query values.
               $("#id_complement").val(dados.logradouro);
               $("#id_neighborhood").val(dados.bairro);
               $("#id_city").val(dados.localidade);
               $("#id_UF").val(dados.uf);
             } //end if.
             else {
-              //CEP pesquisado não foi encontrado.
               limpa_formulário_cep();
               alert("CEP não encontrado.");
             }
           });
         } //end if.
         else {
-          //cep é inválido.
           limpa_formulário_cep();
           alert("Formato de CEP inválido.");
         }
       } //end if.
       else {
-        //cep sem valor, limpa formulário.
+        // no value, clean form.
         limpa_formulário_cep();
       }
     });
