@@ -12,9 +12,9 @@
 
         // Methods to clone and autocomplete.
         $('#add_more').click(function() {
-          cloneMore('div.table:last', 'form', "{% url 'autocomplete_exam' %}");
+          cloneMore('div.table:last', 'form', "{% url 'autocomplete_exam' %}", "exam");
         });
-        autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}");
+        autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}", "exam");
         autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
         autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 </script>
