@@ -37,8 +37,16 @@ class ComposeView(FormView):
             user_from = request.user
             user_to = User.objects.get(email=user_to_email)
 
-            message = self.create_message(subject, user_to, user_from)
-            response = self.create_response(user_from, user_to, text)
+            message = Message()
+            message.subject = subject
+            message.user_to = user_to
+            message.user_from = user_from
+            message.date = date.today()
+            response = Response()
+            response.user_from = user_from
+            response.user_to = user_to
+            response.text = text
+            response.dat = date.today()
 
             response.save()
             message.save()
@@ -48,22 +56,3 @@ class ComposeView(FormView):
             return redirect('/dashboard_health_professional/health_professional')
 
         return render(request, self.template_name, {'form': form})
-
-    def create_message(subject, user_to, user_from):
-        message = Message()
-        message.subject = subject
-        message.user_to = user_to
-        message.user_from = user_from
-        message.date = date.today()
-
-        return message
-
-    def create_response(user_from, user_to, text):
-
-        response = Response()
-        response.user_from = user_from
-        response.user_to = user_to
-        response.text = text
-        response.dat = date.today()
-
-        return response
