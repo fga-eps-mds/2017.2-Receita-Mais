@@ -4,17 +4,19 @@
 <link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
 
 <script>
-        // This is an alternative to loading scripts while maintaining asynchrony in JavaScript.
-        var configautocompleteexam = "{% static "prescription/js/configautocompleteexam.js" %}";
         var formset = "{% static "prescription/js/formset.js" %}";
-        $.getScript(configautocompleteexam);
+        var sortable = "{% static "prescription/js/sortable.js" %}";
+
         $.getScript(formset);
+        $.getScript(sortable);
 
         // Methods to clone and autocomplete.
         $('#add_more').click(function() {
           cloneMore('div.table:last', 'form', "{% url 'autocomplete_exam' %}");
         });
         autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}");
+        autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
+        autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 </script>
 
 <div>
