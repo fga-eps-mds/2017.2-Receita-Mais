@@ -5,7 +5,12 @@ function updateElementIndex(el, prefix, ndx) {
   if (el.id) el.id = el.id.replace(id_regex, replacement);
   if (el.name) el.name = el.name.replace(id_regex, replacement);
 }
-
+// This function is used to add another form dynamically when the button is clicked.
+// The parameters are:
+//    selector: the div where the form will be added.
+//    prefix: The form that will be cloned.
+//    functionJson: The function to pass the data.
+//    field: the field that will be used as reference.
 function cloneMore(selector, prefix, functionJson, field) {
   var newElement = $(selector).clone(false);
   var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
@@ -32,6 +37,7 @@ function cloneMore(selector, prefix, functionJson, field) {
   return false;
 }
 
+// This function is used to delete a form dynamically when the button is clicked.
 function deleteForm(prefix, btn) {
   var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
   if (total > 1) {
@@ -47,6 +53,7 @@ function deleteForm(prefix, btn) {
   return false;
 }
 
+// This functions are responsable to call the functions when the button is clicked.
 $(document).on('click', '.add-form-row', function(e) {
   e.preventDefault();
   cloneMore('.form-row:last', 'form');
@@ -59,6 +66,12 @@ $(document).on('click', '.remove-form-row', function(e) {
   return false;
 });
 
+//This functions are used to auto complete the fields when something is been inserted.
+
+//This function receive:
+//  element: The element that will be autocompleted.
+//  functionJson: The function used to get the data.
+//  field: The field where the element will be completed.
 function autocompleteElement(element, functionJson, field) {
   $(element).autocomplete({
     source: functionJson,

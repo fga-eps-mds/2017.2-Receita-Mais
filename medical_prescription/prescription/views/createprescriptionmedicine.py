@@ -33,6 +33,7 @@ class CreatePrescriptionMedicine(FormView):
     def dispatch(self, *args, **kwargs):
         return super(CreatePrescriptionMedicine, self).dispatch(*args, **kwargs)
 
+    # Creates the prescription object.
     def create_prescription_medicine(self, form):
         """
         Creates the base of the prescription

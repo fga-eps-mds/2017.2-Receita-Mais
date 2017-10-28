@@ -33,6 +33,7 @@
 
       <div class="modal-body modal-open">
 
+        <!-- This fields are responsable off patient information. -->
         {% csrf_token %}
         <div class="form-group">
           {% for error in form.patient.errors %}
@@ -53,6 +54,7 @@
           {{form.patient_id}}
         <hr>
 
+        <!-- This are the tabs in prescription -->
         <ul class="nav nav-tabs nav-justified">
             <li class="active"><a data-toggle="tab" href="#home">Medicamento</a></li>
             <li><a data-toggle="tab" href="#menu2">Exames</a></li>
@@ -60,6 +62,8 @@
         </ul>
 
         <div class="tab-content">
+          <!-- This tab is where the medice take place in prescription. -->
+          <!-- This tab have been set as the default. -->
             <div id="home" class="tab-pane fade in active">
                 <br>
 
@@ -105,10 +109,12 @@
                   </div>
             </div>
 
+            <!-- This tab is where the exams take place in prescription. -->
             <div id="menu2" class="tab-pane fade">
                 <h3>EXAMES AQUI</h3>
             </div>
 
+            <!-- This tab is where the recommendations take place in prescription. -->
             <div id="menu3" class="tab-pane fade">
 
                 {{ formrecommendation.management_form }}
