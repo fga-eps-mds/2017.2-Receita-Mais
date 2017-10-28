@@ -25,7 +25,7 @@ $(document).ready(function($) {
       var validationcep = /^[0-9]{8}$/;
 
       // Validate the format of the CEP.
-      if (validacep.test(cep)) {
+      if (validationcep.test(cep)) {
 
         // Fill fields while querying API.
         $("#id_complement").val("Buscando...");

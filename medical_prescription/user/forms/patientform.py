@@ -33,7 +33,7 @@ class PatientForm(UserForm):
                                                             'placeholder': '* 12345678911'}))
 
     CEP = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
-                                                        'placeholder': '* 12345678911'}))
+                                                        'placeholder': '* 12345678'}))
 
     UF = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                        'placeholder': '* DF'}))
