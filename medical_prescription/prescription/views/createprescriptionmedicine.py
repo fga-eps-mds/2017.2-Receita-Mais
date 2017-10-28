@@ -44,6 +44,7 @@ class CreatePrescriptionMedicine(FormView):
         prescription_medicine_object.save()
         return prescription_medicine_object
 
+
     def create_prescription_has_manipulated_medicine(self, medicine_id, quantity, posology, prescription_medicine):
         prescription_has_manipulatedmedicine_object = PrescriptionHasManipulatedMedicine(
             manipulated_medicine_id=medicine_id,
@@ -84,6 +85,20 @@ class CreatePrescriptionMedicine(FormView):
             # Nothing to do.
             pass
 
+    def add_recommendation_in_prescription(self, formrecommendation, prescription_object):
+        """
+        Add recomendation to prescription
+        """
+
+        recommendation = formrecommendation.cleaned_data.get('recommendation')
+
+        prescription_reccomendation_object = PrescriptionRecommendation(
+            prescription=prescription_object,recommendation=recommendation)
+
+        prescription_reccomendation_object.save()
+
+
+
     def get(self, request, *args, **kwargs):
         """
         Rendering form in view.
@@ -114,6 +129,7 @@ class CreatePrescriptionMedicine(FormView):
 
         default_is_valid = False
         atomic_is_valid = False
+        formRecommendation_is_valid = False
         if form.is_valid():
             default_is_valid = True
             if formset.is_valid():
@@ -123,9 +139,16 @@ class CreatePrescriptionMedicine(FormView):
                 for atomic_form in formset:
                     self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
 
-        data['form_is_valid'] = default_is_valid and atomic_is_valid
+                if formrecommendation.is_valid():
+                    formRecommendation_is_valid = True
+                    for recommendationField in formrecommendation:
+                        self.add_recommendation_in_prescription(recommendationField, prescription_medicine_object)
+
+
+        data['form_is_valid'] = default_is_valid and atomic_is_valid and formRecommendation_is_valid
         context = {'form': form,
-                   'formset': formset}
+                   'formset': formset,
+                   'formrecommendation': formrecommendation}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
         return JsonResponse(data)
