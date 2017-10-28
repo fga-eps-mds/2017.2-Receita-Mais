@@ -21,7 +21,6 @@ class AutoCompleteExam(View):
 
             self.get_default_exams(search, list_exams)
             self.get_custom_exams(search, request.user, list_exams)
-            print(request.user)
 
             data = json.dumps(list_exams)
             mimetype = 'application/json'
@@ -38,7 +37,6 @@ class AutoCompleteExam(View):
             custom_exam_item['type'] = 'custom_exam'
             custom_exam_item['value'] = self.parse_description(custom_exam.description)
             custom_exam_item['description'] = self.parse_description(custom_exam.description)
-            print(custom_exam_item)
 
             list_exams.append(custom_exam_item)
 

@@ -11,7 +11,7 @@ class PrescriptionValidator():
     Validation of Prescription.
     """
     def validator_cid(self, cid):
-        if cid is not None:
+        if cid is not None and len(cid) is not 0:
             disease_cid_database = Disease.objects.filter(id_cid_10=cid)
 
             if not disease_cid_database.exists():
