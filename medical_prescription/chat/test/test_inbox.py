@@ -11,7 +11,12 @@ class TesteInbox(TestCase):
         # Create Patient.
         self.patient = Patient.objects.create(name='Paciente',
                                               phone='1111111111',
-                                              email='patient@patient.com')
+                                              email='patient@patient.com',
+                                              CEP='72850735',
+                                              UF='DF',
+                                              city='Brasília',
+                                              neighborhood='Asa sul',
+                                              complement='Bloco 2 QD 701')
         self.patient.save()
 
         self.professional = HealthProfessional.objects.create(name='Heatlh',

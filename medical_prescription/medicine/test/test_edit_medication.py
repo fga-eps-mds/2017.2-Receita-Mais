@@ -30,8 +30,13 @@ class UpdateMedicationTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com', password='senha12')
-        self.patient = Patient.objects.create_user(email='patient@patient.com', password='senha12')
-
+        self.patient = Patient.objects.create_user(email='patient@patient.com',
+                                                   password='senha12',
+                                                   CEP='72850735',
+                                                   UF='DF',
+                                                   city='Brasília',
+                                                   neighborhood='Asa sul',
+                                                   complement='Bloco 2 QD 701')
         self.recipe_name = "Examina alguma coisa"
         self.composition = "Alguma coisa"
 

@@ -19,7 +19,12 @@ class TestRequiredAutocompletePatient(TestCase):
                                                                           password='senha12')
         self.patient = Patient.objects.create_user(name='Patient',
                                                    email='patient@patient.com',
-                                                   password='senha12')
+                                                   password='senha12',
+                                                   CEP='72850735',
+                                                   UF='DF',
+                                                   city='Brasília',
+                                                   neighborhood='Asa sul',
+                                                   complement='Bloco 2 QD 701')
 
     def test_request_autocomplete_patient_fail(self):
         request = self.factory.get('/prescription/ajax/autocomplete_patient/?term=Pat')
