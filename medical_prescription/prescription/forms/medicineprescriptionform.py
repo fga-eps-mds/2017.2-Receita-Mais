@@ -15,7 +15,7 @@ class MedicinePrescriptionForm(forms.Form):
     medicine_type = forms.CharField(widget=forms.HiddenInput())
 
     quantity = forms.ChoiceField(choices=constants.QUANTITY_CHOICES,
-                                 widget=forms.Select(attrs={'class': 'form-cntrol select-quantity'}))
+                                 widget=forms.Select(attrs={'class': 'select-quantity'}))
 
     posology = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
                                                              'placeholder': 'Posologia'}))

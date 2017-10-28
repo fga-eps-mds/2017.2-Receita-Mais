@@ -141,5 +141,8 @@ function select_type_field(element, field, ui) {
     case 'cid':
       $("#" + element.id + "_id").val(ui.item.id);
       break;
+    case 'recommendation':
+      $("#" + element.id + "_id").val(ui.item.id);
+      break;
   }
 }

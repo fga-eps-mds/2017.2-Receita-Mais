@@ -9,11 +9,13 @@ from django.contrib.auth.decorators import login_required
 # Local Django
 from user.decorators import is_health_professional
 from prescription.forms import (CreatePrescriptionForm,
-                                MedicinePrescriptionForm
+                                MedicinePrescriptionForm,
+                                RecommendationPrescriptionForm,
                                 )
 from prescription.models import (PrescriptionMedicine,
                                  PrescriptionHasManipulatedMedicine,
-                                 PrescriptionHasMedicine
+                                 PrescriptionHasMedicine,
+                                 PrescriptionRecommendation,
                                  )
 
 
@@ -24,6 +26,7 @@ class CreatePrescriptionMedicine(FormView):
     template_name = 'show_prescription_medicine.html'
     # Defines that this form will have multiple instances.
     MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
+    RecommendationPrescriptionFormSet = formset_factory(RecommendationPrescriptionForm)
 
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
@@ -87,10 +90,13 @@ class CreatePrescriptionMedicine(FormView):
         """
         form = CreatePrescriptionForm(request.GET or None)
         formset = self.MedicinePrescriptionFormSet(request.GET or None)
+        formrecommendation = self.RecommendationPrescriptionFormSet(request.GET or None)
 
         data = dict()
         context = {'form': form,
-                   'formset': formset}
+                   'formset': formset,
+                   'formrecommendation': formrecommendation,
+                   }
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
         return JsonResponse(data)
@@ -101,6 +107,7 @@ class CreatePrescriptionMedicine(FormView):
         """
         form = CreatePrescriptionForm(request.POST or None)
         formset = self.MedicinePrescriptionFormSet(request.POST or None)
+        formrecommendation = self.RecommendationPrescriptionFormSet(request.POST or None)
         data = dict()
 
         # Checks whether the completed forms are valid.
