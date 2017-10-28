@@ -1,4 +1,4 @@
 [run]
 branch = True
-source = user, exam, medicine, medication, disease, prescription, chat
+source = chat
 omit =  */apps.py, */migrations/*, */__init__.py

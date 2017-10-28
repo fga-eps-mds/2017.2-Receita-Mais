@@ -2,6 +2,7 @@
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
 from datetime import date
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -47,3 +48,6 @@ class MessageDetailView(DetailView, FormMixin):
         self.object.messages.add(response)
 
         return super(MessageDetailView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('view_message_patient', kwargs={'pk': self.object.pk})
