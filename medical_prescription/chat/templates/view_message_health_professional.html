@@ -1,0 +1,100 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+
+<section class="content">
+
+  <link rel="stylesheet" href="{% static " chat/css/jquery-ui.css " %}" />
+  <script src="{% static " chat/js/jquery.js " %}"></script>
+  <script src="{% static " chat/js/jquery-ui.js " %}">
+  </script>
+  <script src="{% static " chat/js/autocompleteemail.js " %}"></script>
+  <div class="row">
+    <!-- /.col -->
+    <div class="col-md-9">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Ver Mensagem</h3>
+          <div class="box-tools pull-right">
+            <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
+            <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
+          </div>
+        </div>
+
+        <div class="box-body no-padding">
+          <div class="mailbox-read-info">
+            <h3>Título: {{list.subject}} </h3>
+          </div>
+          <!-- /.mailbox-read-message -->
+        </div>
+        <!-- /.box-header -->
+        {% for element in list.messages.all %}
+        <div class="box-body no-padding">
+          <div class="mailbox-read-info">
+            <h5>De: {{element.user_from}}
+                      <span class="mailbox-read-time pull-right">{{element.date|date}} </span></h5>
+          </div>
+
+          <div class="mailbox-read-message">
+            <p>{{element.text}}</p>
+          </div>
+          <!-- /.mailbox-read-message -->
+        </div>
+        {% endfor %}
+        <!-- /.box-body -->
+
+        <div class="box-body">
+          <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+            {% csrf_token %}
+
+            <div class="form-group">
+              {% for error in form.text.errors %}
+                  <div class="alert alert-danger" role="alert">{{ error }}</div>
+              {% endfor %}
+              {{ form.text }}
+            </div>
+            </li>
+
+            <div class="form-group">
+              {% for error in form.image.errors %}
+                  <div class="alert alert-danger" role="alert">{{ error }}</div>
+              {% endfor %}
+              {{ form.image }}
+            </div>
+            </li>
+
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i>Responder</button>
+              </div>
+            </div>
+            <!-- /.box-footer -->
+          </form>
+        </div>
+
+      </div>
+      <!-- /. box -->
+    </div>
+    <div class="col-md-3">
+      <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom">Back to Inbox</a>
+
+      <div class="box box-solid">
+        <div class="box-header with-border">
+          <h3 class="box-title">Folders</h3>
+
+          <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="box-body no-padding">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a href="#"><i class="fa fa-inbox"></i> Inbox
+              <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+    <!-- /.row -->
+</section>
+{% endblock %}

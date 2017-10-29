@@ -8,7 +8,7 @@ from chat.validators import MessageValidator
 
 class CreateMessage(forms.Form):
     """
-    Form to create a custom exam.
+    Form to create a Message.
     """
     subject = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
                                                             'type': 'text',
@@ -22,10 +22,8 @@ class CreateMessage(forms.Form):
                                                         'placeholder': _('Insira aqui sua mensagem')}))
     image = forms.FileField(required=False)
 
+    # Get Messages fields.
     def clean(self):
-        """
-        Get Custom Exam fields.
-        """
 
         text = self.cleaned_data.get('text')
         subject = self.cleaned_data.get('subject')
@@ -34,11 +32,8 @@ class CreateMessage(forms.Form):
         # Verify validations in form.
         self.validator_all(text, subject, user_to)
 
+    # Checks validator in all fields.
     def validator_all(self, text, subject, user_to):
-        """
-        Checks validator in all fields.
-        """
-
         validator = MessageValidator()
 
         # Fields common all users.
