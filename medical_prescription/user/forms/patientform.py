@@ -1,5 +1,4 @@
 # standard library
-from datetime import date
 import logging
 
 # django
@@ -7,10 +6,8 @@ from django import forms
 
 # local django
 from user.models import Patient
-from user.forms import (UserForm,
-                        FormattedDateField
-                        )
-from user.validators import PatientValidator
+from user.forms import UserForm
+from user.validators import UserValidator
 from user import constants
 
 
@@ -47,6 +44,8 @@ class PatientForm(UserForm):
     complement = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                                'size': 200,
                                                                'placeholder': '* Qd 70, Lt 8 Casa 2'}))
+
+    email = forms.EmailField()
 
     class Meta:
         # Define model to patient.
@@ -85,11 +84,14 @@ class PatientForm(UserForm):
         """
 
         logger.debug("Start validations in PatientForm.")
-        validator = PatientValidator()
+        validator = UserValidator()
 
         # Fields common all users.
-        validator.validator_email(email)
+        # validator.validator_email(email)
         validator.validator_password(password, password_confirmation)
         validator.validator_name(name)
         validator.validator_phone_number(phone)
         validator.validator_date_of_birth(date_of_birth)
+
+        # Fields specify to the patient.
+        logger.debug("Exit validations in PatientForm.")

@@ -1,7 +1,8 @@
 # Django
 from django.contrib import admin
 from .models import (
-    User, HealthProfessional, Patient, UserActivateProfile, ResetPasswordProfile
+    User, HealthProfessional, Patient, UserActivateProfile, ResetPasswordProfile,
+    SendInvitationProfile, AssociatedHealthProfessionalAndPatient,
 )
 
 
@@ -14,3 +15,5 @@ admin.site.register(HealthProfessional)
 admin.site.register(Patient)
 admin.site.register(UserActivateProfile)
 admin.site.register(ResetPasswordProfile)
+admin.site.register(SendInvitationProfile)
+admin.site.register(AssociatedHealthProfessionalAndPatient)

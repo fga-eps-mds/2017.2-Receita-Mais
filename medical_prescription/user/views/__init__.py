@@ -1,4 +1,6 @@
 # Local Django
+from .addpatientview import AddPatientView
+from .listlinkedpatientsview import ListLinkedPatientsView
 from .confirmaccountview import ConfirmAccountView
 from .confirmpasswordview import ConfirmPasswordView
 from .deletehealthprofessional import DeleteHealthProfessional

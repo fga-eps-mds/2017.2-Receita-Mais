@@ -1,0 +1,45 @@
+{
+  "CreationDate": "2017-10-26",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://0.0.0.0:8000/dashboard_health_professional/health_professional/",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link= Pacientes",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Visualizar pacientes",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "link=Visualizar pacientes",
+      "Value": "Visualizar pacientes"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/table/thead/tr/th[1]",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/div[1]/section/div/table/thead/tr/th[1]",
+      "Value": "Nome"
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[1]/section/div/table/thead/tr/th[2]",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "/html/body/div/div[1]/section/div/table/thead/tr/th[2]",
+      "Value": "Email"
+    }
+  ]
+}

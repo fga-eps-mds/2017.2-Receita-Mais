@@ -41,7 +41,6 @@ class HealthProfessionalValidator(UserValidator):
 
         logger.debug("Exit validator_crm.")
 
-
     def validator_date_of_birth(self, date_of_birth):
         """
         Validating date of birth.
