@@ -111,7 +111,7 @@ function autocomplete_exam(ul, item) {
     $img.attr({
         alt: item.label
     });
-    src: 'https://mt.googleapis.com/vt/icon/name=icons/onion/73-hospitals.png',
+    src: 'https://mt.googleapis.com/vt/icon/name=icons/onion/73-hospitals.png';
 
     var description = '<font size="2" color="gray">' + item.description + '</font>';
 

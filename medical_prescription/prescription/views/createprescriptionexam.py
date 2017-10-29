@@ -45,9 +45,9 @@ class CreatePrescriptionExamView(FormView):
             self.create_prescription_default_exam(exam_prescription,
                                                   id_tuss)
         elif exam_type == 'custom_exam':
-            name = form.cleaned_data.get('name')
+            exam_id = form.cleaned_data.get('exam_id')
             self.create_prescription_custom_exam(exam_prescription,
-                                                 name,
+                                                 exam_id,
                                                  request)
         else:
             # Nothing to do.
@@ -60,8 +60,8 @@ class CreatePrescriptionExamView(FormView):
             )
         prescription_default_exam_object.save()
 
-    def create_prescription_custom_exam(self, prescription, name, request):
-        custom_exam = CustomExam.objects.get(health_professional_FK=request.user, name=name)
+    def create_prescription_custom_exam(self, prescription, exam_id, request):
+        custom_exam = CustomExam.objects.get(pk=exam_id)
         prescription_custom_exam_object = PrescriptionCustomExam(
             prescription=prescription,
             exam=custom_exam

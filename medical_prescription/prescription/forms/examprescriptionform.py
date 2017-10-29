@@ -13,6 +13,7 @@ class ExamPrescriptionForm(forms.Form):
                                                          'placeholder': 'Nome do Exame'}))
 
     exam_id = forms.IntegerField(widget=forms.HiddenInput())
+    exam_type = forms.CharField(widget=forms.HiddenInput())
 
     validator = ExamPrescriptionValidator()
 
