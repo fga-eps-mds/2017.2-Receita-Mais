@@ -10,7 +10,6 @@ from django.contrib import messages
 # Local Django
 from user.models import SendInvitationProfile
 from user.forms import PatientForm
-from user.views import ConfirmAccountView
 from user import constants
 
 # Set level logger.
@@ -64,13 +63,13 @@ class RegisterPatientView(FormView):
             RegisterPatientView.register_patient(patient, patient_form,
                                                  patient_profile)
             messages.success(
-                request, 'Registro Realizado!Um email foi enviado com seu link para ativação!', extra_tags='alert')
-            return redirect('/')
+                request, 'Registro Realizado!', extra_tags='alert')
+            return redirect('/user/login_patient/')
 
         return render(request, self.template_name, {'form': patient_form})
-
     # This method is responsible for make the register of the invited patient
     # informations in database.
+
     def register_patient(patient, patient_form, patient_profile):
         patient.name = patient_form.cleaned_data.get('name')
         patient.sex = patient_form.cleaned_data.get('sex')
@@ -80,12 +79,8 @@ class RegisterPatientView(FormView):
 
         password = patient_form.cleaned_data.get('password')
         patient.set_password(password)
-
+        patient.is_active = True
         patient.save()
-
-        # Calls the method responsible for make all the activation account
-        # process.
-        ConfirmAccountView.activate_account_request(patient.email)
 
         logger.debug("Exit post method - Successful user registration.")
         logger.debug("Exit post method - Not successful user registration.")

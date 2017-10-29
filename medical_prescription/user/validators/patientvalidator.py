@@ -52,3 +52,11 @@ class PatientValidator(UserValidator):
             raise forms.ValidationError({'date_of_birth': [_(constants.DATE_OF_BIRTH_MIN_PATIENT_ERROR)]})
 
         logger.debug("Exit validator_date_of_birth.")
+
+    def validator_email(self, email):
+        if email is None:
+            raise forms.ValidationError({'email': [_(constants.EMAIL_NONE)]})
+        elif len(email) > constants.EMAIL_MAX_LENGTH:
+            raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
+        elif len(email) < constants.EMAIL_MIN_LENGTH:
+            raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})

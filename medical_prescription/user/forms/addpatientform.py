@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # local django
 from user import constants
+from user.validators import PatientValidator
 
 
 # Set level logger.
@@ -39,9 +40,13 @@ class AddPatientForm(forms.Form):
         """
         logger.debug("Start validations in AddPatientForm.")
 
+        validator = PatientValidator()
+
+        validator.validator_email(email)
+        '''
         if email is None:
             raise forms.ValidationError({'email': [_(constants.EMAIL_NONE)]})
         elif len(email) > constants.EMAIL_MAX_LENGTH:
             raise forms.ValidationError({'email': [_(constants.EMAIL_SIZE)]})
-
+        '''
         logger.debug("Exit validations in AddPatientForm.")

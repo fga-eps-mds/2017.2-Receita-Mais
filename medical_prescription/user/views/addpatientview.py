@@ -38,7 +38,13 @@ class AddPatientView(FormView):
             # link procedures.
             email = form.cleaned_data.get('email')
             email_from_database = Patient.objects.filter(email=email)
+            email_from_database_health_professional = HealthProfessional.objects.filter(email=email)
             health_professional_profile = HealthProfessional.objects.get(email=actual_user.email)
+
+            if email_from_database_health_professional.exists():
+                message = 'Esta conta pertence a um professional da saúde.'
+                messages.info(request, message, extra_tags='alert')
+                return render(request, self.template_name, {'form': form})
 
             if email_from_database.exists():
                 patient_profile = Patient.objects.get(email=email)
@@ -47,9 +53,13 @@ class AddPatientView(FormView):
 
                 if relationship_database.exists():
                     message = AddPatientView.relationship_exists(patient_profile)
+                    messages.info(request, message, extra_tags='alert')
+                    return redirect('/user/listlinkedpatients/')
                 else:
                     message = AddPatientView.relationship_does_not_exist(patient_profile,
                                                                          health_professional_profile)
+                    messages.info(request, message, extra_tags='alert')
+                    return redirect('/user/listlinkedpatients/')
 
             # The patient added for the request health professional does not
             # exist in database, then a temporary profile is created, till he
@@ -57,56 +67,32 @@ class AddPatientView(FormView):
             else:
                 message = AddPatientView.patient_does_not_exist(email,
                                                                 health_professional_profile)
+                messages.info(request, message, extra_tags='alert')
+                return render(request, self.template_name, {'form': form})
 
         else:
-            # Nothing to do.
-            pass
-
-        messages.info(request, message, extra_tags='alert')
-        return redirect('/user/addpatient/')
+            return render(request, self.template_name, {'form': form})
 
     # If the patient provided by the health professional exists in databases
     # and there is a relationship between him and health professional,
     # the next steps are made.
-    def relationship_exists(patient_profile):
+    def relationship_exists(relationship_database):
 
         # If the patient is actived, then the relationship between him and
         # health professional already exists. Nothing is made.
-        if patient_profile.is_active:
+        if relationship_database.is_active:
             message = 'O paciente já está adicionado em sua lista de pacientes.'
-        else:
-            message = AddPatientView.profile_is_not_active(patient_profile)
-
-        return message
+            return message
 
     # If the patient provided by the health professional exists in database,
     # but there isn't a relationship between him and the request health
     # professional, the next steps are made.
     def relationship_does_not_exist(patient_profile, health_professional_profile):
-
         # Link between the users is created.
         AddPatientView.create_link_patient_health_professional(health_professional_profile,
                                                                patient_profile)
 
-        # If the exist patient is actived, then link between him and the
-        # request health professional is actived.
-        if patient_profile.is_active:
-            AddPatientView.activate_link_patient_health_professional(patient_profile.email)
-            message = 'O paciente foi adicionado à sua lista de pacientes.'
-        else:
-            message = AddPatientView.profile_is_not_active(patient_profile)
-
-        return message
-
-    # If patient is not actived, it means tha he never registered or never
-    # activated his account. A new email is sended and his key_expires is
-    # updated.
-    def profile_is_not_active(patient_profile):
-        profile = SendInvitationProfile.objects.get(patient=patient_profile)
-        profile.key_expires = datetime.datetime.today() + datetime.timedelta(2)
-        profile.save()
-        AddPatientView.send_invitation_email(patient_profile.email, profile)
-        message = 'Um link de cadastro foi enviado ao paciente'
+        message = 'O paciente foi adicionado à sua lista de pacientes.'
 
         return message
 
@@ -158,20 +144,5 @@ class AddPatientView(FormView):
     # This method is responsible for create the link between the users.
     def create_link_patient_health_professional(HealthProfessional, Patient):
         link = AssociatedHealthProfessionalAndPatient(associated_health_professional=HealthProfessional,
-                                                      associated_patient=Patient)
+                                                      associated_patient=Patient, is_active=True)
         link.save()
-
-    # This method is responsible for activate the link between the users and
-    # delete the created temporary profile.
-    def activate_link_patient_health_professional(email):
-        patient_from_database = Patient.objects.filter(email=email)
-
-        if patient_from_database.exists():
-            patient_profile = Patient.objects.get(email=email)
-            AssociatedHealthProfessionalAndPatient.objects.filter(associated_patient=patient_profile).update(is_active=True)
-
-            profile_from_database = SendInvitationProfile.objects.filter(patient=patient_profile)
-
-            if profile_from_database.exists():
-                profile = SendInvitationProfile.objects.get(patient=patient_profile)
-                profile.delete()

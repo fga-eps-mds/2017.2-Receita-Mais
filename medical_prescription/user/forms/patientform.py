@@ -7,7 +7,7 @@ from django import forms
 # local django
 from user.models import Patient
 from user.forms import UserForm
-from user.validators import PatientValidator
+from user.validators import UserValidator, PatientValidator
 from user import constants
 
 
@@ -56,7 +56,8 @@ class PatientForm(UserForm):
         """
 
         logger.debug("Start validations in PatientForm.")
-        validator = PatientValidator()
+        validator = UserValidator()
+        validator_patient = PatientValidator()
 
         # Fields common all users.
         # validator.validator_email(email)
@@ -66,5 +67,5 @@ class PatientForm(UserForm):
         validator.validator_date_of_birth(date_of_birth)
 
         # Fields specify to the patient.
-        validator.validator_document(id_document)
+        validator_patient.validator_document(id_document)
         logger.debug("Exit validations in PatientForm.")
