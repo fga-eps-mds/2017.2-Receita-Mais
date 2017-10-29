@@ -7,3 +7,4 @@ from .resetpasswordform import ResetPasswordForm
 from .updateuserform import UpdateUserForm
 from .userloginform import UserLoginForm
 from .updatepasswordform import UpdatePasswordForm
+from .addpatientform import AddPatientForm
