@@ -28,7 +28,6 @@ class CreatePrescriptionExamView(FormView):
         Creates the base of the prescription
         """
         patient_id = form.cleaned_data.get('patient')
-        print("\n\n"+str(patient_id)+"\n\n")
         cid_id = form.cleaned_data.get('cid')
 
         prescription_base_object = Prescription(patient=patient_id, cid_id=cid_id)
@@ -41,7 +40,6 @@ class CreatePrescriptionExamView(FormView):
         """
 
         exam_type = form.cleaned_data.get('exam_type')
-
         if exam_type == 'default_exam':
             id_tuss = form.cleaned_data.get('id_tuss')
             self.create_prescription_default_exam(exam_prescription,
@@ -60,7 +58,6 @@ class CreatePrescriptionExamView(FormView):
             prescription=prescription,
             exam=id_tuss
             )
-
         prescription_default_exam_object.save()
 
     def create_prescription_custom_exam(self, prescription, name, request):

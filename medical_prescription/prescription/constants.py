@@ -8,3 +8,6 @@ EXAM_INVALID = "This exams does not exists."
 PATIENT_INVALID = "This field is required."
 
 MAX_LENGTH_DESCRIPTION_AUTOCOMPLETE = 175
+
+# Empty constants
+EMPTY = 0

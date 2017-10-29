@@ -12,6 +12,8 @@ class ExamPrescriptionForm(forms.Form):
     exam = forms.CharField(widget=forms.TextInput(attrs={'class': 'transparent-input form-control exam-field',
                                                          'placeholder': 'Nome do Exame'}))
 
+    exam_id = forms.IntegerField(widget=forms.HiddenInput())
+
     validator = ExamPrescriptionValidator()
 
     def clean(self):

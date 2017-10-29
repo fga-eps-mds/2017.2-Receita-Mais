@@ -23,5 +23,4 @@ class AutoCompletePatient(View):
             data = {
                 'list': list,
             }
-            print(list)
             return JsonResponse(data)
