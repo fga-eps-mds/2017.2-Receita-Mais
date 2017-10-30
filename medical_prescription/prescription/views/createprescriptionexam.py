@@ -103,7 +103,7 @@ class CreatePrescriptionExamView(FormView):
 
                 for exam_form in formset:
                     self.create_many_to_many_exam(exam_form, prescription_base_object, request)
-
+        print(form_is_validated)
         data['form_is_valid'] = form_is_validated
         context = {'form': form,
                    'formset': formset}

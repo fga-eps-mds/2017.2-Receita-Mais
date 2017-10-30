@@ -16,7 +16,6 @@ $('#add_more').click(function() {
 });
 // Autocomplete methods.
 autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}", "exam");
-autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
 autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 </script>
 
@@ -46,7 +45,6 @@ autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 
                 {# Hidden fields #}
                 {{form.cid_id}}
-                <hr>
 
                 {{ formset.management_form }}
                 {% for atom_form in formset %}
