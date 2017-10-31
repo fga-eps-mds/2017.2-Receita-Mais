@@ -22,6 +22,11 @@
             <td>{{ relation.associated_patient.email }}</td>
         {% endif %}
       </tr>
+
+      {% empty %}
+
+        <li>{% trans "Não existem pacientes em sua lista." %}</li>
+
       {% endfor %}
       </table>
     </div>

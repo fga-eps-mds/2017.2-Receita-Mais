@@ -11,6 +11,7 @@ from django.contrib import messages
 from user.models import SendInvitationProfile
 from user.forms import PatientForm
 from user import constants
+from user.views import AddPatientView
 
 # Set level logger.
 logging.basicConfig(level=logging.DEBUG)
@@ -81,6 +82,9 @@ class RegisterPatientView(FormView):
         patient.set_password(password)
         patient.is_active = True
         patient.save()
+
+        patient_profile.delete()
+        AddPatientView.activate_link_patient_health_professional(patient.email)
 
         logger.debug("Exit post method - Successful user registration.")
         logger.debug("Exit post method - Not successful user registration.")

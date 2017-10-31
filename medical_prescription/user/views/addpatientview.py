@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 # Local Django
+from user import constants
 from user.forms import AddPatientForm
 from user.models import (Patient,
                          HealthProfessional,
@@ -37,14 +38,15 @@ class AddPatientView(FormView):
             # Preparing the informations necessary to make the especific
             # link procedures.
             email = form.cleaned_data.get('email')
-            email_from_database = Patient.objects.filter(email=email)
             email_from_database_health_professional = HealthProfessional.objects.filter(email=email)
-            health_professional_profile = HealthProfessional.objects.get(email=actual_user.email)
 
             if email_from_database_health_professional.exists():
-                message = 'Esta conta pertence a um professional da saúde.'
+                message = constants.ALERT_HEALTH_PROFESSIONAL
                 messages.info(request, message, extra_tags='alert')
                 return render(request, self.template_name, {'form': form})
+
+            email_from_database = Patient.objects.filter(email=email)
+            health_professional_profile = HealthProfessional.objects.get(email=actual_user.email)
 
             if email_from_database.exists():
                 patient_profile = Patient.objects.get(email=email)
@@ -52,9 +54,8 @@ class AddPatientView(FormView):
                                                                                               associated_health_professional=health_professional_profile)
 
                 if relationship_database.exists():
-                    message = AddPatientView.relationship_exists(patient_profile)
+                    message = AddPatientView.relationship_exists(patient_profile, health_professional_profile)
                     messages.info(request, message, extra_tags='alert')
-                    return redirect('/user/listlinkedpatients/')
                 else:
                     message = AddPatientView.relationship_does_not_exist(patient_profile,
                                                                          health_professional_profile)
@@ -63,7 +64,7 @@ class AddPatientView(FormView):
 
             # The patient added for the request health professional does not
             # exist in database, then a temporary profile is created, till he
-            # make his registration by email and activate his account.
+            # make his registration by email.
             else:
                 message = AddPatientView.patient_does_not_exist(email,
                                                                 health_professional_profile)
@@ -71,28 +72,54 @@ class AddPatientView(FormView):
                 return render(request, self.template_name, {'form': form})
 
         else:
-            return render(request, self.template_name, {'form': form})
+            # Nothing to do.
+            pass
+
+        return render(request, self.template_name, {'form': form})
 
     # If the patient provided by the health professional exists in databases
     # and there is a relationship between him and health professional,
     # the next steps are made.
-    def relationship_exists(relationship_database):
+    def relationship_exists(patient_profile, health_professional_profile):
 
         # If the patient is actived, then the relationship between him and
         # health professional already exists. Nothing is made.
-        if relationship_database.is_active:
-            message = 'O paciente já está adicionado em sua lista de pacientes.'
-            return message
+        if patient_profile.is_active:
+            message = constants.LINKED_PATIENT_EXISTS
+        else:
+            message = AddPatientView.profile_is_not_active(patient_profile, health_professional_profile)
+
+        return message
 
     # If the patient provided by the health professional exists in database,
     # but there isn't a relationship between him and the request health
     # professional, the next steps are made.
     def relationship_does_not_exist(patient_profile, health_professional_profile):
+
         # Link between the users is created.
         AddPatientView.create_link_patient_health_professional(health_professional_profile,
                                                                patient_profile)
 
-        message = 'O paciente foi adicionado à sua lista de pacientes.'
+        # If the exist patient is actived, then link between him and the
+        # request health professional is actived.
+        if patient_profile.is_active:
+            AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=health_professional_profile,
+                                                               associated_patient=patient_profile).update(is_active=True)
+            message = constants.LINKED_PATIENT_SUCESS
+        else:
+            message = AddPatientView.profile_is_not_active(patient_profile, health_professional_profile)
+
+        return message
+
+    # If patient is not actived, it means tha he never registered or never
+    # activated his account. A new email is sended and his key_expires is
+    # updated.
+    def profile_is_not_active(patient_profile, health_professional_profile):
+        profile = SendInvitationProfile.objects.get(patient=patient_profile)
+        profile.key_expires = datetime.datetime.today() + datetime.timedelta(2)
+        profile.save()
+        AddPatientView.send_invitation_email(patient_profile.email, profile, health_professional_profile)
+        message = constants.SENDED_EMAIL
 
         return message
 
@@ -101,12 +128,12 @@ class AddPatientView(FormView):
     # invitation email and create the link between the users.
     def patient_does_not_exist(email, health_professional_profile):
         send_invitation_profile = AddPatientView.create_send_invitation_profile(email)
-        AddPatientView.send_invitation_email(email, send_invitation_profile)
+        AddPatientView.send_invitation_email(email, send_invitation_profile, health_professional_profile)
         patient_profile = Patient.objects.get(email=email)
         AddPatientView.create_link_patient_health_professional(health_professional_profile,
                                                                patient_profile)
 
-        message = 'Um link de cadastro foi enviado ao paciente.'
+        message = constants.SENDED_EMAIL
 
         return message
 
@@ -131,18 +158,25 @@ class AddPatientView(FormView):
         return new_profile
 
     # Sending invitation email.
-    def send_invitation_email(email, SendInvitationProfile):
-        email_subject = 'Convite para Cadastro no Sistema'
-        email_body = """
-                     Para se cadastrar, clique neste link:
-                     http://localhost:8000/user/register_patient/%s
-                     """
+    def send_invitation_email(email, SendInvitationProfile, HealthProfessional):
+        email_subject = constants.INVITATION_EMAIL_SUBJECT
+        email_body = constants.INVITATION_EMAIL_BODY
 
-        send_mail(email_subject, email_body % SendInvitationProfile.activation_key,
+        send_mail(email_subject, email_body % (HealthProfessional.name,
+                                               SendInvitationProfile.activation_key),
                   'medicalprescriptionapp@gmail.com', [email], fail_silently=False)
 
     # This method is responsible for create the link between the users.
     def create_link_patient_health_professional(HealthProfessional, Patient):
         link = AssociatedHealthProfessionalAndPatient(associated_health_professional=HealthProfessional,
-                                                      associated_patient=Patient, is_active=True)
+                                                      associated_patient=Patient)
         link.save()
+
+    # This method is responsible for activate the link between the users and
+    # delete the created temporary profile.
+    def activate_link_patient_health_professional(email):
+        patient_from_database = Patient.objects.filter(email=email)
+
+        if patient_from_database.exists():
+            patient_profile = Patient.objects.get(email=email)
+            AssociatedHealthProfessionalAndPatient.objects.filter(associated_patient=patient_profile).update(is_active=True)

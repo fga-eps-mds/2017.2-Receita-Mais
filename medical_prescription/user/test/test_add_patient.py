@@ -71,7 +71,7 @@ class AddPatientViewTest(TestCase):
 
         # Get the response
         response = AddPatientView.as_view()(request, activation_key=self.activation_key)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
     def test_post_when_patient_not_exists(self):
         '''

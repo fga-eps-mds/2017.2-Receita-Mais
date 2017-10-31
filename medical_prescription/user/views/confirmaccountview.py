@@ -12,7 +12,6 @@ from django.contrib import messages
 
 # Local Django
 from user.models import User, UserActivateProfile
-from . import AddPatientView
 
 
 # This class is responsible for doing user account activation.
@@ -25,31 +24,21 @@ class ConfirmAccountView(View):
         ConfirmAccountView.send_activation_account_email(email, profile)
 
     def create_activate_account_profile(email):
-        # Verifying if the temporary user already exists.
+        print("Creating activate account profile")
+        # Prepare the information needed to send the account verification
+        # email.
+        salt = hashlib.sha1(str(random.random()).
+                            encode('utf-8')).hexdigest()[:5]
+        activation_key = hashlib.sha1(str(salt+email).
+                                      encode('utf‌​-8')).hexdigest()
+        key_expires = datetime.datetime.today() + datetime.timedelta(2)
+
         user = User.objects.get(email=email)
-        profile_from_database = UserActivateProfile.objects.filter(user=user)
 
-        # If the temporary user exists in database, the key_expires is updated.
-        if profile_from_database.exists():
-            new_profile = UserActivateProfile.objects.get(user=user)
-            # Updating key_expires:
-            new_profile.key_expires = datetime.datetime.today() + datetime.timedelta(2)
-            new_profile.save()
-
-        # If there is no temporary user, a new one is created.
-        else:
-            print("Creating activate account profile")
-            # Prepare the information needed to send the account verification
-            # email.
-            salt = hashlib.sha1(str(random.random()).
-                                encode('utf-8')).hexdigest()[:5]
-            activation_key = hashlib.sha1(str(salt+email).
-                                          encode('utf‌​-8')).hexdigest()
-            key_expires = datetime.datetime.today() + datetime.timedelta(2)
-
-            new_profile = UserActivateProfile(user=user, activation_key=activation_key,
-                                              key_expires=key_expires)
-            new_profile.save()
+        # Creating the temporary user.
+        new_profile = UserActivateProfile(user=user, activation_key=activation_key,
+                                          key_expires=key_expires)
+        new_profile.save()
 
         return new_profile
 
@@ -84,8 +73,6 @@ class ConfirmAccountView(View):
         if user_profile.key_expires > timezone.now():
             user.is_active = True
             user.save()
-            # Calling the method that activate the users relationship.
-            AddPatientView.activate_link_patient_health_professional(user.email)
             user_profile.delete()
             messages.success(
                 request, 'Conta ativada com sucesso!Realize login para acessar o sistema.', extra_tags='alert')
