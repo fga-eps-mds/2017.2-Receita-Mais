@@ -22,3 +22,14 @@ QUANTITY_CHOICES = ((0, 'Uso Contínuo'),
                     (18, '18 unidades'),
                     (19, '19 unidades'),
                     (20, '20 unidades'))
+# CID invalid constants
+CID_INVALID = "This disease does not exists."
+
+# Exam invalid constants
+EXAM_INVALID = "This exams does not exists."
+
+# Pacient invalid constants
+PATIENT_INVALID = "This field is required."
+
+# Empty constants
+EMPTY = 0

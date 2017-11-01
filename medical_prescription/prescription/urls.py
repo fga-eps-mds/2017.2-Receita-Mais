@@ -7,7 +7,7 @@ from .views import (AutoCompleteExam,
                     AutoCompleteCid,
                     OpenPrescriptionView,
                     AutoCompleteMedicine,
-                    CreatePrescriptionMedicine)
+                    CreatePrescriptionView)
 
 urlpatterns = (
     url(r'^$', OpenPrescriptionView.as_view(), name='create_prescription'),
@@ -16,5 +16,5 @@ urlpatterns = (
     url(r'^ajax/autocomplete_patient/$', AutoCompletePatient.as_view(), name='autocomplete_patient'),
     url(r'^ajax/autocomplete_medicine/$', AutoCompleteMedicine.as_view(),
         name='autocomplete_medicine'),
-    url(r'^create_modal/$', CreatePrescriptionMedicine.as_view(), name='create_modal')
+    url(r'^create_modal/$', CreatePrescriptionView.as_view(), name='create_modal')
 )

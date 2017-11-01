@@ -3,4 +3,4 @@ from .autocompleteexam import AutoCompleteExam
 from .autocompletepatient import AutoCompletePatient
 from .openprescriptionview import OpenPrescriptionView
 from .autocompletemedicine import AutoCompleteMedicine
-from .createprescriptionmedicine import CreatePrescriptionMedicine
+from .createprescriptionmedicine import CreatePrescriptionView
