@@ -19,7 +19,13 @@
         $('#add_more_reccomendation').click(function() {
           cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
         });
+
+        $('#add_more_exam').click(function() {
+            cloneMore('div.table_exam:last', 'form', "{% url 'autocomplete_exam' %}", "exam");
+        });
+
         autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_medicine' %}", "medicine");
+        autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}", "medicine");
         autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
         autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
 </script>
@@ -51,7 +57,6 @@
 
         <!-- Hidden fields -->
           {{form.cid_id}}
-          {{form.patient_id}}
         <hr>
 
         <!-- This are the tabs in prescription -->
@@ -111,7 +116,25 @@
 
             <!-- This tab is where the exams take place in prescription. -->
             <div id="menu2" class="tab-pane fade">
-                <h3>EXAMES AQUI</h3>
+
+                {{ form_exam.management_form }}
+                {% for atom_form in form_exam %}
+                <div class="table_exam">
+                    <table class='no_error'>
+                        {% for label in atom_form %}
+                        <div class="form-group">
+                            {% for error in label.errors %}
+                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                            {% endfor %} {{label}}
+                        </div>
+                        {% endfor %}
+
+                    </table>
+                </div>
+
+                {% endfor %}
+                <button class="btn btn-success" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
