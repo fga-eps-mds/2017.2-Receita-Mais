@@ -31,13 +31,19 @@
               </div>
               <!-- /.btn-group -->
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+              {% if is_paginated %}
               <div class="pull-right">
-                1-50/200
+                 Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                  {% if page_obj.has_previous %}
+                  <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button></a>
+                  {% endif %}                  
+                  {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button></a>
+                  {% endif %}
                 </div>
                 <!-- /.btn-group -->
+                {% endif %}
               </div>
               <!-- /.pull-right -->
             </div>
@@ -74,13 +80,19 @@
               </div>
               <!-- /.btn-group -->
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+              {% if is_paginated %}
               <div class="pull-right">
-                1-50/200
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                  {% if page_obj.has_previous %}
+                  <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button></a>
+                  {% endif %}
+                  {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button></a>
+                  {% endif %}
                 </div>
                 <!-- /.btn-group -->
+                {% endif %}
               </div>
               <!-- /.pull-right -->
             </div>
