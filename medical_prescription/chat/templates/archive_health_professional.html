@@ -8,7 +8,7 @@
       <div class="col-md-9">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Outbox</h3>
+            <h3 class="box-title">Archive Message</h3>
 
             <div class="box-tools pull-right">
               <div class="has-feedback">
@@ -43,17 +43,16 @@
             </div>
             <div class="table-responsive mailbox-messages">
               <table class="table table-hover table-striped">
-                {% for message in outbox %}
+                {% for message in inbox %}
                 <tbody>
                   <tr>
                     <td><input type="checkbox"></td>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
+                    <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
                     <td class="mailbox-subject"><b>{{message.subject}}</b>
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
-                    <td><button><a href="{% url 'archive_message' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
                 {% endfor %}
@@ -103,9 +102,9 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="#"><i class="fa fa-inbox"></i> Inbox</a><li>
-              <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-              <li><a href="#"><i class="fa fa-envelope-o"></i> Archive</a></li>
+              <li><a href="{% url 'inbox_health_professional'%}"><i class="fa fa-inbox"></i> Inbox</a><li>
+              <li><a href="{% url 'outbox'%}"><i class="fa fa-envelope-o"></i> Sent</a></li>
+              <li><a href="{% url 'archive_message'%}"><i class="fa fa-envelope-o"></i> Archive</a></li>
             </ul>
           </div>
           <!-- /.box-body -->
