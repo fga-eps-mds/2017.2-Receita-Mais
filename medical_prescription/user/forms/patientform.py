@@ -1,5 +1,4 @@
 # standard library
-from datetime import date
 import logging
 
 # django
@@ -7,9 +6,7 @@ from django import forms
 
 # local django
 from user.models import Patient
-from user.forms import (UserForm,
-                        FormattedDateField
-                        )
+from user.forms import UserForm
 from user.validators import PatientValidator
 from user import constants
 
@@ -27,6 +24,8 @@ class PatientForm(UserForm):
     """
     Form to register patientl.
     """
+
+    email = forms.EmailField()
     CPF_document = BRCPFField(max_length=14, min_length=11,
                               widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                             'type': 'number',
@@ -69,11 +68,6 @@ class PatientForm(UserForm):
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('confirm_password')
         date_of_birth = self.cleaned_data.get('date_of_birth')
-        CEP = self.cleaned_data.get('CEP')
-        UF = self.cleaned_data.get('UF')
-        city = self.cleaned_data.get('city')
-        neighborhood = self.cleaned_data.get('neighborhood')
-        complement = self.cleaned_data.get('complement')
 
         # Verify validations in form.
         self.validator_all(name, phone, email, password, password_confirmation, date_of_birth)
@@ -88,6 +82,7 @@ class PatientForm(UserForm):
         validator = PatientValidator()
 
         # Fields common all users.
+        # validator.validator_email(email)
         validator.validator_email(email)
         validator.validator_password(password, password_confirmation)
         validator.validator_name(name)
