@@ -103,8 +103,10 @@ class AddPatientView(FormView):
         # If the exist patient is actived, then link between him and the
         # request health professional is actived.
         if patient_profile.is_active:
-            AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=health_professional_profile,
-                                                               associated_patient=patient_profile).update(is_active=True)
+            relationship = AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=health_professional_profile,
+                                                                              associated_patient=patient_profile)
+            relationship.is_active = True
+            relationship.save()
             message = constants.LINKED_PATIENT_SUCESS
         else:
             message = AddPatientView.profile_is_not_active(patient_profile, health_professional_profile)
@@ -128,10 +130,10 @@ class AddPatientView(FormView):
     # invitation email and create the link between the users.
     def patient_does_not_exist(email, health_professional_profile):
         send_invitation_profile = AddPatientView.create_send_invitation_profile(email)
-        AddPatientView.send_invitation_email(email, send_invitation_profile, health_professional_profile)
         patient_profile = Patient.objects.get(email=email)
         AddPatientView.create_link_patient_health_professional(health_professional_profile,
                                                                patient_profile)
+        AddPatientView.send_invitation_email(email, send_invitation_profile, health_professional_profile)
 
         message = constants.SENDED_EMAIL
 
