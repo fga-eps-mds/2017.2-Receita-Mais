@@ -126,3 +126,21 @@ ID_DOCUMENT_FORMAT = 'Id document must be only numbers'
 
 # LEVEL LOGGER
 DEFAULT_LOGGER = 'default'
+
+# INVITATION PATIENT MESSAGES
+INVITATION_EMAIL_SUBJECT = 'Convite para Cadastro no Sistema'
+INVITATION_EMAIL_BODY = """
+                        %s te convidou para se cadastrar no Receituário Médico.
+
+                        Agora, você poderá acompanhar todas as suas prescrições de forma
+                        fácil e rápida.
+
+                        Para realizar o cadastro, clique neste link:
+                        http://localhost:8000/user/register_patient/%s
+
+                        """
+
+SENDED_EMAIL = 'Um link de cadastro foi enviado ao paciente.'
+LINKED_PATIENT_SUCESS = 'O paciente foi adicionado à sua lista de pacientes.'
+LINKED_PATIENT_EXISTS = 'O paciente já está adicionado em sua lista de pacientes.'
+ALERT_HEALTH_PROFESSIONAL = 'Esta conta pertence a um professional da saúde.'

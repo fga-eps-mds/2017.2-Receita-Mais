@@ -51,8 +51,8 @@ function deleteForm(prefix, text, btn) {
         updateElementIndex(this, prefix, i);
       });
     }
+    return false;
   }
-  return false;
 }
 
 // This function is responsable to remove medicine form.
@@ -73,6 +73,10 @@ $(document).on('click', '.remove-recommendation', function(e) {
 // Methods to clone fields in document.
 $('#add_more').click(function() {
   cloneMore('div.table_medicine:last', 'form', autocompleteMedicine, "medicine");
+});
+
+$('#add_more_exam').click(function() {
+  cloneMore('div.table_exam:last', 'form', autocompleteExam, "exam");
 });
 
 $('#add_more_reccomendation').click(function() {

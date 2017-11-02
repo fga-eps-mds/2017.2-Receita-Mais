@@ -21,7 +21,7 @@ function autocompleteElement(element, functionJson, field) {
   });
 };
 
-// Customize the autocomplete pattern.
+// Customize the autocomplete pattern for medicine.
 function autocomplete_medicine(ul, item) {
   $img = $('<img>');
   $img.attr({
@@ -38,7 +38,23 @@ function autocomplete_medicine(ul, item) {
     .appendTo(ul);
 }
 
-// Customize the autocomplete pattern.
+// Customize the autocomplete pattern for exam.
+function autocomplete_exam(ul, item) {
+    $img = $('<img>');
+    $img.attr({
+        alt: item.label
+    });
+
+    var description = '<font size="2" color="gray">' + item.description + '</font>';
+
+    return $("<li></li>")
+    .data("item.autocomplete", item)
+    .append("<a>" + item.label + "</a>")
+    .append(": <br>" + description + "")
+    .appendTo(ul);
+}
+
+// Customize the autocomplete pattern for patient.
 function autocomplete_patient(ul, item) {
   return $("<li></li>")
     .data("item.autocomplete", item)
@@ -87,6 +103,7 @@ function select_type_field(element, field, ui) {
       break;
     case 'exam':
       $("#" + element.id + "_id").val(ui.item.id);
+      $("#" + element.id + "_type").val(ui.item.type);
       break;
     case 'cid':
       $("#" + element.id + "_id").val(ui.item.id);
@@ -99,5 +116,6 @@ function select_type_field(element, field, ui) {
 
 // Performs autocomplete in the specified fields.
 autocompleteElement('#id_form-0-medicine', autocompleteMedicine, "medicine");
+autocompleteElement('#id_form-0-exam', autocompleteExam, "medicine");
 autocompleteElement('#id_patient', autocompletePatient, "patient");
 autocompleteElement('#id_cid', autocompleteCid, "cid");

@@ -14,6 +14,7 @@
         var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
         var autocompletePatient = "{% url 'autocomplete_patient' %}"
         var autocompleteCid = "{% url 'autocomplete_cid' %}"
+        var autocompleteExam = "{% url 'autocomplete_exam' %}"
 </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
@@ -42,7 +43,6 @@
 
         <!-- Hidden fields -->
           {{form.cid_id}}
-          {{form.patient_id}}
         <hr>
 
         <!-- This are the tabs in prescription -->
@@ -108,7 +108,30 @@
 
             <!-- This tab is where the exams take place in prescription. -->
             <div id="menu2" class="tab-pane fade">
-                <h3>EXAMES AQUI</h3>
+
+                {{ form_exam.management_form }}
+                {% for atom_form in form_exam %}
+                <ul id='object_exam'>
+                  <div class="table_exam">
+                    <li>
+                      <div class="form-group">
+                          {% for error in atom_form.exam.errors %}
+                          <div class="alert alert-danger" role="alert">{{error}}</div>
+                          {% endfor %}
+                          {{atom_form.exam}}
+                       </div>
+
+                       <!-- Hidden inputs -->
+                       {{atom_form.exam_id}}
+                       {{atom_form.exam_type}}
+
+                     </li>
+                  </div>
+                </ul>
+
+                {% endfor %}
+                <button class="btn btn-success" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
