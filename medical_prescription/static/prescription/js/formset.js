@@ -63,6 +63,13 @@ $(document).on('click', '.remove-medicine', function(e) {
 });
 
 // This function is responsable to remove recommendation form.
+$(document).on('click', '.remove-exam', function(e) {
+  e.preventDefault();
+  deleteForm('form', '.table_exam ', $(this).parent());
+  return false;
+});
+
+// This function is responsable to remove recommendation form.
 $(document).on('click', '.remove-recommendation', function(e) {
   e.preventDefault();
   deleteForm('form', '.table_recommendation ', $(this).parent());
@@ -70,15 +77,17 @@ $(document).on('click', '.remove-recommendation', function(e) {
 });
 
 
-// Methods to clone fields in document.
+// Method to clone medicine fields in the document
 $('#add_more').click(function() {
   cloneMore('div.table_medicine:last', 'form', autocompleteMedicine, "medicine");
 });
 
+// Method to clone exam fields in the document
 $('#add_more_exam').click(function() {
   cloneMore('div.table_exam:last', 'form', autocompleteExam, "exam");
 });
 
+// Method to clone reccomendation fields in the document
 $('#add_more_reccomendation').click(function() {
   cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
 });

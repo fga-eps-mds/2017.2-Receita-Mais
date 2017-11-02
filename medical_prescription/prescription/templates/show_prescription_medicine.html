@@ -114,17 +114,22 @@
                 <ul id='object_exam'>
                   <div class="table_exam">
                     <li>
-                      <div class="form-group">
-                          {% for error in atom_form.exam.errors %}
-                          <div class="alert alert-danger" role="alert">{{error}}</div>
-                          {% endfor %}
-                          {{atom_form.exam}}
-                       </div>
-
-                       <!-- Hidden inputs -->
-                       {{atom_form.exam_id}}
-                       {{atom_form.exam_type}}
-
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {% for error in atom_form.exam.errors %}
+                              <div class="alert alert-danger" role="alert">{{error}}</div>
+                              {% endfor %}
+                              {{atom_form.exam}}
+                              <!-- Hidden inputs -->
+                              {{atom_form.exam_id}}
+                              {{atom_form.exam_type}}
+                           </div>
+                        </div>
+                     <div class="col-md-1 remove-div">
+                       <a class="remove-exam fa fa-times fa-2x" type="button"/>
+                     </div>
+                   </div>
                      </li>
                   </div>
                 </ul>
