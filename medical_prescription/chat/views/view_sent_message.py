@@ -26,7 +26,7 @@ class SentMessageDetailView(DetailView, FormMixin):
     template_name = 'view_sent_message.html'
 
     def get_queryset(self):
-        return self.model.objects.filter(user_from=self.request.user)
+        return self.model.objects.filter(user_from=self.request.user, is_active=True)
 
     def get_success_url(self):
         return reverse('view_sent_message', kwargs={'pk': self.object.pk})
