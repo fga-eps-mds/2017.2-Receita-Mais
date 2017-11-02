@@ -1,9 +1,9 @@
 from django.db import models
 
-from exam.models import Exam
+from exam.models import DefaultExam
 from prescription.models import Prescription
 
 
-class PrescriptionExam(models.Model):
+class PrescriptionDefaultExam(models.Model):
     prescription = models.ForeignKey(Prescription)
-    exam = models.ForeignKey(Exam)
+    exam = models.ForeignKey(DefaultExam)
