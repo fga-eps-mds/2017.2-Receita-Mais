@@ -1,3 +1,5 @@
+$.getScript("/static/prescription/js/autocomplete.js");
+
 function updateElementIndex(el, prefix, ndx) {
   var id_regex = new RegExp('(' + prefix + '-\\d+)');
   var replacement = prefix + '-' + ndx;
@@ -38,11 +40,11 @@ function cloneMore(selector, prefix, functionJson, field) {
 }
 
 // This function is used to delete a form dynamically when the button is clicked.
-function deleteForm(prefix, btn) {
+function deleteForm(prefix, text, btn) {
   var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
   if (total > 1) {
-    btn.closest('.form-row').remove();
-    var forms = $('.form-row');
+    btn.closest(text).remove();
+    var forms = $(text);
     $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
     for (var i = 0, formCount = forms.length; i < formCount; i++) {
       $(forms.get(i)).find(':input').each(function() {
@@ -53,109 +55,26 @@ function deleteForm(prefix, btn) {
   return false;
 }
 
-// This functions are responsable to call the functions when the button is clicked.
-$(document).on('click', '.add-form-row', function(e) {
+// This function is responsable to remove medicine form.
+$(document).on('click', '.remove-medicine', function(e) {
   e.preventDefault();
-  cloneMore('.form-row:last', 'form');
+  deleteForm('form', '.table_medicine', $(this).parent());
   return false;
 });
 
-$(document).on('click', '.remove-form-row', function(e) {
+// This function is responsable to remove recommendation form.
+$(document).on('click', '.remove-recommendation', function(e) {
   e.preventDefault();
-  deleteForm('form', $(this));
+  deleteForm('form', '.table_recommendation ', $(this).parent());
   return false;
 });
 
-//This functions are used to auto complete the fields when something is been inserted.
 
-//This function receive:
-//  element: The element that will be autocompleted.
-//  functionJson: The function used to get the data.
-//  field: The field where the element will be completed.
-function autocompleteElement(element, functionJson, field) {
-  $(element).autocomplete({
-    source: functionJson,
-    select: function(event, ui) {
-      $(this).prop("readonly", true);
-      select_type_field(this, field, ui);
-    },
-    minLength: 2,
-    create: function() {
-      $(this).data('ui-autocomplete')._renderItem = function(ul, item) {
-        item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
-        return select_field(ul, item, field);
-      };
-    }
-  });
-};
+// Methods to clone fields in document.
+$('#add_more').click(function() {
+  cloneMore('div.table_medicine:last', 'form', autocompleteMedicine, "medicine");
+});
 
-function autocomplete_medicine(ul, item) {
-  $img = $('<img>');
-  $img.attr({
-    src: 'https://mt.googleapis.com/vt/icon/name=icons/onion/73-hospitals.png',
-    alt: item.label
-  });
-
-  var description = '<font size="2" color="gray">' + item.description + '</font>';
-  return $("<li></li>")
-    .data("item.autocomplete", item)
-    .append($img)
-    .append("<a>" + item.label + "</a>")
-    .append(": <br>" + description + "")
-    .appendTo(ul);
-}
-
-function autocomplete_patient(ul, item) {
-  return $("<li></li>")
-    .data("item.autocomplete", item)
-    .append("<a>" + item.label + "</a>")
-    .appendTo(ul);
-}
-
-function autocomplete_cid(ul, item) {
-  return $("<li></li>")
-    .data("item.autocomplete", item)
-    .append("<a>" + item.label + "</a>")
-    .appendTo(ul);
-}
-
-function select_field(ul, item, field) {
-  switch (field) {
-    case 'medicine':
-      return autocomplete_medicine(ul, item);
-    case 'patient':
-      return autocomplete_patient(ul, item);
-    case 'disease':
-      return autocomplete_disease(ul, item);
-    case 'exam':
-      return autocomplete_exam(ul, item);
-    case 'cid':
-      return autocomplete_cid(ul, item);
-    default:
-      return;
-  }
-}
-
-function select_type_field(element, field, ui) {
-  switch (field) {
-    case 'medicine':
-      $("#" + element.id + "_id").val(ui.item.id);
-      $("#" + element.id + "_type").val(ui.item.type);
-      break;
-    case 'patient':
-      $("#" + element.id + "_id").val(ui.item.id);
-      break;
-    case 'disease':
-      $("#" + element.id + "_id").val(ui.item.id);
-      break;
-    case 'exam':
-      $("#" + element.id + "_id").val(ui.item.id);
-      break;
-    case 'cid':
-      $("#" + element.id + "_id").val(ui.item.id);
-      break;
-    case 'recommendation':
-      $("#" + element.id + "_id").val(ui.item.id);
-      break;
-  }
-}
+$('#add_more_reccomendation').click(function() {
+  cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
+});
