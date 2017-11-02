@@ -126,3 +126,7 @@ ID_DOCUMENT_FORMAT = 'Id document must be only numbers'
 
 # LEVEL LOGGER
 DEFAULT_LOGGER = 'default'
+
+
+# DEFAULT PATH IMAGE.
+DEFAULT_IMG = 'image_profile/user.png'
