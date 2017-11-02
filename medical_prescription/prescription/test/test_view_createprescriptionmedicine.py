@@ -5,8 +5,7 @@ from unittest.mock import patch, MagicMock
 from disease.models import Disease
 from medicine.models import ManipulatedMedicine
 from user.models import Patient, HealthProfessional
-from prescription.forms import MedicinePrescriptionForm
-from prescription.views import CreatePrescriptionMedicine
+from prescription.views import CreatePrescriptionView
 from prescription.models import PrescriptionMedicine, Prescription
 
 
@@ -14,7 +13,7 @@ class TestCreatePrescriptionMedicine(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.client = Client()
-        self.view = CreatePrescriptionMedicine()
+        self.view = CreatePrescriptionView()
 
         self.patient = Patient()
         self.patient.pk = 1
@@ -69,26 +68,22 @@ class TestCreatePrescriptionMedicine(TestCase):
     @patch('prescription.models.PrescriptionMedicine.save', MagicMock(name="save"))
     @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
     def test_post_with_health_professional(self):
-        print("============== AQUI =============")
         context = {'form-TOTAL_FORMS': 1,
                    'form-INITIAL_FORMS': 0,
-                   'patient_id': 1,
+                   'patient': "JOAO",
                    'cid_id': 1,
                    'medicine_type': 'manipulated_medicine',
                    'medicine_id': 1,
                    'quantity': 10,
                    'posology': 'nao fazer nada',
                    'recommendation': 'Tomar o remedio pelas manhas',
-                   'prescription': self.prescription,
                    }
-
-
 
         request = self.factory.post('/prescription/create_modal/', context)
         request.user = self.health_professional
 
         # Get the response
-        response = CreatePrescriptionMedicine.as_view()(request)
+        response = CreatePrescriptionView.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
         # Check save was called
@@ -101,21 +96,5 @@ class TestCreatePrescriptionMedicine(TestCase):
         request.user = self.health_professional
 
         # Get the response
-        response = CreatePrescriptionMedicine.as_view()(request)
+        response = CreatePrescriptionView.as_view()(request)
         self.assertEqual(response.status_code, 200)
-
-    def test_invalid_form(self):
-        context = {'form-TOTAL_FORMS': 1,
-                   'form-INITIAL_FORMS': 0,
-                   'patient_id': 1,
-                   'cid_id': 15,
-                   'medicine_type': 'manipulated_medicine',
-                   'medicine_id': 1,
-                   'quantity': 10,
-                   'posology': 'nao fazer nada',
-                   'user': self.health_professional
-                   }
-
-        form = MedicinePrescriptionForm(context)
-
-        self.assertFalse(form.is_valid())

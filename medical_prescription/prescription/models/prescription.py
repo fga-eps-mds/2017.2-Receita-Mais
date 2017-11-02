@@ -1,9 +1,11 @@
+# Django
 from django.db import models
 
-from user.models import Patient
+# Django Local
 from disease.models import Disease
+from user import constants
 
 
 class Prescription(models.Model):
-    patient = models.ForeignKey(Patient, blank=True, null=True)
-    cid = models.ForeignKey(Disease, blank=True, null=True)
+    patient = models.CharField(max_length=constants.NAME_MAX_LENGHT)
+    cid = models.ForeignKey(Disease, null=True, blank=True)
