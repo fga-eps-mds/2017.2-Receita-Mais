@@ -25,7 +25,8 @@ class PatientForm(UserForm):
     Form to register patientl.
     """
 
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v3__input'}))
+
     CPF_document = BRCPFField(max_length=14, min_length=11,
                               widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                             'type': 'number',
