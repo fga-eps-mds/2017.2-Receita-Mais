@@ -33,42 +33,41 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">HEADER</li>
       <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <li class="active"><a href="#"><i class="fa fa-files-o"></i> <span>Prescrições</span></a></li>
+
+
+      <li class= "treeview">
+        <a href="#">
+          <i class="fa fa-plus"></i><span>{% trans "Cadastrar" %}</span>
+          <span class ="pull-right-container">
+            <i class = "fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class = "treeview-menu">
+          <li><a href="{% url 'add_patient' %}">{% trans "Paciente"%}</a></li>
+          <li><a href="#">{% trans "Receita"%}</a></li>
+          <li><a href="{% url 'create_custom_exams' %}">{% trans "Exame"%}</a></li>
+          <li><a href="{% url 'create_medicine' %}">{% trans "Medicamento"%}</a></li>
+          <li><a href="{% url 'create_activePrinciple' %}">{% trans "Princípio ativo"%}</a></li>
+        </ul>
+      </li>
+
+
       <li class="treeview">
-        <a href="pages/mailbox/mailbox.html">
-          <i class="fa fa-envelope"></i> <span>{% trans "Conversas" %} </span>
+        <a href="#"><i class="fa fa-medkit"></i> <span>{% trans "Exames"%}</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{% url 'inbox_health_professional' %}">{% trans "Caixa de Entrada"%}</a></li>
-          <li><a href="{% url 'outbox' %}">{% trans "Caixa de Saída"%}</a></li>
-          <li><a href="{% url 'compose' %}">{% trans "Nova Mensagem"%}</a></li>
+          <li><a href="{% url 'list_exams' %}">{% trans "Visualizar Exames"%}</a></li>
+          <li><a href="{% url 'list_custom_exams' %}">{% trans "Visualizar Exames Personalizados"%}</a></li>
         </ul>
       </li>
-      <li class="treeview">
-          <a href="#"><i class="fa fa-users"></i> <span>{% trans "Pacientes"%}</span>
-      <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-          <ul class="treeview-menu">
-              <li><a href="{% url 'add_patient' %}">{% trans "Adicionar paciente"%}</a></li>
-              <li><a href="{% url 'list_linked_patients' %}">{% trans "Visualizar pacientes"%}</a></li>
-          </ul>
-      </li>
-      <li class="treeview">
-        <a href="#"><i class="fa fa-files-o"></i> <span>{% trans "Receitas"%}</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-        <ul class="treeview-menu">
-          <li><a href="#">{% trans "Criar nova receita"%}</a></li>
-          <li><a href="#">{% trans "Visualizar favoritos"%}</a></li>
-        </ul>
-      </li>
+
+      <li><a href="{% url 'list_linked_patients' %}"><i class="fa fa-users"></i> <span>Pacientes</span></a></li>
+
+
       <li class="treeview">
         <a href="#"><i class="fa fa-medkit"></i> <span>{% trans "Medicamentos"%}</span>
             <span class="pull-right-container">
@@ -76,10 +75,8 @@
               </span>
           </a>
                 <ul class="treeview-menu">
-                    <li><a href="{% url 'create_medicine' %}">{% trans "Criar novo medicamento"%}</a></li>
                     <li><a href="{% url 'list_all_medicines' %}">{% trans "Visualizar medicamentos"%}</a></li>
                     <li><a href="{% url 'list_manipulated_medicines' %}">{% trans "Visualizar manipulados"%}</a></li>
-                    <li><a href="{% url 'create_activePrinciple' %}">{% trans "Criar princípios ativos"%}</a></li>
                     <li><a href="{% url 'activeprinciple_list' %}">{% trans "Visualizar princípios ativos"%}</a></li>
                 </ul>
             </li>
@@ -96,18 +93,21 @@
       </li>
 
       <li class="treeview">
-        <a href="#"><i class="fa fa-medkit"></i> <span>{% trans "Exames"%}</span>
+        <a href="pages/mailbox/mailbox.html">
+          <i class="fa fa-envelope"></i> <span>{% trans "Conversas" %} </span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{% url 'create_custom_exams' %}">{% trans "Criar novo Exame"%}</a></li>
-          <li><a href="{% url 'list_exams' %}">{% trans "Visualizar Exames"%}</a></li>
-          <li><a href="{% url 'list_custom_exams' %}">{% trans "Visualizar Exames Personalizados"%}</a></li>
+          <li><a href="{% url 'inbox_health_professional' %}">{% trans "Caixa de Entrada"%}</a></li>
+          <li><a href="{% url 'outbox' %}">{% trans "Caixa de Saída"%}</a></li>
+          <li><a href="{% url 'compose' %}">{% trans "Nova Mensagem"%}</a></li>
         </ul>
       </li>
 
+      <li><a href="{% url 'dashboard_hp' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <li><a href="#"><i class="fa fa-cog"></i> <span>Configurações</span></a></li>
     </ul>
 
     <!-- /.sidebar-menu -->
