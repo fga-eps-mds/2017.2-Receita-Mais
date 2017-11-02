@@ -47,7 +47,17 @@
           <li><a href="{% url 'compose' %}">{% trans "Nova Mensagem"%}</a></li>
         </ul>
       </li>
-      <li><a href="#"><i class="fa fa-users"></i> <span>{% trans "Paciente"%}s</span></a></li>
+      <li class="treeview">
+          <a href="#"><i class="fa fa-users"></i> <span>{% trans "Pacientes"%}</span>
+      <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+          <ul class="treeview-menu">
+              <li><a href="{% url 'add_patient' %}">{% trans "Adicionar paciente"%}</a></li>
+              <li><a href="{% url 'list_linked_patients' %}">{% trans "Visualizar pacientes"%}</a></li>
+          </ul>
+      </li>
       <li class="treeview">
         <a href="#"><i class="fa fa-files-o"></i> <span>{% trans "Receitas"%}</span>
             <span class="pull-right-container">

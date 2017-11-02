@@ -22,7 +22,6 @@ class TestPatientForm(TestCase):
         self.email_invalid_TYPE = 'admin.com'
         self.email_invalid_MIN = 'a@a.a'
         self.email_invalid_MAX = 'admin@fgdhafdgfashgdfaghfdasfdghashjasghjasgdhjgasdjasjdjaasdsdfjh.com'
-        self.email_invalid_BASE = 'admin@hotmail.com'
 
         self.password_valid = '1234567'
         self.password_invalid = '123456789'
@@ -229,23 +228,6 @@ class TestPatientForm(TestCase):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_MIN,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'CPF_document': self.CPF_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_patient_email_is_not_valid_BASE(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_valid,
-                     'email': self.email_invalid_BASE,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'CPF_document': self.CPF_document_valid,
