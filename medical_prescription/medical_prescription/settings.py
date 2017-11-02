@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'disease',
     'prescription',
     'chat',
+    'recommendation',
 ]
 
 # ====== DONT REMOVE -ME
