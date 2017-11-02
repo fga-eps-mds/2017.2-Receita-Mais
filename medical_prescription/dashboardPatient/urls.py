@@ -4,6 +4,6 @@ from dashboardPatient.views import (home)
 
 
 urlpatterns = (
-    url(r'^patient/$', home, name='dashboard_hp'),
+    url(r'^patient/$', home, name='dashboard_pt'),
 
 )
