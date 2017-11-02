@@ -1,7 +1,7 @@
 from django.db import models
 
 from user.models import HealthProfessional
-from constants import MAX_NAME, MAX_DESCRIPTION
+from recommendation.constants import MAX_NAME, MAX_DESCRIPTION
 
 
 class CustomRecommendation(models.Model):
