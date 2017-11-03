@@ -24,4 +24,5 @@ class ArchiveBoxHealthProfessionalView(ListView):
     def get_queryset(self):
         query_to = self.model.objects.filter(user_to=self.request.user, is_active=False)
         query_from = self.model.objects.filter(user_from=self.request.user, is_active=False)
-        return self.model.objects.union(query_to, query_from)
+        records = (query_to | query_from).distinct()
+        return records
