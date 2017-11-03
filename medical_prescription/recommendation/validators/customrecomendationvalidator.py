@@ -20,7 +20,7 @@ class CustomRecommendationValidator(object):
             pass
 
     def validator_description(self, description):
-        if description is not None and len(description) < constants.MAX_DESCRIPTION:
+        if description is not None and len(description) > constants.MAX_DESCRIPTION:
             raise forms.ValidationError({'name': [_(constants.DESCRIPTION_SIZE_MAX)]})
-        elif description is not None and len(description) > constants.MIN_DESCRIOPTION:
+        elif description is not None and len(description) < constants.MIN_DESCRIPTION:
             raise forms.ValidationError({'name': [_(constants.DESCRIPTION_SIZE_MIN)]})
