@@ -34,7 +34,7 @@ class CreateRecomendationCustomViewTeste(TestCase):
 
         # Get the response
         response = CustomRecommendationCreateView.as_view()(request)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_post_with_health_professional_invalid(self):
         context = {'name': "A",
