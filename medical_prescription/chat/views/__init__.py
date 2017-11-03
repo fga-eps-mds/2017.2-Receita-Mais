@@ -10,3 +10,5 @@ from .view_message_health_professional import ViewMessageHealthProfessional
 from .archive_message_health_professional_view import ArchiveMessageHealthProfessionalView
 from .archive_message_outbox_view import ArchiveMessageOutboxView
 from .archive_message_patient_view import ArchiveMessagePatientView
+from .archive_box_patient_view import ArchiveBoxPatientView
+from .archive_box_health_professional_view import ArchiveBoxHealthProfessionalView

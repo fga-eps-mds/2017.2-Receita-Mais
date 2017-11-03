@@ -27,6 +27,9 @@ urlpatterns = (
     url(r'^archive_message_outbox/(?P<pk>[\w-]+)$', ArchiveMessageOutboxView.post, name='archive_message_outbox'),
     url(r'^archive_message_patient/(?P<pk>[\w-]+)$', ArchiveMessagePatientView.post, name='archive_message_patient'),
     url(r'^archive_message_health_professional/(?P<pk>[\w-]+)$',
-        ArchiveMessageHealthProfessionalView.post,
-        name='archive_message_health_professional'),
+        ArchiveMessageHealthProfessionalView.post, name='archive_message_health_professional'),
+    url(r'^archive_box_health_professional/$',
+        ArchiveBoxHealthProfessionalView.as_view(), name='archive_box_health_professional'),
+    url(r'^archive_box_patient/$',
+        ArchiveBoxPatientView.as_view(), name='archive_box_patient'),
 )
