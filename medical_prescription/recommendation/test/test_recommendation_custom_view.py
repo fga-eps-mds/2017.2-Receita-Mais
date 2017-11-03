@@ -18,7 +18,7 @@ class CreateRecomendationCustomViewTeste(TestCase):
         self.health_professional.save()
 
     def test_get_with_health_professional(self):
-        request = self.factory.get('/recommendation')
+        request = self.factory.get('/recommendation/create_custom')
         request.user = self.health_professional
 
         # Get the response
