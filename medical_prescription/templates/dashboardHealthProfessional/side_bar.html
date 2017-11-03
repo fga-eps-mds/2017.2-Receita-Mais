@@ -65,7 +65,17 @@
         </ul>
       </li>
 
-      <li><a href="{% url 'list_linked_patients' %}"><i class="fa fa-users"></i> <span>Pacientes</span></a></li>
+      <li class="treeview">
+                <a href="#"><i class="fa fa-users"></i> <span>{% trans "Pacientes"%}</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url 'add_patient' %}">{% trans "Adicionar paciente"%}</a></li>
+                    <li><a href="{% url 'list_linked_patients' %}">{% trans "Visualizar pacientes"%}</a></li>
+                </ul>
+    </li>
 
 
       <li class="treeview">
