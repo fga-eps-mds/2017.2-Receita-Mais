@@ -5,5 +5,5 @@ from django.conf.urls import url
 from .views import (CustomRecommendationCreateView)
 
 urlpatterns = (
-    url(r'^$', CustomRecommendationCreateView.as_view(), name='create_custom_recomendation'),
+    url(r'^create_custom/$', CustomRecommendationCreateView.as_view(), name='create_custom_recomendation'),
 )

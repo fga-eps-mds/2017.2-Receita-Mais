@@ -4,7 +4,6 @@ from django.test.client import RequestFactory
 
 # Django Local
 from recommendation.views import CustomRecommendationCreateView
-from recommendation.models import CustomRecommendation
 from user.models import HealthProfessional
 
 
