@@ -4,7 +4,7 @@ from chat.models import Message
 from user.models import Patient
 
 
-class TestSentArchiveMessagePatientView(TestCase):
+class TestArchiveMessagePatientView(TestCase):
 
     def setUp(self):
 
