@@ -4,7 +4,7 @@ from recommendation.validators import CustomRecommendationValidator
 
 class CreateRecomendationCustomForm(forms.Form):
     name = forms.CharField()
-    description = forms.CharField()
+    description = forms.CharField(widget=forms.Textarea)
     validator = CustomRecommendationValidator()
 
     def clean(self):
