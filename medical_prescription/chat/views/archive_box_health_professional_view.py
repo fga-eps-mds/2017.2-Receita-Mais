@@ -12,7 +12,7 @@ from user.decorators import is_health_professional
 @method_decorator(is_health_professional, name='dispatch')
 class ArchiveBoxHealthProfessionalView(ListView):
     '''
-    View for list messages in inbox.
+    View for archived messages box.
     '''
 
     template_name = 'archive_health_professional.html'

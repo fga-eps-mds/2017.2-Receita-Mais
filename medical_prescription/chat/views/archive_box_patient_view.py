@@ -12,7 +12,7 @@ from user.decorators import is_patient
 @method_decorator(is_patient, name='dispatch')
 class ArchiveBoxPatientView(ListView):
     '''
-    View for list messages in inbox.
+    View for archived messages box.
     '''
 
     template_name = 'archive_patient.html'

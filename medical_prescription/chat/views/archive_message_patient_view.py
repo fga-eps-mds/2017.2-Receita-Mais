@@ -13,9 +13,9 @@ from chat.models import Message
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_patient, name='dispatch')
 class ArchiveMessagePatientView(View):
-    """
-    Display details of the Message for Patient.
-    """
+    '''
+    View to archive messages.
+    '''
 
     def post(self, pk):
         message = Message.objects.get(pk=pk)
