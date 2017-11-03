@@ -7,7 +7,11 @@ from chat.views import (InboxHealthProfessionalView,
                         InboxPatientView,
                         ViewMessagePatient,
                         ViewMessageHealthProfessional,
-                        ArchiveMessageView)
+                        ArchiveMessageOutboxView,
+                        ArchiveMessagePatientView,
+                        ArchiveMessageHealthProfessionalView,
+                        ArchiveBoxPatientView,
+                        ArchiveBoxHealthProfessionalView,)
 
 urlpatterns = (
     url(r'^inbox_health_professional/$', InboxHealthProfessionalView.as_view(), name='inbox_health_professional'),
@@ -20,5 +24,9 @@ urlpatterns = (
         ViewMessageHealthProfessional.as_view(),
         name='view_message_health_professional'),
     url(r'^view_sent_message/(?P<pk>[\w-]+)$', SentMessageDetailView.as_view(), name='view_sent_message'),
-    url(r'^archive_message/(?P<pk>[\w-]+)$', ArchiveMessageView.post, name='archive_message'),
+    url(r'^archive_message_outbox/(?P<pk>[\w-]+)$', ArchiveMessageOutboxView.post, name='archive_message_outbox'),
+    url(r'^archive_message_patient/(?P<pk>[\w-]+)$', ArchiveMessagePatientView.post, name='archive_message_patient'),
+    url(r'^archive_message_health_professional/(?P<pk>[\w-]+)$',
+        ArchiveMessageHealthProfessionalView.post,
+        name='archive_message_health_professional'),
 )
