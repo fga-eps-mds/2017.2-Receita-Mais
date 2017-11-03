@@ -18,30 +18,60 @@ class TestBoxHealthProfessional(TestCase):
                                                                email='teste@test.com',
                                                                sex='M',
                                                                is_active=True)
-        # Create Message.
+        # Create Message 1
         self.message = Message()
         self.message.text = "meu texto"
         self.message.subject = "Assunto"
         self.message.user_from = self.professional
-        self.message.user_to = self.professional
-        self.message.is_active = False
+        self.message.user_to = self.professional2
+        self.message.is_active_inbox_health_professional = False
+        self.message.is_active_outbox_health_professional = True
         self.message.save()
+
+        # Create Message 2
+
+        self.message2 = Message()
+        self.message2.text = "meu texto"
+        self.message2.subject = "Assunto"
+        self.message2.user_from = self.professional2
+        self.message2.user_to = self.professional
+        self.message2.is_active_inbox_health_professional = True
+        self.message2.is_active_outbox_health_professional = False
+        self.message2.save()
 
         self.factory = RequestFactory()
         self.view = ArchiveBoxHealthProfessionalView()
 
-    def test_query_set_true(self):
+    def test_query_set_inbox_true(self):
         request = self.factory.get('chat/archive_box_health_professional')
-        request.user = self.professional
+        request.user = self.professional2
 
         self.view.request = request
 
         query = self.view.get_queryset()
         self.assertTrue(query.exists())
 
-    def test_query_set_false(self):
+    def test_query_set_inbox_false(self):
+        request = self.factory.get('chat/archive_box_health_professional')
+        request.user = self.professional
+
+        self.view.request = request
+
+        query = self.view.get_queryset()
+        self.assertFalse(query.exists())
+
+    def test_query_set_outbox_true(self):
         request = self.factory.get('chat/archive_box_health_professional')
         request.user = self.professional2
+
+        self.view.request = request
+
+        query = self.view.get_queryset()
+        self.assertTrue(query.exists())
+
+    def test_query_set_outbox_false(self):
+        request = self.factory.get('chat/archive_box_health_professional')
+        request.user = self.professional
 
         self.view.request = request
 

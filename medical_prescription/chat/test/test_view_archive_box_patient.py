@@ -29,7 +29,7 @@ class TestBoxPatient(TestCase):
         self.message.text = "meu texto"
         self.message.subject = "Assunto"
         self.message.user_from = self.patient
-        self.message.is_active = False
+        self.message.is_active_patient = False
         self.message.user_to = self.professional
         self.message.save()
 
