@@ -30,12 +30,10 @@
       </div>
 
       <div class="g-margin-b-30--xs">
-        {% for error in form.email.errors %}
-          <div class="alert alert-danger" role="alert">{{error}}</div>
-        {% endfor %}
-
-        <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">{% trans "Email"%}</h4>
-        {{ form.email }}
+        <div class="form-control s-form-v3__input">
+          <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">{% trans "Email"%}</h4>
+            {{user_email}}
+        </div>
       </div>
 
       <div class="row g-row-col-5 g-margin-b-50--xs">
