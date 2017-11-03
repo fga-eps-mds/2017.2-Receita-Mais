@@ -33,16 +33,17 @@ class MessageDetailView(DetailView, FormMixin):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = CreateResponse(request.POST)
+        form = CreateResponse(request.POST, request.FILES)
         if form.is_valid():
-            return self.form_valid(form)
+            return self.form_valid(form, request)
         else:
             return self.form_invalid(form)
 
-    def form_valid(self, form):
+    def form_valid(self, form, request):
         text = form.cleaned_data.get('text')
 
         response = Response()
+        response = Response(files=request.FILES.get('files', None))
         response.user_from = self.object.user_to
         response.user_to = self.object.user_from
         response.text = text

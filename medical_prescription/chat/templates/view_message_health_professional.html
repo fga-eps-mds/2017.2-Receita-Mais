@@ -36,6 +36,9 @@
           <div class="mailbox-read-message">
             <p>{{element.text}}</p>
           </div>
+          {% if element.files %}
+          <a href="{{element.files.url}}">Uploaded File</a>
+          {% endif %}
           <!-- /.mailbox-read-message -->
         </div>
         {% endfor %}
