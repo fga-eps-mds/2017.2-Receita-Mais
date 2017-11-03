@@ -18,7 +18,7 @@ class InboxPatientView(ListView):
     template_name = 'inbox_patient.html'
     context_object_name = 'inbox'
     model = Message
-    paginate_by = 40
+    paginate_by = 25
 
     # Return all Messages for the Patient.
     def get_queryset(self):
