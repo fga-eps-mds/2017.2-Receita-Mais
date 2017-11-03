@@ -36,3 +36,9 @@
   margin-left: 3%;
   padding: 0px;
 }
+
+.remove {
+  position: relative;
+  vertical-align: middle;
+  min-height: 100%;
+}

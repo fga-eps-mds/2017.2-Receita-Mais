@@ -11,25 +11,11 @@
         $.getScript(formset);
         $.getScript(sortable);
 
-        // Methods to clone and autocomplete.
-        $('#add_more').click(function() {
-          cloneMore('div.table:last', 'form', "{% url 'autocomplete_medicine' %}", "medicine");
-        });
-
-        $('#add_more_reccomendation').click(function() {
-          cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
-        });
-
-        $('#add_more_exam').click(function() {
-            cloneMore('div.table_exam:last', 'form', "{% url 'autocomplete_exam' %}", "exam");
-        });
-
-        autocompleteElement('#id_form-0-medicine', "{% url 'autocomplete_medicine' %}", "medicine");
-        autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}", "medicine");
-        autocompleteElement('#id_patient', "{% url 'autocomplete_patient' %}", "patient");
-        autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
+        var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
+        var autocompletePatient = "{% url 'autocomplete_patient' %}"
+        var autocompleteCid = "{% url 'autocomplete_cid' %}"
+        var autocompleteExam = "{% url 'autocomplete_exam' %}"
 </script>
-
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
     <div class="modal-header">
@@ -75,35 +61,41 @@
                   {{ formset.management_form }}
                   {% for atom_form in formset %}
                   <ul id='object_medicine' class='list-medicine'>
-                    <div class="table">
-                    <li>
-                          <div class="form-group">
-                              {% for error in atom_form.medicine.errors %}
-                              <div class="alert alert-danger" role="alert">{{error}}</div>
-                              {% endfor %}
-                              {{atom_form.medicine}}
-                           </div>
-
-                            <div class="row g-row-col-5 g-margin-b-50--xs">
-                              <div class="col-sm-10 g-margin-b-30--xs g-margin-b-0--md">
-                                  {% for error in atom_form.posology.errors %}
+                    <div class="table_medicine row">
+                      <li>
+                        <div class="col-md-11">
+                          <div class="row g-row-col-3">
+                              <div class="col-sm-9">
+                                  {% for error in atom_form.medicine.errors %}
                                   <div class="alert alert-danger" role="alert">{{error}}</div>
                                   {% endfor %}
-                                  {{atom_form.posology}}
+                                  {{atom_form.medicine}}
+                               </div>
+
+                               <div class="col-sm-3">
+                                  {% for error in atom_form.quantity.errors %}
+                                  <div class="alert alert-danger" role="alert">{{error}}</div>
+                                  {% endfor %}{{atom_form.quantity}}
                                 </div>
-                                  <div class="col-sm-2">
-                                     {% for error in atom_form.quantity.errors %}
-                                     <div class="alert alert-danger" role="alert">{{error}}</div>
-                                     {% endfor %}{{atom_form.quantity}}
-                                   </div>
                             </div>
 
-                        <!-- Hidden fields -->
-                          {{atom_form.medicine_id}}
-                          {{atom_form.medicine_type}}
-                          <hr>
-                    </li>
-                  </div>
+                            <div class="row g-row-col-3">
+                              <div class="col-sm-9">
+                                {% for error in atom_form.posology.errors %}
+                                <div class="alert alert-danger" role="alert">{{error}}</div>
+                                {% endfor %}
+                                {{atom_form.posology}}
+                              </div>
+                            </div>
+                            <!-- Hidden fields -->
+                              {{atom_form.medicine_id}}
+                              {{atom_form.medicine_type}}
+                            </div>
+                          <div class="col-md-1 remove-div">
+                            <a class="remove-medicine fa fa-times fa-2x" type="button"/>
+                        </div>
+                      </li>
+                    </div>
                   </ul>
                   {% endfor %}
 
@@ -122,17 +114,22 @@
                 <ul id='object_exam'>
                   <div class="table_exam">
                     <li>
-                      <div class="form-group">
-                          {% for error in atom_form.exam.errors %}
-                          <div class="alert alert-danger" role="alert">{{error}}</div>
-                          {% endfor %}
-                          {{atom_form.exam}}
-                       </div>
-
-                       <!-- Hidden inputs -->
-                       {{atom_form.exam_id}}
-                       {{atom_form.exam_type}}
-
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {% for error in atom_form.exam.errors %}
+                              <div class="alert alert-danger" role="alert">{{error}}</div>
+                              {% endfor %}
+                              {{atom_form.exam}}
+                              <!-- Hidden inputs -->
+                              {{atom_form.exam_id}}
+                              {{atom_form.exam_type}}
+                           </div>
+                        </div>
+                     <div class="col-md-1 remove-div">
+                       <a class="remove-exam fa fa-times fa-2x" type="button"/>
+                     </div>
+                   </div>
                      </li>
                   </div>
                 </ul>
@@ -151,11 +148,18 @@
                 <ul id='object_recommendation'>
                   <div class="table_recommendation">
                     <li>
-                      <div class="form-group">
-                          {% for error in recommendationField.recommendation.errors %}
-                          <div class="alert alert-danger" role="alert">{{error}}</div>
-                          {% endfor %}
-                          {{recommendationField.recommendation}}
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {% for error in recommendationField.recommendation.errors %}
+                              <div class="alert alert-danger" role="alert">{{error}}</div>
+                              {% endfor %}
+                              {{recommendationField.recommendation}}
+                           </div>
+                         </div>
+                         <div class="col-md-1 remove-div">
+                           <a class="remove-recommendation fa fa-times fa-2x" type="button"/>
+                         </div>
                        </div>
                      </li>
                   </div>
