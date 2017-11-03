@@ -19,6 +19,6 @@ class ArchiveMessageOutboxView(View):
 
     def post(self, pk):
         message = Message.objects.get(pk=pk)
-        message.is_active = False
+        message.is_active_outbox_health_professional = False
         message.save()
         return HttpResponseRedirect(reverse_lazy('outbox'))

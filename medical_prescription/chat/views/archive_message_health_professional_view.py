@@ -19,6 +19,6 @@ class ArchiveMessageHealthProfessionalView(View):
 
     def post(self, pk):
         message = Message.objects.get(pk=pk)
-        message.is_active = False
+        message.is_active_inbox_health_professional = False
         message.save()
         return HttpResponseRedirect(reverse_lazy('inbox_health_professional'))

@@ -19,6 +19,6 @@ class UnarchiveMessagePatientView(View):
 
     def post(self, pk):
         message = Message.objects.get(pk=pk)
-        message.is_active = True
+        message.is_active_patient = True
         message.save()
         return HttpResponseRedirect(reverse_lazy('archive_box_patient'))
