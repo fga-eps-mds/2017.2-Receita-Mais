@@ -13,7 +13,8 @@ class CreateResponse(forms.Form):
     text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control',
                                                         'type': 'text',
                                                         'placeholder': _('Insira aqui sua mensagem')}))
-    image = forms.FileField(required=False)
+
+    files = forms.FileField(required=False)
 
     # Get Messages fields.
     def clean(self):
