@@ -10,16 +10,19 @@ from user.decorators import is_health_professional
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_health_professional, name='dispatch')
-class InboxHealthProfessionalView(ListView):
+class ArchiveBoxHealthProfessionalView(ListView):
     '''
-    View for list messages in inbox.
+    View for archived messages box.
     '''
 
-    template_name = 'inbox_health_professional.html'
+    template_name = 'archive_health_professional.html'
     context_object_name = 'inbox'
     model = Message
     paginate_by = 40
 
     # Return all Messages for the user.
     def get_queryset(self):
-        return self.model.objects.filter(user_to=self.request.user, is_active=True)
+        query_to = self.model.objects.filter(user_to=self.request.user, is_active=False)
+        query_from = self.model.objects.filter(user_from=self.request.user, is_active=False)
+        records = (query_to | query_from).distinct()
+        return records

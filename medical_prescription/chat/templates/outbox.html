@@ -53,6 +53,7 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
+                    <td><button><a href="{% url 'archive_message_outbox' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
                 {% endfor %}
@@ -89,7 +90,7 @@
         <!-- /. box -->
       </div>
       <div class="col-md-3">
-        <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Compose</a>
+        <a href="{% url 'compose'%}" class="btn btn-primary btn-block margin-bottom">Compose</a>
 
         <div class="box box-solid">
           <div class="box-header with-border">
@@ -102,8 +103,9 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox<li>
-              <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+              <li><a href="{% url 'inbox_health_professional'%}"><i class="fa fa-inbox"></i> Inbox</a><li>
+              <li><a href="{% url 'outbox'%}"><i class="fa fa-envelope-o"></i> Sent</a></li>
+              <li><a href="{% url 'archive_box_health_professional'%}"><i class="fa fa-envelope-o"></i> Archive</a></li>
             </ul>
           </div>
           <!-- /.box-body -->

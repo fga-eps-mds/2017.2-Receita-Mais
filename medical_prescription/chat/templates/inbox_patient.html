@@ -53,6 +53,7 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
+                    <td><button><a href="{% url 'archive_message_patient' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
                 {% endfor %}
@@ -102,8 +103,8 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox<li>
-              <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
+              <li><a href="#"><i class="fa fa-inbox"></i> Inbox</a><li>
+                            <li><a href="{% url 'archive_box_patient'%}"><i class="fa fa-envelope-o"></i> Archive</a></li>
             </ul>
           </div>
           <!-- /.box-body -->

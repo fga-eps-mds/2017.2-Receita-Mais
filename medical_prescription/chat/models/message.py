@@ -13,7 +13,7 @@ class Message(models.Model):
     user_to = models.ForeignKey(User, related_name="user_to")
 
     subject = models.CharField(max_length=constants.MAX_LENGTH_TEXT_SUBJECT)
-
+    is_active = models.BooleanField(default=True)
     date = models.DateField(auto_now=True)
 
     # List of response in Message.

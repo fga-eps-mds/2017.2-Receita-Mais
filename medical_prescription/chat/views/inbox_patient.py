@@ -22,4 +22,4 @@ class InboxPatientView(ListView):
 
     # Return all Messages for the Patient.
     def get_queryset(self):
-        return self.model.objects.filter(user_to=self.request.user)
+        return self.model.objects.filter(user_to=self.request.user, is_active=True)
