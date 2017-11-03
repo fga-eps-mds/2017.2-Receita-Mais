@@ -18,7 +18,7 @@ class TestBoxHealthProfessional(TestCase):
                                                                email='teste@test.com',
                                                                sex='M',
                                                                is_active=True)
-        # Create Message 1
+        # Create Message 1.
         self.message = Message()
         self.message.text = "meu texto"
         self.message.subject = "Assunto"
@@ -28,8 +28,7 @@ class TestBoxHealthProfessional(TestCase):
         self.message.is_active_outbox_health_professional = True
         self.message.save()
 
-        # Create Message 2
-
+        # Create Message 2.
         self.message2 = Message()
         self.message2.text = "meu texto"
         self.message2.subject = "Assunto"
