@@ -10,7 +10,7 @@ from user.decorators import is_health_professional
 class CustomRecommendationCreateView(FormView):
     model = CustomRecommendation
     form_class = CreateRecomendationCustomForm
-    success_url = 'dashboard_health_professional/health_professional/'
+    success_url = '/dashboard_health_professional/health_professional/'
     template_name = 'createcustomrecomendatiom.html'
 
     @method_decorator(login_required)
