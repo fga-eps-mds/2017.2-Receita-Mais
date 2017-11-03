@@ -8,6 +8,6 @@ class CustomRecommendation(models.Model):
     class Meta:
         unique_together = (('name', 'health_professional'),)
 
-    health_professional = models.ForeignKey(HealthProfessional)
     name = models.CharField(max_length=MAX_NAME, unique=True, default="")
     recommendation = models.CharField(max_length=MAX_DESCRIPTION)
+    health_professional = models.ForeignKey(HealthProfessional)
