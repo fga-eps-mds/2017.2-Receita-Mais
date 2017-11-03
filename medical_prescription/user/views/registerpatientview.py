@@ -37,8 +37,8 @@ class RegisterPatientView(FormView):
         # Defining the email field with the invitated patient email.
         form = self.form_class(initial=self.initial)
         form.fields["email"].initial = patient.email
-        form.fields['email'].widget.attrs['readonly'] = True
-        return render(request, self.template_name, {'form': form})
+        # form.fields['email'].widget.attrs['disabled'] = True
+        return render(request, self.template_name, {'form': form,'user_email':patient.email})
 
     def post(self, request, activation_key, *args, **kwargs):
         logger.debug("Start post method.")

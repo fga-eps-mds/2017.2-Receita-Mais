@@ -25,7 +25,8 @@ class PatientForm(UserForm):
     Form to register patientl.
     """
 
-    email = forms.EmailField()
+    email = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'form-control s-form-v3__input'}))
+
     CPF_document = BRCPFField(max_length=14, min_length=11,
                               widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                             'type': 'number',
@@ -46,6 +47,9 @@ class PatientForm(UserForm):
     complement = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
                                                                'size': 200,
                                                                'placeholder': '* Qd 70, Lt 8 Casa 2'}))
+
+
+
 
     class Meta:
         # Define model to patient.
