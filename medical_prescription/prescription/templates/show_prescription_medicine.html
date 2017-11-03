@@ -61,7 +61,7 @@
                   {{ formset.management_form }}
                   {% for atom_form in formset %}
                   <ul id='object_medicine' class='list-medicine'>
-                    <div class="table_medicine row">
+                    <div class="table_medicine row" hidden>
                       <li>
                         <div class="col-md-11">
                           <div class="row g-row-col-3">
@@ -91,7 +91,7 @@
                               {{atom_form.medicine_id}}
                               {{atom_form.medicine_type}}
                             </div>
-                          <div class="col-md-1 remove-div">
+                          <div class="col-md-1">
                             <a class="remove-medicine fa fa-times fa-2x" type="button"/>
                         </div>
                       </li>
@@ -112,7 +112,7 @@
                 {{ form_exam.management_form }}
                 {% for atom_form in form_exam %}
                 <ul id='object_exam'>
-                  <div class="table_exam">
+                  <div class="table_exam" hidden>
                     <li>
                       <div class="row">
                         <div class="col-md-11">
@@ -146,7 +146,7 @@
                 {% for recommendationField in formrecommendation %}
 
                 <ul id='object_recommendation'>
-                  <div class="table_recommendation">
+                  <div class="table_recommendation" hidden>
                     <li>
                       <div class="row">
                         <div class="col-md-11">

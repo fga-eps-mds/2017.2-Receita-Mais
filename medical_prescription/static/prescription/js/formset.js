@@ -14,8 +14,8 @@ function updateElementIndex(el, prefix, ndx) {
 //    functionJson: The function to pass the data.
 //    field: the field that will be used as reference.
 function cloneMore(selector, prefix, functionJson, field) {
-  var newElement = $(selector).clone(false);
   var total = $('#id_' + prefix + '-TOTAL_FORMS').val();
+  var newElement = $(selector).clone(false);
   newElement.find(':input').each(function() {
     var name = $(this).attr('name').replace('-' + (total - 1) + '-', '-' + total + '-');
     var id = 'id_' + name;
@@ -39,6 +39,20 @@ function cloneMore(selector, prefix, functionJson, field) {
   return false;
 }
 
+function showHideForm(selector){
+  $(selector).show();
+}
+
+function cloneOrShow(selector, prefix, functionJson, field){
+  var verifyVisible = $(selector).is(":visible");
+  if(verifyVisible){
+    cloneMore(selector, prefix, functionJson, field);
+  }else{
+    showHideForm(selector);
+  }
+  return false;
+}
+
 // This function is used to delete a form dynamically when the button is clicked.
 function deleteForm(prefix, text, btn) {
   var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
@@ -52,42 +66,47 @@ function deleteForm(prefix, text, btn) {
       });
     }
     return false;
+  } else if(total == 1){
+    $(text).find(':input').each(function() {
+      $(this).prop("readonly", false);
+      $(this).val('');
+    });
+    btn.closest(text).hide();
+    return false;
   }
 }
 
-// This function is responsable to remove medicine form.
-$(document).on('click', '.remove-medicine', function(e) {
-  e.preventDefault();
-  deleteForm('form', '.table_medicine', $(this).parent());
-  return false;
-});
+// Calls add and remove forms.
+$(document).ready(function() {
 
-// This function is responsable to remove recommendation form.
-$(document).on('click', '.remove-exam', function(e) {
-  e.preventDefault();
-  deleteForm('form', '.table_exam ', $(this).parent());
-  return false;
-});
+  // Method to clone medicine fields in the document
+  $('#add_more').click(function() {
+    cloneOrShow('div.table_medicine:last', 'form', autocompleteMedicine, "medicine");
+  });
 
-// This function is responsable to remove recommendation form.
-$(document).on('click', '.remove-recommendation', function(e) {
-  e.preventDefault();
-  deleteForm('form', '.table_recommendation ', $(this).parent());
-  return false;
-});
+  // This function is responsable to remove medicine form.
+   $("body").off("click").on("click",".remove-medicine",function() {
+    deleteForm("form", ".table_medicine", $(this).parent());
+  });
 
+  // Method to clone exam fields in the document
+  $('#add_more_exam').click(function() {
+    cloneOrShow('div.table_exam:last', 'form', autocompleteExam, "exam");
+  });
 
-// Method to clone medicine fields in the document
-$('#add_more').click(function() {
-  cloneMore('div.table_medicine:last', 'form', autocompleteMedicine, "medicine");
-});
+  // This function is responsable to remove exam form.
+   $("body").on("click",".remove-exam",function() {
+    deleteForm("form", ".table_exam", $(this).parent());
+  });
 
-// Method to clone exam fields in the document
-$('#add_more_exam').click(function() {
-  cloneMore('div.table_exam:last', 'form', autocompleteExam, "exam");
-});
+  // Method to clone reccomendation fields in the document
+  $('#add_more_reccomendation').click(function() {
+    cloneOrShow('div.table_recommendation:last', 'form', "", "recommendation");
+  });
 
-// Method to clone reccomendation fields in the document
-$('#add_more_reccomendation').click(function() {
-  cloneMore('div.table_recommendation:last', 'form', "", "recommendation");
+  // This function is responsable to remove recommendation form.
+   $("body").on("click",".remove-recommendation",function() {
+    deleteForm("form", ".table_recommendation", $(this).parent());
+  });
+
 });
