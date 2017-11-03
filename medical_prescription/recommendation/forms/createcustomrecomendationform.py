@@ -1,7 +1,7 @@
 from django import forms
 
 
-class CreateRecomendationCustomForm(forms.form):
+class CreateRecomendationCustomForm(forms.Form):
     name = forms.CharField()
     description = forms.CharField()
 

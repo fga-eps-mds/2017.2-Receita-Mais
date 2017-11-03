@@ -1,1 +1,1 @@
-from .customRecomendation import *
+from .customrecomendation import *

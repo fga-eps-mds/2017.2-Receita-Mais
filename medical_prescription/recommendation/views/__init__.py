@@ -1,1 +1,1 @@
-from createrecomendationcustom import CustomRecommendationCreateView
+from .createrecomendationcustom import CustomRecommendationCreateView
