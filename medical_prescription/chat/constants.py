@@ -5,3 +5,17 @@ TEXT_SIZE = "The text must be between 0 and 800 characters."
 SUBJECT_SIZE = "Subject must be between 0 and 80 characters."
 
 USER_EXISTS = "User don't exists."
+
+
+CONTENT_TYPES = ['jpeg', 'png', 'pdf']
+FORMAT_ERROR = 'File type is not supported'
+FILE_SIZE = 'Please keep filesize under 20MB'
+# 2.5MB - 2621440
+# 5MB - 5242880
+# 10MB - 10485760
+# 20MB - 20971520
+# 50MB - 5242880
+# 100MB 104857600
+# 250MB - 214958080
+# 500MB - 429916160
+MAX_UPLOAD_SIZE = 20971520
