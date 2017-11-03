@@ -1,1 +1,1 @@
-from recommendation.validators import *
+from .customrecomendationvalidator import *

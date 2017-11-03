@@ -6,7 +6,7 @@ from recommendation.constants import MAX_NAME, MAX_DESCRIPTION
 
 class CustomRecommendation(models.Model):
     class Meta:
-        unique_together = (('name', 'health_professional_FK'),)
+        unique_together = (('name', 'health_professional'),)
 
     health_professional = models.ForeignKey(HealthProfessional)
     name = models.CharField(max_length=MAX_NAME, unique=True, default="")
