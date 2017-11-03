@@ -53,6 +53,7 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
+                    <td><button><a href="{% url 'unarchive_message_health_professional' message.pk %}" onclick="return confirm('Desarquivar Conversa?')">Desarquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
                 {% endfor %}
