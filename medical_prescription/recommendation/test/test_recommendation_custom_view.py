@@ -24,3 +24,25 @@ class CreateRecomendationCustomViewTeste(TestCase):
         # Get the response
         response = CustomRecommendationCreateView.as_view()(request)
         self.assertEqual(response.status_code, 200)
+
+    def test_post_with_health_professional_valid(self):
+        context = {'name': "Diabetes",
+                   'description': "Alguma descrição aceitavel"}
+
+        request = self.factory.post('/prescription/create_modal/', context)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CustomRecommendationCreateView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_post_with_health_professional_invalid(self):
+        context = {'name': "A",
+                   'description': "Alguma descrição aceitavel"}
+
+        request = self.factory.post('/prescription/create_modal/', context)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CustomRecommendationCreateView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
