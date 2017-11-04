@@ -31,12 +31,7 @@ class CreateMessage(forms.Form):
         user_to = self.cleaned_data.get('user_to')
         files = self.cleaned_data['files']
 
-        if files is None:
-            print("-------------------------------NONE---------------------------------")
-            self.validator_no_file(text, subject, user_to)
-        else:
-            print("-------------------------------NOTNONE-------------------------------")
-            self.validator_all(text, subject, user_to, files)
+        self.validator_all(text, subject, user_to, files)
 
         # Verify validations in form.
     # Checks validator in all fields.
@@ -47,12 +42,9 @@ class CreateMessage(forms.Form):
         validator.validator_text(text)
         validator.validator_subject(subject)
         validator.validator_user_to(user_to)
-        validator.validator_file(files)
 
-    def validator_no_file(self, text, subject, user_to):
-        validator = MessageValidator()
-
-        # Fields common all users.
-        validator.validator_text(text)
-        validator.validator_subject(subject)
-        validator.validator_user_to(user_to)
+        if files is not None:
+            validator.validator_file(files)
+        else:
+            # Nothing to do.
+            pass
