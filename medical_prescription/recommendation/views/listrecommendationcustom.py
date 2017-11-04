@@ -22,6 +22,6 @@ class ListCustomRecommendations(ListView):
     def dispatch(self, *args, **kwargs):
         return super(ListCustomRecommendations, self).dispatch(*args, **kwargs)
 
-    # Get 20 queries of objects Medication.
+    # Get 20 queries of objects Custom Recommendation.
     def get_queryset(self):
         return self.model.objects.all()

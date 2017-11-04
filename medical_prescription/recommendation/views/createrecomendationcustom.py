@@ -19,7 +19,7 @@ class CustomRecommendationCreateView(FormView):
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
-
+        form.get_request(request)
         if form.is_valid():
             description = form.cleaned_data.get('description')
             name = form.cleaned_data.get('name')

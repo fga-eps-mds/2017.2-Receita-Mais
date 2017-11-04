@@ -7,11 +7,14 @@ class CreateRecomendationCustomForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     validator = CustomRecommendationValidator()
 
+    def get_request(self, request):
+        self.request = request
+
     def clean(self):
         name = self.cleaned_data.get('name')
         description = self.cleaned_data.get('description')
         self.validator_all(name, description)
 
     def validator_all(self, name, description):
-        self.validator.validator_name(name)
+        self.validator.validator_name(name, self.request)
         self.validator.validator_description(description)
