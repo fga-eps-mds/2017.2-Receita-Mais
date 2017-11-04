@@ -12,7 +12,7 @@ class ListCustomRecommendations(ListView):
     Query and list objects Custom Recommendations.
     '''
 
-    template_name = ''
+    template_name = 'listcustomrecommendation.html'
     context_object_name = 'list_custom_recommendation'
     model = CustomRecommendation
     paginate_by = 20
