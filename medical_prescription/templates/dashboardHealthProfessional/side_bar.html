@@ -83,6 +83,17 @@
                 </ul>
             </li>
 
+        <li class="treeview">
+          <a href="{% url 'list_custom_recommendations' %}"><i class="fa fa-file"></i> <span>Recomendações</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'list_custom_recommendations' %}">Recomedações Customizadas</a></li>
+          </ul>
+        </li>
+
       <li class="treeview">
         <a href="{% url 'disease_list' %}"><i class="fa fa-heartbeat"></i> <span>{% trans "Doenças"%}</span>
           <span class="pull-right-container">
