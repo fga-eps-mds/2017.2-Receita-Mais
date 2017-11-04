@@ -6,7 +6,14 @@ from chat.views import (InboxHealthProfessionalView,
                         SentMessageDetailView,
                         InboxPatientView,
                         ViewMessagePatient,
-                        ViewMessageHealthProfessional)
+                        ViewMessageHealthProfessional,
+                        ArchiveMessageOutboxView,
+                        ArchiveMessagePatientView,
+                        ArchiveMessageHealthProfessionalView,
+                        ArchiveBoxPatientView,
+                        ArchiveBoxHealthProfessionalView,
+                        UnarchiveMessagePatientView,
+                        UnarchiveMessageHealthProfessionalView,)
 
 urlpatterns = (
     url(r'^inbox_health_professional/$', InboxHealthProfessionalView.as_view(), name='inbox_health_professional'),
@@ -19,4 +26,16 @@ urlpatterns = (
         ViewMessageHealthProfessional.as_view(),
         name='view_message_health_professional'),
     url(r'^view_sent_message/(?P<pk>[\w-]+)$', SentMessageDetailView.as_view(), name='view_sent_message'),
+    url(r'^archive_message_outbox/(?P<pk>[\w-]+)$', ArchiveMessageOutboxView.post, name='archive_message_outbox'),
+    url(r'^archive_message_patient/(?P<pk>[\w-]+)$', ArchiveMessagePatientView.post, name='archive_message_patient'),
+    url(r'^archive_message_health_professional/(?P<pk>[\w-]+)$',
+        ArchiveMessageHealthProfessionalView.post, name='archive_message_health_professional'),
+    url(r'^archive_box_health_professional/$',
+        ArchiveBoxHealthProfessionalView.as_view(), name='archive_box_health_professional'),
+    url(r'^archive_box_patient/$',
+        ArchiveBoxPatientView.as_view(), name='archive_box_patient'),
+    url(r'^unarchive_message_patient/(?P<pk>[\w-]+)$', UnarchiveMessagePatientView.post, name='unarchive_message_patient'),
+    url(r'^unarchive_message_health_professional/(?P<pk>[\w-]+)$',
+        UnarchiveMessageHealthProfessionalView.post, name='unarchive_message_health_professional'),
+
 )
