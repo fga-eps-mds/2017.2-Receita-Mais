@@ -1,1 +1,2 @@
 from .createrecomendationcustom import CustomRecommendationCreateView
+from .listrecommendationcustom import *
