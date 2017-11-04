@@ -22,4 +22,5 @@ class InboxHealthProfessionalView(ListView):
 
     # Return all Messages for the user.
     def get_queryset(self):
-        return self.model.objects.filter(user_to=self.request.user)
+        return self.model.objects.filter(user_to=self.request.user,
+                                         is_active_inbox_health_professional=True)
