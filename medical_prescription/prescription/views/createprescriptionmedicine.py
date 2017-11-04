@@ -47,7 +47,11 @@ class CreatePrescriptionView(FormView):
         """
         patient_id = form.cleaned_data.get('patient')
         cid_id = form.cleaned_data.get('cid_id')
-        disease = Disease.objects.get(pk=cid_id)
+
+        if cid_id is not None:
+            disease = Disease.objects.get(pk=cid_id)
+        else:
+            disease = None
 
         prescription_medicine_object = PrescriptionMedicine(patient=patient_id, cid=disease)
         prescription_medicine_object.save()
