@@ -4,17 +4,26 @@ from django.utils.translation import ugettext_lazy as _
 
 # Django local
 from recommendation import constants
+from recommendation.models import CustomRecommendation
 
 
 class CustomRecommendationValidator(object):
     """
     docstring for CustomRecommendationValidator.
     """
-    def validator_name(self, name):
+    def validator_name(self, name, request):
+
+        data_base_custom_recommendation = CustomRecommendation.objects.filter(
+            name=name,
+            health_professional=request.user
+            )
+
         if name is not None and len(name) < constants.MIN_NAME:
             raise forms.ValidationError({'name': [_(constants.NAME_SIZE_MIN)]})
         elif name is not None and len(name) > constants.MAX_NAME:
             raise forms.ValidationError({'name': [_(constants.NAME_SIZE_MAX)]})
+        elif data_base_custom_recommendation.exists():
+            raise forms.ValidationError({'name': [_(constants.NAME_DUPLICATED)]})
         else:
             # Nothing to do.
             pass
