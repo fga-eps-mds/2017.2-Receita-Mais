@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^prescription/', include('prescription.urls')),
     url(r'^chat/', include('chat.urls')),
+    url(r'^recommendation/', include('recommendation.urls')),
 ]
 
 urlpatterns += i18n_patterns(
