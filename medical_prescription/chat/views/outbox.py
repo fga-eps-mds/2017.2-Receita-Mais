@@ -22,4 +22,5 @@ class OutboxView(ListView):
 
     # Return all send Message for the HealthProfessional.
     def get_queryset(self):
-        return self.model.objects.filter(user_from=self.request.user)
+        return self.model.objects.filter(user_from=self.request.user,
+                                         is_active_outbox_health_professional=True)

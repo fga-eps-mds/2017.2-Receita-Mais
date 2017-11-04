@@ -8,7 +8,7 @@
       <div class="col-md-9">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Inbox</h3>
+            <h3 class="box-title">Archive Message</h3>
 
             <div class="box-tools pull-right">
               <div class="has-feedback">
@@ -53,7 +53,7 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
-                    <td><button><a href="{% url 'archive_message_health_professional' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
+                    <td><button><a href="{% url 'unarchive_message_health_professional' message.pk %}" onclick="return confirm('Desarquivar Conversa?')">Desarquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
                 {% endfor %}
