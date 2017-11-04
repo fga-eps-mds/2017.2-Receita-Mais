@@ -16,7 +16,7 @@ class ArchiveBoxHealthProfessionalView(ListView):
     '''
 
     template_name = 'archive_health_professional.html'
-    context_object_name = 'inbox'
+    context_object_name = 'archive_message'
     model = Message
     paginate_by = 40
 
