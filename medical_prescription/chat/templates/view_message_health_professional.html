@@ -26,7 +26,7 @@
           <!-- /.mailbox-read-message -->
         </div>
         <!-- /.box-header -->
-        {% for element in list.messages.all %}
+        {% for element in messages %}
         <div class="box-body no-padding">
           <div class="mailbox-read-info">
             <h5>De: {{element.user_from}}
@@ -40,6 +40,27 @@
         </div>
         {% endfor %}
         <!-- /.box-body -->
+
+        Page {{ messages.number }} of {{ messages.paginator.num_pages }}.
+        <ul class="pagination">
+          {% if messages.has_previous %}
+            <li><a href="?page={{ messages.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in messages.paginator.page_range %}
+            {% if messages.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if messages.has_next %}
+            <li><a href="?page={{ messages.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
 
         <div class="box-body">
           <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
@@ -60,6 +81,7 @@
               {{ form.image }}
             </div>
             </li>
+          
 
             <!-- /.box-body -->
             <div class="box-footer">
