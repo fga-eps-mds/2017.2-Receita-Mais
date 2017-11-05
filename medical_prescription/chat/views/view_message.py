@@ -2,6 +2,8 @@
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
 from datetime import date
+from django.core import paginator
+from django.db.models import Q
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -20,7 +22,6 @@ class MessageDetailView(DetailView, FormMixin):
     form_class = CreateResponse
     context_object_name = 'list'
     model = Message
-    paginate_by = 40
 
     # Return a query of Message from the user.
     def get_queryset(self):
@@ -28,7 +29,18 @@ class MessageDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(MessageDetailView, self).get_context_data(**kwargs)
+
+        messages_page = self.request.GET.get('page')
+        messages = Response.objects.filter(message__id=context['object'].id)
+        messages_paginator = paginator.Paginator(messages, 50)
+
+        try:
+            messages_page_object = messages_paginator.page(messages_page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            messages_page_object = messages_paginator.page(1)
+
         context['form'] = self.get_form()
+        context['messages'] = messages_page_object
         return context
 
     def post(self, request, *args, **kwargs):
