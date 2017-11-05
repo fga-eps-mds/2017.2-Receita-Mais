@@ -29,20 +29,20 @@ class TestRequiredAutocompleteExam(TestCase):
         self.custom_exam.description = "Custom"
         self.custom_exam.save()
 
-    def test_request_autocomplete_exam_fail(self):
+    def test_prescription_request_autocomplete_exam_fail(self):
         request = self.factory.get('/prescription/ajax/autocomplete_exam/?term=Exa')
         request.user = self.health_professional
         response = AutoCompleteExam.as_view()(request)
         self.assertNotEquals(response, HttpResponse)
 
-    def test_request_autocomplete_exam_return_no_exam(self):
+    def test_prescription_request_autocomplete_exam_return_no_exam(self):
         request = self.factory.get('/prescription/ajax/autocomplete_exam/?term=out',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
         response = AutoCompleteExam.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-    def test_request_autocomplete_exam_return_one_exam(self):
+    def test_prescription_request_autocomplete_exam_return_one_exam(self):
         request = self.factory.get('/prescription/ajax/autocomplete_exam/?term=Exa',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
@@ -50,7 +50,7 @@ class TestRequiredAutocompleteExam(TestCase):
         # response.content
         self.assertEquals(response.status_code, 200)
 
-    def test_request_autocomplete_exam_return_one_custom_exam(self):
+    def test_prescription_request_autocomplete_exam_return_one_custom_exam(self):
         request = self.factory.get('/prescription/ajax/autocomplete_exam/?term=Cus',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional

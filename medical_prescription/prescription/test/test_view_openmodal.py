@@ -10,7 +10,7 @@ class TestOpenModal(TestCase):
         self.client = Client()
         self.view = OpenPrescriptionView()
 
-    def test_get(self):
+    def test_prescription_get(self):
         request = self.factory.get('/prescription')
         response = self.view.get(request)
         self.assertEqual(response.status_code, 200)

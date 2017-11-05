@@ -38,27 +38,27 @@ class TestRequiredAutocompleteMedicine(TestCase):
         self.manipulated_medicine.health_professional = self.health_professional
         self.manipulated_medicine.save()
 
-    def test_request_autocomplete_medicine_fail(self):
+    def test_prescription_request_autocomplete_medicine_fail(self):
         request = self.factory.get('/prescription/ajax/autocomplete_medicine/?term=Med')
         request.user = self.health_professional
         response = AutoCompleteMedicine.as_view()(request)
         self.assertNotEquals(response, HttpResponse)
 
-    def test_request_autocomplete_medicine_return_no_medicine(self):
+    def test_prescription_request_autocomplete_medicine_return_no_medicine(self):
         request = self.factory.get('/prescription/ajax/autocomplete_medicine/?term=testan',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
         response = AutoCompleteMedicine.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-    def test_request_autocomplete_medicine_return_one_medicine(self):
+    def test_prescription_request_autocomplete_medicine_return_one_medicine(self):
         request = self.factory.get('/prescription/ajax/autocomplete_medicine/?term=Med',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
         response = AutoCompleteMedicine.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-    def test_request_autocomplete_medicine_return_one_manipulatede_medicine(self):
+    def test_prescription_request_autocomplete_medicine_return_one_manipulatede_medicine(self):
         request = self.factory.get('/prescription/ajax/autocomplete_medicine/?term=Man',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional

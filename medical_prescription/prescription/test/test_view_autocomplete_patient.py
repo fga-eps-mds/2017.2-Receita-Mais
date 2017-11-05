@@ -26,20 +26,20 @@ class TestRequiredAutocompletePatient(TestCase):
                                                    neighborhood='Asa sul',
                                                    complement='Bloco 2 QD 701')
 
-    def test_request_autocomplete_patient_fail(self):
+    def test_prescription_request_autocomplete_patient_fail(self):
         request = self.factory.get('/prescription/ajax/autocomplete_patient/?term=Pat')
         request.user = self.health_professional
         response = AutoCompletePatient.as_view()(request)
         self.assertNotEquals(response, HttpResponse)
 
-    def test_request_autocomplete_patient_return_no_patient(self):
+    def test_prescription_request_autocomplete_patient_return_no_patient(self):
         request = self.factory.get('/prescription/ajax/autocomplete_patient/?term=test',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
         response = AutoCompletePatient.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-    def test_request_autocomplete_patient_return_one_patient(self):
+    def test_prescription_request_autocomplete_patient_return_one_patient(self):
         request = self.factory.get('/prescription/ajax/autocomplete_patient/?term=Pat',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
