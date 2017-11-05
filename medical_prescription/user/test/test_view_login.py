@@ -23,35 +23,35 @@ class LoginViewTest(TestCase):
         self.client = Client()
 
     # Testing method 'get' in LoginView.
-    def test_get_patient(self):
+    def test_user_get_patient(self):
         request = self.factory.get('/user/login_patient/')
         response = self.my_view.get(request)
 
         self.assertEqual(response.status_code, 200)
 
-    def test_get_health_professional(self):
+    def test_user_get_health_professional(self):
         request = self.factory.get('/user/login_healthprofessional/')
         response = self.my_view.get(request)
 
         self.assertEqual(response.status_code, 200)
 
     # Testing method 'post' in LoginView.
-    def test_post(self):
+    def test_user_post(self):
         response = self.client.post('/user/login_patient/', {'email': 'teste@teste.com', 'password': 'teste404'})
 
         # If the method redirect correctly the status code 200 is returned.
         self.assertEqual(response.status_code, 200)
 
     # Testing method 'post' in LoginView.
-    def test_post_1(self):
+    def test_user_post_inexisten(self):
         response = self.client.post('/user/login/', {'email': 'teste', 'password': 'teste'})
 
-        # If the method redirect correctly the status code 200 is returned.
+        # If the method redirect correctly the status code 404 is returned.
         self.assertEqual(response.status_code, 404)
 
     # Testing method 'post' in LoginView.
-    def test_post_2(self):
+    def test_user_post_empty(self):
         response = self.client.post('/user/login/', {'email': None, 'password': None})
 
-        # If the method redirect correctly the status code 200 is returned.
+        # If the method redirect correctly the status code 404 is returned.
         self.assertEqual(response.status_code, 404)

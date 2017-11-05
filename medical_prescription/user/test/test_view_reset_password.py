@@ -24,16 +24,16 @@ class TestResetPassword(TestCase):
 
         self.form = ResetPasswordForm
 
-    def test_post_true(self):
+    def test_user_post_true(self):
         response = self.client.post('/user/reset/')
         self.assertEqual(response.status_code, 200)
 
-    def test_get_true(self):
+    def test_user_get_true(self):
         request = self.factory.get('/user/reset')
         response = self.view.get(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_form_true(self):
+    def test_user_form_true(self):
         request = self.factory.post('user/reset/', self.true_context)
         form = self.form(request.POST)
 

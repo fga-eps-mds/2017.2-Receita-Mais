@@ -40,12 +40,12 @@ class TestResetPassword(TestCase):
         user.email = "admin@hotmail.com"
         user.save()
 
-    def test_reset_password_form_valid(self):
+    def test_user_reset_password_form_valid(self):
         form_data = {'email': self.email_invalid_1}
         form = ResetPasswordForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_reset_password_form_invalid(self):
+    def test_user_reset_password_form_invalid(self):
         form_data = {'email': self.email_valid_reset}
         form = ResetPasswordForm(data=form_data)
         self.assertFalse(form.is_valid())

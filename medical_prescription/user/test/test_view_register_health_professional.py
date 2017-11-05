@@ -11,12 +11,12 @@ class RegisterHealthProfessionalViewTest(TestCase):
         self.client = Client()
 
     # Testing method 'get' of HealthProfessionalView.
-    def test_get(self):
+    def test_user_get(self):
         request = self.factory.get('user/register_health_professional/')
         response = self.my_view.get(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_post(self):
+    def test_user_post(self):
         context = {'email': 'test@test.com',
                    'password': '1st234567',
                    'confirm_password': '1st234567',
@@ -31,7 +31,7 @@ class RegisterHealthProfessionalViewTest(TestCase):
         # If the method redirect the status code 302 is returned.
         self.assertEqual(response.status_code, 302)
 
-    def test_post_invalid(self):
+    def test_user_post_invalid(self):
         context = {'email': 'test@test.com',
                    'password': '1st234567',
                    'confirm_password': '1st234567',

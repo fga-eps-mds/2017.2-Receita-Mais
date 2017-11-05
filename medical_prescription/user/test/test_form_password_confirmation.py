@@ -22,19 +22,19 @@ class TestConfirmPasswordForm(TestCase):
         user.email = "admin@hotmail.com"
         user.save()
 
-    def test_password_confirmation_form_valid(self):
+    def test_user_password_confirmation_form_valid(self):
         form_data = {'password': self.password_valid,
                      'password_confirmation': self.password_valid}
         form = ConfirmPasswordForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_password_confirmation_form_invalid_match(self):
+    def test_user_password_confirmation_form_invalid_match(self):
         form_data = {'password': self.password_valid,
                      'password_confirmation': self.password_invalid_match}
         form = ConfirmPasswordForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_password_confirmation_form_invalid(self):
+    def test_user_password_confirmation_form_invalid(self):
         form_data = {'password': self.password_invalid_MAX,
                      'password_confirmation': self.password_invalid_MIN}
         form = ConfirmPasswordForm(data=form_data)

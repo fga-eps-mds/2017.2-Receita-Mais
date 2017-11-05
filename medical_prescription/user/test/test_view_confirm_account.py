@@ -29,7 +29,7 @@ class ConfirmAccountViewTest(TestCase):
         self.email_invalid = 'invalid@invalid.com'
         self.another_activation_key = hashlib.sha1(str(self.salt+self.email_invalid).encode('utf‌​-8')).hexdigest()
 
-    def test_get(self):
+    def test_user_user_get(self):
         request = self.factory.get('user/confirm/(?P<activation_key>\w+)/')
         request.user = AnonymousUser()
         setattr(request, 'session', {})
@@ -37,7 +37,7 @@ class ConfirmAccountViewTest(TestCase):
         response = ConfirmAccountView.activate_register_user(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_without_invitation(self):
+    def test_user_user_get_without_invitation(self):
         '''
         this method tests when the user tryes to register a not invited patient.
         '''

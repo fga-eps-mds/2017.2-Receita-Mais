@@ -12,7 +12,7 @@ class TestListLinkedPatients(TestCase):
         self.factory = RequestFactory()
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com', password='senha12')
 
-    def test_get_exam_with_health_professional(self):
+    def test_user_user_get_exam_with_health_professional(self):
         request = self.factory.get('/user/listlinkedpatients')
         request.user = self.health_professional
 

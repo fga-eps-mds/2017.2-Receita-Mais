@@ -34,7 +34,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
                                                                              email=self.health_professional.email)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_health_professional_with_patient(self):
+    def test_user_get_health_professional_with_patient(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -42,7 +42,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
             UpdateUserPassword.edit_health_professional_password_view(request,
                                                                       email=self.health_professional.email)
 
-    def test_get_health_professional_with_user(self):
+    def test_user_get_health_professional_with_user(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.user
 
@@ -50,7 +50,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
             UpdateUserPassword.edit_health_professional_password_view(request,
                                                                       email=self.health_professional.email)
 
-    def test_get_health_professional_with_own_health_professional(self):
+    def test_user_get_health_professional_with_own_health_professional(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
@@ -58,7 +58,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
                                                                              email=self.health_professional.email)
         self.assertEqual(response.status_code, 200)
 
-    def test_get_health_professional_with_health_professional(self):
+    def test_user_get_health_professional_with_health_professional(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
@@ -74,7 +74,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
                                                                              email=self.health_professional.email)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_health_professional_with_patient(self):
+    def test_user_post_health_professional_with_patient(self):
         request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -82,7 +82,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
             UpdateUserPassword.edit_health_professional_password_view(request,
                                                                       email=self.health_professional.email)
 
-    def test_post_health_professional_with_user(self):
+    def test_user_post_health_professional_with_user(self):
         request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.user
 
@@ -90,7 +90,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
             UpdateUserPassword.edit_health_professional_password_view(request,
                                                                       email=self.health_professional.email)
 
-    def test_post_health_professional_with_own_health_professional(self):
+    def test_user_post_health_professional_with_own_health_professional(self):
         request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
@@ -98,7 +98,7 @@ class TestUpdateHealthProfessionalPassword(TestCase):
                                                                              email=self.health_professional.email)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_health_professional_with_health_professional(self):
+    def test_user_post_health_professional_with_health_professional(self):
         request = self.factory.post('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
@@ -132,7 +132,7 @@ class UpdatePatientPassword(TestCase):
                                                                  email=self.patient.email)
         self.assertEqual(response.status_code, 302)
 
-    def test_edit_patient_with_user(self):
+    def test_user_edit_patient_with_user(self):
         request = self.factory.get('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.user
 
@@ -140,7 +140,7 @@ class UpdatePatientPassword(TestCase):
             UpdateUserPassword.edit_patient_password_view(request,
                                                           email=self.patient.email)
 
-    def test_edit_patient_with_health_professional(self):
+    def test_user_edit_patient_with_health_professional(self):
         request = self.factory.get('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 
@@ -148,7 +148,7 @@ class UpdatePatientPassword(TestCase):
             UpdateUserPassword.edit_patient_password_view(request,
                                                           email=self.patient.email)
 
-    def test_edit_patient_with_own_patient(self):
+    def test_user_edit_patient_with_own_patient(self):
         request = self.factory.get('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -156,7 +156,7 @@ class UpdatePatientPassword(TestCase):
                                                                  email=self.patient.email)
         self.assertEqual(response.status_code, 200)
 
-    def test_edit_patient_with_patient(self):
+    def test_user_edit_patient_with_patient(self):
         request = self.factory.get('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -172,7 +172,7 @@ class UpdatePatientPassword(TestCase):
                                                                  email=self.health_professional.email)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_patient_with_patient(self):
+    def test_user_post_patient_with_patient(self):
         request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -180,7 +180,7 @@ class UpdatePatientPassword(TestCase):
             UpdateUserPassword.edit_patient_password_view(request,
                                                           email="teste@teste.com")
 
-    def test_post_patient_with_user(self):
+    def test_user_post_patient_with_user(self):
         request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.user
 
@@ -188,7 +188,7 @@ class UpdatePatientPassword(TestCase):
             UpdateUserPassword.edit_patient_password_view(request,
                                                           email=self.patient.email)
 
-    def test_post_patient_with_own_patient(self):
+    def test_user_post_patient_with_own_patient(self):
         request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.patient
 
@@ -196,7 +196,7 @@ class UpdatePatientPassword(TestCase):
                                                                  email=self.patient.email)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_patient_with_health_professional(self):
+    def test_user_post_patient_with_health_professional(self):
         request = self.factory.post('user/editpasswordpatient/(?P<email>[\w|\W]+)')
         request.user = self.health_professional
 

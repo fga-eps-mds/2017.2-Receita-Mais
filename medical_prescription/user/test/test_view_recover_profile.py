@@ -18,7 +18,7 @@ class TestViewRecoverProfile(TestCase):
         self.user.save()
 
     # Test if ResetPasswordProfile are save databe.
-    def test_create_recover_profile(self):
+    def test_user_create_recover_profile(self):
 
         recover = self.view._create_recover_profile(self.view, self.user)
         recover.save()

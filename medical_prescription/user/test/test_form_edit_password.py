@@ -23,7 +23,7 @@ class TestUpdateUserForm(TestCase):
         self.user.email = "admin@hotmail.com"
         self.user.save()
 
-    def test_update_password_form_valid(self):
+    def test_user_update_password_form_valid(self):
         form_data = {'old_password': self.old_password_valid,
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid
@@ -31,7 +31,7 @@ class TestUpdateUserForm(TestCase):
         form = UpdatePasswordForm(user=self.user, data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_update_password_form_old_invalid(self):
+    def test_user_update_password_form_old_invalid(self):
         form_data = {'old_password': self.old_password_invalid,
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid
@@ -39,7 +39,7 @@ class TestUpdateUserForm(TestCase):
         form = UpdatePasswordForm(user=self.user, data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_update_password_form_new_invalid(self):
+    def test_user_update_password_form_new_invalid(self):
         form_data = {'old_password': self.old_password_valid,
                      'password': self.password_valid,
                      'password_confirmation': self.password_confirmation_invalid
@@ -47,7 +47,7 @@ class TestUpdateUserForm(TestCase):
         form = UpdatePasswordForm(user=self.user, data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_update_password_form_new_invalid_MIN(self):
+    def test_user_update_password_form_new_invalid_MIN(self):
         form_data = {'old_password': self.old_password_valid,
                      'password': self.password_invalid_MIN,
                      'password_confirmation': self.password_invalid_MIN
@@ -55,7 +55,7 @@ class TestUpdateUserForm(TestCase):
         form = UpdatePasswordForm(user=self.user, data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_update_password_form_new_invalid_MAX(self):
+    def test_user_update_password_form_new_invalid_MAX(self):
         form_data = {'old_password': self.old_password_valid,
                      'password': self.password_invalid_MAX,
                      'password_confirmation': self.password_invalid_MAX

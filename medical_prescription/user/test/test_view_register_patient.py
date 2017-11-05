@@ -50,14 +50,14 @@ class RegisterPatientViewTest(TestCase):
         self.complement_valid = 'Rua 01, Quadra 10, Lote 15'
         self.complement_invalid = ''
 
-    def test_get(self):
+    def test_user_get(self):
         request = self.factory.get('user/register_patient/(?P<activation_key>\w+)/')
         request.user = AnonymousUser()
 
         response = RegisterPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 200)
 
-    def test_post(self):
+    def test_user_post(self):
         '''
         Test post method with a valid form.
         '''
@@ -86,7 +86,7 @@ class RegisterPatientViewTest(TestCase):
         response = RegisterPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_invalid(self):
+    def test_user_post_invalid(self):
         '''
         Test post method with a valid form.
         '''
@@ -115,7 +115,7 @@ class RegisterPatientViewTest(TestCase):
         response = RegisterPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_invalid_patient_not_invited(self):
+    def test_user_post_invalid_patient_not_invited(self):
         '''
         This method tests when you try to register a not invited patient.
         '''
@@ -145,7 +145,7 @@ class RegisterPatientViewTest(TestCase):
         response = RegisterPatientView.as_view()(request, activation_key=self.another_activation_key)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_invalid_patient_register_time_expired(self):
+    def test_user_post_invalid_patient_register_time_expired(self):
         '''
         This method tests when you try to register after the expiration date of the invitation.
         '''

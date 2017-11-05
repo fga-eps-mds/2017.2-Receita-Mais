@@ -33,10 +33,10 @@ class TestUserActivateProfile(TestCase):
                                                key_expires=self.key_expires,
                                                activation_key=self.activation_key)
 
-    def test_profile_is_not_null(self):
+    def test_user_profile_is_not_null(self):
         self.assertIsNotNone(self.new_profile)
 
-    def test_str(self):
+    def test_user_str(self):
         self.assertEqual(self.email_valid, self.new_profile.__str__())
 
 

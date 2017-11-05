@@ -32,14 +32,14 @@ class AddPatientViewTest(TestCase):
         self.email_invalid = 'teste.com'
         self.email_valid = 'teste@teste.com'
 
-    def test_get(self):
+    def test_user_get(self):
         request = self.factory.get('user/addpatient/')
         request.user = self.health_professional
 
         response = AddPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_when_patient_exists_and_its_not_associated(self):
+    def test_user_post_when_patient_exists_and_its_not_associated(self):
         '''
         This method tests when the email provided by the logged health professional belongs to a
         registered patient, but the patient its not associated with the logged health professional.
@@ -56,7 +56,7 @@ class AddPatientViewTest(TestCase):
         response = AddPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_when_patient_exists_and_its_associated(self):
+    def test_user_post_when_patient_exists_and_its_associated(self):
         '''
         This method tests when the email provided by the logged health professional belongs to a
         registered patient, but the patient alredy is associated with the logged health professional.
@@ -73,7 +73,7 @@ class AddPatientViewTest(TestCase):
         response = AddPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_when_patient_not_exists(self):
+    def test_user_post_when_patient_not_exists(self):
         '''
         This method tests when the email provided by the logged health professional belongs to a
         unregistered patient.
@@ -90,7 +90,7 @@ class AddPatientViewTest(TestCase):
         response = AddPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_with_invalid_form(self):
+    def test_user_post_with_invalid_form(self):
         '''
         This method tests when the email provided by the logged health professional is invalid.
         '''
@@ -106,7 +106,7 @@ class AddPatientViewTest(TestCase):
         response = AddPatientView.as_view()(request, activation_key=self.activation_key)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_health_profesisonal(self):
+    def test_user_post_health_profesisonal(self):
         '''
         This method tests when the email provided by the logged health professional belongs to a
         registered health professional.

@@ -71,7 +71,7 @@ class TestPatientForm(TestCase):
         user.email = "admin@hotmail.com"
         user.save()
 
-    def test_forms_patient_is_valid(self):
+    def test_user_forms_patient_is_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -88,7 +88,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_forms_patient_name_is_not_valid_TYPE(self):
+    def test_user_forms_patient_name_is_not_valid_TYPE(self):
         form_data = {'name': self.name_invalid_TYPE,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -105,7 +105,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_name_is_not_valid_MAX(self):
+    def test_user_forms_patient_name_is_not_valid_MAX(self):
         form_data = {'name': self.name_invalid_MAX,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -122,7 +122,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_name_is_not_valid_MIN(self):
+    def test_user_forms_patient_name_is_not_valid_MIN(self):
         form_data = {'name': self.name_invalid_MIN,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -139,7 +139,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_phone_is_not_valid_TYPE(self):
+    def test_user_forms_patient_phone_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_invalid_TYPE,
                      'email': self.email_valid,
@@ -156,7 +156,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_phone_is_not_valid_MAX(self):
+    def test_user_forms_patient_phone_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_invalid_MAX,
                      'email': self.email_valid,
@@ -173,7 +173,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_phone_is_not_valid_MIN(self):
+    def test_user_forms_patient_phone_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_invalid_MIN,
                      'email': self.email_valid,
@@ -190,7 +190,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_email_is_not_valid_TYPE(self):
+    def test_user_forms_patient_email_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_TYPE,
@@ -207,7 +207,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_email_is_not_valid_MAX(self):
+    def test_user_forms_patient_email_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_MAX,
@@ -224,7 +224,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_email_is_not_valid_MIN(self):
+    def test_user_forms_patient_email_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_MIN,
@@ -241,7 +241,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_password_is_not_valid_TYPE(self):
+    def test_user_forms_patient_password_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -258,7 +258,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_password_is_not_valid_MIN(self):
+    def test_user_forms_patient_password_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -275,7 +275,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_password_is_not_valid_MAX(self):
+    def test_user_forms_patient_password_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -292,7 +292,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_password_confirmation_is_not_valid(self):
+    def test_user_forms_patient_password_confirmation_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -309,7 +309,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_CPF_document_is_not_valid_TYPE(self):
+    def test_user_forms_patient_CPF_document_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -326,7 +326,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_CPF_document_is_not_valid_MIN(self):
+    def test_user_forms_patient_CPF_document_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -343,7 +343,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_CPF_document_is_not_valid_MAX(self):
+    def test_user_forms_patient_CPF_document_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -360,7 +360,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_date_of_birth_is_not_valid_FORMAT(self):
+    def test_user_forms_patient_date_of_birth_is_not_valid_FORMAT(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -377,7 +377,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_date_of_birth_is_not_valid_MIN(self):
+    def test_user_forms_patient_date_of_birth_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -394,7 +394,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_sex_is_not_valid(self):
+    def test_user_forms_patient_sex_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -411,7 +411,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_CEP_is_not_valid(self):
+    def test_user_forms_patient_CEP_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -428,7 +428,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_CEP_is_not_valid_MAX(self):
+    def test_user_forms_patient_CEP_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -445,7 +445,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_UF_is_not_valid(self):
+    def test_user_forms_patient_UF_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -462,7 +462,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_UF_is_not_valid_MAX(self):
+    def test_user_forms_patient_UF_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -479,7 +479,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_city_is_not_valid(self):
+    def test_user_forms_patient_city_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -496,7 +496,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_city_is_not_valid_MAX(self):
+    def test_user_forms_patient_city_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -513,7 +513,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_neighborhood_is_not_valid(self):
+    def test_user_forms_patient_neighborhood_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -530,7 +530,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_neighborhood_is_not_valid_MAX(self):
+    def test_user_forms_patient_neighborhood_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -547,7 +547,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_complement_is_not_valid(self):
+    def test_user_forms_patient_complement_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -564,7 +564,7 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_patient_complement_is_not_valid_MAX(self):
+    def test_user_forms_patient_complement_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,

@@ -5,18 +5,18 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
 
 # Local Django imports
-from user.views import UpdateHealthProfessional
+from user.views import UpdatePatient
 from user.models import User, Patient, HealthProfessional
 
 
-class UpdateHealthProfessionalTest(TestCase):
+class UpdatePatientTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12', pk=99)
 
         self.patient = Patient.objects.create_user(email='patient@patient.com',
-                                                   password='senha12',
+                                                   password='senha12', pk=98,
                                                    CEP='72850735',
                                                    UF='DF',
                                                    city='Brasília',
@@ -27,36 +27,36 @@ class UpdateHealthProfessionalTest(TestCase):
                                              password='senha12')
 
     def _without_login(self):
-        request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
+        request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
         request.user = AnonymousUser()
 
-        response = UpdateHealthProfessional.as_view()(request, pk=99)
+        response = UpdatePatient.as_view()(request, pk=98)
         self.assertEqual(response.status_code, 302)
 
-    def test_edit_health_professional_with_patient(self):
-        request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
+    def test_user_edit_patient_with_health_professional(self):
+        request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
+        request.user = self.health_professional
+
+        with self.assertRaises(PermissionDenied):
+            UpdatePatient.as_view()(request, pk=98)
+
+    def test_user_edit_patient_with_patient(self):
+        request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
         with self.assertRaises(PermissionDenied):
-            UpdateHealthProfessional.as_view()(request, pk=99)
+            UpdatePatient.as_view()(request, pk=97)
 
-    def test_edit_health_professional_with_user(self):
-        request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
+    def test_user_edit_patient_with_user(self):
+        request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
         request.user = self.user
 
         with self.assertRaises(PermissionDenied):
-            UpdateHealthProfessional.as_view()(request, pk=99)
+            UpdatePatient.as_view()(request, pk=98)
 
-    def test_edit_health_professional_with_own_health_professional(self):
-        request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
-        request.user = self.health_professional
+    def test_user_edit_patient_with_own_patient(self):
+        request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
+        request.user = self.patient
 
-        response = UpdateHealthProfessional.as_view()(request, pk=99)
+        response = UpdatePatient.as_view()(request, pk=98)
         self.assertEqual(response.status_code, 200)
-
-    def test_edit_health_professional_with_health_professional(self):
-        request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
-        request.user = self.health_professional
-
-        with self.assertRaises(PermissionDenied):
-            UpdateHealthProfessional.as_view()(request, pk=98)

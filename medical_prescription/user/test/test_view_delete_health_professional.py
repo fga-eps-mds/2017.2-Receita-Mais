@@ -33,28 +33,28 @@ class DeleteHealthProfessionalTest(TestCase):
         response = DeleteHealthProfessional.as_view()(request, pk=99)
         self.assertEqual(response.status_code, 302)
 
-    def test_delete_health_professional_with_patient(self):
+    def test_user_delete_health_professional_with_patient(self):
         request = self.factory.get('user/delete_health_professional/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
         with self.assertRaises(PermissionDenied):
             DeleteHealthProfessional.as_view()(request, pk=99)
 
-    def test_delete_health_professional_with_user(self):
+    def test_user_delete_health_professional_with_user(self):
         request = self.factory.get('user/delete_health_professional/(?P<pk>[0-9]+)/')
         request.user = self.user
 
         with self.assertRaises(PermissionDenied):
             DeleteHealthProfessional.as_view()(request, pk=99)
 
-    def test_delete_health_professional_with_own_health_professional(self):
+    def test_user_delete_health_professional_with_own_health_professional(self):
         request = self.factory.get('user/delete_health_professional/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 
         response = DeleteHealthProfessional.as_view()(request, pk=99)
         self.assertEqual(response.status_code, 200)
 
-    def test_delete_health_professional_with_health_professional(self):
+    def test_user_delete_health_professional_with_health_professional(self):
         request = self.factory.get('user/delete_health_professional/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 

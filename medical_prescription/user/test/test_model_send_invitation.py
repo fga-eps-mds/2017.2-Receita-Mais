@@ -22,6 +22,6 @@ class TestSendInvitationProfile(TestCase):
                                                                             patient=self.patient,
                                                                             key_expires=self.key_expires)
 
-    def test_str(self):
+    def test_user_str(self):
 
         self.assertEquals(str(self.send_invitation_profile), 'patient@patient.com',)

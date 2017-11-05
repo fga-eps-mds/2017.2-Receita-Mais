@@ -62,7 +62,7 @@ class TestHealthProfessionalForm(TestCase):
         user.email = "admin@hotmail.com"
         user.save()
 
-    def test_forms_health_professional_is_valid(self):
+    def test_user_forms_health_professional_is_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -75,7 +75,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_forms_health_professional_name_is_not_valid(self):
+    def test_user_forms_health_professional_name_is_not_valid(self):
         form_data = {'name': self.name_invalid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -88,7 +88,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_name_is_not_valid_MAX(self):
+    def test_user_forms_health_professional_name_is_not_valid_MAX(self):
         form_data = {'name': self.name_invalid_MAX,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -101,7 +101,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_name_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_name_is_not_valid_MIN(self):
         form_data = {'name': self.name_invalid_MIN,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -114,7 +114,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_name_is_not_valid_TYPE(self):
+    def test_user_forms_health_professional_name_is_not_valid_TYPE(self):
         form_data = {'name': self.name_invalid_TYPE,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -127,7 +127,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_phone_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_phone_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_invalid_MIN,
                      'email': self.email_valid,
@@ -140,7 +140,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_phone_is_not_valid_TYPE(self):
+    def test_user_forms_health_professional_phone_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_invalid_TYPE,
                      'email': self.email_valid,
@@ -153,7 +153,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_phone_is_not_valid_MAX(self):
+    def test_user_forms_health_professional_phone_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_invalid_MAX,
                      'email': self.email_valid,
@@ -166,7 +166,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_email_is_not_valid_TYPE(self):
+    def test_user_forms_health_professional_email_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_TYPE,
@@ -179,7 +179,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_email_is_not_valid_MAX(self):
+    def test_user_forms_health_professional_email_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_MAX,
@@ -192,7 +192,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_email_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_email_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_MIN,
@@ -205,7 +205,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_email_is_not_valid_BASE(self):
+    def test_user_forms_health_professional_email_is_not_valid_BASE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_invalid_BASE,
@@ -218,7 +218,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_password_is_not_valid_MAX(self):
+    def test_user_forms_health_professional_password_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -231,7 +231,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_password_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_password_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -244,7 +244,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_password_is_not_valid_TYPE(self):
+    def test_user_forms_health_professional_password_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -257,7 +257,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_password_confirmation_is_not_valid(self):
+    def test_user_forms_health_professional_password_confirmation_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -270,7 +270,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_password_confirmation_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_password_confirmation_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -283,7 +283,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_is_not_valid_FORMAT(self):
+    def test_user_forms_health_professional_crm_is_not_valid_FORMAT(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -296,7 +296,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_is_not_valid_MAX(self):
+    def test_user_forms_health_professional_crm_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -309,7 +309,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_crm_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -322,7 +322,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_is_not_valid_TYPE(self):
+    def test_user_forms_health_professional_crm_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -335,7 +335,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_is_not_valid_existent(self):
+    def test_user_forms_health_professional_crm_is_not_valid_existent(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -348,7 +348,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_state_is_not_valid_MAX(self):
+    def test_user_forms_health_professional_crm_state_is_not_valid_MAX(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -362,7 +362,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_state_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_crm_state_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -376,7 +376,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_state_is_not_valid(self):
+    def test_user_forms_health_professional_crm_state_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -390,7 +390,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_crm_state_is_not_valid_NONE(self):
+    def test_user_forms_health_professional_crm_state_is_not_valid_NONE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -404,7 +404,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_sex_is_not_valid(self):
+    def test_user_forms_health_professional_sex_is_not_valid(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -417,7 +417,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_date_of_birth_is_not_valid_FORMAT(self):
+    def test_user_forms_health_professional_date_of_birth_is_not_valid_FORMAT(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -430,7 +430,7 @@ class TestHealthProfessionalForm(TestCase):
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_forms_health_professional_date_of_birth_is_not_valid_MIN(self):
+    def test_user_forms_health_professional_date_of_birth_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
@@ -440,174 +440,5 @@ class TestHealthProfessionalForm(TestCase):
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_invalid_MIN}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_0(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_invalid,
-                     'password': self.password_invalid,
-                     'confirm_password': self.password_invalid,
-                     'crm': self.crm_invalid,
-                     'crm_state': self.crm_state_invalid,
-                     'sex': self.sex_invalid,
-                     'date_of_birth': self.date_of_birth_invalid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_1(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_2(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_invalid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_3(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_invalid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_4(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_invalid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_5(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_invalid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_6(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_invalid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_7(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_invalid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_8(self):
-        form_data = {'name': self.name_invalid,
-                     'phone': self.phone_valid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_invalid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_9(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_invalid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_10(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_valid,
-                     'password': self.password_invalid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_11(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_invalid,
-                     'crm': self.crm_valid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
-        form = HealthProfessionalForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_forms_health_professional_invalid_12(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_invalid,
-                     'email': self.email_valid,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'crm': self.crm_invalid,
-                     'crm_state': self.crm_state_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid}
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
