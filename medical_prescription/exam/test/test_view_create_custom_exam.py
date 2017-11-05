@@ -22,53 +22,53 @@ class CreateCustomExamsViewTest(TestCase):
         self.user = User.objects.create_user(email='user@user.com', password='senha12')
         self.description = "Examina alguma coisa"
 
-    def test_get_without_login(self):
+    def teste_exam_get_without_login(self):
         request = self.factory.get('/exam/create_custom_exams/')
         request.user = AnonymousUser()
 
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_patient(self):
+    def teste_exam_get_with_patient(self):
         request = self.factory.get('/exam/create_custom_exams/')
         request.user = self.patient
 
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_user(self):
+    def teste_exam_get_with_user(self):
         request = self.factory.get('/exam/create_custom_exams/')
         request.user = self.user
 
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_health_professional(self):
+    def teste_exam_get_with_health_professional(self):
         request = self.factory.get('/exam/create_custom_exams/')
         request.user = self.health_professional
 
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_without_login(self):
+    def teste_exam_post_without_login(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = AnonymousUser()
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_patient(self):
+    def teste_exam_post_with_patient(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = self.patient
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_user(self):
+    def teste_exam_post_with_user(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = self.user
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_health_professional(self):
+    def teste_exam_post_with_health_professional(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = self.health_professional
         response = CreateCustomExamsView.as_view()(request)

@@ -39,7 +39,7 @@ class TestCreateCustomExamForm(TestCase):
         custom_exam.pk = 1
         custom_exam.save()
 
-    def test_valid(self):
+    def teste_exam_valid(self):
         form_data = {'name': self.name_valid,
                      'description': self.description_valid
                      }

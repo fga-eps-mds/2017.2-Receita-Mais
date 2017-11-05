@@ -35,21 +35,21 @@ class UpdateCustomExamsViewTest(TestCase):
         custom_exam.save()
 
     # Testing view calls
-    def test_get_without_login(self):
+    def teste_exam_get_without_login(self):
         request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = AnonymousUser()
 
         response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_patient(self):
+    def teste_exam_get_with_patient(self):
         request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
         response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_health_professional(self):
+    def teste_exam_get_with_health_professional(self):
         request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 
@@ -57,7 +57,7 @@ class UpdateCustomExamsViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     # Testing method 'post' in UpdateCustomExam.
-    def test_post_without_login(self):
+    def teste_exam_post_without_login(self):
         request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
                                     {'name': self.name, 'description': self.description})
         request.user = AnonymousUser()
@@ -65,7 +65,7 @@ class UpdateCustomExamsViewTest(TestCase):
         response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_patient(self):
+    def teste_exam_post_with_patient(self):
         request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
                                     {'name': self.name, 'description': self.description})
         request.user = self.patient
@@ -73,7 +73,7 @@ class UpdateCustomExamsViewTest(TestCase):
         response = UpdateCustomExam.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_health_professional(self):
+    def teste_exam_post_with_health_professional(self):
         request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
                                     {'name': self.name, 'description': self.description})
         request.user = self.health_professional

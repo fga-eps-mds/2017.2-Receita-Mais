@@ -38,42 +38,42 @@ class TestCreateCustomExamForm(TestCase):
         custom_exam.health_professional_FK = user
         custom_exam.save()
 
-    def test_valid(self):
+    def teste_exam_valid(self):
         form_data = {'name': self.name_valid,
                      'description': self.description_valid
                      }
         form = CreateCustomExams(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_invalid_max_name(self):
+    def teste_exam_invalid_max_name(self):
         form_data = {'name': self.name_max,
                      'description': self.description_valid
                      }
         form = CreateCustomExams(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_min_name(self):
+    def teste_exam_invalid_min_name(self):
         form_data = {'name': self.name_min,
                      'description': self.description_valid
                      }
         form = CreateCustomExams(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_max_description(self):
+    def teste_exam_invalid_max_description(self):
         form_data = {'name': self.name_valid,
                      'description': self.description_max
                      }
         form = CreateCustomExams(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_min_description(self):
+    def teste_exam_invalid_min_description(self):
         form_data = {'name': self.name_valid,
                      'description': self.description_min
                      }
         form = CreateCustomExams(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_exists_name(self):
+    def teste_exam_invalid_exists_name(self):
         form_data = {'name': self.name_exists,
                      'description': self.description_valid
                      }
