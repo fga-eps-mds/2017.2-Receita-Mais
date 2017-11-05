@@ -4,7 +4,7 @@ from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
 
 # Local Django imports
-from .views import ListDisease
+from disease.views import ListDisease
 from user.views import LoginView
 from user.models import User, Patient, HealthProfessional
 
