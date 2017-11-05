@@ -8,13 +8,13 @@ class TesteConfirmPassworForm(TestCase):
         self.form = ConfirmPasswordForm
 
     # Test if password and confirmpasswort is equal.
-    def test_password_confirm_true(self):
+    def test_user_password_confirm_true(self):
         context = {'password': 'Teste12345', 'password_confirmation': 'Teste12345'}
         form = self.form(data=context)
 
         self.assertTrue(form.is_valid())
 
-    def test_password_confirm_false(self):
+    def test_user_password_confirm_false(self):
         context = {'password': 'Teste12345', 'password_confirmation': 'Teste12445'}
         form = self.form(data=context)
 

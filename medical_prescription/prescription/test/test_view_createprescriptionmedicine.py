@@ -60,14 +60,14 @@ class TestCreatePrescriptionMedicine(TestCase):
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12')
 
-    def test_get(self):
+    def test_prescription_get(self):
         request = self.factory.get('/prescription/create_modal/')
         response = self.view.get(request)
         self.assertEqual(response.status_code, 200)
 
     @patch('prescription.models.PrescriptionMedicine.save', MagicMock(name="save"))
     @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
-    def test_post_with_health_professional(self):
+    def test_prescription_post_with_health_professional(self):
         context = {'form-TOTAL_FORMS': 1,
                    'form-INITIAL_FORMS': 0,
                    'patient': "JOAO",
@@ -90,7 +90,7 @@ class TestCreatePrescriptionMedicine(TestCase):
         self.assertTrue(PrescriptionMedicine.save.called)
         self.assertEqual(PrescriptionMedicine.save.call_count, 1)
 
-    def test_get_with_health_professional(self):
+    def test_prescription_get_with_health_professional(self):
 
         request = self.factory.post('/prescription/create_modal/')
         request.user = self.health_professional

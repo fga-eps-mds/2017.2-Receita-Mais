@@ -37,7 +37,7 @@ class TesteInboxHealthProfessional(TestCase):
         self.message.user_to = self.patient
         self.message.save()
 
-    def test_query_true(self):
+    def test_chat_query_true(self):
         request = self.factory.get('/chat/compose/')
         request.user = self.patient
 
@@ -47,7 +47,7 @@ class TesteInboxHealthProfessional(TestCase):
 
         self.assertTrue(query.exists())
 
-    def test_query_false(self):
+    def test_chat_query_false(self):
         request = self.factory.get('/chat/compose/')
         request.user = self.professional
 

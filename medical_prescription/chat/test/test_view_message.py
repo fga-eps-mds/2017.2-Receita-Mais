@@ -1,20 +1,20 @@
 from django.test import TestCase, RequestFactory, Client
-from chat.views import SentMessageDetailView
+from chat.views import MessageDetailView
 from chat.models import Message
-from user.models import HealthProfessional
+from user.models import User
 
 
-class TestSentMessageDetailView(TestCase):
+class TestViewMessage(TestCase):
 
     def setUp(self):
 
-        self.user = HealthProfessional.objects.create(name='User Test',
-                                                      email='test@teste.com',
-                                                      sex='M',
-                                                      phone='1111111111',
-                                                      is_active=True)
-        self.view = SentMessageDetailView()
-        self.view_class = SentMessageDetailView
+        self.user = User.objects.create(name='User Test',
+                                        email='test@teste.com',
+                                        sex='M',
+                                        phone='1111111111',
+                                        is_active=True)
+        self.view = MessageDetailView()
+        self.view_class = MessageDetailView
         self.factory = RequestFactory()
         self.client = Client()
         # Create Message.

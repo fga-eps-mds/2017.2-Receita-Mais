@@ -18,7 +18,7 @@ class TestCreateMessageForm(TestCase):
         self.text_max = 'a'*1000
         self.email_invalid = 'a2d'
 
-    def test_valid(self):
+    def test_chat_valid(self):
         form_data = {'subject': self.subject,
                      'text': self.text,
                      'user_to': self.email
@@ -26,21 +26,21 @@ class TestCreateMessageForm(TestCase):
         form = CreateMessage(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_invalid_subject(self):
+    def test_chat_invalid_subject(self):
         form_data = {'subject': self.subject_max,
                      'text': self.text,
                      }
         form = CreateMessage(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_text(self):
+    def test_chat_invalid_text(self):
         form_data = {'subject': self.subject,
                      'text': self.text_max,
                      }
         form = CreateMessage(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_invalid_email(self):
+    def test_chat_invalid_email(self):
         form_data = {'subject': self.subject,
                      'text': self.text,
                      'user_to': self.email_invalid
