@@ -17,7 +17,7 @@ class CreateRecomendationCustomViewTeste(TestCase):
         self.health_professional.crm_state = 'US'
         self.health_professional.save()
 
-    def test_get_with_health_professional(self):
+    def test_recommendation_get_with_health_professional(self):
         request = self.factory.get('/recommendation/create_custom')
         request.user = self.health_professional
 
@@ -25,7 +25,7 @@ class CreateRecomendationCustomViewTeste(TestCase):
         response = CustomRecommendationCreateView.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_with_health_professional_valid(self):
+    def test_recommendation_post_with_health_professional_valid(self):
         context = {'name': "Diabetes",
                    'description': "Alguma descrição aceitavel"}
 
@@ -36,7 +36,7 @@ class CreateRecomendationCustomViewTeste(TestCase):
         response = CustomRecommendationCreateView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_health_professional_invalid(self):
+    def test_recommendation_post_with_health_professional_invalid(self):
         context = {'name': "A",
                    'description': "Alguma descrição aceitavel"}
 

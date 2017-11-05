@@ -17,7 +17,7 @@ class ListRecomendationCustomViewTeste(TestCase):
         self.health_professional.crm_state = 'US'
         self.health_professional.save()
 
-    def test_get_with_health_professional(self):
+    def test_recommendation_get_with_health_professional(self):
         request = self.factory.get('/recommendation/create_custom')
         request.user = self.health_professional
 
