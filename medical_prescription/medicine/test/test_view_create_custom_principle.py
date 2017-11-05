@@ -30,21 +30,21 @@ class TestCreateCustom(TestCase):
                                                    neighborhood='Asa sul',
                                                    complement='Bloco 2 QD 701')
 
-    def test_get_without_login(self):
+    def test_medicine_get_without_login(self):
         request = self.factory.get('/medicine/create/')
         request.user = AnonymousUser()
 
         response = CreateCustomActivePrinciple.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_patient(self):
+    def test_medicine_get_with_patient(self):
         request = self.factory.get('/medicine/create/')
         request.user = self.patient
 
         response = CreateCustomActivePrinciple.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_health_professional(self):
+    def test_medicine_get_with_health_professional(self):
         request = self.factory.get('/medicine/create/')
         request.user = self.health_professional
 
@@ -52,7 +52,7 @@ class TestCreateCustom(TestCase):
         self.assertEqual(response.status_code, 200)
 
     @patch('medicine.models.CustomActivePrinciple.save', MagicMock(name="save"))
-    def test_post_with_health_professional(self):
+    def test_medicine_post_with_health_professional(self):
         """
         Test post requests
         """
@@ -74,7 +74,7 @@ class TestCreateCustom(TestCase):
         self.assertEqual(CustomActivePrinciple.save.call_count, 1)
 
     @patch('medicine.models.CustomActivePrinciple.save', MagicMock(name="save"))
-    def test_post_without_login(self):
+    def test_medicine_post_without_login(self):
         """
         Test post requests
         """
@@ -96,7 +96,7 @@ class TestCreateCustom(TestCase):
         self.assertEqual(CustomActivePrinciple.save.call_count, 0)
 
     @patch('medicine.models.CustomActivePrinciple.save', MagicMock(name="save"))
-    def test_post_with_patient(self):
+    def test_medicine_post_with_patient(self):
         """
         Test post requests
         """

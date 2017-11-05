@@ -22,10 +22,10 @@ class TesteCreateMedicine(TestCase):
         self.invalid_name = 'a'*150
         self.valid_name = 'a'*150
 
-    def test_redirect_false(self):
+    def test_medicine_redirect_false(self):
         my_class = self.class_name()
         self.assertNotEqual(my_class.get_success_url(), 'teste')
 
-    def test_redirect_true(self):
+    def test_medicine_redirect_true(self):
         my_class = self.class_name()
         self.assertEqual(my_class.get_success_url(), '/pt-br/medicine/list_all_medicines/')

@@ -21,29 +21,29 @@ class ListActivePrincipleViewTest(TestCase):
                                                    complement='Bloco 2 QD 701')
         self.user = User.objects.create_user(email='user@user.com', password='senha12')
 
-    def test_get_without_login(self):
+    def test_medicine_get_without_login(self):
         request = self.factory.get('/medicine/list/')
         request.user = AnonymousUser()
 
         response = ListActivePrinciple.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_patient(self):
+    def test_medicine_get_with_patient(self):
         request = self.factory.get('/medicine/list/')
         request.user = self.patient
 
         response = ListActivePrinciple.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_health_professional(self):
+    def test_medicine_get_with_health_professional(self):
         request = self.factory.get('/medicine/list/')
         request.user = self.health_professional
 
         response = ListActivePrinciple.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_active_principle_str(self):
+    def test_medicine_active_principle_str(self):
         principle = ActivePrinciple()
         principle.name = 'Dipirona'
-        teste_str = str(principle)
-        self.assertEquals(teste_str, 'Dipirona')
+        test_str = str(principle)
+        self.assertEquals(test_str, 'Dipirona')

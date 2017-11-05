@@ -33,21 +33,21 @@ class EditCustomActivePrincipleTest(TestCase):
         custom_principle.save()
 
     # Testing view calls
-    def test_get_without_login(self):
+    def test_medicine_get_without_login(self):
         request = self.factory.get('medicine/edit/(?P<pk>[0-9]+)/')
         request.user = AnonymousUser()
 
         response = EditCustomActivePrinciple.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_patient(self):
+    def test_medicine_get_with_patient(self):
         request = self.factory.get('medicine/edit/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
         response = EditCustomActivePrinciple.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_health_professional(self):
+    def test_medicine_get_with_health_professional(self):
         request = self.factory.get('medicine/edit/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 
@@ -55,7 +55,7 @@ class EditCustomActivePrincipleTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     # Testing post
-    def test_post_without_login(self):
+    def test_medicine_post_without_login(self):
         request = self.factory.post('medicine/edit/(?P<pk>[0-9]+)/',
                                     {'name': self.name})
         request.user = AnonymousUser()
@@ -63,7 +63,7 @@ class EditCustomActivePrincipleTest(TestCase):
         response = EditCustomActivePrinciple.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_patient(self):
+    def test_medicine_post_with_patient(self):
         request = self.factory.post('medicine/edit/(?P<pk>[0-9]+)/',
                                     {'name': self.name})
         request.user = self.patient
@@ -71,7 +71,7 @@ class EditCustomActivePrincipleTest(TestCase):
         response = EditCustomActivePrinciple.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_health_professional(self):
+    def test_medicine_post_with_health_professional(self):
         request = self.factory.post('medicine/edit/(?P<pk>[0-9]+)/',
                                     {'name': self.name})
         request.user = self.health_professional

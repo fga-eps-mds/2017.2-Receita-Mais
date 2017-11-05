@@ -20,6 +20,6 @@ class TestListAllMedicines(TestCase):
 
         self.listing = Medicine.objects.all()
 
-    def test(self):
+    def test_medicine_is_show(self):
         instance = self.view()
         self.assertEqual(instance.get_queryset()[0], self.listing[0])

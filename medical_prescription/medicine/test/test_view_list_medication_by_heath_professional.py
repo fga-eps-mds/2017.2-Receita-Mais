@@ -21,22 +21,22 @@ class TestManipulatedMedicineList(TestCase):
         self.user.save()
 
         self.medicine = ManipulatedMedicine()
-        self.medicine.recipe_name = "Medicamento Teste"
-        self.medicine.physical_form = "Teste forma fisica"
+        self.medicine.recipe_name = "Medicamento test"
+        self.medicine.physical_form = "test forma fisica"
         self.medicine.quantity = 1.0
         self.medicine.measurement = "kg"
-        self.medicine.composition = "testee"
+        self.medicine.composition = "teste"
         self.medicine.health_professional = self.user
         self.medicine.save()
 
         self.health_professional_medicines = ManipulatedMedicine.objects.filter(health_professional=self.user)
 
-    def teste_len_equal(self):
+    def test_medicine_len_equal(self):
         self.assertEqual(len(self.health_professional_medicines), 1)
 
-    def teste_len_false(self):
+    def test_medicine_len_false(self):
         self.assertNotEqual(len(self.health_professional_medicines), 50)
 
-    '''def teste_get(self):
+    '''def test_get(self):
         self.client.login(email='test@test.com', password='test404')
         self.assertTrue('list_medications' in self.resp.context)'''

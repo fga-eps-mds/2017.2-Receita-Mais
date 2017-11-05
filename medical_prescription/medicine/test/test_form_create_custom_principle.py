@@ -14,19 +14,19 @@ class TestCreateCustomActivePrincipleForm(TestCase):
                                 aaaaaaaaaaaaaaaaaaaaaaaa+1"""
 
         custom_principle = CustomActivePrinciple()
-        custom_principle.name = "Teste"
+        custom_principle.name = "test"
         user = HealthProfessional()
         user.crm = "54321"
         user.save()
         custom_principle.created_by = user
         custom_principle.save()
 
-    def test_invalid_max_name(self):
+    def test_medicine_invalid_max_name(self):
         form_data = {'name': self.name_max, }
         form = CustomActivePrincipleForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_valid_max_name(self):
+    def test_medicine_valid_max_name(self):
         form_data = {'name': self.name_valid, }
         form = CustomActivePrincipleForm(data=form_data)
         self.assertTrue(form.is_valid())

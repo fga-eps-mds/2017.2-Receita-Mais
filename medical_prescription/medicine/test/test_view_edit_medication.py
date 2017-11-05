@@ -10,16 +10,16 @@ from medicine.models import (Medicine,
 from medicine.views import UpdateMedicine
 
 
-class TesteEdit(TestCase):
+class TestEdit(TestCase):
 
     def setUp(self):
         self.model = Medicine
         self.view = UpdateMedicine()
 
-    def teste_get_url_sucess(self):
+    def test_get_url_sucess(self):
         self.assertEqual(self.view.get_success_url(), '/pt-br/medicine/list_all_medicines/')
 
-    def teste_get_url_false(self):
+    def test_get_url_false(self):
         self.assertNotEqual(self.view.get_success_url(), 'error')
 
 
@@ -57,28 +57,28 @@ class UpdateMedicationTest(TestCase):
         self.manipulated_medicine.save()
 
     # Testing view calls
-    def test_get_without_login(self):
+    def test_medicine_get_without_login(self):
         request = self.factory.get('medicine/edit_medicine/(?P<pk>[0-9]+)/')
         request.user = AnonymousUser()
 
         response = UpdateMedicine.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_patient(self):
+    def test_medicine_get_with_patient(self):
         request = self.factory.get('medicine/edit_medicine/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
         response = UpdateMedicine.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_get_with_health_professional(self):
+    def test_medicine_get_with_health_professional(self):
         request = self.factory.get('medicine/edit_medicine/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 
         response = UpdateMedicine.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 200)
 
-    def test_post_without_login(self):
+    def test_medicine_post_without_login(self):
         request = self.factory.post('medicine/edit_medicine/(?P<pk>[0-9]+)/',
                                     {'recipe_name': self.recipe_name,
                                      'composition': self.composition})
@@ -87,7 +87,7 @@ class UpdateMedicationTest(TestCase):
         response = UpdateMedicine.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_patient(self):
+    def test_medicine_post_with_patient(self):
         request = self.factory.post('medicine/edit_medicine/(?P<pk>[0-9]+)/',
                                     {'recipe_name': self.recipe_name,
                                      'composition': self.composition})
@@ -96,7 +96,7 @@ class UpdateMedicationTest(TestCase):
         response = UpdateMedicine.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_with_health_professional(self):
+    def test_medicine_post_with_health_professional(self):
         request = self.factory.post('medicine/edit_medicine/(?P<pk>[0-9]+)/',
                                     {'recipe_name': self.recipe_name,
                                      'composition': self.composition})
