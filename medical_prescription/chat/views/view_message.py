@@ -32,7 +32,7 @@ class MessageDetailView(DetailView, FormMixin):
 
         messages_page = self.request.GET.get('page')
         messages = Response.objects.filter(message__id=context['object'].id)
-        messages_paginator = paginator.Paginator(messages, 50)
+        messages_paginator = paginator.Paginator(messages, 15)
 
         try:
             messages_page_object = messages_paginator.page(messages_page)
