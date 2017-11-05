@@ -24,9 +24,9 @@ class TestViewMessagePatient(TestCase):
         self.view.object = self.message
         self.view.user = self.user
 
-    def test_get_success_url_true(self):
+    def test_chat_get_success_url_true(self):
         self.assertEqual(self.view.get_success_url(), '/pt-br/chat/view_message_patient/1')
 
-    def test_get_succes_url_false(self):
+    def test_chat_get_succes_url_false(self):
         self.message.pk = '2'
         self.assertNotEqual(self.view.get_success_url(), '/pt-br/chat/view_message_patient/1')

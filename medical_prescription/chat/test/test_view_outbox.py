@@ -29,7 +29,7 @@ class TestOutbox(TestCase):
         self.factory = RequestFactory()
         self.view = OutboxView()
 
-    def test_query_set_true(self):
+    def test_chat_query_set_true(self):
         request = self.factory.get('chat/outbox')
         request.user = self.professional
 
@@ -38,7 +38,7 @@ class TestOutbox(TestCase):
         query = self.view.get_queryset()
         self.assertTrue(query.exists())
 
-    def test_query_set_false(self):
+    def test_chat_query_set_false(self):
         request = self.factory.get('chat/outbox')
         request.user = self.professional2
 

@@ -27,7 +27,7 @@ class TestSentMessageDetailView(TestCase):
         self.message.pk = '1'
         self.message.save()
 
-    def test_queryset_true(self):
+    def test_chat_queryset_true(self):
         request = self.view_class.as_view()
         request.user = self.user
 
@@ -35,14 +35,14 @@ class TestSentMessageDetailView(TestCase):
         query = self.view.get_queryset()
         self.assertTrue(query.exists())
 
-    def test_get_context_true(self):
+    def test_chat_get_context_true(self):
         request = self.factory.get('/')
         request.user = self.user
         self.view.request = request
         self.view.object = self.message
         self.assertEqual(type(self.view.get_context_data()), type(dict()))
 
-    def test_post_true(self):
+    def test_chat_post_true(self):
         request = self.factory.post('/',
                                     {'text': 'isso e um texto',
                                      'user_to': 'test@teste.com',
@@ -54,7 +54,7 @@ class TestSentMessageDetailView(TestCase):
         response = self.view_class.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_false(self):
+    def test_chat_post_false(self):
         request = self.factory.post('/',
                                     {'user_to': 'test@teste.com',
                                      'user_from': 'teste@teste.com'})

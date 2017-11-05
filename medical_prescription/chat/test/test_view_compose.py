@@ -28,13 +28,13 @@ class TestComposeView(TestCase):
         self.my_view_class = ComposeView
         self.client = Client()
 
-    def test_get(self):
+    def test_chat_get(self):
         request = self.factory.get('/chat/compose/')
         request.user = self.user
         response = self.my_view.get(request)
         self.assertEqual(response.status_code, 200)
 
-    def test_post(self):
+    def test_chat_post(self):
         request = self.factory.post('chat/compose',
                                     {'text': 'isso e um texto',
                                      'subject': 'test suject',
@@ -45,7 +45,7 @@ class TestComposeView(TestCase):
         response = self.my_view_class.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_post_invalid(self):
+    def test_chat_post_invalid(self):
         request = self.factory.post('chat/compose',
                                     {'text': 'a'*10000,
                                      'subject': 'test suject',
