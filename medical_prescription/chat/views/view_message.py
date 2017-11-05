@@ -3,7 +3,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
 from datetime import date
 from django.core import paginator
-from django.db.models import Q
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
