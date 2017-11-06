@@ -22,7 +22,7 @@ class SentMessageDetailView(DetailView, FormMixin):
     form_class = CreateResponse
     context_object_name = 'list'
     model = Message
-    paginate_by = 40
+    paginate_by = 25
     template_name = 'view_sent_message.html'
 
     def get_queryset(self):

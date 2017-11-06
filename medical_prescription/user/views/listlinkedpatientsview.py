@@ -12,9 +12,9 @@ class ListLinkedPatientsView(ListView):
     template_name = 'list_linked_patients.html'
     context_object_name = 'list_linked_patients'
     model = AssociatedHealthProfessionalAndPatient
-    paginate_by = 20
+    paginate_by = 25
 
-    # Get 20 queries of AssociatedHealthProfessionalAndPatient objects.
+    # Get 25 queries of AssociatedHealthProfessionalAndPatient objects.
     def get_queryset(self):
 
         query_set = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=self.request.user)
