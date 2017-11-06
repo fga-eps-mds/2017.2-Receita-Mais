@@ -144,3 +144,6 @@ SENDED_EMAIL = 'Um link de cadastro foi enviado ao paciente.'
 LINKED_PATIENT_SUCESS = 'O paciente foi adicionado à sua lista de pacientes.'
 LINKED_PATIENT_EXISTS = 'O paciente já está adicionado em sua lista de pacientes.'
 ALERT_HEALTH_PROFESSIONAL = 'Esta conta pertence a um professional da saúde.'
+
+# DEFAULT PATH IMAGE.
+DEFAULT_IMG = 'image_profile/user.png'
