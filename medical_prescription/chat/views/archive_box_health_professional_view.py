@@ -18,7 +18,7 @@ class ArchiveBoxHealthProfessionalView(ListView):
     template_name = 'archive_health_professional.html'
     context_object_name = 'archive_message'
     model = Message
-    paginate_by = 40
+    paginate_by = 25
 
     # Return all Messages for the user.
     def get_queryset(self):
