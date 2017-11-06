@@ -1,9 +1,10 @@
 from django.conf.urls.i18n import i18n_patterns
+from django.conf.urls.static import static
 from django.conf.urls import include, url
 from django.contrib import admin
 
 from landing.views import home
-
+from medical_prescription import settings
 urlpatterns = [
     url(r'^user/', include('user.urls')),
     url(r'^dashboard_health_professional/', include('dashboardHealthProfessional.urls')),
@@ -17,7 +18,8 @@ urlpatterns = [
     url(r'^prescription/', include('prescription.urls')),
     url(r'^chat/', include('chat.urls')),
     url(r'^recommendation/', include('recommendation.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 urlpatterns += i18n_patterns(
     url(r'^user/', include('user.urls')),
