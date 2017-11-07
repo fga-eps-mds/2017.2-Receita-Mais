@@ -62,7 +62,7 @@ class AutoCompleteExam(View):
 
             list_exams.append(default_exam_item)
 
-    # Print only the first 175 characters of the composition.
+    # Print only the first 175 characters of the exam description.
     def parse_description(self, description):
         if len(description) > constants.MAX_LENGTH_DESCRIPTION_AUTOCOMPLETE:
             return description[:175] + '...'

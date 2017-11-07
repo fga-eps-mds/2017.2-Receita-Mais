@@ -9,10 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 # local django
 from user.decorators import is_health_professional
-from medicine.models import (
-                            ManipulatedMedicine,
-                            Medicine
-                            )
+from medicine.models import (ManipulatedMedicine,
+                             Medicine
+                             )
 from prescription import constants
 
 
