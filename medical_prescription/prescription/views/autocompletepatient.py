@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 # local django
 from user.decorators import is_health_professional
-from user.models import Patient
+from user.models import (Patient,
+                         AssociatedHealthProfessionalAndPatient,
+                         )
 
 
 class AutoCompletePatient(View):
@@ -26,17 +28,23 @@ class AutoCompletePatient(View):
             search = request.GET.get('term', '')
 
             # TODO(Ronyell) Switch to the health care professional's patients.
-            queryset = Patient.objects.filter(name__icontains=search)[:5]
+            queryset_associated_patient = AssociatedHealthProfessionalAndPatient.objects.filter(
+                associated_health_professional=request.user,
+                is_active=True,
+                )
+
             list_patients = []
 
             # Encapsulates in a json needed to be sent.
-            for patient in queryset:
-                patient_item = {}
-                patient_item['id'] = patient.id
-                patient_item['name'] = patient.name
-                patient_item['value'] = patient.name
+            for model_associated in queryset_associated_patient:
+                if model_associated.associated_patient.name.upper() == search.upper():
+                    patient_item = {}
+                    patient_item['id'] = model_associated.associated_patient.id
+                    patient_item['name'] = model_associated.associated_patient.name
+                    patient_item['value'] = model_associated.associated_patient.name
+                    patient_item['email'] = model_associated.associated_patient.email
 
-                list_patients.append(patient_item)
+                    list_patients.append(patient_item)
 
             data = json.dumps(list_patients)
             mimetype = 'application/json'

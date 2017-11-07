@@ -4,10 +4,10 @@ from django.db import models
 # Django Local
 from medicine.models import (ManipulatedMedicine,
                              Medicine)
-from prescription.models import Prescription
+from prescription.models import NoPatientPrescription
 
 
-class PrescriptionMedicine(Prescription):
+class PrescriptionMedicine(NoPatientPrescription):
     """
     Medicine associetade to many to many fileds in prescription.
     """

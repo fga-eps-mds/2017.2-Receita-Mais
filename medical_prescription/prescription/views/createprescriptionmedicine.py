@@ -39,7 +39,7 @@ class CreatePrescriptionView(FormView):
     def dispatch(self, *args, **kwargs):
         return super(CreatePrescriptionView, self).dispatch(*args, **kwargs)
 
-    def create_prescription(self, form):
+    def create_prescription(self, form, request):
         """
         Creates the prescription object.
         """
@@ -51,7 +51,9 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
-        prescription_medicine_object = PrescriptionMedicine(patient=patient_id, cid=disease)
+        prescription_medicine_object = PrescriptionMedicine(patient=patient_id,
+                                                            cid=disease,
+                                                            health_professional=request.user)
         prescription_medicine_object.save()
         return prescription_medicine_object
 
@@ -179,7 +181,7 @@ class CreatePrescriptionView(FormView):
             default_is_valid = True
             if form_medicine.is_valid():
                 atomic_is_valid = True
-                prescription_medicine_object = self.create_prescription(prescription_form)
+                prescription_medicine_object = self.create_prescription(prescription_form, request)
 
                 for atomic_form in form_medicine:
                     self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
