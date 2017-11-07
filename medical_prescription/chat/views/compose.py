@@ -31,7 +31,7 @@ class ComposeView(FormView):
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
 
         # Validanting form.
         if form.is_valid():
@@ -48,12 +48,13 @@ class ComposeView(FormView):
             message.user_to = user_to
             message.user_from = user_from
             message.date = date.today()
+
             response = Response()
+            response = Response(files=request.FILES.get('files', None))
             response.user_from = user_from
             response.user_to = user_to
             response.text = text
             response.dat = date.today()
-
             response.save()
             message.save()
 

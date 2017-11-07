@@ -1,11 +1,10 @@
-
 from django.test import TestCase
-
 from chat.forms import CreateMessage
 from user.models import User
 
 
 class TestCreateMessageForm(TestCase):
+
     def setUp(self):
         user = User()
         user.email = "test@test.com"
