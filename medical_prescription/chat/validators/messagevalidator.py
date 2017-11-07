@@ -2,6 +2,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+
 # local django
 from chat import constants
 from user.models import User
@@ -30,3 +31,11 @@ class MessageValidator():
 
         if subject is not None and len(subject) > constants.MAX_LENGTH_TEXT_SUBJECT:
             raise forms.ValidationError({'subject': [_(constants.SUBJECT_SIZE)]})
+
+    def validator_file(self, content):
+        content_type = content.content_type.split('/')[1]
+        if content_type in constants.CONTENT_TYPES:
+            if content._size > constants.MAX_UPLOAD_SIZE:
+                raise forms.ValidationError({'files': [_(constants.FILE_SIZE)]})
+        else:
+            raise forms.ValidationError({'files': [_(constants.FORMAT_ERROR)]})

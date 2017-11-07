@@ -1,4 +1,5 @@
 from django.db import models
+
 from chat import constants
 from user.models import User
 
@@ -12,5 +13,6 @@ class Response(models.Model):
     user_to = models.ForeignKey(User, related_name="user_response_to")
 
     text = models.CharField(max_length=constants.MAX_LENGTH_TEXT_MESSAGE)
+    files = models.FileField(upload_to='media/%Y/%m/%d', blank=True, null=True)
 
     date = models.DateField(auto_now=True)
