@@ -18,8 +18,9 @@ class InboxHealthProfessionalView(ListView):
     template_name = 'inbox_health_professional.html'
     context_object_name = 'inbox'
     model = Message
-    paginate_by = 40
+    paginate_by = 25
 
     # Return all Messages for the user.
     def get_queryset(self):
-        return self.model.objects.filter(user_to=self.request.user)
+        return self.model.objects.filter(user_to=self.request.user,
+                                         is_active_inbox_health_professional=True)
