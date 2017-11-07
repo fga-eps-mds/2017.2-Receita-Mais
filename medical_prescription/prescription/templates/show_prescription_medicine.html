@@ -28,21 +28,21 @@
         <!-- This fields are responsable off patient information. -->
         {% csrf_token %}
         <div class="form-group">
-          {% for error in form.patient.errors %}
+          {% for error in prescription_form.patient.errors %}
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}
-          <label for="id_{{ form.patient.name }}"> Paciente: </label> {{form.patient}}
+          <label for="id_{{ prescription_form.patient.name }}"> Paciente: </label> {{prescription_form.patient}}
         </div>
 
         <div class="form-group ">
           {% for error in form.cid.errors %}
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}
-          <label for="id_{{ form.cid.name }}"> Doença: </label> {{form.cid}}
+          <label for="id_{{ prescription_form.cid.name }}"> Doença: </label> {{prescription_form.cid}}
         </div>
 
         <!-- Hidden fields -->
-          {{form.cid_id}}
+          {{prescription_form.cid_id}}
         <hr>
 
         <!-- This are the tabs in prescription -->
@@ -58,8 +58,8 @@
             <div id="home" class="tab-pane fade in active">
                 <br>
 
-                  {{ formset.management_form }}
-                  {% for atom_form in formset %}
+                  {{ form_medicine.management_form }}
+                  {% for atom_form in form_medicine %}
                   <ul id='object_medicine' class='list-medicine'>
                     <div class="table_medicine row" hidden>
                       <li>
@@ -142,8 +142,8 @@
             <!-- This tab is where the recommendations take place in prescription. -->
             <div id="menu3" class="tab-pane fade">
 
-                {{ formrecommendation.management_form }}
-                {% for recommendationField in formrecommendation %}
+                {{ form_recommendation.management_form }}
+                {% for recommendationField in form_recommendation %}
 
                 <ul id='object_recommendation'>
                   <div class="table_recommendation" hidden>

@@ -21,7 +21,6 @@ from prescription.models import (PrescriptionMedicine,
                                  PrescriptionCustomExam
                                  )
 from exam.models import CustomExam
-
 from disease.models import Disease
 
 
@@ -30,7 +29,7 @@ class CreatePrescriptionView(FormView):
     Responsible for rendering to fields.
     """
     template_name = 'show_prescription_medicine.html'
-    # Defines that this form will have multiple instances.
+    # Defines that these forms will have multiple instances.
     MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
     RecommendationPrescriptionFormSet = formset_factory(RecommendationPrescriptionForm)
     ExamPrescriptionFormSet = formset_factory(ExamPrescriptionForm)
@@ -40,10 +39,9 @@ class CreatePrescriptionView(FormView):
     def dispatch(self, *args, **kwargs):
         return super(CreatePrescriptionView, self).dispatch(*args, **kwargs)
 
-    # Creates the prescription object.
-    def create_prescription_medicine(self, form):
+    def create_prescription(self, form):
         """
-        Creates the base of the prescription
+        Creates the prescription object.
         """
         patient_id = form.cleaned_data.get('patient')
         cid_id = form.cleaned_data.get('cid_id')
@@ -132,12 +130,12 @@ class CreatePrescriptionView(FormView):
             # Nothing to do.
             pass
 
-    def add_recommendation_in_prescription(self, formrecommendation, prescription_object):
+    def add_recommendation_in_prescription(self, form_recommendation, prescription_object):
         """
-        Add recomendation to prescription
+        Add recomendation to prescription.
         """
 
-        recommendation = formrecommendation.cleaned_data.get('recommendation')
+        recommendation = form_recommendation.cleaned_data.get('recommendation')
         if recommendation is not None:
             prescription_recommendation_object = PrescriptionRecommendation(
                 prescription=prescription_object, recommendation=recommendation)
@@ -148,15 +146,15 @@ class CreatePrescriptionView(FormView):
         """
         Rendering form in view.
         """
-        form = CreatePrescriptionForm(request.GET or None)
-        formset = self.MedicinePrescriptionFormSet(request.GET or None)
-        formrecommendation = self.RecommendationPrescriptionFormSet(request.GET or None)
+        prescription_form = CreatePrescriptionForm(request.GET or None)
+        form_medicine = self.MedicinePrescriptionFormSet(request.GET or None)
+        form_recommendation = self.RecommendationPrescriptionFormSet(request.GET or None)
         form_exam = self.ExamPrescriptionFormSet(request.GET or None)
 
         data = dict()
-        context = {'form': form,
-                   'formset': formset,
-                   'formrecommendation': formrecommendation,
+        context = {'prescription_form': prescription_form,
+                   'form_medicine': form_medicine,
+                   'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
@@ -166,44 +164,55 @@ class CreatePrescriptionView(FormView):
         """
         Save data in the form in database.
         """
-        form = CreatePrescriptionForm(request.POST or None)
-        formset = self.MedicinePrescriptionFormSet(request.POST or None)
-        formrecommendation = self.RecommendationPrescriptionFormSet(request.POST or None)
+        prescription_form = CreatePrescriptionForm(request.POST or None)
+        form_medicine = self.MedicinePrescriptionFormSet(request.POST or None)
+        form_recommendation = self.RecommendationPrescriptionFormSet(request.POST or None)
         form_exam = self.ExamPrescriptionFormSet(request.POST or None)
         data = dict()
 
         # Checks whether the completed forms are valid.
-
         default_is_valid = False
         atomic_is_valid = False
-        formRecommendation_is_valid = False
+        form_recommendation_is_valid = False
         form_exam_is_valid = False
-        if form.is_valid():
+        if prescription_form.is_valid():
             default_is_valid = True
-            if formset.is_valid():
+            if form_medicine.is_valid():
                 atomic_is_valid = True
-                prescription_medicine_object = self.create_prescription_medicine(form)
+                prescription_medicine_object = self.create_prescription(prescription_form)
 
-                for atomic_form in formset:
+                for atomic_form in form_medicine:
                     self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
 
-                if formrecommendation.is_valid():
-                    formRecommendation_is_valid = True
-                    for recommendationField in formrecommendation:
-                        self.add_recommendation_in_prescription(recommendationField, prescription_medicine_object)
+                if form_recommendation.is_valid():
+                    form_recommendation_is_valid = True
+                    for recommendation_field in form_recommendation:
+                        self.add_recommendation_in_prescription(recommendation_field, prescription_medicine_object)
 
                     if form_exam.is_valid():
                         form_exam_is_valid = True
                         for exam_atomic_form in form_exam:
                             self.create_many_to_many_exam(exam_atomic_form, prescription_medicine_object, request)
+                    else:
+                        # Nothing to do.
+                        pass
+                else:
+                    # Nothing to do.
+                    pass
+            else:
+                # Nothing to do.
+                pass
+        else:
+            # Nothing to do.
+            pass
 
         # Verify if all forms are valids.
-        data['form_is_valid'] = default_is_valid and atomic_is_valid and formRecommendation_is_valid
+        data['form_is_valid'] = default_is_valid and atomic_is_valid and form_recommendation_is_valid
         data['form_is_valid'] = data['form_is_valid'] and form_exam_is_valid
 
-        context = {'form': form,
-                   'formset': formset,
-                   'formrecommendation': formrecommendation,
+        context = {'prescription_form': prescription_form,
+                   'form_medicine': form_medicine,
+                   'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
