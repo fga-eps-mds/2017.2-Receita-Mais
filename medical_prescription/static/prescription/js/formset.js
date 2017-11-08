@@ -78,6 +78,10 @@ function deleteForm(prefix, text, btn) {
 
 // Calls add and remove forms.
 $(document).ready(function() {
+  // Method to clone via sections in the document
+  $('#add_more_via').click(function() {
+    cloneOrShow('div.via:last', 'form',autocompleteMedicine , "section");
+  });
 
   // Method to clone medicine fields in the document
   $('#add_more').click(function() {
