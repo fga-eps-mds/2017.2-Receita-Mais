@@ -5,14 +5,12 @@ from .models import (
                     Prescription,
                     PrescriptionCustomExam,
                     PrescriptionDefaultExam,
-                    PrescriptionMedicine,
                     PrescriptionHasMedicine,
                     PrescriptionHasManipulatedMedicine,
                     PrescriptionRecommendation,
                     )
 
 admin.site.register(Prescription)
-admin.site.register(PrescriptionMedicine)
 admin.site.register(PrescriptionHasMedicine)
 admin.site.register(PrescriptionHasManipulatedMedicine)
 admin.site.register(PrescriptionRecommendation)

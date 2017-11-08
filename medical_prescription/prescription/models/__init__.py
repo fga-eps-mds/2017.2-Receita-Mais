@@ -1,7 +1,6 @@
 from .prescription import Prescription
 from .no_patient_prescription import *
 from .patient_prescription import *
-from .prescriptionmedicine import PrescriptionMedicine
 from .prescription_has_manipulated_medicine import PrescriptionHasManipulatedMedicine
 from .prescription_has_medicine import PrescriptionHasMedicine
 from .prescriptionrecommendation import PrescriptionRecommendation

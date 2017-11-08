@@ -27,7 +27,6 @@ class AutoCompletePatient(View):
         if request.is_ajax():
             search = request.GET.get('term', '')
 
-            # TODO(Ronyell) Switch to the health care professional's patients.
             queryset_associated_patient = AssociatedHealthProfessionalAndPatient.objects.filter(
                 associated_health_professional=request.user,
                 is_active=True,

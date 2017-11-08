@@ -13,15 +13,17 @@ from prescription.forms import (CreatePrescriptionForm,
                                 RecommendationPrescriptionForm,
                                 ExamPrescriptionForm,
                                 )
-from prescription.models import (PrescriptionMedicine,
-                                 PrescriptionHasManipulatedMedicine,
+from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  PrescriptionHasMedicine,
                                  PrescriptionRecommendation,
                                  PrescriptionDefaultExam,
-                                 PrescriptionCustomExam
+                                 PrescriptionCustomExam,
+                                 PatientPrescription,
+                                 NoPatientPrescription
                                  )
 from exam.models import CustomExam
 from disease.models import Disease
+from user.models import Patient
 
 
 class CreatePrescriptionView(FormView):
@@ -43,7 +45,8 @@ class CreatePrescriptionView(FormView):
         """
         Creates the prescription object.
         """
-        patient_id = form.cleaned_data.get('patient')
+        patient = form.cleaned_data.get('patient')
+        patient_id = form.cleaned_data.get('patient_id')
         cid_id = form.cleaned_data.get('cid_id')
 
         if cid_id is not None:
@@ -51,11 +54,27 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
-        prescription_medicine_object = PrescriptionMedicine(patient=patient_id,
-                                                            cid=disease,
-                                                            health_professional=request.user)
-        prescription_medicine_object.save()
-        return prescription_medicine_object
+        if patient_id is None or patient_id is 0:
+            prescription_object = self.create_no_patient_prescription(request, patient, disease)
+        else:
+            prescription_object = self.create_patient_prescription(request, patient_id, disease)
+
+        return prescription_object
+
+    def create_no_patient_prescription(self, request, name, disease):
+        no_patient_prescription = NoPatientPrescription(health_professional=request.user,
+                                                        patient=name, cid=disease)
+        no_patient_prescription.save()
+
+        return no_patient_prescription
+
+    def create_patient_prescription(self, request, patient_id, disease):
+        patient = Patient.objects.get(pk=patient_id)
+        patient_prescription = PatientPrescription(health_professional=request.user,
+                                                   patient=patient, cid=disease)
+        patient_prescription.save()
+
+        return patient_prescription
 
     def create_many_to_many_exam(self, form, exam_prescription, request):
         """
