@@ -31,7 +31,9 @@
           {% for error in prescription_form.patient.errors %}
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}
-          <label for="id_{{ prescription_form.patient.name }}"> Paciente: </label> {{prescription_form.patient}}
+          <label for="id_{{ prescription_form.patient.name }}"> Paciente: </label>
+          {{prescription_form.patient}}
+          <br> {{prescription_form.email}}
         </div>
 
         <div class="form-group ">

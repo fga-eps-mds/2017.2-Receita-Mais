@@ -36,7 +36,7 @@ class AutoCompletePatient(View):
 
             # Encapsulates in a json needed to be sent.
             for model_associated in queryset_associated_patient:
-                if model_associated.associated_patient.name.upper() == search.upper():
+                if search.upper() in model_associated.associated_patient.name.upper():
                     patient_item = {}
                     patient_item['id'] = model_associated.associated_patient.id
                     patient_item['name'] = model_associated.associated_patient.name

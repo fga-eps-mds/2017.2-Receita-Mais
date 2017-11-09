@@ -59,6 +59,7 @@ function autocomplete_patient(ul, item) {
   return $("<li></li>")
     .data("item.autocomplete", item)
     .append("<a>" + item.label + "</a>")
+    .append(" - " + item.email)
     .appendTo(ul);
 }
 
@@ -96,14 +97,17 @@ function select_type_field(element, field, ui) {
       $("#" + element.id + "_type").val(ui.item.type);
       break;
     case 'patient':
+      document.getElementById("id_email").type = "text";
       $("#" + element.id + "_id").val(ui.item.id);
+      $("#id_email").val(ui.item.email);
       break;
     case 'disease':
+      console.log(ui.item.id);
       $("#" + element.id + "_id").val(ui.item.id);
       break;
     case 'exam':
-      $("#" + element.id + "_id").val(ui.item.id);
       $("#" + element.id + "_type").val(ui.item.type);
+      $("#" + element.id + "_id").val(ui.item.id);
       break;
     case 'cid':
       $("#" + element.id + "_id").val(ui.item.id);
