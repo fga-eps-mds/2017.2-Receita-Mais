@@ -38,7 +38,7 @@ class AutoCompletePatient(View):
             for model_associated in queryset_associated_patient:
                 if search.upper() in model_associated.associated_patient.name.upper():
                     patient_item = {}
-                    patient_item['id'] = model_associated.associated_patient.id
+                    patient_item['id'] = model_associated.associated_patient.pk
                     patient_item['name'] = model_associated.associated_patient.name
                     patient_item['value'] = model_associated.associated_patient.name
                     patient_item['email'] = model_associated.associated_patient.email

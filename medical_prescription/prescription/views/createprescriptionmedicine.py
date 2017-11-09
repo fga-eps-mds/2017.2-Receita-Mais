@@ -23,7 +23,9 @@ from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  )
 from exam.models import CustomExam
 from disease.models import Disease
-from user.models import Patient
+from user.models import (Patient,
+                         HealthProfessional,
+                         )
 
 
 class CreatePrescriptionView(FormView):
@@ -54,6 +56,7 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
+        print(patient_id)
         if patient_id is None or patient_id is 0:
             prescription_object = self.create_no_patient_prescription(request, patient, disease)
         else:
@@ -62,15 +65,17 @@ class CreatePrescriptionView(FormView):
         return prescription_object
 
     def create_no_patient_prescription(self, request, name, disease):
-        no_patient_prescription = NoPatientPrescription(health_professional=request.user,
+        health_professional = HealthProfessional.objects.get(email=request.user)
+        no_patient_prescription = NoPatientPrescription(health_professional=health_professional,
                                                         patient=name, cid=disease)
         no_patient_prescription.save()
 
         return no_patient_prescription
 
     def create_patient_prescription(self, request, patient_id, disease):
+        health_professional = HealthProfessional.objects.get(email=request.user)
         patient = Patient.objects.get(pk=patient_id)
-        patient_prescription = PatientPrescription(health_professional=request.user,
+        patient_prescription = PatientPrescription(health_professional=health_professional,
                                                    patient=patient, cid=disease)
         patient_prescription.save()
 

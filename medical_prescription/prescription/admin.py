@@ -8,6 +8,8 @@ from .models import (
                     PrescriptionHasMedicine,
                     PrescriptionHasManipulatedMedicine,
                     PrescriptionRecommendation,
+                    NoPatientPrescription,
+                    PatientPrescription
                     )
 
 admin.site.register(Prescription)
@@ -16,3 +18,5 @@ admin.site.register(PrescriptionHasManipulatedMedicine)
 admin.site.register(PrescriptionRecommendation)
 admin.site.register(PrescriptionCustomExam)
 admin.site.register(PrescriptionDefaultExam)
+admin.site.register(PatientPrescription)
+admin.site.register(NoPatientPrescription)
