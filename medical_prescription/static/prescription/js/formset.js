@@ -80,7 +80,12 @@ function deleteForm(prefix, text, btn) {
 $(document).ready(function() {
   // Method to clone via sections in the document
   $('#add_more_via').click(function() {
-    cloneOrShow('div.via:last', 'form',autocompleteMedicine , "section");
+    cloneOrShow('div.via-table:last', 'form',autocompleteMedicine , "section");
+  });
+
+  // This function is responsable to remove via sections.
+   $("body").on("click",".remove-via",function() {
+    deleteForm("form", ".via-table", $(this).parent());
   });
 
   // Method to clone medicine fields in the document

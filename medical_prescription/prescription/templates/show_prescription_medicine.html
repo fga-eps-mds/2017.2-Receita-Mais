@@ -61,40 +61,58 @@
                   {{ form_medicine.management_form }}
                   {% for atom_form in form_medicine %}
                   <ul id='object_medicine' class='list-medicine'>
-                    <div class="table_medicine row" hidden>
-                      <li>
-                        <div class="col-md-11">
-                          <div class="row g-row-col-3">
-                              <div class="col-sm-9">
-                                  {% for error in atom_form.medicine.errors %}
-                                  <div class="alert alert-danger" role="alert">{{error}}</div>
-                                  {% endfor %}
-                                  {{atom_form.medicine}}
-                               </div>
-
-                               <div class="col-sm-3">
-                                  {% for error in atom_form.quantity.errors %}
-                                  <div class="alert alert-danger" role="alert">{{error}}</div>
-                                  {% endfor %}{{atom_form.quantity}}
+                    <div class="table_medicine row col-md-12" hidden>
+                      <div class="panel panel-default" id="panel">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-sm-11">
+                                <input type="text" name="" class="form-control" placeholder="Via">
+                              </div>
+                              <div class="col-sm-1">
+                                <div class="col-md-1">
+                                  <a class="remove-medicine fa fa-times fa-2x" type="button"/>
                                 </div>
-                            </div>
-
-                            <div class="row g-row-col-3">
-                              <div class="col-sm-9">
-                                {% for error in atom_form.posology.errors %}
-                                <div class="alert alert-danger" role="alert">{{error}}</div>
-                                {% endfor %}
-                                {{atom_form.posology}}
                               </div>
                             </div>
-                            <!-- Hidden fields -->
-                              {{atom_form.medicine_id}}
-                              {{atom_form.medicine_type}}
-                            </div>
-                          <div class="col-md-1">
-                            <a class="remove-medicine fa fa-times fa-2x" type="button"/>
+                          </div>
+                          <div class="panel-body">
+
+                                <li>
+                                  <div class="col-md-11">
+                                    <div class="row g-row-col-3">
+                                        <div class="col-sm-9">
+                                            {% for error in atom_form.medicine.errors %}
+                                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                                            {% endfor %}
+                                            {{atom_form.medicine}}
+                                         </div>
+
+                                         <div class="col-sm-3">
+                                            {% for error in atom_form.quantity.errors %}
+                                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                                            {% endfor %}{{atom_form.quantity}}
+                                          </div>
+                                      </div>
+
+                                      <div class="row g-row-col-3">
+                                        <div class="col-sm-9">
+                                          {% for error in atom_form.posology.errors %}
+                                          <div class="alert alert-danger" role="alert">{{error}}</div>
+                                          {% endfor %}
+                                          {{atom_form.posology}}
+                                        </div>
+                                      </div>
+                                      <!-- Hidden fields -->
+                                        {{atom_form.medicine_id}}
+                                        {{atom_form.medicine_type}}
+                                      </div>
+                                    <!-- <div class="col-md-1">
+                                      <a class="remove-medicine fa fa-times fa-2x" type="button"/>
+                                    </div> -->
+                                </li>
+
                         </div>
-                      </li>
+                      </div>
                     </div>
                   </ul>
                   {% endfor %}
@@ -102,33 +120,10 @@
                   <div class="input-group-btn" align="center">
                       <br>
                       <button class="btn btn-success" value="Add More" id="add_more" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
-                      <br>
                   </div>
                   <br>
                   <br>
 
-                  <ul id='object_via'>
-                    <div class="via row" hidden>
-                      <!-- Via Panel structure -->
-                        <div class="panel panel-default" id="panel">
-                            <div class="panel-heading">
-                              <input type="text" name="" class="form-control" placeholder="Via">
-                            </div>
-                            <div class="panel-body">
-                                <form action="" >
-
-                                </form>
-                          </div>
-                        </div>
-                      </div>
-                    </ul>
-                    <div class="input-group control-group after-add-more">
-                       <!-- <input type="text" name="addmore[]" class="form-control" placeholder="Enter Name Here"> -->
-                        <div class="input-group-btn" align="center">
-                          <br>
-                          <button class="btn btn-success" value="Add More Via" id="add_more_via" type="button"><i class="glyphicon glyphicon-plus">Adicionar Via</i></button>
-                        </div>
-                    </div>
                         <!-- End Via Panel structure -->
             </div>
 
@@ -161,8 +156,9 @@
                 </ul>
 
                 {% endfor %}
-                <button class="btn btn-success" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
-
+                <div align="center">
+                  <button class="btn btn-success align="center"" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                </div>
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
