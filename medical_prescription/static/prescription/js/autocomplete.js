@@ -98,6 +98,8 @@ function select_type_field(element, field, ui) {
       break;
     case 'patient':
       document.getElementById("id_email").type = "text";
+      document.getElementById('id_email').readOnly = true;
+      document.getElementById("id_hidden_email").className = '';
       $("#" + element.id + "_id").val(ui.item.id);
       $("#id_email").val(ui.item.email);
       break;
