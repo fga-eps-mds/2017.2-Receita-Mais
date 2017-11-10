@@ -1,0 +1,68 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+
+  <ul class="nav nav-tabs">
+   <li id="tag-custom">
+     <a href="{% url 'list_prescription' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
+   </li>
+   <li class="active">
+     <a data-toggle="nab-tabs" href="{% url 'list_prescription_no_patient' %}">{% trans "Personalizados" %}</a>
+   </li>
+ </ul>
+ <div class="panel-body">
+  <!-- tab component -->
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <th>{% trans "CID" %}</th>
+      <th>{% trans "Paciente" %}</th>
+      <th>{% trans "Qtd. Medicamento" %}</th>
+      <th>{% trans "Qtd. Exames" %}</th>
+      <th>{% trans "Qtd. Recomendações" %}</th>
+    </thead>
+
+    <tbody>
+
+      {% for prescription in list_prescription %}
+        <tr class='clickable-row'>
+          <td>{{ prescription.cid }}</td>
+          <td>{{ prescription.patient }}</td>
+          <td>{{ prescription. }}</td>
+          <td>{{ prescription. }}</td>
+          <td>{{ prescription. }}</td>
+        </tr>
+
+      {% empty %}
+
+        <li>{% trans "Não existem prescrições cadastradas." %}</li>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% comment "Source" %}
+  <p>Retirado de: https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html</p>
+  {% endcomment %}
+
+  {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+
+{%endblock %}
