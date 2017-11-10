@@ -196,8 +196,6 @@ class CreatePrescriptionView(FormView):
         form_exam = self.ExamPrescriptionFormSet(request.POST or None, prefix='form_exam')
         data = dict()
 
-        print("========================================")
-        print(form_exam.cleaned_data)
         # Checks whether the completed forms are valid.
         default_is_valid = False
         atomic_is_valid = False
