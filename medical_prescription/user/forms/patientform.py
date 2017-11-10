@@ -25,7 +25,7 @@ class PatientForm(UserForm):
     Form to register patientl.
     """
 
-    email = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'form-control s-form-v3__input'}))
+    email = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'form-control s-form-v3__input'}), required=False)
 
     CPF_document = BRCPFField(max_length=14, min_length=11,
                               widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
@@ -48,9 +48,6 @@ class PatientForm(UserForm):
                                                                'size': 200,
                                                                'placeholder': '* Qd 70, Lt 8 Casa 2'}))
 
-
-
-
     class Meta:
         # Define model to patient.
         model = Patient
@@ -68,16 +65,15 @@ class PatientForm(UserForm):
 
         name = self.cleaned_data.get('name')
         phone = self.cleaned_data.get('phone')
-        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
         password_confirmation = self.cleaned_data.get('confirm_password')
         date_of_birth = self.cleaned_data.get('date_of_birth')
 
         # Verify validations in form.
-        self.validator_all(name, phone, email, password, password_confirmation, date_of_birth)
+        self.validator_all(name, phone, password, password_confirmation, date_of_birth)
         logger.debug("Exit clean data in PatientForm.")
 
-    def validator_all(self, name, phone, email, password, password_confirmation, date_of_birth):
+    def validator_all(self, name, phone, password, password_confirmation, date_of_birth):
         """
         Checks validator in all fields.
         """
@@ -86,8 +82,6 @@ class PatientForm(UserForm):
         validator = PatientValidator()
 
         # Fields common all users.
-        # validator.validator_email(email)
-        validator.validator_email(email)
         validator.validator_password(password, password_confirmation)
         validator.validator_name(name)
         validator.validator_phone_number(phone)

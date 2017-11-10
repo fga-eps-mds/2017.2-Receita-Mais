@@ -207,40 +207,6 @@ class TestPatientForm(TestCase):
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-    def test_user_forms_patient_email_is_not_valid_MAX(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_valid,
-                     'email': self.email_invalid_MAX,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'CPF_document': self.CPF_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
-    def test_user_forms_patient_email_is_not_valid_MIN(self):
-        form_data = {'name': self.name_valid,
-                     'phone': self.phone_valid,
-                     'email': self.email_invalid_MIN,
-                     'password': self.password_valid,
-                     'confirm_password': self.password_valid,
-                     'CPF_document': self.CPF_document_valid,
-                     'sex': self.sex_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'CEP': self.CEP_valid,
-                     'UF': self.UF_valid,
-                     'city': self.city_valid,
-                     'neighborhood': self.neighborhood_valid,
-                     'complement': self.complement_valid}
-        form = PatientForm(data=form_data)
-        self.assertFalse(form.is_valid())
-
     def test_user_forms_patient_password_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,

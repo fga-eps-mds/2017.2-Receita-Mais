@@ -6,10 +6,10 @@ from disease.models import Disease
 from medicine.models import ManipulatedMedicine
 from user.models import Patient, HealthProfessional
 from prescription.views import CreatePrescriptionView
-from prescription.models import PrescriptionMedicine, Prescription
+from prescription.models import NoPatientPrescription
 
 
-class TestCreatePrescriptionMedicine(TestCase):
+class TestCreatePrescription(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.client = Client()
@@ -52,10 +52,10 @@ class TestCreatePrescriptionMedicine(TestCase):
         self.disease.description = "A random disease"
         self.disease.save()
 
-        self.prescription = Prescription()
-        self.prescription.patient = self.patient
-        self.prescription.cid = self.disease
-        self.prescription.save()
+        # self.prescription = Prescription()
+        # self.prescription.patient = self.patient
+        # self.prescription.cid = self.disease
+        # self.prescription.save()
 
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12')
@@ -65,7 +65,7 @@ class TestCreatePrescriptionMedicine(TestCase):
         response = self.view.get(request)
         self.assertEqual(response.status_code, 200)
 
-    @patch('prescription.models.PrescriptionMedicine.save', MagicMock(name="save"))
+    @patch('prescription.models.NoPatientPrescription.save', MagicMock(name="save"))
     @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_health_professional(self):
         context = {'form-TOTAL_FORMS': 1,
@@ -87,8 +87,8 @@ class TestCreatePrescriptionMedicine(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Check save was called
-        self.assertTrue(PrescriptionMedicine.save.called)
-        self.assertEqual(PrescriptionMedicine.save.call_count, 1)
+        self.assertTrue(NoPatientPrescription.save.called)
+        self.assertEqual(NoPatientPrescription.save.call_count, 1)
 
     def test_prescription_get_with_health_professional(self):
 
