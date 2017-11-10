@@ -1,5 +1,13 @@
 MAX_LENGTH_POSOLOGY = 250
 MAX_LENGTH_DESCRIPTION_AUTOCOMPLETE = 175
+MAX_LENGTH_VIA = 30
+
+VIA_CHOICES = (('Via Intravenosa', 'Via Intravenosa'),
+               ('Via Intramuscular', 'Via Intramuscular'),
+               ('Via Subcutânea', 'Via Subcutânea'),
+               ('Via Oral', 'Via Oral'),
+               ('Via Sublingual', 'Via Sublingual'),
+               ('Via Retal', 'Via Retal'))
 
 QUANTITY_CHOICES = ((0, 'Uso Contínuo'),
                     (1, '1 unidade'),

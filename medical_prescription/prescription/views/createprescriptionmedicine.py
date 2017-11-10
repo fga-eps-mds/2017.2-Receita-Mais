@@ -90,19 +90,21 @@ class CreatePrescriptionView(FormView):
 
         prescription_custom_exam_object.save()
 
-    def create_prescription_has_manipulated_medicine(self, medicine_id, quantity, posology, prescription_medicine):
+    def create_prescription_has_manipulated_medicine(self, medicine_id, quantity, posology, prescription_medicine, via):
         prescription_has_manipulatedmedicine_object = PrescriptionHasManipulatedMedicine(
             manipulated_medicine_id=medicine_id,
             posology=posology, quantity=quantity,
-            prescription_medicine=prescription_medicine)
+            prescription_medicine=prescription_medicine,
+            via=via)
 
         prescription_has_manipulatedmedicine_object.save()
 
-    def create_prescription_has_medicine(self, medicine_id, quantity, posology, prescription_medicine):
+    def create_prescription_has_medicine(self, medicine_id, quantity, posology, prescription_medicine, via):
         prescription_has_medicine_object = PrescriptionHasMedicine(
             medicine_id=medicine_id,
             posology=posology, quantity=quantity,
-            prescription_medicine=prescription_medicine)
+            prescription_medicine=prescription_medicine,
+            via=via)
 
         prescription_has_medicine_object.save()
 
@@ -115,17 +117,20 @@ class CreatePrescriptionView(FormView):
         medicine_id = atomic_form.cleaned_data.get('medicine_id')
         quantity = atomic_form.cleaned_data.get('quantity')
         posology = atomic_form.cleaned_data.get('posology')
+        via = atomic_form.cleaned_data.get('via')
 
         if medicine_type == 'medicine':
             self.create_prescription_has_medicine(medicine_id,
                                                   quantity,
                                                   posology,
-                                                  prescription_medicine)
+                                                  prescription_medicine,
+                                                  via)
         elif medicine_type == 'manipulated_medicine':
             self.create_prescription_has_manipulated_medicine(medicine_id,
                                                               quantity,
                                                               posology,
-                                                              prescription_medicine)
+                                                              prescription_medicine,
+                                                              via)
         else:
             # Nothing to do.
             pass
