@@ -43,7 +43,7 @@ class AutoCompleteExam(View):
         for custom_exam in queryset:
             custom_exam_item = {}
             custom_exam_item['value'] = self.parse_description(custom_exam.description)
-            custom_exam_item['id'] = custom_exam.pk
+            custom_exam_item['id'] = custom_exam.auto_increment_id
             custom_exam_item['type'] = 'custom_exam'
             custom_exam_item['description'] = self.parse_description(custom_exam.description)
 
@@ -55,7 +55,7 @@ class AutoCompleteExam(View):
         # Encapsulates in a json needed to be sent.
         for default_exam in queryset:
             default_exam_item = {}
-            default_exam_item['value'] = self.parse_description(default_exam_item.description)
+            default_exam_item['value'] = self.parse_description(default_exam.description)
             default_exam_item['id'] = default_exam.id_tuss
             default_exam_item['type'] = 'default_exam'
             default_exam_item['description'] = self.parse_description(default_exam.description)
