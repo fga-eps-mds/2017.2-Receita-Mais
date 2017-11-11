@@ -56,6 +56,7 @@ function cloneOrShow(selector, prefix, functionJson, field){
 // This function is used to delete a form dynamically when the button is clicked.
 function deleteForm(prefix, text, btn) {
   var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
+  console.log(total);
   if (total > 1) {
     btn.closest(text).remove();
     var forms = $(text);
@@ -81,32 +82,32 @@ $(document).ready(function() {
 
   // Method to clone medicine fields in the document
   $('#add_more').click(function() {
-    cloneOrShow('div.table_medicine:last', 'form', autocompleteMedicine, "medicine");
+    cloneOrShow('div.table_medicine:last', 'form_medicine', autocompleteMedicine, "medicine");
   });
 
   // This function is responsable to remove medicine form.
    $("body").off("click").on("click",".remove-medicine",function() {
-    deleteForm("form", ".table_medicine", $(this).parent());
+    deleteForm("form_medicine", ".table_medicine", $(this).parent());
   });
 
   // Method to clone exam fields in the document
   $('#add_more_exam').click(function() {
-    cloneOrShow('div.table_exam:last', 'form', autocompleteExam, "exam");
+    cloneOrShow('div.table_exam:last', 'form_exam', autocompleteExam, "exam");
   });
 
   // This function is responsable to remove exam form.
    $("body").on("click",".remove-exam",function() {
-    deleteForm("form", ".table_exam", $(this).parent());
+    deleteForm("form_exam", ".table_exam", $(this).parent());
   });
 
   // Method to clone reccomendation fields in the document
   $('#add_more_reccomendation').click(function() {
-    cloneOrShow('div.table_recommendation:last', 'form', "", "recommendation");
+    cloneOrShow('div.table_recommendation:last', 'form_reccomendation', "", "recommendation");
   });
 
   // This function is responsable to remove recommendation form.
    $("body").on("click",".remove-recommendation",function() {
-    deleteForm("form", ".table_recommendation", $(this).parent());
+    deleteForm("form_reccomendation", ".table_recommendation", $(this).parent());
   });
 
 });

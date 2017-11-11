@@ -121,7 +121,7 @@ function select_type_field(element, field, ui) {
 }
 
 // Performs autocomplete in the specified fields.
-autocompleteElement('#id_form-0-medicine', autocompleteMedicine, "medicine");
-autocompleteElement('#id_form-0-exam', autocompleteExam, "medicine");
+autocompleteElement('#id_form_medicine-0-medicine', autocompleteMedicine, "medicine");
+autocompleteElement('#id_form_exam-0-exam', autocompleteExam, "medicine");
 autocompleteElement('#id_patient', autocompletePatient, "patient");
 autocompleteElement('#id_cid', autocompleteCid, "cid");

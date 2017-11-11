@@ -56,7 +56,6 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
-        print(patient_id)
         if patient_id is None or patient_id is 0:
             prescription_object = self.create_no_patient_prescription(request, patient, disease)
         else:
@@ -108,10 +107,11 @@ class CreatePrescriptionView(FormView):
         prescription_default_exam_object.save()
 
     def create_prescription_custom_exam(self, prescription, exam_id, request):
-        custom_exam = CustomExam.objects.get(pk=exam_id)
+        # custom_exam = CustomExam.objects.get(pk=exam_id)
+
         prescription_custom_exam_object = PrescriptionCustomExam(
             prescription=prescription,
-            exam=custom_exam
+            exam=exam_id,
             )
 
         prescription_custom_exam_object.save()
@@ -173,9 +173,9 @@ class CreatePrescriptionView(FormView):
         Rendering form in view.
         """
         prescription_form = CreatePrescriptionForm(request.GET or None)
-        form_medicine = self.MedicinePrescriptionFormSet(request.GET or None)
-        form_recommendation = self.RecommendationPrescriptionFormSet(request.GET or None)
-        form_exam = self.ExamPrescriptionFormSet(request.GET or None)
+        form_medicine = self.MedicinePrescriptionFormSet(request.GET or None, prefix='form_medicine')
+        form_recommendation = self.RecommendationPrescriptionFormSet(request.GET or None, prefix='form_reccomendation')
+        form_exam = self.ExamPrescriptionFormSet(request.GET or None, prefix='form_exam')
 
         data = dict()
         context = {'prescription_form': prescription_form,
@@ -191,9 +191,9 @@ class CreatePrescriptionView(FormView):
         Save data in the form in database.
         """
         prescription_form = CreatePrescriptionForm(request.POST or None)
-        form_medicine = self.MedicinePrescriptionFormSet(request.POST or None)
-        form_recommendation = self.RecommendationPrescriptionFormSet(request.POST or None)
-        form_exam = self.ExamPrescriptionFormSet(request.POST or None)
+        form_medicine = self.MedicinePrescriptionFormSet(request.POST or None, prefix='form_medicine')
+        form_recommendation = self.RecommendationPrescriptionFormSet(request.POST or None, prefix='form_reccomendation')
+        form_exam = self.ExamPrescriptionFormSet(request.POST or None, prefix='form_exam')
         data = dict()
 
         # Checks whether the completed forms are valid.
@@ -206,7 +206,6 @@ class CreatePrescriptionView(FormView):
             if form_medicine.is_valid():
                 atomic_is_valid = True
                 prescription_medicine_object = self.create_prescription(prescription_form, request)
-
                 for atomic_form in form_medicine:
                     self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
 
