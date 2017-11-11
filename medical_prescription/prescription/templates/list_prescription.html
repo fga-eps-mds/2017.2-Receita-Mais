@@ -12,11 +12,11 @@
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
     <thead>
-      <th>{% trans "CID" %}</th>
-      <th>{% trans "Paciente" %}</th>
-      <th>{% trans "Qtd. Recomendações" %}</th>
-      <th>{% trans "Qtd. Medicamentos" %}</th>
-      <th>{% trans "Qtd. Exames" %}</th>
+      <th>CID</th>
+      <th>Paciente</th>
+      <th>Medicamentos</th>
+      <th>Recomendações</th>
+      <th>Exames</th>
     </thead>
 
     <tbody>
@@ -25,27 +25,30 @@
           <td>{{ prescription1.cid }}</td>
           <td>{{ prescription1.patient.name }}</td>
 
-          {% for recommendation in list_recommendation %}
-            {% if  recommendation.prescription.pk == prescription1.pk %}
-              {% if forloop.last %}
-                <td>{{ forloop.counter }}</td>
-              {% endif %}
-            {% endif %}
-
-            {% empty %}
-              <td>{{ 0 }}</td>
-          {% endfor %}
-
+          <td>
           {% for medicine in list_medicine %}
             {% if  medicine.prescription_medicine.pk == prescription1.pk %}
-              {% if forloop.last %}
-                <td>{{ forloop.counter }}</td>
-              {% endif %}
+                {{ medicine.medicine.name }};
             {% endif %}
-
-            {% empty %}
-              <td>{{ 0 }}</td>
           {% endfor %}
+          </td>
+
+          <td>
+          {% for recommendation in list_recommendation %}
+            {% if  recommendation.prescription.pk == prescription1.pk %}
+                {{ recommendation.recommendation }};
+            {% endif %}
+          {% endfor %}
+          </td>
+
+          <td>
+          {% for exam in list_exam %}
+            {% if  exam.prescription.pk == prescription1.pk %}
+                {{ exam.exam.description }};
+            {% endif %}
+          {% endfor %}
+          </td>
+
           </tr>
         {% endfor %}
 
@@ -54,22 +57,30 @@
           <td>{{ prescription2.cid }}</td>
           <td>{{ prescription2.patient }}</td>
 
-          {% for recommendation in list_recommendation %}
-            {% if  recommendation.prescription.pk == prescription2.pk %}
-                <td>{{ forloop.counter }}</td>
-            {% endif %}
-            
-
-          {% endfor %}
-
+          <td>
           {% for medicine in list_medicine %}
             {% if  medicine.prescription_medicine.pk == prescription2.pk %}
-                <td>{{ forloop.counter }}</td>
+                {{ medicine.medicine.name }};
             {% endif %}
-
-            {% empty %}
-              <td>{{ 0 }}</td>
           {% endfor %}
+          </td>
+
+          <td>
+          {% for recommendation in list_recommendation %}
+            {% if  recommendation.prescription.pk == prescription2.pk %}
+                {{ recommendation.recommendation }};
+            {% endif %}
+          {% endfor %}
+          </td>
+
+          <td>
+          {% for exam in list_exam %}
+            {% if  exam.prescription.pk == prescription2.pk %}
+                {{ exam.exam.description }};
+            {% endif %}
+          {% endfor %}
+          </td>
+
           </tr>
         {% endfor %}
 

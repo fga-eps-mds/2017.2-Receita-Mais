@@ -8,7 +8,8 @@ from user.decorators import is_health_professional
 from prescription.models import (PatientPrescription,
                                  NoPatientPrescription,
                                  PrescriptionRecommendation,
-                                 PrescriptionHasMedicine)
+                                 PrescriptionHasMedicine,
+                                 PrescriptionDefaultExam)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -29,4 +30,5 @@ class ListPrescription(TemplateView):
                                                                                   ),
               'list_recommendation': PrescriptionRecommendation.objects.all(),
               'list_medicine': PrescriptionHasMedicine.objects.all(),
+              'list_exam': PrescriptionDefaultExam.objects.all(),
               }
