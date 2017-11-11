@@ -94,6 +94,11 @@
                 {{ medicine.manipulated_medicine.recipe_name|truncatechars:25 }};
             {% endif %}
           {% endfor %}
+
+          <span class="badge">
+            {{prescription_no_patient.medicines.all|length}}
+          </span>
+
           </td>
 
           <!--  list recommendation -->

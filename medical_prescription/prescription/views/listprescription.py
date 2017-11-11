@@ -25,8 +25,9 @@ class ListPrescription(TemplateView):
 
     # Listing all objects related to prescriptions in database.
     def get_context_data(self, **kwargs):
+        list_prescription = PatientPrescription.objects.filter(health_professional=self.request.user)
         return{
-              'list_prescription': PatientPrescription.objects.filter(health_professional=self.request.user),
+              'list_prescription': list_prescription,
               'list_prescription_no_patient': NoPatientPrescription.objects.filter(
                                               health_professional=self.request.user),
               'list_recommendation': PrescriptionRecommendation.objects.filter(
