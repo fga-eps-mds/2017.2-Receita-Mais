@@ -27,17 +27,4 @@ Username2: <input type="text" name="usrname2" id="name2"><br>
 <script src="{% static "prescription/js/modalform.js" %}" type="text/javascript"></script>
 <script src="{% static "prescription/js/formset.js" %}"></script>
 
-<script>
-  var name = ''
-  function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  async function teste(){
-    for (var i = 0; i < 10; i++) {
-      document.getElementById("name").value = name
-      await sleep(2000)
-    }
-  }
-  teste();
-</script>
 {% endblock %}
