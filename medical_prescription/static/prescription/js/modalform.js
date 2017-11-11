@@ -1,9 +1,11 @@
 $(function () {
 
     /* Functions */
+    var modalIsCreated = false;
 
     var loadForm = function () {
         var btn = $(this);
+        if (!modalIsCreated){
         $.ajax({
             url: btn.attr("data-url"),
             type: 'get',
@@ -12,9 +14,13 @@ $(function () {
             success: function (data) {
                 $("#modal-prescription .modal-content").html("");
                 $("#modal-prescription").modal("show");
+                modalIsCreated = true;
                 $("#modal-prescription .modal-content").html(data.html_form);
             }
         });
+      }else{
+        $("#modal-prescription").modal("show");
+      }
     };
 
     var saveForm = function () {
@@ -27,7 +33,8 @@ $(function () {
             async: true,
             success: function (data) {
                 if (data.form_is_valid) {
-                    $("#modal-prescription").modal("hide");
+                  modalIsCreated = false;
+                  $("#modal-prescription").modal("hide");
                 }
                 else {
                     $("#modal-prescription").modal("show");

@@ -2,29 +2,5 @@
 {% block content %}
 {% load staticfiles %} {% load static %}
 
-<button class="btn btn-success js-create-prescription" data-url="{% url 'create_modal' %}" >Abre Modal</button>
-
-<form action="/action_page.php" id=tabs>
-Username: <input type="text" name="usrname" id="name"><br>
-Username2: <input type="text" name="usrname2" id="name2"><br>
-<input type="submit" value="Submit">
-</form>
-
-<!-- This divs created the general structure of modal -->
-<div class="modal fade bs-example-modal-lg" data-toggle="modal" id="modal-prescription">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <!-- Here is where the content of modal, the informations, will take place. -->
-        </div>
-    </div>
-</div>
-
-<link rel="stylesheet" href="{% static "prescription/css/charfield.css" %}">
-<link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
-<link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
-
-<script src="{% static "general/js/jquery.min.js" %}" type="text/javascript"></script>
-<script src="{% static "prescription/js/modalform.js" %}" type="text/javascript"></script>
-<script src="{% static "prescription/js/formset.js" %}"></script>
 
 {% endblock %}
