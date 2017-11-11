@@ -1,43 +1,27 @@
 # Django imports
-from django.views.generic import TemplateView
-from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
-# Local Django
+# Local Django imports
 from user.decorators import is_health_professional
-from prescription.models import (PatientPrescription,
-                                 NoPatientPrescription,
-                                 PrescriptionRecommendation,
-                                 PrescriptionHasMedicine,
-                                 PrescriptionDefaultExam,
-                                 PrescriptionCustomExam,
-                                 PrescriptionHasManipulatedMedicine,)
+from prescription.models import Prescription
 
 
-@method_decorator(login_required, name='dispatch')
-@method_decorator(is_health_professional, name='dispatch')
-class ListPrescription(TemplateView):
+class ListPrescription(ListView):
     '''
         View for list all prescriptions in database.
     '''
     template_name = 'list_prescription.html'
+    context_object_name = 'list_prescription'
+    model = Prescription
     paginate_by = 20
 
-    # Listing all objects related to prescriptions in database.
-    def get_context_data(self, **kwargs):
-        list_prescription = PatientPrescription.objects.filter(health_professional=self.request.user)
-        return{
-              'list_prescription': list_prescription,
-              'list_prescription_no_patient': NoPatientPrescription.objects.filter(
-                                              health_professional=self.request.user),
-              'list_recommendation': PrescriptionRecommendation.objects.filter(
-                                     prescription__health_professional=self.request.user),
-              'list_medicine': PrescriptionHasMedicine.objects.filter(
-                               prescription_medicine__health_professional=self.request.user),
-              'list_manipulated_medicine': PrescriptionHasManipulatedMedicine.objects.filter(
-                                           prescription_medicine__health_professional=self.request.user),
-              'list_default_exam': PrescriptionDefaultExam.objects.filter(
-                                   prescription__health_professional=self.request.user),
-              'list_custom_exam': PrescriptionCustomExam.objects.filter(
-                                  prescription__health_professional=self.request.user),
-              }
+    @method_decorator(login_required)
+    @method_decorator(is_health_professional)
+    def dispatch(self, *args, **kwargs):
+        return super(ListPrescription, self).dispatch(*args, **kwargs)
+
+    # Listing all objects Medication in database.
+    def get_queryset(self):
+        return self.model.objects.filter(health_professional=self.request.user)

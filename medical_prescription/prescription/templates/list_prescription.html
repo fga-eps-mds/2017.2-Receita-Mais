@@ -20,115 +20,53 @@
     </thead>
 
     <tbody>
-      {% for prescription_patient in list_prescription %}
+      {% for prescription in list_prescription %}
         <tr class='clickable-row'>
-          {% if  prescription_patient.cid %}
-            <td>{{ prescription_patient.cid }}</td>
+          {% if  prescription.cid %}
+            <td>{{ prescription.cid }}</td>
           {% else %}
               <td>------</td>
           {% endif %}
 
-          <td>{{ prescription_patient.patient.name }}</td>
+          {% if prescription.nopatientprescription %}
+            <td>{{ prescription.nopatientprescription.patient }}</td>
+          {% else %}
+            <td>asd{{ prescription.patientprescription.patient.name }}</td>
+          {% endif %}
 
           <!--  list medicines -->
           <td>
-          {% for medicine in list_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription_patient.pk %}
-                {{ medicine.medicine.name|truncatechars:25 }};
-            {% endif %}
+          {% for medicine in prescription.medicines.all %}
+                {{ medicine.name|truncatechars:25 }};
           {% endfor %}
 
-          {% for medicine in list_manipulated_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription_patient.pk %}
-                {{ medicine.manipulated_medicine.recipe_name|truncatechars:25 }};
-            {% endif %}
+          {% for medicine in prescription.manipulated_medicines.all %}
+                {{ medicine.recipe_name|truncatechars:25 }};
           {% endfor %}
+          <span class="badge">{{ prescription.medicines.all.count|add:prescription.manipulated_medicines.all.count}}</span>
+
           </td>
 
           <!--  list recommendations -->
+          <!--  TODO modifying recommendations in model prescription before -->
           <td>
-          {% for recommendation in list_recommendation %}
-            {% if  recommendation.prescription.pk == prescription_patient.pk %}
-                {{ recommendation.recommendation|truncatechars:25 }};
-            {% endif %}
-          {% endfor %}
+              TODO
           </td>
 
           <!--  list exams -->
           <td>
-          {% for exam in list_default_exam %}
-            {% if  exam.prescription.pk == prescription_patient.pk %}
-                {{ exam.exam.description|truncatechars:25 }};
-            {% endif %}
+          {% for exam in prescription.default_exams.all %}
+                {{ exam.description|truncatechars:25 }};
           {% endfor %}
 
-          {% for exam in list_custom_exam %}
-            {% if  exam.prescription.pk == prescription_patient.pk %}
-                {{ exam.exam.description|truncatechars:25 }};
-            {% endif %}
+          {% for exam in prescription.custom_exams.all %}
+                {{ exam.description|truncatechars:25 }};
           {% endfor %}
+          <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
 
           </tr>
         {% endfor %}
-
-        {% for prescription_no_patient in list_prescription_no_patient %}
-        <tr class='clickable-row'>
-          {% if  prescription_no_patient.cid %}
-            <td>{{ prescription_no_patient.cid|truncatechars:25 }}</td>
-          {% else %}
-              <td>------</td>
-          {% endif %}
-          <td>{{ prescription_no_patient.patient|truncatechars:25 }}</td>
-
-          <!--  list medicines -->
-          <td>
-          {% for medicine in list_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription_no_patient.pk %}
-                {{ medicine.medicine.name|truncatechars:25 }};
-            {% endif %}
-          {% endfor %}
-
-          {% for medicine in list_manipulated_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription_no_patient.pk %}
-                {{ medicine.manipulated_medicine.recipe_name|truncatechars:25 }};
-            {% endif %}
-          {% endfor %}
-
-          <span class="badge">
-            {{prescription_no_patient.medicines.all|length}}
-          </span>
-
-          </td>
-
-          <!--  list recommendation -->
-          <td>
-          {% for recommendation in list_recommendation %}
-            {% if  recommendation.prescription.pk == prescription_no_patient.pk %}
-                {{ recommendation.recommendation|truncatechars:25 }};
-            {% endif %}
-          {% endfor %}
-          </td>
-
-          <!--  list exams -->
-          <td>
-          {% for exam in list_default_exam %}
-            {% if  exam.prescription.pk == prescription_no_patient.pk %}
-                {{ exam.exam.description|truncatechars:25 }};
-            {% endif %}
-          {% endfor %}
-
-
-          {% for exam in list_custom_exam %}
-            {% if  exam.prescription.pk == prescription_no_patient.pk %}
-                {{ exam.exam.description|truncatechars:25 }};
-            {% endif %}
-          {% endfor %}
-          </td>
-
-          </tr>
-        {% endfor %}
-
     </tbody>
   </table>
 
