@@ -28,11 +28,15 @@ class ListPrescription(TemplateView):
         return{
               'list_prescription': PatientPrescription.objects.filter(health_professional=self.request.user),
               'list_prescription_no_patient': NoPatientPrescription.objects.filter(
-                                                                                   health_professional=self.request.user
-                                                                                  ),
-              'list_recommendation': PrescriptionRecommendation.objects.all(),
-              'list_medicine': PrescriptionHasMedicine.objects.all(),
-              'list_manipulated_medicine': PrescriptionHasManipulatedMedicine.objects.all(),
-              'list_default_exam': PrescriptionDefaultExam.objects.all(),
-              'list_custom_exam': PrescriptionCustomExam.objects.all(),
+                                              health_professional=self.request.user),
+              'list_recommendation': PrescriptionRecommendation.objects.filter(
+                                     prescription__health_professional=self.request.user),
+              'list_medicine': PrescriptionHasMedicine.objects.filter(
+                               prescription_medicine__health_professional=self.request.user),
+              'list_manipulated_medicine': PrescriptionHasManipulatedMedicine.objects.filter(
+                                           prescription_medicine__health_professional=self.request.user),
+              'list_default_exam': PrescriptionDefaultExam.objects.filter(
+                                   prescription__health_professional=self.request.user),
+              'list_custom_exam': PrescriptionCustomExam.objects.filter(
+                                  prescription__health_professional=self.request.user),
               }

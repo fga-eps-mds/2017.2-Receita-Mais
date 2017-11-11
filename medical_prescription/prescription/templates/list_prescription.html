@@ -1,4 +1,4 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %} {% load common %}
 
   <ul class="nav nav-tabs">
    <li class="active">
@@ -20,22 +20,27 @@
     </thead>
 
     <tbody>
-      {% for prescription1 in list_prescription %}
+      {% for prescription_patient in list_prescription %}
         <tr class='clickable-row'>
-          <td>{{ prescription1.cid }}</td>
-          <td>{{ prescription1.patient.name }}</td>
+          {% if  prescription_patient.cid %}
+            <td>{{ prescription_patient.cid }}</td>
+          {% else %}
+              <td>------</td>
+          {% endif %}
+
+          <td>{{ prescription_patient.patient.name }}</td>
 
           <!--  list medicines -->
           <td>
           {% for medicine in list_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription1.pk %}
-                {{ medicine.medicine.name }};
+            {% if  medicine.prescription_medicine.pk == prescription_patient.pk %}
+                {{ medicine.medicine.name|truncatechars:25 }};
             {% endif %}
           {% endfor %}
 
           {% for medicine in list_manipulated_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription1.pk %}
-                {{ medicine.manipulated_medicine.recipe_name }};
+            {% if  medicine.prescription_medicine.pk == prescription_patient.pk %}
+                {{ medicine.manipulated_medicine.recipe_name|truncatechars:25 }};
             {% endif %}
           {% endfor %}
           </td>
@@ -43,8 +48,8 @@
           <!--  list recommendations -->
           <td>
           {% for recommendation in list_recommendation %}
-            {% if  recommendation.prescription.pk == prescription1.pk %}
-                {{ recommendation.recommendation }};
+            {% if  recommendation.prescription.pk == prescription_patient.pk %}
+                {{ recommendation.recommendation|truncatechars:25 }};
             {% endif %}
           {% endfor %}
           </td>
@@ -52,14 +57,14 @@
           <!--  list exams -->
           <td>
           {% for exam in list_default_exam %}
-            {% if  exam.prescription.pk == prescription1.pk %}
-                {{ exam.exam.description }};
+            {% if  exam.prescription.pk == prescription_patient.pk %}
+                {{ exam.exam.description|truncatechars:25 }};
             {% endif %}
           {% endfor %}
 
           {% for exam in list_custom_exam %}
-            {% if  exam.prescription.pk == prescription1.pk %}
-                {{ exam.exam.description }};
+            {% if  exam.prescription.pk == prescription_patient.pk %}
+                {{ exam.exam.description|truncatechars:25 }};
             {% endif %}
           {% endfor %}
           </td>
@@ -67,22 +72,26 @@
           </tr>
         {% endfor %}
 
-        {% for prescription2 in list_prescription_no_patient %}
+        {% for prescription_no_patient in list_prescription_no_patient %}
         <tr class='clickable-row'>
-          <td>{{ prescription2.cid }}</td>
-          <td>{{ prescription2.patient }}</td>
+          {% if  prescription_no_patient.cid %}
+            <td>{{ prescription_no_patient.cid|truncatechars:25 }}</td>
+          {% else %}
+              <td>------</td>
+          {% endif %}
+          <td>{{ prescription_no_patient.patient|truncatechars:25 }}</td>
 
           <!--  list medicines -->
           <td>
           {% for medicine in list_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription2.pk %}
-                {{ medicine.medicine.name }};
+            {% if  medicine.prescription_medicine.pk == prescription_no_patient.pk %}
+                {{ medicine.medicine.name|truncatechars:25 }};
             {% endif %}
           {% endfor %}
 
           {% for medicine in list_manipulated_medicine %}
-            {% if  medicine.prescription_medicine.pk == prescription2.pk %}
-                {{ medicine.manipulated_medicine.recipe_name }};
+            {% if  medicine.prescription_medicine.pk == prescription_no_patient.pk %}
+                {{ medicine.manipulated_medicine.recipe_name|truncatechars:25 }};
             {% endif %}
           {% endfor %}
           </td>
@@ -90,8 +99,8 @@
           <!--  list recommendation -->
           <td>
           {% for recommendation in list_recommendation %}
-            {% if  recommendation.prescription.pk == prescription2.pk %}
-                {{ recommendation.recommendation }};
+            {% if  recommendation.prescription.pk == prescription_no_patient.pk %}
+                {{ recommendation.recommendation|truncatechars:25 }};
             {% endif %}
           {% endfor %}
           </td>
@@ -99,15 +108,15 @@
           <!--  list exams -->
           <td>
           {% for exam in list_default_exam %}
-            {% if  exam.prescription.pk == prescription2.pk %}
-                {{ exam.exam.description }};
+            {% if  exam.prescription.pk == prescription_no_patient.pk %}
+                {{ exam.exam.description|truncatechars:25 }};
             {% endif %}
           {% endfor %}
 
 
           {% for exam in list_custom_exam %}
-            {% if  exam.prescription.pk == prescription2.pk %}
-                {{ exam.exam.description }};
+            {% if  exam.prescription.pk == prescription_no_patient.pk %}
+                {{ exam.exam.description|truncatechars:25 }};
             {% endif %}
           {% endfor %}
           </td>
@@ -146,3 +155,12 @@
 </div>
 
 {%endblock %}
+
+{% if work and is_public_work %}
+    {% ifequal link_class 'info_box pull-right' %}
+        {% set ga_label = 'card' %}
+    {% else %}
+        {% set ga_label = ga_label_detail %}
+    {% endifequal %}
+    <a class="{{ ga_label }}">123</a>
+{% endif %}
