@@ -14,37 +14,65 @@
     <thead>
       <th>{% trans "CID" %}</th>
       <th>{% trans "Paciente" %}</th>
-      <th>{% trans "Qtd. Medicamento" %}</th>
-      <th>{% trans "Qtd. Exames" %}</th>
       <th>{% trans "Qtd. Recomendações" %}</th>
+      <th>{% trans "Qtd. Medicamentos" %}</th>
+      <th>{% trans "Qtd. Exames" %}</th>
     </thead>
 
     <tbody>
-
       {% for prescription1 in list_prescription %}
         <tr class='clickable-row'>
           <td>{{ prescription1.cid }}</td>
           <td>{{ prescription1.patient.name }}</td>
-          {% for recomendation1 in list_recommendation %}
-          <td>{{ recomendation1.recommendation }}</td>
+
+          {% for recommendation in list_recommendation %}
+            {% if  recommendation.prescription.pk == prescription1.pk %}
+              {% if forloop.last %}
+                <td>{{ forloop.counter }}</td>
+              {% endif %}
+            {% endif %}
+
+            {% empty %}
+              <td>{{ 0 }}</td>
           {% endfor %}
-          <td>{{ prescription1. }}</td>
-          <td>{{ prescription1. }}</td>
-        </tr>
+
+          {% for medicine in list_medicine %}
+            {% if  medicine.prescription_medicine.pk == prescription1.pk %}
+              {% if forloop.last %}
+                <td>{{ forloop.counter }}</td>
+              {% endif %}
+            {% endif %}
+
+            {% empty %}
+              <td>{{ 0 }}</td>
+          {% endfor %}
+          </tr>
         {% endfor %}
 
         {% for prescription2 in list_prescription_no_patient %}
         <tr class='clickable-row'>
           <td>{{ prescription2.cid }}</td>
           <td>{{ prescription2.patient }}</td>
-          {% for recomendation2 in list_recommendation %}
-          <td>{{ recomendation2.recommendation }}</td>
-          {% endfor %}
-          <td>{{ prescription2. }}</td>
-          <td>{{ prescription2. }}</td>
-        </tr>
 
-      {% endfor %}
+          {% for recommendation in list_recommendation %}
+            {% if  recommendation.prescription.pk == prescription2.pk %}
+                <td>{{ forloop.counter }}</td>
+            {% endif %}
+            
+
+          {% endfor %}
+
+          {% for medicine in list_medicine %}
+            {% if  medicine.prescription_medicine.pk == prescription2.pk %}
+                <td>{{ forloop.counter }}</td>
+            {% endif %}
+
+            {% empty %}
+              <td>{{ 0 }}</td>
+          {% endfor %}
+          </tr>
+        {% endfor %}
+
     </tbody>
   </table>
 
