@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
-<script src="{% static "general/js/jquery.min.js" %}" type="text/javascript"></script>
 
 <script>
         var formset = "{% static "prescription/js/formset.js" %}";
@@ -19,7 +18,7 @@
         var autocompleteExam = "{% url 'autocomplete_exam' %}"
 </script>
 
-  <form id="prescription_form" class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
+  <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
     <div class="modal-header">
       <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
       <h3 class="modal-title">Prescrição</h3>
