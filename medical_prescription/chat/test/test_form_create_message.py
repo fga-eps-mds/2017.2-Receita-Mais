@@ -1,6 +1,7 @@
 from django.test import TestCase
 from chat.forms import CreateMessage
 from user.models import User
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class TestCreateMessageForm(TestCase):
@@ -18,8 +19,11 @@ class TestCreateMessageForm(TestCase):
         self.email_invalid = 'a2d'
 
     def test_valid(self):
+        upload_file = open('public/image_profile/user.png', 'rb')
+        file_dict = {'file': SimpleUploadedFile(upload_file.name, upload_file.read())}
         form_data = {'subject': self.subject,
                      'text': self.text,
+                     'files': file_dict,
                      'user_to': self.email
                      }
         form = CreateMessage(data=form_data)

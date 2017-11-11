@@ -1,7 +1,10 @@
 from django.test import TestCase
 from chat.forms import CreateResponse
 from user.models import User
-
+from django.core.files.uploadedfile import SimpleUploadedFile
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 class TesteCreateResponseForm(TestCase):
 
@@ -9,7 +12,6 @@ class TesteCreateResponseForm(TestCase):
         user = User()
         user.email = "test@test.com"
         user.save()
-
         self.form_class = CreateResponse
         self.subject = "a"
         self.text = "a"
@@ -19,9 +21,22 @@ class TesteCreateResponseForm(TestCase):
         self.email_invalid = 'a2d'
 
     def test_valid(self):
+
+        im = Image.new(mode='RGB', size=(200, 200))  # create a new image using PIL
+        im_io = BytesIO()  # a StringIO object for saving image
+        im.save(im_io, 'JPEG')  # save the image to im_io
+        im_io.seek(0)  # seek to the beginning
+
+        image = InMemoryUploadedFile(
+            im_io, None, 'random-name.jpg', 'image/jpeg', im_io, None
+        )
+
+        file_dict = {'files': image}
+
         form_data = {
                      'text': self.text,
-                     'user_to': self.email
+                     'user_to': self.email,
+                     'files': file_dict
                      }
         form = self.form_class(data=form_data)
         self.assertTrue(form.is_valid())
