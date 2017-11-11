@@ -25,14 +25,22 @@
           <td>{{ prescription1.cid }}</td>
           <td>{{ prescription1.patient.name }}</td>
 
+          <!--  list medicines -->
           <td>
           {% for medicine in list_medicine %}
             {% if  medicine.prescription_medicine.pk == prescription1.pk %}
                 {{ medicine.medicine.name }};
             {% endif %}
           {% endfor %}
+
+          {% for medicine in list_manipulated_medicine %}
+            {% if  medicine.prescription_medicine.pk == prescription1.pk %}
+                {{ medicine.manipulated_medicine.recipe_name }};
+            {% endif %}
+          {% endfor %}
           </td>
 
+          <!--  list recommendations -->
           <td>
           {% for recommendation in list_recommendation %}
             {% if  recommendation.prescription.pk == prescription1.pk %}
@@ -41,8 +49,15 @@
           {% endfor %}
           </td>
 
+          <!--  list exams -->
           <td>
-          {% for exam in list_exam %}
+          {% for exam in list_default_exam %}
+            {% if  exam.prescription.pk == prescription1.pk %}
+                {{ exam.exam.description }};
+            {% endif %}
+          {% endfor %}
+
+          {% for exam in list_custom_exam %}
             {% if  exam.prescription.pk == prescription1.pk %}
                 {{ exam.exam.description }};
             {% endif %}
@@ -57,14 +72,22 @@
           <td>{{ prescription2.cid }}</td>
           <td>{{ prescription2.patient }}</td>
 
+          <!--  list medicines -->
           <td>
           {% for medicine in list_medicine %}
             {% if  medicine.prescription_medicine.pk == prescription2.pk %}
                 {{ medicine.medicine.name }};
             {% endif %}
           {% endfor %}
+
+          {% for medicine in list_manipulated_medicine %}
+            {% if  medicine.prescription_medicine.pk == prescription2.pk %}
+                {{ medicine.manipulated_medicine.recipe_name }};
+            {% endif %}
+          {% endfor %}
           </td>
 
+          <!--  list recommendation -->
           <td>
           {% for recommendation in list_recommendation %}
             {% if  recommendation.prescription.pk == prescription2.pk %}
@@ -73,8 +96,16 @@
           {% endfor %}
           </td>
 
+          <!--  list exams -->
           <td>
-          {% for exam in list_exam %}
+          {% for exam in list_default_exam %}
+            {% if  exam.prescription.pk == prescription2.pk %}
+                {{ exam.exam.description }};
+            {% endif %}
+          {% endfor %}
+
+
+          {% for exam in list_custom_exam %}
             {% if  exam.prescription.pk == prescription2.pk %}
                 {{ exam.exam.description }};
             {% endif %}

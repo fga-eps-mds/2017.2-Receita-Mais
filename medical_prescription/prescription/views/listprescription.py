@@ -9,7 +9,9 @@ from prescription.models import (PatientPrescription,
                                  NoPatientPrescription,
                                  PrescriptionRecommendation,
                                  PrescriptionHasMedicine,
-                                 PrescriptionDefaultExam)
+                                 PrescriptionDefaultExam,
+                                 PrescriptionCustomExam,
+                                 PrescriptionHasManipulatedMedicine,)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -30,5 +32,7 @@ class ListPrescription(TemplateView):
                                                                                   ),
               'list_recommendation': PrescriptionRecommendation.objects.all(),
               'list_medicine': PrescriptionHasMedicine.objects.all(),
-              'list_exam': PrescriptionDefaultExam.objects.all(),
+              'list_manipulated_medicine': PrescriptionHasManipulatedMedicine.objects.all(),
+              'list_default_exam': PrescriptionDefaultExam.objects.all(),
+              'list_custom_exam': PrescriptionCustomExam.objects.all(),
               }
