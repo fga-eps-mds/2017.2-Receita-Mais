@@ -15,7 +15,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+          <form class="center-block g-width-500--sm g-width-550--md" method='POST' action='' enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
               {% for error in form.user_to.errors %}
@@ -40,10 +40,10 @@
             </li>
 
             <div class="form-group">
-              {% for error in form.image.errors %}
+              {% for error in form.files.errors %}
                   <div class="alert alert-danger" role="alert">{{ error }}</div>
               {% endfor %}
-              {{ form.image }}
+              {{form.files}}
             </div>
             </li>
 
