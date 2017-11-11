@@ -5,7 +5,7 @@
      <a href="{% url 'list_prescription' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
    </li>
    <li id="tag-custom">
-     <a data-toggle="nab-tabs" href="{% url 'list_prescription_no_patient' %}">{% trans "Personalizados" %}</a>
+     <a data-toggle="nab-tabs" href="#">{% trans "Personalizados" %}</a>
    </li>
  </ul>
  <div class="panel-body">
@@ -21,28 +21,28 @@
 
     <tbody>
 
-      {% for prescription in list_prescription %}
+      {% for prescription1 in list_prescription %}
         <tr class='clickable-row'>
-          <td>{{ prescription.cid }}</td>
-          <td>{{ prescription.patient.name }}</td>
-          <td>{{ show_recomendations.recomendation }}</td>
-          <td>{{ prescription. }}</td>
-          <td>{{ prescription. }}</td>
+          <td>{{ prescription1.cid }}</td>
+          <td>{{ prescription1.patient.name }}</td>
+          {% for recomendation1 in list_recommendation %}
+          <td>{{ recomendation1.recommendation }}</td>
+          {% endfor %}
+          <td>{{ prescription1. }}</td>
+          <td>{{ prescription1. }}</td>
         </tr>
+        {% endfor %}
 
-      {% empty %}
-
-        <li>{% trans "Não existem prescrições cadastradas." %}</li>
-
-      {% endfor %}
-      {% for recomendation in show_recomendations %}
+        {% for prescription2 in list_prescription_no_patient %}
         <tr class='clickable-row'>
-          <td>{{ recomendation }}</td>
+          <td>{{ prescription2.cid }}</td>
+          <td>{{ prescription2.patient }}</td>
+          {% for recomendation2 in list_recommendation %}
+          <td>{{ recomendation2.recommendation }}</td>
+          {% endfor %}
+          <td>{{ prescription2. }}</td>
+          <td>{{ prescription2. }}</td>
         </tr>
-
-      {% empty %}
-
-        <li>{% trans "Não existem rec cadastradas." %}</li>
 
       {% endfor %}
     </tbody>
