@@ -37,5 +37,4 @@ urlpatterns = (
     url(r'^unarchive_message_patient/(?P<pk>[\w-]+)$', UnarchiveMessagePatientView.post, name='unarchive_message_patient'),
     url(r'^unarchive_message_health_professional/(?P<pk>[\w-]+)$',
         UnarchiveMessageHealthProfessionalView.post, name='unarchive_message_health_professional'),
-
 )
