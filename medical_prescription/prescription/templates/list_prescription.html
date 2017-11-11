@@ -25,7 +25,7 @@
         <tr class='clickable-row'>
           <td>{{ prescription.cid }}</td>
           <td>{{ prescription.patient.name }}</td>
-          <td>{{ prescription. }}</td>
+          <td>{{ show_recomendations.recomendation }}</td>
           <td>{{ prescription. }}</td>
           <td>{{ prescription. }}</td>
         </tr>
@@ -33,6 +33,16 @@
       {% empty %}
 
         <li>{% trans "Não existem prescrições cadastradas." %}</li>
+
+      {% endfor %}
+      {% for recomendation in show_recomendations %}
+        <tr class='clickable-row'>
+          <td>{{ recomendation }}</td>
+        </tr>
+
+      {% empty %}
+
+        <li>{% trans "Não existem rec cadastradas." %}</li>
 
       {% endfor %}
     </tbody>
