@@ -56,7 +56,7 @@ class AutoCompleteExam(View):
         for default_exam in queryset:
             default_exam_item = {}
             default_exam_item['value'] = self.parse_description(default_exam.description)
-            default_exam_item['id'] = default_exam.id_tuss
+            default_exam_item['id'] = default_exam.auto_increment_id
             default_exam_item['type'] = 'default_exam'
             default_exam_item['description'] = self.parse_description(default_exam.description)
 

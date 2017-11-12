@@ -24,7 +24,7 @@ function cloneMore(selector, prefix, functionJson, field) {
       'id': id
     }).val('').removeAttr('checked');
     $(this).prop("readonly", false);
-    if (id.includes(field)) {
+    if (id.endsWith(field)) {
       autocompleteElement(this, functionJson, field);
     }
   });

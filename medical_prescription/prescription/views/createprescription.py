@@ -99,8 +99,8 @@ class CreatePrescriptionView(FormView):
             # Nothing to do.
             pass
 
-    def create_prescription_default_exam(self, prescription, id_tuss):
-        default_exam = DefaultExam.objects.get(pk=id_tuss)
+    def create_prescription_default_exam(self, prescription, exam_id):
+        default_exam = DefaultExam.objects.get(pk=exam_id)
         prescription_default_exam_object = PrescriptionDefaultExam(
             prescription=prescription,
             exam=default_exam
