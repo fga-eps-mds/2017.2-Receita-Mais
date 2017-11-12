@@ -6,7 +6,7 @@ from disease.models import Disease
 from medicine.models import ManipulatedMedicine
 from user.models import Patient, HealthProfessional
 from prescription.views import CreatePrescriptionView
-from prescription.models import NoPatientPrescription
+from prescription.models import NoPatientPrescription, PatientPrescription
 
 
 class TestCreatePrescription(TestCase):
@@ -68,8 +68,12 @@ class TestCreatePrescription(TestCase):
     @patch('prescription.models.NoPatientPrescription.save', MagicMock(name="save"))
     @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_health_professional(self):
-        context = {'form-TOTAL_FORMS': 1,
-                   'form-INITIAL_FORMS': 0,
+        context = {'form_medicine-TOTAL_FORMS': 1,
+                   'form_medicine-INITIAL_FORMS': 0,
+                   'form_reccomendation-TOTAL_FORMS': 1,
+                   'form_reccomendation-INITIAL_FORMS': 0,
+                   'form_exam-TOTAL_FORMS': 1,
+                   'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
                    'patient_id': 0,
                    'cid_id': 1,
@@ -88,8 +92,38 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # # Check save was called
-        # self.assertTrue(NoPatientPrescription.save.called)
-        # self.assertEqual(NoPatientPrescription.save.call_count, 1)
+        self.assertTrue(NoPatientPrescription.save.called)
+        self.assertEqual(NoPatientPrescription.save.call_count, 1)
+
+    @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    def test_prescription_post_with_health_professional_patient(self):
+        context = {'form_medicine-TOTAL_FORMS': 1,
+                   'form_medicine-INITIAL_FORMS': 0,
+                   'form_reccomendation-TOTAL_FORMS': 1,
+                   'form_reccomendation-INITIAL_FORMS': 0,
+                   'form_exam-TOTAL_FORMS': 1,
+                   'form_exam-INITIAL_FORMS': 0,
+                   'patient': "JOAO",
+                   'patient_id': 1,
+                   'cid_id': 1,
+                   'medicine_type': 'manipulated_medicine',
+                   'medicine_id': 1,
+                   'quantity': 10,
+                   'posology': 'nao fazer nada',
+                   'via': 'Via oral',
+                   }
+
+        request = self.factory.post('/prescription/create_modal/', context)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CreatePrescriptionView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+        # # Check save was called
+        self.assertTrue(PatientPrescription.save.called)
+        self.assertEqual(PatientPrescription.save.call_count, 1)
 
     def test_prescription_get_with_health_professional(self):
 
