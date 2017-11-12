@@ -21,7 +21,7 @@ from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  PatientPrescription,
                                  NoPatientPrescription
                                  )
-from exam.models import CustomExam
+from exam.models import DefaultExam, CustomExam
 from disease.models import Disease
 from user.models import (Patient,
                          HealthProfessional,
@@ -87,7 +87,7 @@ class CreatePrescriptionView(FormView):
 
         exam_type = form.cleaned_data.get('exam_type')
         if exam_type == 'default_exam':
-            id_tuss = form.cleaned_data.get('id_tuss')
+            id_tuss = form.cleaned_data.get('exam_id')
             self.create_prescription_default_exam(exam_prescription,
                                                   id_tuss)
         elif exam_type == 'custom_exam':
@@ -100,18 +100,19 @@ class CreatePrescriptionView(FormView):
             pass
 
     def create_prescription_default_exam(self, prescription, id_tuss):
+        default_exam = DefaultExam.objects.get(pk=id_tuss)
         prescription_default_exam_object = PrescriptionDefaultExam(
             prescription=prescription,
-            exam=id_tuss
+            exam=default_exam
             )
         prescription_default_exam_object.save()
 
     def create_prescription_custom_exam(self, prescription, exam_id, request):
-        # custom_exam = CustomExam.objects.get(pk=exam_id)
+        custom_exam = CustomExam.objects.get(pk=exam_id)
 
         prescription_custom_exam_object = PrescriptionCustomExam(
             prescription=prescription,
-            exam=exam_id,
+            exam=custom_exam,
             )
 
         prescription_custom_exam_object.save()

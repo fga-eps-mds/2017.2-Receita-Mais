@@ -71,21 +71,25 @@ class TestCreatePrescription(TestCase):
         context = {'form-TOTAL_FORMS': 1,
                    'form-INITIAL_FORMS': 0,
                    'patient': "JOAO",
+                   'patient_id': 0,
                    'cid_id': 1,
                    'medicine_type': 'manipulated_medicine',
                    'medicine_id': 1,
                    'quantity': 10,
                    'posology': 'nao fazer nada',
-                   'recommendation': 'Tomar o remedio pelas manhas',
-                   'via': 'Via Oral'
+                   'via': 'Via oral',
                    }
 
-        request = self.factory.post('/prescription/create_modal/')
+        request = self.factory.post('/prescription/create_modal/', context)
         request.user = self.health_professional
 
         # Get the response
         response = CreatePrescriptionView.as_view()(request)
         self.assertEqual(response.status_code, 200)
+
+        # # Check save was called
+        # self.assertTrue(NoPatientPrescription.save.called)
+        # self.assertEqual(NoPatientPrescription.save.call_count, 1)
 
     def test_prescription_get_with_health_professional(self):
 
