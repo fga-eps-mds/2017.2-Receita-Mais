@@ -13,3 +13,5 @@ htmlcov
 !**/migrations
 !**/migrations/__init__.py
 .sonar/
+.ropeproject/
+**/public/**

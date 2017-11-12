@@ -13,5 +13,6 @@ class PrescriptionHasMedicine(models.Model):
     """
     posology = models.CharField(max_length=constants.MAX_LENGTH_POSOLOGY)
     quantity = models.IntegerField(choices=constants.QUANTITY_CHOICES)
+    via = models.CharField(default=constants.VIA_CHOICES[0][0], blank=False, max_length=constants.MAX_LENGTH_VIA)
     prescription_medicine = models.ForeignKey(Prescription)
     medicine = models.ForeignKey(Medicine)

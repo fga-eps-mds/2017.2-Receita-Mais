@@ -14,6 +14,7 @@ $.getScript(sortable);
 $('#add_more').click(function() {
     cloneMore('div.table:last', 'form', "{% url 'autocomplete_exam' %}", "exam");
 });
+
 // Autocomplete methods.
 autocompleteElement('#id_form-0-exam', "{% url 'autocomplete_exam' %}", "exam");
 autocompleteElement('#id_cid', "{% url 'autocomplete_cid' %}", "cid");
