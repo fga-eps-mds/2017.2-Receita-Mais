@@ -3,6 +3,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from datetime import date
+from django.core import paginator
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -33,6 +34,17 @@ class SentMessageDetailView(DetailView, FormMixin):
 
     def get_context_data(self, **kwargs):
         context = super(SentMessageDetailView, self).get_context_data(**kwargs)
+
+        messages_page = self.request.GET.get('page')
+        messages = Response.objects.filter(message__id=context['object'].id)
+        messages_paginator = paginator.Paginator(messages, 15)
+
+        try:
+            messages_page_object = messages_paginator.page(messages_page)
+        except (paginator.PageNotAnInteger, paginator.EmptyPage):
+            messages_page_object = messages_paginator.page(1)
+
+        context['messages'] = messages_page_object
         context['form'] = self.get_form()
         return context
 

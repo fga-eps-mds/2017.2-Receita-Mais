@@ -21,3 +21,7 @@ class MedicinePrescriptionForm(forms.Form):
 
     posology = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
                                                              'placeholder': 'Posologia'}), required=False)
+
+    via = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control',
+                                                       'placeholder': 'Via'}),
+                            choices=constants.VIA_CHOICES)
