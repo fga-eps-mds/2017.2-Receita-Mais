@@ -31,7 +31,7 @@
           {% if prescription.nopatientprescription %}
             <td>{{ prescription.nopatientprescription.patient }}</td>
           {% else %}
-            <td>asd{{ prescription.patientprescription.patient.name }}</td>
+            <td>{{ prescription.patientprescription.patient.name }}</td>
           {% endif %}
 
           <!--  list medicines -->
@@ -48,9 +48,13 @@
           </td>
 
           <!--  list recommendations -->
-          <!--  TODO modifying recommendations in model prescription before -->
           <td>
-              TODO
+          {% for recommendation in prescription.recommendation_prescription.all %}
+                {{ recommendation.recommendation|truncatechars:25 }};
+          {% endfor %}
+
+          <span class="badge">  {{ prescription.recommendation_prescription.all.count}}</span>
+
           </td>
 
           <!--  list exams -->
