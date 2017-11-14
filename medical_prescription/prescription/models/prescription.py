@@ -19,7 +19,9 @@ class Prescription(models.Model):
                                             on_delete=models.CASCADE)
 
     medicines = models.ManyToManyField(Medicine, through='PrescriptionHasMedicine', related_name='medicines')
-    manipulated_medicines = models.ManyToManyField(ManipulatedMedicine, through='PrescriptionHasManipulatedMedicine', related_name='manipulated_medicines')
+    manipulated_medicines = models.ManyToManyField(ManipulatedMedicine, through='PrescriptionHasManipulatedMedicine',
+                                                   related_name='manipulated_medicines')
     custom_exams = models.ManyToManyField(CustomExam, through='PrescriptionCustomExam', related_name='custom_exams')
     default_exams = models.ManyToManyField(DefaultExam, through='PrescriptionDefaultExam', related_name='default_exams')
-    # TODO Make reccomendations in many to many 
+    recommendation_prescription = models.ManyToManyField('Recommendation', through='PrescriptionRecommendation',
+                                                         related_name='recommendation_prescription')
