@@ -19,7 +19,8 @@ from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  PrescriptionDefaultExam,
                                  PrescriptionCustomExam,
                                  PatientPrescription,
-                                 NoPatientPrescription
+                                 NoPatientPrescription,
+                                 Recommendation
                                  )
 from exam.models import DefaultExam, CustomExam
 from disease.models import Disease
@@ -164,8 +165,12 @@ class CreatePrescriptionView(FormView):
 
         recommendation = form_recommendation.cleaned_data.get('recommendation')
         if recommendation is not None:
+
+            recommendation_object = Recommendation(recommendation=recommendation)
+            recommendation_object.save()
+
             prescription_recommendation_object = PrescriptionRecommendation(
-                prescription=prescription_object, recommendation=recommendation)
+                prescription=prescription_object, recommendation=recommendation_object)
 
             prescription_recommendation_object.save()
 

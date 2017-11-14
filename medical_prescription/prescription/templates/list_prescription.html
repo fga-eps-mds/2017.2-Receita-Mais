@@ -1,0 +1,104 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+
+  <ul class="nav nav-tabs">
+   <li class="active">
+     <a href="{% url 'list_prescription' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
+   </li>
+   <li id="tag-custom">
+     <a data-toggle="nab-tabs" href="#">{% trans "Personalizados" %}</a>
+   </li>
+ </ul>
+ <div class="panel-body">
+  <!-- tab component -->
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <th>CID</th>
+      <th>Paciente</th>
+      <th>Medicamentos</th>
+      <th>Recomendações</th>
+      <th>Exames</th>
+    </thead>
+
+    <tbody>
+      {% for prescription in list_prescription %}
+        <tr class='clickable-row'>
+          {% if  prescription.cid %}
+            <td>{{ prescription.cid }}</td>
+          {% else %}
+              <td>------</td>
+          {% endif %}
+
+          {% if prescription.nopatientprescription %}
+            <td>{{ prescription.nopatientprescription.patient }}</td>
+          {% else %}
+            <td>{{ prescription.patientprescription.patient.name }}</td>
+          {% endif %}
+
+          <!--  list medicines -->
+          <td>
+          {% for medicine in prescription.medicines.all %}
+                {{ medicine.name|truncatechars:25 }};
+          {% endfor %}
+
+          {% for medicine in prescription.manipulated_medicines.all %}
+                {{ medicine.recipe_name|truncatechars:25 }};
+          {% endfor %}
+          <span class="badge">{{ prescription.medicines.all.count|add:prescription.manipulated_medicines.all.count}}</span>
+
+          </td>
+
+          <!--  list recommendations -->
+          <td>
+          {% for recommendation in prescription.recommendation_prescription.all %}
+                {{ recommendation.recommendation|truncatechars:25 }};
+          {% endfor %}
+
+          <span class="badge">  {{ prescription.recommendation_prescription.all.count}}</span>
+
+          </td>
+
+          <!--  list exams -->
+          <td>
+          {% for exam in prescription.default_exams.all %}
+                {{ exam.description|truncatechars:25 }};
+          {% endfor %}
+
+          {% for exam in prescription.custom_exams.all %}
+                {{ exam.description|truncatechars:25 }};
+          {% endfor %}
+          <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
+          </td>
+
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  {% comment "Source" %}
+  <p>Retirado de: https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html</p>
+  {% endcomment %}
+
+  {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+
+{%endblock %}
