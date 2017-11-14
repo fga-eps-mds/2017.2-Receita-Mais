@@ -1,0 +1,210 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
+
+<script>
+        var formset = "{% static "prescription/js/formset.js" %}";
+        var sortable = "{% static "prescription/js/sortable.js" %}";
+
+        $.getScript(formset);
+        $.getScript(sortable);
+
+</script>
+
+  <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
+    <div class="modal-header">
+      <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+      <h3 class="modal-title">Prescrição</h3>
+    </div>
+
+      <div class="modal-body modal-open">
+
+        <!-- This fields are responsable off patient information. -->
+        {% csrf_token %}
+        <div class="form-group">
+          {% for error in prescription_form.patient.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ prescription_form.patient.name }}"> Paciente: </label>
+          {{prescription_form.patient}}
+          <br>
+          <label id="id_hidden_email" class="hidden-email"> Email: </label>
+          {{prescription_form.email}}
+        </div>
+
+        <div class="form-group ">
+          {% for error in form.cid.errors %}
+          <div class="alert alert-danger" role="alert">{{error}}</div>
+          {% endfor %}
+          <label for="id_{{ prescription_form.cid.name }}"> Doença: </label> {{prescription_form.cid}}
+        </div>
+
+        <!-- Hidden fields -->
+        {{prescription_form.patient_id}}
+        {{prescription_form.cid_id}}
+        <hr>
+
+        <!-- This are the tabs in prescription -->
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a data-toggle="tab" href="#home">Medicamento</a></li>
+            <li><a data-toggle="tab" href="#menu2">Exames</a></li>
+            <li><a data-toggle="tab" href="#menu3">Recomendações</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- This tab is where the medice take place in prescription. -->
+          <!-- This tab have been set as the default. -->
+            <div id="home" class="tab-pane fade in active">
+                <br>
+
+                  {{ form_medicine.management_form }}
+                  {% for atom_form in form_medicine %}
+                  <ul id='object_medicine' class='list-medicine'>
+                    <div class="table_medicine row col-md-12" hidden>
+                      <div class="panel panel-default" id="panel">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-sm-11">
+                                {{ atom_form.via }}
+                              </div>
+                              <div class="col-sm-1">
+                                <div class="col-md-1">
+                                  <a class="remove-medicine fa fa-times fa-2x" type="button"/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel-body">
+
+                                <li>
+                                  <div class="col-md-11">
+                                    <div class="row g-row-col-3">
+                                        <div class="col-sm-9">
+                                            {% for error in atom_form.medicine.errors %}
+                                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                                            {% endfor %}
+                                            {{atom_form.medicine}}
+                                         </div>
+
+                                         <div class="col-sm-3">
+                                            {% for error in atom_form.quantity.errors %}
+                                            <div class="alert alert-danger" role="alert">{{error}}</div>
+                                            {% endfor %}{{atom_form.quantity}}
+                                          </div>
+                                      </div>
+
+                                      <div class="row g-row-col-3">
+                                        <div class="col-sm-9">
+                                          {% for error in atom_form.posology.errors %}
+                                          <div class="alert alert-danger" role="alert">{{error}}</div>
+                                          {% endfor %}
+                                          {{atom_form.posology}}
+                                        </div>
+                                      </div>
+                                      <!-- Hidden fields -->
+                                        {{atom_form.medicine_id}}
+                                        {{atom_form.medicine_type}}
+                                      </div>
+                                    <!-- <div class="col-md-1">
+                                      <a class="remove-medicine fa fa-times fa-2x" type="button"/>
+                                    </div> -->
+                                </li>
+
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                  {% endfor %}
+
+                  <div class="input-group-btn" align="center">
+                      <br>
+                      <button class="btn btn-success" value="Add More" id="add_more" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                  </div>
+                  <br>
+                  <br>
+
+                        <!-- End Via Panel structure -->
+            </div>
+
+            <!-- This tab is where the exams take place in prescription. -->
+            <div id="menu2" class="tab-pane fade">
+
+                {{ form_exam.management_form }}
+                {% for atom_form in form_exam %}
+                <ul id='object_exam'>
+                  <div class="table_exam" hidden>
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {% for error in atom_form.exam.errors %}
+                              <div class="alert alert-danger" role="alert">{{error}}</div>
+                              {% endfor %}
+                              {{atom_form.exam}}
+                              <!-- Hidden inputs -->
+                              {{atom_form.exam_id}}
+                              {{atom_form.exam_type}}
+                           </div>
+                        </div>
+                     <div class="col-md-1 remove-div">
+                       <a class="remove-exam fa fa-times fa-2x" type="button"/>
+                     </div>
+                   </div>
+                     </li>
+                  </div>
+                </ul>
+
+                {% endfor %}
+                <div align="center">
+                  <button class="btn btn-success align="center"" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                </div>
+            </div>
+
+            <!-- This tab is where the recommendations take place in prescription. -->
+            <div id="menu3" class="tab-pane fade">
+
+                {{ form_recommendation.management_form }}
+                {% for recommendationField in form_recommendation %}
+
+                <ul id='object_recommendation'>
+                  <div class="table_recommendation" hidden>
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {% for error in recommendationField.recommendation.errors %}
+                              <div class="alert alert-danger" role="alert">{{error}}</div>
+                              {% endfor %}
+                              {{recommendationField.recommendation}}
+                           </div>
+                         </div>
+                         <div class="col-md-1 remove-div">
+                           <a class="remove-recommendation fa fa-times fa-2x" type="button"/>
+                         </div>
+                       </div>
+                     </li>
+                  </div>
+                </ul>
+
+
+                {% endfor %}
+
+                <div class="input-group-btn" align="center">
+                    <br>
+                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_reccomendation" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    <br>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+</form>
