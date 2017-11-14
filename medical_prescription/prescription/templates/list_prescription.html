@@ -17,6 +17,7 @@
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
+      <th>Imprimir</th>
     </thead>
 
     <tbody>
@@ -68,6 +69,8 @@
           {% endfor %}
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
+
+          <td><a href='#'><i class="fa fa-print"></i></a></td>
 
           </tr>
         {% endfor %}

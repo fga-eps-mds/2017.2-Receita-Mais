@@ -1,4 +1,3 @@
-class HealthProfessional(models.Model, User)
 *.pyc
 __pycache__
 virtual/
