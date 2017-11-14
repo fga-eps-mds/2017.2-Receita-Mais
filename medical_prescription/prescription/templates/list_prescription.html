@@ -1,4 +1,4 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %} {% load common %}
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
   <ul class="nav nav-tabs">
    <li class="active">
@@ -102,12 +102,3 @@
 </div>
 
 {%endblock %}
-
-{% if work and is_public_work %}
-    {% ifequal link_class 'info_box pull-right' %}
-        {% set ga_label = 'card' %}
-    {% else %}
-        {% set ga_label = ga_label_detail %}
-    {% endifequal %}
-    <a class="{{ ga_label }}">123</a>
-{% endif %}
