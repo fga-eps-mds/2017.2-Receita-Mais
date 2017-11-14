@@ -6,3 +6,4 @@ from .prescription_has_medicine import PrescriptionHasMedicine
 from .prescriptionrecommendation import PrescriptionRecommendation
 from .prescriptiondefaultexam import PrescriptionDefaultExam
 from .prescriptioncustomexam import PrescriptionCustomExam
+from .recommendation import Recommendation
