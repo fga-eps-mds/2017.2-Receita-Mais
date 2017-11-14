@@ -25,3 +25,4 @@ class Prescription(models.Model):
     default_exams = models.ManyToManyField(DefaultExam, through='PrescriptionDefaultExam', related_name='default_exams')
     recommendation_prescription = models.ManyToManyField('Recommendation', through='PrescriptionRecommendation',
                                                          related_name='recommendation_prescription')
+    is_favorite = models.BooleanField(default=False)

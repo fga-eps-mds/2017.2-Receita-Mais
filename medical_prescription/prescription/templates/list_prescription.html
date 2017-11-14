@@ -17,6 +17,7 @@
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
+      <th></th>
     </thead>
 
     <tbody>
@@ -69,6 +70,13 @@
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
 
+          <td>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-default" id="favorite_button" onclick="myFunction()">
+              <span class="fa fa-star-o" aria-hidden="true" style="color:grey" id="favorite_star"></span>
+            </button>
+          </td>
+
           </tr>
         {% endfor %}
     </tbody>
@@ -101,4 +109,23 @@
 {% endif %}
 </div>
 
+<script>
+    function myFunction() {
+        var star = document.getElementById("favorite_star");
+
+        if(star.className == "fa fa-star-o"){
+            star.className = "fa fa-star"
+            star.style = "color:orange"
+        }
+        else {
+            star.className = "fa fa-star-o"
+            star.style = "color:grey"
+        }
+
+        $.ajax({
+                 type: "POST",
+                 url: "{% url 'favorite_prescription' %}"
+        });
+    }
+</script>
 {%endblock %}
