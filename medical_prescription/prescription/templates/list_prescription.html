@@ -113,14 +113,15 @@
 </div>
 
 <script>
-    $(".post-likes").click(function() {
-       $.ajax({
-           url: $(".post-likes").attr("url-prescription"),
-           type: "POST",
-           dataType: "json",
-           data: {  csrfmiddlewaretoken: "{{ csrf_token }}"},
-        });
-    });
+$(document).on('click', '.post-likes', function(){
+  var url = $(this).attr("url-prescription");
+  $.ajax({
+    url: url,
+    type: "POST",
+    dataType: "json",
+    data: { csrfmiddlewaretoken: "{{ csrf_token }}"},
+  });
+});
 </script>
 
 {%endblock %}
