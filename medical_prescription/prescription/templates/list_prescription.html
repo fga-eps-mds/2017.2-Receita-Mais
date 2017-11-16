@@ -12,17 +12,28 @@
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
     <thead>
+      <th></th>
       <th>CID</th>
       <th>Paciente</th>
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
-      <th></th>
     </thead>
 
     <tbody>
       {% for prescription in list_prescription %}
         <tr class='clickable-row'>
+
+            <td>
+              <button class="likes post-likes" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
+                 {% if prescription.is_favorite %}
+                 <span class="fa fa-star" style="color:orange"></span>
+                 {% else %}
+                 <span class="fa fa-star-o" style="color:black"></span>
+                 {% endif %}
+             </button>
+            </td>
+
           {% if  prescription.cid %}
             <td>{{ prescription.cid }}</td>
           {% else %}
@@ -70,16 +81,6 @@
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
 
-          <td>
-            <button class="likes post-likes" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
-               {% if prescription.is_favorite %}
-               <span class="fa fa-star" style="color:orange"></span>
-               {% else %}
-               <span class="fa fa-star-o" style="color:black"></span>
-               {% endif %}
-           </button>
-          </td>
-
           </tr>
         {% endfor %}
     </tbody>
@@ -118,12 +119,7 @@ $(document).on('click', '.post-likes', function(){
     var class_span = $(this).find('span').attr("class");
     console.log(class_span);
 
-    if (class_span == 'fa fa-star'){
-        $(this).find('span').removeClass('fa fa-star');
-        $(this).find('span').addClass('fa fa-star-o');
-        $(this).find('span').css('color', 'black');
-    }
-    else {
+    if (class_span == 'fa fa-star-o') {
         $(this).find('span').removeClass('fa fa-star-o');
         $(this).find('span').addClass('fa fa-star');
         $(this).find('span').css('color', 'orange');

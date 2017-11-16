@@ -12,6 +12,10 @@ from prescription.models import Prescription
 
 class AddFavoritePrescription(View):
 
+    """
+    This class is responsible for make a prescription favorite.
+    """
+
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
     def post(self, request, pk, *args, **kwargs):
@@ -19,12 +23,8 @@ class AddFavoritePrescription(View):
         if request.method == 'POST':
             prescription = Prescription.objects.get(pk=pk)
 
-            if prescription.is_favorite:
-                print('unfavorite')
-                prescription.is_favorite = False
-            else:
-                print("favorite")
-                prescription.is_favorite = True
+            print("favorite")
+            prescription.is_favorite = True
 
             prescription.save()
 
