@@ -60,4 +60,6 @@ $(function () {
     $("#prescription-table").on("click", ".js-delete-prescription", loadForm);
     $("#modal-prescription").on("submit", ".js-prescription-delete-form", saveForm);
 
+    $(".js-show-prescription").click(loadForm)
+
 });
