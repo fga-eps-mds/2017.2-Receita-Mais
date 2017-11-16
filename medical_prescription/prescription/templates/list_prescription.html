@@ -29,9 +29,9 @@
           {% endif %}
 
           {% if prescription.nopatientprescription %}
-            <td>{{ prescription.nopatientprescription.patient }}</td>
+            <td><a href="{% url 'show_prescription' prescription.pk %}" >{{ prescription.nopatientprescription.patient }}</a></td>
           {% else %}
-            <td>{{ prescription.patientprescription.patient.name }}</td>
+            <td><a href="{% url 'show_prescription' prescription.pk %}" >  {{ prescription.patientprescription.patient.name }} </a></td>
           {% endif %}
 
           <!--  list medicines -->

@@ -15,6 +15,7 @@ class ShowDetailPrescriptionView(DetailView):
     Print done prescription.
     """
     template_name = 'show_detail_prescription.html'
+    context_object_name = 'form_medicine'
 
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
