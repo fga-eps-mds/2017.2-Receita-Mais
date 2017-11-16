@@ -53,9 +53,9 @@
           <!-- This tab have been set as the default. -->
             <div id="home" class="tab-pane fade in active">
                 <br>
-                  {% for medicine in prescription.medicines.all %}
+                  {% for medicine in prescription_medicine %}
                   <ul id='object_medicine' class='list-medicine'>
-                    <div class="table_medicine row col-md-12" hidden>
+                    <div class="table_medicine row col-md-12">
                       <div class="panel panel-default" id="panel">
                           <div class="panel-heading">
                             <div class="row">
@@ -65,18 +65,21 @@
                             </div>
                           </div>
                           <div class="panel-body">
-
                                 <li>
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
                                         <div class="col-sm-9">
-                                            {{medicine.medicine}}
+                                            {{medicine.medicine.name}}
                                          </div>
+
+                                         <div class="col-sm-3">
+                                            {{medicine.quantity}}
+                                          </div>
                                       </div>
 
                                       <div class="row g-row-col-3">
                                         <div class="col-sm-9">
-                                          {{atom_form.posology}}
+                                          {{medicine.posology}}
                                         </div>
                                       </div>
                                   </div>
@@ -86,6 +89,40 @@
                     </div>
                   </ul>
                   {% endfor %}
+                  {% for manipulated_medicine in prescription_manipulated_medicine %}
+                  <ul id='object_medicine' class='list-medicine'>
+                    <div class="table_medicine row col-md-12">
+                      <div class="panel panel-default" id="panel">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-sm-11">
+                                {{ manipulated_medicine.via }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel-body">
+
+                                <li>
+                                  <div class="col-md-11">
+                                    <div class="row g-row-col-3">
+                                        <div class="col-sm-9">
+                                            {{manipulated_medicine.medicine.name}}
+                                         </div>
+                                      </div>
+
+                                      <div class="row g-row-col-3">
+                                        <div class="col-sm-9">
+                                          {{manipulated_medicine.posology}}
+                                        </div>
+                                      </div>
+                                  </div>
+                                </li>
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                  {% endfor %}
+
                   <br>
                   <br>
 
