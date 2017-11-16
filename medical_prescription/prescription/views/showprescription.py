@@ -25,9 +25,10 @@ class ShowDetailPrescriptionView(DetailView):
     # Return a JSON's prescription.
     def get(self, request, *args, **kwargs):
         data = dict()
-        context = self.get_context(request)
+        prescription = self.get_context(request)
+        context = {'prescription': prescription}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
-
+        print(prescription)
         # Json to communication Ajax.
         return JsonResponse(data)
 
