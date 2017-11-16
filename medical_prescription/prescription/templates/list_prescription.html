@@ -73,9 +73,9 @@
           <td>
             <button class="likes post-likes" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
                {% if prescription.is_favorite %}
-               <i class="fa fa-star" style="color:orange"></i>
+               <span class="fa fa-star" style="color:orange"></span>
                {% else %}
-               <i class="fa fa-star-o" style="color:black"></i>
+               <span class="fa fa-star-o" style="color:black"></span>
                {% endif %}
            </button>
           </td>
@@ -114,14 +114,30 @@
 
 <script>
 $(document).on('click', '.post-likes', function(){
-  var url = $(this).attr("url-prescription");
-  $.ajax({
-    url: url,
-    type: "POST",
-    dataType: "json",
-    data: { csrfmiddlewaretoken: "{{ csrf_token }}"},
-  });
+
+    var class_span = $(this).find('span').attr("class");
+    console.log(class_span);
+
+    if (class_span == 'fa fa-star'){
+        $(this).find('span').removeClass('fa fa-star');
+        $(this).find('span').addClass('fa fa-star-o');
+        $(this).find('span').css('color', 'black');
+    }
+    else {
+        $(this).find('span').removeClass('fa fa-star-o');
+        $(this).find('span').addClass('fa fa-star');
+        $(this).find('span').css('color', 'orange');
+    }
+
+    var url = $(this).attr("url-prescription");
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: {  csrfmiddlewaretoken: "{{ csrf_token }}"},
+    });
 });
-</script>
+ </script>
 
 {%endblock %}
