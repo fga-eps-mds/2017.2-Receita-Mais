@@ -2,6 +2,7 @@
 __pycache__
 virtual/
 .vscode/
+.idea/
 db.sqlite3
 .DS_Store
 .coverage

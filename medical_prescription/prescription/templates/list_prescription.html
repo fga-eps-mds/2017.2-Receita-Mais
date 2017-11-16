@@ -70,7 +70,7 @@
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
 
-          <td><a href='#'><i class="fa fa-print"></i></a></td>
+          <td><a href='{% url 'print_prescription' prescription.id %}'><i class="fa fa-print"></i></a></td>
 
           </tr>
         {% endfor %}
