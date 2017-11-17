@@ -41,3 +41,9 @@ PATIENT_INVALID = "This field is required."
 
 # Empty constants
 EMPTY = 0
+
+# Constants for print prescription
+MAX_LENGTH_CLINIC = 150
+MAX_LENGTH_HEADER = 150
+MAX_LENGTH_FOOTER = 150
+MAX_LENGTH_NAME = 50
