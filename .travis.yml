@@ -17,3 +17,10 @@ before_install:
 
 install:
   - docker-compose up --build -d
+
+script:
+  - docker-compose start
+  - docker-compose exec web sh coverage.sh
+
+after_success:
+  - docker-compose run web sh coveragereport.sh
