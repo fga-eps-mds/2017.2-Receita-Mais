@@ -24,3 +24,8 @@ script:
 
 after_success:
   - docker-compose run web sh coveragereport.sh
+
+deploy:
+  provider: heroku
+  api_key: 23aa7d96-9281-4214-a819-67df415bad3d
+  app: preskribe
