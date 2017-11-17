@@ -8,6 +8,7 @@ from reportlab.pdfgen import canvas
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, PageBreak, Spacer, Image)
 from reportlab.lib.pagesizes import LETTER
 from django.http import HttpResponse
+from reportlab.lib.utils import ImageReader
 
 # Local Django imports
 from user.decorators import is_health_professional
@@ -33,6 +34,8 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_canvas(self, page_count):
         page = "Page %s of %s" % (self._pageNumber, page_count)
+        logo = ImageReader("medical_prescription/static/img/user.png")
+
         x = 128
         self.saveState()
         self.setStrokeColorRGB(0, 0, 0)
@@ -42,8 +45,10 @@ class NumberedCanvas(canvas.Canvas):
         self.drawString(LETTER[0]-x, 65, page)
         self.setLineWidth(.3)
 
-        self.drawString(30, 750, 'CLINICA ALGUM')
-        self.drawString(30, 735, 'NOME LOGO')
+        self.drawImage(logo, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
+
+        self.drawString(30, 715, 'CLINICA ALGUM')
+        self.drawString(30, 705, 'NOME LOGO')
         self.drawString(500, 750, "12/12/2010")
 
         self.drawString(275, 725, 'PACIENTE:')
@@ -71,9 +76,6 @@ def generate_pdf(self, pk):
                             pagesize=letter)
 
     elements = []
-    logo = "medical_prescription/prescription/views/user.png"
-    im = Image(logo, 2 * inch, 2 * inch)
-    elements.append(im)
 
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
