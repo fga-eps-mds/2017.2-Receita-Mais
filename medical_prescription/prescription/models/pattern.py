@@ -17,8 +17,8 @@ class Pattern(models.Model):
     name = models.CharField(max_length=constants.MAX_LENGTH_NAME)
     user_creator = models.ForeignKey(User, related_name="user_creator")
 
-    font = models.CharField(choices=constants.FONT_CHOICE, max_length=10, default=constants.TIMES_ROMAN)
-    size_font = models.CharField(choices=constants.FONT_SIZE_CHOICE, max_length=10, default=constants.TWELVE)
+    font = models.CharField(choices=constants.FONT_CHOICE, max_length=100, default=constants.TIMES_ROMAN)
+    font_size = models.CharField(choices=constants.FONT_SIZE_CHOICE, max_length=100, default=constants.TWELVE)
 
     clinic = models.CharField(max_length=constants.MAX_LENGTH_CLINIC)
     header = models.CharField(max_length=constants.MAX_LENGTH_HEADER)
