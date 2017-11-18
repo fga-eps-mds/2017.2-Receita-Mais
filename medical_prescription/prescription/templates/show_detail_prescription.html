@@ -132,14 +132,14 @@
             <!-- This tab is where the exams take place in prescription. -->
             <div id="menu2" class="tab-pane fade">
 
-                {% for atom_form in form_exam %}
+                {% for exam in prescription.custom_exams.all %}
                 <ul id='object_exam'>
-                  <div class="table_exam" hidden>
+                  <div class="table_exam">
                     <li>
                       <div class="row">
                         <div class="col-md-11">
                           <div class="form-group">
-                              {{atom_form.exam}}
+                              {{ exam.description|truncatechars:185 }}
                            </div>
                         </div>
                    </div>
@@ -148,19 +148,44 @@
                 </ul>
 
                 {% endfor %}
+
+                {% for exam in prescription.default_exams.all %}
+                <ul id='object_exam'>
+                  <div class="table_exam">
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {{ exam.description|truncatechars:185 }}
+                           </div>
+                        </div>
+                      </div>
+                     </li>
+                  </div>
+                </ul>
+
+                {% endfor %}
+<!--
+                {% for exam in prescription.default_exams.all %}
+                      {{ exam.description|truncatechars:25 }};
+                {% endfor %}
+
+                {% for exam in prescription.custom_exams.all %}
+                      {{ exam.description|truncatechars:25 }};
+                {% endfor %} -->
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
             <div id="menu3" class="tab-pane fade">
 
-                {% for recommendationField in form_recommendation %}
+                {% for recomendation in prescription.recommendation_prescription.all %}
                 <ul id='object_recommendation'>
                   <div class="table_recommendation">
                     <li>
                       <div class="row">
                         <div class="col-md-11">
                           <div class="form-group">
-                              {{recommendationField.recommendation}}
+                              {{ recomendation.recommendation|truncatechars:185 }}
                            </div>
                          </div>
                        </div>
@@ -168,6 +193,7 @@
                   </div>
                 </ul>
                 {% endfor %}
+
             </div>
         </div>
     </div>

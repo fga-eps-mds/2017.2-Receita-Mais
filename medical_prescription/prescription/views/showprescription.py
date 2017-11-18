@@ -28,14 +28,17 @@ class ShowDetailPrescriptionView(DetailView):
     # Return a JSON's prescription.
     def get(self, request, *args, **kwargs):
         data = dict()
+
         prescription = self.get_context(request)
         prescription_medicine = self.get_has_medicine(prescription)
         prescription_manipulated_medicine = self.get_has_manipulated_medicine(prescription)
+
         context = {
             'prescription': prescription,
             'prescription_medicine': prescription_medicine,
             'prescription_manipulated_medicine': prescription_manipulated_medicine,
             }
+
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         print(prescription_medicine)
         for x in prescription_medicine:
