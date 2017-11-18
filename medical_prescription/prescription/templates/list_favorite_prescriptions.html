@@ -1,14 +1,14 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
   <ul class="nav nav-tabs">
-   <li class="active">
+   <li>
      <a href="{% url 'list_prescription' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
    </li>
    <li id="tag-custom">
      <a data-toggle="nab-tabs" href="#">{% trans "Personalizadas" %}</a>
    </li>
-   <li id="tag-favorite">
-     <a data-toggle="nab-tabs" href="{% url 'list_favorite_prescription' %}">{% trans "Favoritas" %}</a>
+   <li class="active" id="tag-favorite">
+     <a data-toggle="nab-tabs" href="{% url 'list_favorite_prescription' %}" >{% trans "Favoritas" %}</a>
    </li>
  </ul>
  <div class="panel-body">
@@ -24,7 +24,7 @@
     </thead>
 
     <tbody>
-      {% for prescription in list_prescription %}
+      {% for prescription in list_favorite_prescriptions %}
         <tr class='clickable-row'>
 
             <td>

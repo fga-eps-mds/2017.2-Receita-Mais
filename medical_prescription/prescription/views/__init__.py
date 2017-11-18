@@ -6,3 +6,4 @@ from .autocompletemedicine import AutoCompleteMedicine
 from .createprescription import CreatePrescriptionView
 from .listprescription import ListPrescription
 from .favorite_prescription import FavoritePrescription
+from .listfavoriteprescription import ListFavoritePrescription
