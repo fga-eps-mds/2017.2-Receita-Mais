@@ -119,7 +119,12 @@ $(document).on('click', '.post-likes', function(){
     var class_span = $(this).find('span').attr("class");
     console.log(class_span);
 
-    if (class_span == 'fa fa-star-o') {
+    if (class_span == 'fa fa-star'){
+        $(this).find('span').removeClass('fa fa-star');
+        $(this).find('span').addClass('fa fa-star-o');
+        $(this).find('span').css('color', 'black');
+    }
+    else {
         $(this).find('span').removeClass('fa fa-star-o');
         $(this).find('span').addClass('fa fa-star');
         $(this).find('span').css('color', 'orange');

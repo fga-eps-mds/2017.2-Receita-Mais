@@ -5,4 +5,4 @@ from .openprescriptionview import OpenPrescriptionView
 from .autocompletemedicine import AutoCompleteMedicine
 from .createprescription import CreatePrescriptionView
 from .listprescription import ListPrescription
-from .add_favorite_prescription import AddFavoritePrescription
+from .favorite_prescription import FavoritePrescription

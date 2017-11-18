@@ -10,10 +10,10 @@ from user.decorators import is_health_professional
 from prescription.models import Prescription
 
 
-class AddFavoritePrescription(View):
+class FavoritePrescription(View):
 
     """
-    This class is responsible for make a prescription favorite.
+    This class adds and removes a favorite prescription.
     """
 
     @method_decorator(login_required)
@@ -23,8 +23,15 @@ class AddFavoritePrescription(View):
         if request.method == 'POST':
             prescription = Prescription.objects.get(pk=pk)
 
-            print("favorite")
-            prescription.is_favorite = True
+            # Remove favorite prescription.
+            if prescription.is_favorite:
+                print('unfavorite')
+                prescription.is_favorite = False
+
+            # Add favorite prescription.
+            else:
+                print("favorite")
+                prescription.is_favorite = True
 
             prescription.save()
 
