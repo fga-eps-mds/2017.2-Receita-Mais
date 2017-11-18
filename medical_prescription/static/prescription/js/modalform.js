@@ -14,7 +14,7 @@ $(function () {
             success: function (data) {
                 $("#modal-prescription .modal-content").html("");
                 $("#modal-prescription").modal("show");
-                modalIsCreated = true;
+                modalIsCreated = false;
                 $("#modal-prescription .modal-content").html(data.html_form);
             }
         });

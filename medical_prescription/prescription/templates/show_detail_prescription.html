@@ -10,7 +10,6 @@
         var sortable = "{% static "prescription/js/sortable.js" %}";
 
         $.getScript(formset);
-        $.getScript(sortable);
 </script>
 
   <div class="js-prescription-create-form">
@@ -26,16 +25,26 @@
         <div class="form-group">
           <label> Paciente: </label>
           {% if prescription.nopatientprescription %}
-          {{prescription.nopatientprescription.patient}}
+          <div class="form-control">
+              {{prescription.nopatientprescription.patient}}
+          </div>
           {% else %}
-          {{prescription.patientprescription.patient.name}} <br>
-          {{prescription.patientprescription.patient.email}}
+          <div class="form-control">
+              {{prescription.patientprescription.patient.name}} <br>
+          </div>
+          <br>
+          <label>Email:</label>
+          <div class="form-control">
+              {{prescription.patientprescription.patient.email}}
+          </div>
           {% endif %}
         </div>
         {% if prescription.cid %}
             <div class="form-group ">
                 <label> Doença: </label>
-                {{prescription.cid}}
+                <div class="form-control">
+                    {{prescription.cid}}
+                </div>
             </div>
         {% endif %}
 
@@ -60,7 +69,10 @@
                           <div class="panel-heading">
                             <div class="row">
                               <div class="col-sm-11">
-                                {{ medicine.via }}
+                                  <div class="form-control">
+                                      {{ medicine.via }}
+
+                                  </div>
                               </div>
                             </div>
                           </div>
@@ -69,17 +81,24 @@
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
                                         <div class="col-sm-9">
-                                            {{medicine.medicine.name}}
+                                            <div class="form-control">
+                                                {{medicine.medicine.name}}
+                                            </div>
                                          </div>
 
                                          <div class="col-sm-3">
-                                            {{medicine.quantity}}
+                                             <div class="select-quantity">
+                                                 {{medicine.quantity}}
+                                             </div>
                                           </div>
                                       </div>
 
                                       <div class="row g-row-col-3">
                                         <div class="col-sm-9">
-                                          {{medicine.posology}}
+                                            <div class="form-control">
+                                                {{medicine.posology}}
+
+                                            </div>
                                         </div>
                                       </div>
                                   </div>
@@ -96,7 +115,10 @@
                           <div class="panel-heading">
                             <div class="row">
                               <div class="col-sm-11">
-                                {{ manipulated_medicine.via }}
+                                  <div class="form-control">
+                                      {{ manipulated_medicine.via }}
+                                  </div>
+
                               </div>
                             </div>
                           </div>
@@ -106,13 +128,23 @@
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
                                         <div class="col-sm-9">
-                                            {{manipulated_medicine.medicine.name}}
+                                            <div class="form-control">
+                                                {{manipulated_medicine.medicine.name}}
+                                            </div>
                                          </div>
+                                         <div class="col-sm-3">
+                                             <div class="select-quantity">
+                                                 {{medicine.quantity}}
+                                             </div>
+                                          </div>
                                       </div>
 
                                       <div class="row g-row-col-3">
                                         <div class="col-sm-9">
-                                          {{manipulated_medicine.posology}}
+                                            <div class="form-control">
+                                                {{manipulated_medicine.posology}}
+
+                                            </div>
                                         </div>
                                       </div>
                                   </div>
@@ -139,7 +171,9 @@
                       <div class="row">
                         <div class="col-md-11">
                           <div class="form-group">
-                              {{ exam.description|truncatechars:185 }}
+                              <div class="form-control">
+                                  {{ exam.description|truncatechars:175 }}
+                              </div>
                            </div>
                         </div>
                    </div>
@@ -156,7 +190,9 @@
                       <div class="row">
                         <div class="col-md-11">
                           <div class="form-group">
-                              {{ exam.description|truncatechars:185 }}
+                              <div class="form-control">
+                                  {{ exam.description|truncatechars:175 }}
+                              </div>
                            </div>
                         </div>
                       </div>
@@ -165,14 +201,6 @@
                 </ul>
 
                 {% endfor %}
-<!--
-                {% for exam in prescription.default_exams.all %}
-                      {{ exam.description|truncatechars:25 }};
-                {% endfor %}
-
-                {% for exam in prescription.custom_exams.all %}
-                      {{ exam.description|truncatechars:25 }};
-                {% endfor %} -->
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
@@ -185,7 +213,9 @@
                       <div class="row">
                         <div class="col-md-11">
                           <div class="form-group">
-                              {{ recomendation.recommendation|truncatechars:185 }}
+                              <div class="form-control">
+                                  {{ recomendation.recommendation|truncatechars:185 }}
+                              </div>
                            </div>
                          </div>
                        </div>
