@@ -1,4 +1,4 @@
-# Django
+# Third-Party
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import LETTER
