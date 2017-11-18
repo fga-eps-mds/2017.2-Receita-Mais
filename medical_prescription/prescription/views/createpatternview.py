@@ -42,7 +42,7 @@ class CreatePatternView(FormView):
             clinic = form.cleaned_data.get('clinic')
 
             font = form.cleaned_data.get('font')
-            size_font = form.cleaned_data.get('size_font')
+            size_font = form.cleaned_data.get('font_size')
 
             # Create a Prescription type
             pattern_instance = Pattern()
