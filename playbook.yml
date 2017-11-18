@@ -1,0 +1,60 @@
+---
+- hosts: "web"
+  vars:
+    path: /medical_prescription/
+    data: db.fixture.json
+    dbname: Thiago
+    dbuser: admin
+    dbpassword: admin123
+
+  remote_user: ubuntu
+  tasks:
+    - name: "Dependencias"
+      become: true
+      apt:
+        name: "{{item}}"
+      with_items:
+        - python-pip
+        - python-psycopg2
+        - libpq-dev
+        - postgresql
+        - postgresql-contrib
+
+    - name: "Django"
+      become: true
+      pip:
+        name: django
+        version: 1.11
+
+    - name: "Banco de Dados"
+      become: true
+      become_user: postgres
+      postgresql_db: name={{ dbname }}
+
+    - name: "Usuario"
+      become: true
+      become_user: postgres
+      postgresql_user: name={{ dbuser }} password={{ dbpassword }} state=present role_attr_flags=NOSUPERUSER,CREATEDB
+
+    - name: "Permissões no banco"
+      become: true
+      become_user: postgres
+      postgresql_user: user={{ dbuser }} db={{ dbname }} priv=ALL
+
+    - name: "Makemigrations"
+      django_manage: command=makemigrations app_path={{ path }}
+
+    - name: "Migrate"
+      django_manage: command=migrate app_path={{ path }}
+
+    - name: "Insert Banco"
+      become: true
+      become_user: postgres
+      django_manage:
+        command: loaddata
+        app_path: "{{ path }}"
+        fixtures: "{{ data }}"
+
+    - name: Install Nginx
+      apt: pkg=nginx state=installed update_cache=true
+      become: true
