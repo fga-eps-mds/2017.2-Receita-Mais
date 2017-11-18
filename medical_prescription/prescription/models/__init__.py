@@ -7,4 +7,4 @@ from .prescriptionrecommendation import PrescriptionRecommendation
 from .prescriptiondefaultexam import PrescriptionDefaultExam
 from .prescriptioncustomexam import PrescriptionCustomExam
 from .recommendation import Recommendation
-from .printprescription import PrintPrescription
+from .pattern import Pattern
