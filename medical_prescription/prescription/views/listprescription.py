@@ -16,6 +16,7 @@ class ListPrescription(ListView):
     context_object_name = 'list_prescription'
     model = Prescription
     paginate_by = 20
+    ordering = ['-date_created']
 
     @method_decorator(login_required)
     @method_decorator(is_health_professional)

@@ -12,6 +12,7 @@
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
     <thead>
+      <th></th>
       <th>CID</th>
       <th>Paciente</th>
       <th>Medicamentos</th>
@@ -22,6 +23,17 @@
     <tbody>
       {% for prescription in list_prescription %}
         <tr class='clickable-row'>
+
+            <td>
+              <button class="likes post-likes" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
+                 {% if prescription.is_favorite %}
+                 <span class="fa fa-star" style="color:orange"></span>
+                 {% else %}
+                 <span class="fa fa-star-o" style="color:black"></span>
+                 {% endif %}
+             </button>
+            </td>
+
           {% if  prescription.cid %}
             <td>{{ prescription.cid }}</td>
           {% else %}
@@ -100,5 +112,28 @@
   </ul>
 {% endif %}
 </div>
+
+<script>
+$(document).on('click', '.post-likes', function(){
+
+    var class_span = $(this).find('span').attr("class");
+    console.log(class_span);
+
+    if (class_span == 'fa fa-star-o') {
+        $(this).find('span').removeClass('fa fa-star-o');
+        $(this).find('span').addClass('fa fa-star');
+        $(this).find('span').css('color', 'orange');
+    }
+
+    var url = $(this).attr("url-prescription");
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        data: {  csrfmiddlewaretoken: "{{ csrf_token }}"},
+    });
+});
+ </script>
 
 {%endblock %}
