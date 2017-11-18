@@ -6,3 +6,4 @@ from .autocompletemedicine import AutoCompleteMedicine
 from .createprescription import CreatePrescriptionView
 from .listprescription import ListPrescription
 from .header_footer import HeaderFooter
+from .createpatternview import CreatePatternView

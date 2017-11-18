@@ -1,18 +1,8 @@
-import os
-from io import BytesIO
-from reportlab.lib.pagesizes import letter, A4
-from reportlab.lib.units import mm, inch
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_CENTER
+# Django
+from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
-from reportlab.platypus import (SimpleDocTemplate, Paragraph, PageBreak, Spacer, Image)
 from reportlab.lib.pagesizes import LETTER
-from django.http import HttpResponse
 from reportlab.lib.utils import ImageReader
-
-# Local Django imports
-from user.decorators import is_health_professional
-from prescription.models import Prescription
 
 
 class HeaderFooter(canvas.Canvas):
