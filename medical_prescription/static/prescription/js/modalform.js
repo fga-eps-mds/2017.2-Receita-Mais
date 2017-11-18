@@ -14,7 +14,7 @@ $(function () {
             success: function (data) {
                 $("#modal-prescription .modal-content").html("");
                 $("#modal-prescription").modal("show");
-                modalIsCreated = true;
+                modalIsCreated = false;
                 $("#modal-prescription .modal-content").html(data.html_form);
             }
         });
@@ -59,5 +59,7 @@ $(function () {
     // Delete prescription
     $("#prescription-table").on("click", ".js-delete-prescription", loadForm);
     $("#modal-prescription").on("submit", ".js-prescription-delete-form", saveForm);
+
+    $(".js-show-prescription").click(loadForm)
 
 });

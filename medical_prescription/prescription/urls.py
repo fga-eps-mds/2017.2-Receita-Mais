@@ -10,7 +10,9 @@ from .views import (AutoCompleteExam,
                     CreatePrescriptionView,
                     ListPrescription,
                     FavoritePrescription,
-                    ListFavoritePrescription)
+                    ListFavoritePrescription,
+                    ShowDetailPrescriptionView,
+                    ListPrescription)
 
 urlpatterns = (
     url(r'^$', OpenPrescriptionView.as_view(), name='create_prescription'),
@@ -23,4 +25,6 @@ urlpatterns = (
     url(r'^list_prescription/$', ListPrescription.as_view(), name='list_prescription'),
     url(r'^favorite_prescription/(?P<pk>[0-9]+)/$', FavoritePrescription.as_view(), name='favorite_prescription'),
     url(r'^list_favorite_prescription/$', ListFavoritePrescription.as_view(), name='list_favorite_prescription'),
+    url(r'^show_prescription/(?P<pk>[\w-]+)$', ShowDetailPrescriptionView.as_view(),
+        name='show_prescription'),
     )
