@@ -29,5 +29,5 @@ class PatternForm(forms.Form):
 
     logo = forms.FileField(required=False)
 
-    font = forms.ChoiceField(choices=constants.FONT_SIZE_CHOICE)
-    font_size = forms.ChoiceField(choices=constants.FONT_CHOICE)
+    font = forms.ChoiceField(choices=constants.FONT_CHOICE)
+    font_size = forms.ChoiceField(choices=constants.FONT_SIZE_CHOICE)
