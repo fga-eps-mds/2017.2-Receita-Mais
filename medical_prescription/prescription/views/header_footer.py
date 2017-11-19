@@ -1,3 +1,5 @@
+import os
+
 # Third-Party
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
@@ -24,7 +26,7 @@ class HeaderFooter(canvas.Canvas):
 
     def draw_canvas(self, page_count):
         page = "Page %s of %s" % (self._pageNumber, page_count)
-        logo = ImageReader("medical_prescription/static/img/user.png")
+        # logo = ImageReader("medical_prescription/static/img/user.png")
 
         x = 128
         self.saveState()
@@ -35,7 +37,7 @@ class HeaderFooter(canvas.Canvas):
         self.drawString(LETTER[0]-x, 65, page)
         self.setLineWidth(.3)
 
-        self.drawImage(logo, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
+        # self.drawImage(logo, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
 
         self.drawString(30, 715, 'CLINICA ALGUM')
         self.drawString(30, 705, 'NOME LOGO')

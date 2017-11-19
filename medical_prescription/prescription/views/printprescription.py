@@ -18,9 +18,9 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 
 
-@method_decorator(login_required)
-@method_decorator(is_health_professional)
-def generate_pdf(self, pk):
+# @method_decorator(login_required)
+# @method_decorator(is_health_professional)
+def generate_pdf(request, pk):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="My Users.pdf"'
 
@@ -42,7 +42,7 @@ def generate_pdf(self, pk):
 
     # Draw things on the PDF. Here's where the PDF generation happens.
 
-    if len(prescription.medicines.all()) != 0:
+    if len(prescription.medicines.all()) != 0 or prescription.manipulated_medicines.all() != 0:
         elements.append(Paragraph('Medicamentos', styles['Heading1']))
         for medicine in prescription.medicines.all():
             elements.append(Paragraph(medicine.name, styles['Normal']))
@@ -78,7 +78,7 @@ def generate_pdf(self, pk):
         pass
 
     elements.append(Spacer(1, 12))
-    if len(prescription.default_exams.all()) != 0:
+    if len(prescription.default_exams.all()) != 0 or len(prescription.custom_exams.all()) != 0:
         elements.append(Paragraph('Exames', styles['Heading1']))
         for default_exams in prescription.default_exams.all():
             elements.append(Paragraph(default_exams.description, styles['Normal']))
