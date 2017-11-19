@@ -1,0 +1,88 @@
+{% extends "dashboardHealthProfessional/template.html" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load static %}
+{% load i18n %}
+
+<!-- Panel -->
+
+{% csrf_token %}
+<div class = "col-sm-4 center-block center">
+    <form action=''  method="POST" enctype="multipart/form-data">
+
+      {% csrf_token %}
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Nome do Modelo" %}</span>
+      </font>
+      {% for error in form.name.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      {{ form.name }}
+
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Clinica" %}</span>
+      </font>
+      {% for error in form.clinic.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      {{ form.clinic }}
+
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Header" %}</span>
+      </font>
+      {% for error in form.header.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      {{ form.header }}
+
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Footer" %}</span>
+      </font>
+      {% for error in form.footer.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      {{ form.footer }}
+      <br>
+
+
+      <font size ="5">
+        <span class="label label-primary">{% trans "Fonte" %}</span>
+      </font>
+      {% for error in form.font.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+       {{ form.font }}
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Tamanho da Fonte" %}</span>
+      </font>
+      {% for error in form.font_size.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      {{ form.font_size }}
+      <br>
+
+      <font size="5">
+        <span class="label label-primary">{% trans "Logo" %}</span>
+      </font>
+      {% for error in form.logo.errors %}
+          <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endfor %}
+      {{ form.logo }}
+      <br>
+
+       <br><br>
+
+       <button type ="submit" class = "btn btn-success">{% trans "Enviar" %}</button>
+    </form>
+</div>
+{% endblock %}
