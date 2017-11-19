@@ -83,9 +83,14 @@
           {% endfor %}
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
+          <td>
+              <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
+          </td>
 
           </tr>
         {% endfor %}
+
+
     </tbody>
   </table>
 
