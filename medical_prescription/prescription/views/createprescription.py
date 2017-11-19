@@ -174,32 +174,37 @@ class CreatePrescriptionView(FormView):
 
             prescription_recommendation_object.save()
 
+    # Rendering form view.
     def get(self, request, *args, **kwargs):
-        """
-        Rendering form in view.
-        """
+
         prescription_form = CreatePrescriptionForm(request.GET or None)
+
+        # Save objects of fields in database.
         form_medicine = self.MedicinePrescriptionFormSet(request.GET or None, prefix='form_medicine')
         form_recommendation = self.RecommendationPrescriptionFormSet(request.GET or None, prefix='form_reccomendation')
         form_exam = self.ExamPrescriptionFormSet(request.GET or None, prefix='form_exam')
 
+        # Get context.
         data = dict()
         context = {'prescription_form': prescription_form,
                    'form_medicine': form_medicine,
                    'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
+
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
         return JsonResponse(data)
 
+    # Save data in the form in database.
     def post(self, request, *args, **kwargs):
-        """
-        Save data in the form in database.
-        """
+
         prescription_form = CreatePrescriptionForm(request.POST or None)
+
+        # Save objcts of fields in database.
         form_medicine = self.MedicinePrescriptionFormSet(request.POST or None, prefix='form_medicine')
         form_recommendation = self.RecommendationPrescriptionFormSet(request.POST or None, prefix='form_reccomendation')
         form_exam = self.ExamPrescriptionFormSet(request.POST or None, prefix='form_exam')
+
         data = dict()
 
         # Checks whether the completed forms are valid.
@@ -207,11 +212,14 @@ class CreatePrescriptionView(FormView):
         atomic_is_valid = False
         form_recommendation_is_valid = False
         form_exam_is_valid = False
+
         if prescription_form.is_valid():
             default_is_valid = True
+
             if form_medicine.is_valid():
                 atomic_is_valid = True
                 prescription_medicine_object = self.create_prescription(prescription_form, request)
+
                 for atomic_form in form_medicine:
                     self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
 
@@ -220,6 +228,7 @@ class CreatePrescriptionView(FormView):
                     for recommendation_field in form_recommendation:
                         self.add_recommendation_in_prescription(recommendation_field, prescription_medicine_object)
 
+                    # Verirfy exam and adding fields in prescription.
                     if form_exam.is_valid():
                         form_exam_is_valid = True
                         for exam_atomic_form in form_exam:
