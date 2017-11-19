@@ -5,12 +5,17 @@ from django.http import JsonResponse
 # Local Django
 from prescription.views import CreatePrescriptionView
 from prescription.forms import (CreatePrescriptionForm)
+from prescription.models import Prescription
 
 
 class CreateCopyPrescription(CreatePrescriptionView):
 
     # Rendering form view.
     def get(self, request, *args, **kwargs):
+
+        # Get prescritption.
+
+        prescription_base = Prescription.objects.get(pk=self.kwargs['pk'])
 
         prescription_form = CreatePrescriptionForm(request.GET or None)
 

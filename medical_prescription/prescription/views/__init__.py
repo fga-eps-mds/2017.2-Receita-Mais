@@ -8,3 +8,4 @@ from .listprescription import ListPrescription
 from .favorite_prescription import FavoritePrescription
 from .listfavoriteprescription import ListFavoritePrescription
 from .showprescription import ShowDetailPrescriptionView
+from .create_copy_prescription import CreateCopyPrescription
