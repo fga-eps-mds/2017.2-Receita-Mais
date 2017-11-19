@@ -21,6 +21,7 @@
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
+      <th>Imprimir</th>
     </thead>
 
     <tbody>
@@ -86,6 +87,8 @@
           <td>
               <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
           </td>
+
+          <td><a href='{% url 'print_prescription' prescription.id %}'><i class="fa fa-print"></i></a></td>
 
           </tr>
         {% endfor %}
