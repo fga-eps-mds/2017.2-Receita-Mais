@@ -31,9 +31,10 @@ from user.models import (Patient,
 
 class CreatePrescriptionView(FormView):
     """
-    Responsible for rendering to fields.
+        Responsible for rendering to fields.
     """
     template_name = 'show_prescription_medicine.html'
+
     # Defines that these forms will have multiple instances.
     MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
     RecommendationPrescriptionFormSet = formset_factory(RecommendationPrescriptionForm)
