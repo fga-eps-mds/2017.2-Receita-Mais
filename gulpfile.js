@@ -5,7 +5,10 @@ var browserSync = require('browser-sync').create();
 var runsequence = require('run-sequence');
 var reload = browserSync.reload;
 
-var directory = './medical_prescription/**'
+var directoryjs = './medical_prescription/**/*.js'
+var directorycss = './medical_prescription/**/*.css'
+var directoryhtml = './medical_prescription/**/*.html'
+
 var dist = "./dist"
 
 gulp.task('browserSync', function() {
@@ -17,11 +20,15 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(directory,['files']);
+  gulp.watch(directoryjs,['files']);
+  gulp.watch(directoryhtml,['files']);
+  gulp.watch(directorycss,['files']);
 });
 
 gulp.task('reload', function() {
-  gulp.watch(dist+"/**").on('change', browserSync.reload);
+  gulp.watch(directoryjs).on('change', browserSync.reload);
+  gulp.watch(directoryhtml).on('change', browserSync.reload);
+  gulp.watch(directorycss).on('change', browserSync.reload);
 });
 
 gulp.task('files', function() {
