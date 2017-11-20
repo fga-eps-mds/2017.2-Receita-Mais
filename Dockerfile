@@ -10,7 +10,6 @@ ADD package.json /code/
 
 RUN apt-get update -y && \
     apt-get install gettext -y &&\
-    apt-get update -y && \
     apt-get install -y nodejs && \
     apt-get install npm -y && \
     apt-get install nodejs-legacy

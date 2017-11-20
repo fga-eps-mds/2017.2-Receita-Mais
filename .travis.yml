@@ -17,9 +17,7 @@ before_install:
 
 script:
   - docker-compose up --build -d
-  - docker-compose run web python3 medical_prescription/manage.py makemigrations
-  - docker-compose run web python3 medical_prescription/manage.py migrate
-  - docker-compose start
+  - docker-compose run web sh migrate.sh
   - docker-compose exec web sh coverage.sh
 
 after_success:

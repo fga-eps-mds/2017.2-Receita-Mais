@@ -20,9 +20,9 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(directoryjs,['files']);
-  gulp.watch(directoryhtml,['files']);
-  gulp.watch(directorycss,['files']);
+  gulp.watch(directoryjs,['buildjs']);
+  gulp.watch(directoryhtml,['buildhtml']);
+  gulp.watch(directorycss,['buildcss']);
 });
 
 gulp.task('reload', function() {
@@ -31,13 +31,23 @@ gulp.task('reload', function() {
   gulp.watch(directorycss).on('change', browserSync.reload);
 });
 
-gulp.task('files', function() {
-  return gulp.src(directory)
+gulp.task('buildjs', function() {
+  return gulp.src(directoryjs)
+    .pipe(gulp.dest(dist));
+});
+
+gulp.task('buildhtml', function() {
+  return gulp.src(directoryhtml)
+    .pipe(gulp.dest(dist));
+});
+
+gulp.task('buildcss', function() {
+  return gulp.src(directorycss)
     .pipe(gulp.dest(dist));
 });
 
 gulp.task('build', function(cb) {
-  runsequence('files', cb);
+  runsequence('buildjs','buildcss','buildhtml', cb);
 });
 
 gulp.task('default',['browserSync', 'watch','reload']);

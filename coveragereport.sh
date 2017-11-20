@@ -1,0 +1,4 @@
+cd medical_prescription
+coverage
+coverage report
+coveralls
