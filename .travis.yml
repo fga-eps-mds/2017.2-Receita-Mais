@@ -15,10 +15,10 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-install:
-  - docker-compose up --build -d
-
 script:
+  - docker-compose up --build -d
+  - docker-compose run web python3 medical_prescription/manage.py makemigrations
+  - docker-compose run web python3 medical_prescription/manage.py migrate
   - docker-compose start
   - docker-compose exec web sh coverage.sh
 
@@ -27,5 +27,6 @@ after_success:
 
 deploy:
   provider: heroku
-  api_key: 23aa7d96-9281-4214-a819-67df415bad3d
+  api_key: $SECRET_USER_KEY
   app: preskribe
+  on: master
