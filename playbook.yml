@@ -1,5 +1,6 @@
 - name: install docker ce on Ubuntu or Debian
-  hosts: "serverWeb"
+  hosts: 127.0.0.1
+  connection: local
   become: yes
   become_method: sudo
   gather_facts: yes
@@ -7,16 +8,6 @@
   tasks:
   - debug: msg="play_hosts={{play_hosts}}"
   - debug: msg="ansible_distribution={{ansible_distribution}}"
-
-  - name: remove possible old versions
-    apt:
-      name: "{{ item }}"
-      state: absent
-    with_items:
-      - docker
-      - docker-engine
-      - docker.io
-    become: true
 
   - name: install dependencies
     apt:
