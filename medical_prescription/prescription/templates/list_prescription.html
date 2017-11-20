@@ -86,6 +86,9 @@
           <td>
               <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
           </td>
+          <td>
+              <a href="{% url 'copy_prescription' prescription.pk %}">Editar Copia</a>
+          </td>
 
           </tr>
         {% endfor %}

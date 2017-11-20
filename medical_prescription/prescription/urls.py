@@ -28,6 +28,6 @@ urlpatterns = (
     url(r'^list_favorite_prescription/$', ListFavoritePrescription.as_view(), name='list_favorite_prescription'),
     url(r'^show_prescription/(?P<pk>[\w-]+)$', ShowDetailPrescriptionView.as_view(),
         name='show_prescription'),
-    url('r^create_copy_prescription/(?P<pk>[\w-]+)$', CreateCopyPrescription.as_view(),
+    url(r'^create_copy_prescription/(?P<pk>[\w-]+)$', CreateCopyPrescription.as_view(),
         name='copy_prescription'),
     )
