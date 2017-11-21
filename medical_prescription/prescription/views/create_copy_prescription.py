@@ -99,7 +99,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'posology': manipulated_medicine.posology,
                 }
             context.append(manipulated_medicine_context)
-        return self.MedicinePrescriptionFormSet(request.GET or None, initial=context)
+        return self.MedicinePrescriptionFormSet(request.GET or None, initial=context, prefix='form_medicine')
 
     # Get context data of Exams in Prescription.
     def get_initial_exam_formset(self, prescription, request):
@@ -119,7 +119,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'exam_type': 'custom_exam',
                 }
             context.append(custom_exam_context)
-        return self.ExamPrescriptionFormSet(request.GET or None, initial=context)
+        return self.ExamPrescriptionFormSet(request.GET or None, initial=context, prefix='form_exam')
 
     # Get context data of Recommendation in Prescription.
     def get_initial_recommendation_formset(self, prescription, request):
@@ -129,4 +129,6 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'recommendation': recommendation.recommendation,
                 }
             context.append(recommendation_context)
-        return self.RecommendationPrescriptionFormSet(request.GET or None, initial=context)
+        return self.RecommendationPrescriptionFormSet(request.GET or None,
+                                                      initial=context,
+                                                      prefix='form_recommendation')
