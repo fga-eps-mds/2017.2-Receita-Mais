@@ -19,20 +19,35 @@ class CreateCopyPrescription(CreatePrescriptionView):
     """
     template_name = 'create_prescription_copy.html'
 
+    # Get Prescritption.
     def get(self, request, *args, **kwargs):
-        # Get prescritption.
+
         prescription_base = Prescription.objects.get(pk=self.kwargs['pk'])
 
-        specialize_prescription = NoPatientPrescription.objects.get(prescription_ptr=prescription_base)
-        if specialize_prescription.patient is None:
+        try:
+            specialize_prescription = NoPatientPrescription.objects.get(prescription_ptr=prescription_base)
+        except:
+            specialize_prescription = None
+
+        if specialize_prescription is None:
+
             specialize_prescription = PatientPrescription.objects.get(prescription_ptr=prescription_base)
-            prescription_form = CreatePrescriptionForm(request.GET, initial={
-                'patient': specialize_prescription.patient.name,
-                'patient_id': specialize_prescription.patient.pk,
-                'email': specialize_prescription.patient.email,
-                'cid': specialize_prescription.cid.description,
-                'cid_id': specialize_prescription.cid.pk
-            })
+
+            if specialize_prescription.cid is None:
+
+                prescription_form = CreatePrescriptionForm(request.GET, initial={
+                    'patient': specialize_prescription.patient.name,
+                    'patient_id': specialize_prescription.patient.pk,
+                    'email': specialize_prescription.patient.email,
+                })
+            else:
+                prescription_form = CreatePrescriptionForm(request.GET, initial={
+                    'patient': specialize_prescription.patient.name,
+                    'patient_id': specialize_prescription.patient.pk,
+                    'email': specialize_prescription.patient.email,
+                    'cid': specialize_prescription.cid.description,
+                    'cid_id': specialize_prescription.cid.pk
+                })
         else:
             prescription_form = CreatePrescriptionForm(request.GET or None, initial={
                 'patient': specialize_prescription.patient,
@@ -56,6 +71,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
         # Json to communication Ajax.
         return JsonResponse(data)
 
+    # Get context data of Medicine in Prescription.
     def get_initial_medicine_formset(self, prescription, request):
         medicine_models = PrescriptionHasMedicine.objects.filter(prescription_medicine=prescription)
         context = []
@@ -85,6 +101,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
             context.append(manipulated_medicine_context)
         return self.MedicinePrescriptionFormSet(request.GET or None, initial=context)
 
+    # Get context data of Exams in Prescription.
     def get_initial_exam_formset(self, prescription, request):
         context = []
         for default_exam in prescription.default_exams.all():
@@ -104,6 +121,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
             context.append(custom_exam_context)
         return self.ExamPrescriptionFormSet(request.GET or None, initial=context)
 
+    # Get context data of Recommendation in Prescription.
     def get_initial_recommendation_formset(self, prescription, request):
         context = []
         for recommendation in prescription.recommendation_prescription.all():
