@@ -64,6 +64,53 @@
             <div id="home" class="tab-pane fade in active">
                 <br>
 
+                {% for atom_form in form_medicine %}
+                <ul id='object_medicine' class='list-medicine'>
+                  <div class="table_medicine row col-md-12">
+                    <div class="panel panel-default" id="panel">
+                        <div class="panel-heading">
+                          <div class="row">
+                            <div class="col-sm-11">
+                              {{ atom_form.via }}
+                            </div>
+                            <div class="col-sm-1">
+                              <div class="col-md-1">
+                                <a class="remove-medicine fa fa-times fa-2x" type="button"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel-body">
+                              <li>
+                                <div class="col-md-11">
+                                  <div class="row g-row-col-3">
+                                      <div class="col-sm-9">
+                                          {{atom_form.medicine}}
+                                       </div>
+
+                                       <div class="col-sm-3">
+                                          {{atom_form.quantity}}
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-row-col-3">
+                                      <div class="col-sm-9">
+                                        {{atom_form.posology}}
+                                      </div>
+                                    </div>
+                                    <!-- Hidden fields -->
+                                      {{atom_form.medicine_id}}
+                                      {{atom_form.medicine_type}}
+                                    </div>
+                              </li>
+
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                {% endfor %}
+
+
                   {{ form_medicine.management_form }}
                   {% for atom_form in form_medicine %}
                   <ul id='object_medicine' class='list-medicine'>
@@ -82,7 +129,6 @@
                             </div>
                           </div>
                           <div class="panel-body">
-
                                 <li>
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
@@ -136,6 +182,30 @@
             <!-- This tab is where the exams take place in prescription. -->
             <div id="menu2" class="tab-pane fade">
 
+                {% for atom_form in form_exam %}
+                <ul id='object_exam'>
+                  <div class="table_exam">
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {{atom_form.exam}}
+                              <!-- Hidden inputs -->
+                              {{atom_form.exam_id}}
+                              {{atom_form.exam_type}}
+                           </div>
+                        </div>
+                     <div class="col-md-1 remove-div">
+                       <a class="remove-exam fa fa-times fa-2x" type="button"/>
+                     </div>
+                   </div>
+                     </li>
+                  </div>
+                </ul>
+
+                {% endfor %}
+
+
                 {{ form_exam.management_form }}
                 {% for atom_form in form_exam %}
                 <ul id='object_exam'>
@@ -169,6 +239,27 @@
 
             <!-- This tab is where the recommendations take place in prescription. -->
             <div id="menu3" class="tab-pane fade">
+
+                {% for recommendationField in form_recommendation %}
+
+                <ul id='object_recommendation'>
+                  <div class="table_recommendation">
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              {{recommendationField.recommendation}}
+                           </div>
+                         </div>
+                         <div class="col-md-1 remove-div">
+                           <a class="remove-recommendation fa fa-times fa-2x" type="button"/>
+                         </div>
+                       </div>
+                     </li>
+                  </div>
+                </ul>
+                {% endfor %}
+
 
                 {{ form_recommendation.management_form }}
                 {% for recommendationField in form_recommendation %}

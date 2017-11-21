@@ -26,7 +26,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
         specialize_prescription = NoPatientPrescription.objects.get(prescription_ptr=prescription_base)
         if specialize_prescription.patient is None:
             specialize_prescription = PatientPrescription.objects.get(prescription_ptr=prescription_base)
-            prescription_form = CreatePrescriptionForm(initial={
+            prescription_form = CreatePrescriptionForm(request.GET, initial={
                 'patient': specialize_prescription.patient.name,
                 'patient_id': specialize_prescription.patient.pk,
                 'email': specialize_prescription.patient.email,
@@ -34,14 +34,16 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'cid_id': specialize_prescription.cid.pk
             })
         else:
-            prescription_form = CreatePrescriptionForm(initial={
-                'patient': specialize_prescription.patient
+            prescription_form = CreatePrescriptionForm(request.GET or None, initial={
+                'patient': specialize_prescription.patient,
+                'cid': specialize_prescription.cid.description,
+                'cid_id': specialize_prescription.cid.pk
             })
 
         # Save objects of fields in database.
-        form_medicine = self.get_initial_medicine_formset(prescription_base)
-        form_recommendation = self.get_initial_recommendation_formset(prescription_base)
-        form_exam = self.get_initial_exam_formset(prescription_base)
+        form_medicine = self.get_initial_medicine_formset(prescription_base, request)
+        form_recommendation = self.get_initial_recommendation_formset(prescription_base, request)
+        form_exam = self.get_initial_exam_formset(prescription_base, request)
 
         # Get context.
         data = dict()
@@ -54,7 +56,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
         # Json to communication Ajax.
         return JsonResponse(data)
 
-    def get_initial_medicine_formset(self, prescription):
+    def get_initial_medicine_formset(self, prescription, request):
         medicine_models = PrescriptionHasMedicine.objects.filter(prescription_medicine=prescription)
         context = []
         for medicine in medicine_models:
@@ -81,12 +83,9 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'posology': manipulated_medicine.posology,
                 }
             context.append(manipulated_medicine_context)
-        algo = self.MedicinePrescriptionFormSet(initial=context)
-        for i in algo:
-            print(i)
-        return self.MedicinePrescriptionFormSet(initial=context)
+        return self.MedicinePrescriptionFormSet(request.GET or None, initial=context)
 
-    def get_initial_exam_formset(self, prescription):
+    def get_initial_exam_formset(self, prescription, request):
         context = []
         for default_exam in prescription.default_exams.all():
             default_exam_context = {
@@ -103,13 +102,13 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'exam_type': 'custom_exam',
                 }
             context.append(custom_exam_context)
-        return self.ExamPrescriptionFormSet(initial=context)
+        return self.ExamPrescriptionFormSet(request.GET or None, initial=context)
 
-    def get_initial_recommendation_formset(self, prescription):
+    def get_initial_recommendation_formset(self, prescription, request):
         context = []
         for recommendation in prescription.recommendation_prescription.all():
             recommendation_context = {
                 'recommendation': recommendation.recommendation,
                 }
             context.append(recommendation_context)
-        return self.ExamPrescriptionFormSet(initial=context)
+        return self.RecommendationPrescriptionFormSet(request.GET or None, initial=context)
