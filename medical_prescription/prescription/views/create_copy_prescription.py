@@ -65,7 +65,8 @@ class CreateCopyPrescription(CreatePrescriptionView):
         context = {'prescription_form': prescription_form,
                    'form_medicine': form_medicine,
                    'form_recommendation': form_recommendation,
-                   'form_exam': form_exam}
+                   'form_exam': form_exam,
+                   }
 
         data['html_form'] = render_to_string(self.template_name, context, request=request)
         # Json to communication Ajax.
@@ -99,6 +100,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'posology': manipulated_medicine.posology,
                 }
             context.append(manipulated_medicine_context)
+        print(context)
         return self.MedicinePrescriptionFormSet(request.GET or None, initial=context, prefix='form_medicine')
 
     # Get context data of Exams in Prescription.
@@ -119,6 +121,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'exam_type': 'custom_exam',
                 }
             context.append(custom_exam_context)
+        print(context)
         return self.ExamPrescriptionFormSet(request.GET or None, initial=context, prefix='form_exam')
 
     # Get context data of Recommendation in Prescription.
