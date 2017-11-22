@@ -1,0 +1,50 @@
+{
+  "CreationDate": "2017-11-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://localhost:8000/",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link=Login@POS=2",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=form.center-block.g-width-350--xs.g-bg-color--white-opacity-lightest.g-box-shadow__blueviolet-v1.g-padding-x-40--xs.g-padding-y-60--xs.g-radius--4",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "id=id_email",
+      "Value": ""
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_email",
+      "Value": "med@med.com"
+    },
+    {
+      "Command": "type",
+      "Target": "id=id_password",
+      "Value": "medmed"
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "css=button.text-uppercase.btn-block.s-btn.s-btn--md.s-btn--white-bg.g-radius--50.g-padding-x-50--xs.g-margin-b-20--xs",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "/html/body/div/aside/section/ul/li[2]/a/span",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "css=i.fa.fa-print",
+      "Value": ""
+    }
+  ]
+}

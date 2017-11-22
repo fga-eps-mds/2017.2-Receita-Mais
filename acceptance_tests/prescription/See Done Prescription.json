@@ -1,0 +1,75 @@
+{
+  "CreationDate": "2017-11-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://localhost:8000/dashboard_health_professional/health_professional/",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link= Prescrições",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "link=Visualizar@POS=2",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=div.form-control",
+      "Value": "Joao da Silva \\n"
+    },
+    {
+      "Command": "assertText",
+      "Target": "//*[@id=\"modal-prescription\"]/div/div/div/div[2]/div[1]/div[2]",
+      "Value": "pac@pac.com"
+    },
+    {
+      "Command": "click",
+      "Target": "//*[@id=\"modal-prescription\"]/div/div/div/div[2]/div[2]/div",
+      "Value": " F01   Demencia vascular"
+    },
+    {
+      "Command": "assertText",
+      "Target": "//*[@id=\"panel\"]/div[1]/div/div/div",
+      "Value": "Via Intravenosa"
+    },
+    {
+      "Command": "assertText",
+      "Target": "//*[@id=\"panel\"]/div[2]/li/div/div[1]/div[1]/div",
+      "Value": "CEFTAZIDIMA"
+    },
+    {
+      "Command": "assertText",
+      "Target": "//*[@id=\"panel\"]/div[2]/li/div/div[2]/div/div",
+      "Value": "Tomar em jejum durante 10 dias"
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=div.select-quantity",
+      "Value": "1 unidade"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Exames",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "//*[@id=\"object_exam\"]/div/li/div/div/div/div",
+      "Value": "Diálise peritoneal intermitente - agudo ou crônico (por sessão)"
+    },
+    {
+      "Command": "click",
+      "Target": "link=Recomendações",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "//*[@id=\"object_recommendation\"]/div/li/div/div/div/div",
+      "Value": "Fazer caminhada durante 10 dias"
+    }
+  ]
+}
