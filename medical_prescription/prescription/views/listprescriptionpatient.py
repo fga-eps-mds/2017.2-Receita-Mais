@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Local Django imports
 from user.decorators import is_patient
-from prescription.models import Prescription
+from prescription.models import PatientPrescription
 
 
 class ListPatientPrescription(ListView):
@@ -14,7 +14,7 @@ class ListPatientPrescription(ListView):
     '''
     template_name = 'list_patient_prescription.html'
     context_object_name = 'list_patient_prescription'
-    model = Prescription
+    model = PatientPrescription
     paginate_by = 20
     ordering = ['-date_created']
 
