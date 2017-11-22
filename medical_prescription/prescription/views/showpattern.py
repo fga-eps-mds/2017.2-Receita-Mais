@@ -12,7 +12,7 @@ from user.decorators import is_health_professional
 
 class ShowPatternsView(DetailView):
     """
-    See all pa.
+    See all patterns.
     """
     template_name = 'show_patterns.html'
     context_object_name = 'list_patterns'
