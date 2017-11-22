@@ -156,13 +156,13 @@ a:focus {
   Selection
 ------------------------------------*/
 ::selection {
-  color: #fff;
+  color: #000;
   background: #13b1cd;
   text-shadow: none;
 }
 
 ::-webkit-selection {
-  color: #fff;
+  color: #000;
   background: #13b1cd;
   text-shadow: none;
 }
@@ -1658,7 +1658,7 @@ fieldset[disabled] .s-btn {
 
 @media (max-width: 61.9em) {
   .s-header-v2__navbar {
-    background: #fff;
+    background: #ffffff5e;
     box-shadow: 0 0 0.9375rem 0.25rem rgba(34, 35, 36, 0.05);
   }
 }
@@ -1680,7 +1680,7 @@ fieldset[disabled] .s-btn {
 .s-header-v2__navbar-col {
   display: table-cell;
   vertical-align: middle;
-}
+}#ffffff5e
 
 @media (max-width: 61.9em) {
   .s-header-v2__navbar-col {
@@ -1994,7 +1994,7 @@ fieldset[disabled] .s-btn {
 ------------------------------ */
 @media (min-width: 62em) {
   .s-header__shrink .s-header-v2__navbar {
-    background: #fff;
+    background: #ffffff5e;
     box-shadow: 0 0 0.9375rem 0.25rem rgba(34, 35, 36, 0.05);
   }
   /* Toggle */

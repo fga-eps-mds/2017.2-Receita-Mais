@@ -25,26 +25,26 @@ class PatientForm(UserForm):
     Form to register patientl.
     """
 
-    email = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'form-control s-form-v3__input'}), required=False)
+    email = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'form-control s-form-v4__input'}), required=False)
 
     CPF_document = BRCPFField(max_length=14, min_length=11,
-                              widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+                              widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                             'type': 'number',
                                                             'placeholder': '* 12345678911'}))
 
-    CEP = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    CEP = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                         'placeholder': '* 12345678'}))
 
-    UF = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    UF = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                        'placeholder': '* DF'}))
 
-    city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                          'placeholder': '* Brasília'}))
 
-    neighborhood = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    neighborhood = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                                  'placeholder': '* Asa Norte'}))
 
-    complement = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    complement = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                                'size': 200,
                                                                'placeholder': '* Qd 70, Lt 8 Casa 2'}))
 

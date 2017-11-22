@@ -20,9 +20,9 @@ class HealthProfessionalForm(UserForm):
     Form to register health professional.
     """
 
-    crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v3__input',
+    crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                         'placeholder': '* 00000'}))
-    crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v3__input',
+    crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v4__input',
                                                              'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
 
     class Meta:
