@@ -17,8 +17,6 @@ until postgres_ready; do
   >&2 echo "Postgres is unavailable - sleeping"
   sleep 1
 done
-echo "Build"
-./node_modules/.bin/gulp build
 echo "Delete migrations"
 find . -path "*/migrations/*.pyc"  -delete
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
