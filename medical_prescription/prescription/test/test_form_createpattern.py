@@ -19,6 +19,7 @@ class TestFormCreatePattern(TestCase):
         self.font = 'Helvetica'
         self.font_size = '12'
         self.footer = "footer de teste"
+        self.pagesize = "letter"
 
     def test_form_is_valid(self):
         form_data = {
@@ -27,7 +28,8 @@ class TestFormCreatePattern(TestCase):
                 'font': 'Helvetica',
                 'font_size': '12',
                 'header': self.header,
-                'footer': self.footer
+                'footer': self.footer,
+                'pagesize': self.pagesize,
                 }
 
         form = PatternForm(data=form_data)
