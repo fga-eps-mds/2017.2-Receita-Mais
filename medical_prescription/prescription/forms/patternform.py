@@ -27,6 +27,8 @@ class PatternForm(forms.Form):
                                                            'type': 'text',
                                                            'placeholder': _('Footer')}))
 
+    pagesize = forms.ChoiceField(choices=constants.PAGE_SIZE_CHOICE)
+
     logo = forms.FileField(required=False)
 
     font = forms.ChoiceField(choices=constants.FONT_CHOICE)

@@ -61,3 +61,6 @@ FONT_SIZE_CHOICE = ((9, 9), (10, 10), (12, 12), (14, 14))
 
 # DEFAULT PATH IMAGE.
 DEFAULT_IMG = 'medical_prescription/static/img/user.png'
+
+# Page size fields
+PAGE_SIZE_CHOICE = (('letter', 'letter'), ('A4', 'A4'), ('A5', 'A5'))

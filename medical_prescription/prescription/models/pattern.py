@@ -19,9 +19,11 @@ class Pattern(models.Model):
 
     font = models.CharField(choices=constants.FONT_CHOICE, max_length=100, default='Times-Roman')
     font_size = models.CharField(choices=constants.FONT_SIZE_CHOICE, max_length=100, default=12)
+    pagesize = models.CharField(choices=constants.PAGE_SIZE_CHOICE, max_length=100, default='letter')
 
     clinic = models.CharField(max_length=constants.MAX_LENGTH_CLINIC)
     header = models.CharField(max_length=constants.MAX_LENGTH_HEADER)
+    footer = models.CharField(max_length=constants.MAX_LENGTH_FOOTER)
     footer = models.CharField(max_length=constants.MAX_LENGTH_FOOTER)
 
     logo = models.FileField(upload_to=UploadToPathAndRename(os.path.join('logos', 'files')), blank=True, null=True, default=constants.DEFAULT_IMG)
