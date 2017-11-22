@@ -54,12 +54,7 @@ HELVETICA = 'Helvetica'
 ARIAL = 'Arial'
 COURIER = 'Courier'
 
-FONT_CHOICE = ((TIMES_ROMAN, 'Times-Roman'), (HELVETICA, 'Helvetica'), (ARIAL, 'Arial'), (COURIER, 'Courier'))
+FONT_CHOICE = (('Times-Roman', 'Times-Roman'), ('Helvetica', 'Helvetica'), ('Arial', 'Arial'), ('Courier', 'Courier'))
 
 # Fonts size fields
-NINE = '9'
-TEN = '10'
-TWELVE = '12'
-FOURTEEN = '14'
-
-FONT_SIZE_CHOICE = ((NINE, '9'), (TEN, '10'), (TWELVE, '12'), (FOURTEEN, '14'))
+FONT_SIZE_CHOICE = ((9, 9), (10, 10), (12, 12), (14, 14))

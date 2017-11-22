@@ -88,7 +88,7 @@
               <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
           </td>
 
-          <td><a href='{% url 'print_prescription' prescription.id %}'><i class="fa fa-print"></i></a></td>
+          <td><a class="js-show-prescription" data-url='{% url 'show_patterns' prescription.pk %}'><i class="fa fa-print"></i></a></td>
 
           </tr>
         {% endfor %}
