@@ -15,3 +15,5 @@ htmlcov
 .sonar/
 .ropeproject/
 **/public/**
+**/dist/**
+**/ReceitaMais.egg-info/**

@@ -1,25 +1,30 @@
-language:
-  - python
-
-python:
-  - "3.5"
+services:
+  - docker
 
 sudo: required
 
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 
-install:
-  - pip install --upgrade pip
-  - pip install -r requirements.txt
+env:
+  - DOCKER_COMPOSE_VERSION=1.15.0
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 script:
-  - cd medical_prescription
-  - python3 manage.py makemigrations
-  - python3 manage.py migrate
-  - coverage run manage.py test
+  - docker-compose up --build -d
+  - docker-compose start
+  - docker-compose run web sh coverage.sh
 
 after_success:
-  - coverage
-  - coverage report
-  - coveralls
+  - docker-compose run web sh coveragereport.sh
+
+deploy:
+  provider: heroku
+  api_key: $SECRET_USER_KEY
+  app: preskribe
+  on: master

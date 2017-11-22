@@ -17,4 +17,4 @@ django-widget-tweaks==1.4.1
 django-localflavor==1.5.0
 Pillow==4.2.1
 reportlab==3.4.0
-
+PyYAML==3.12
