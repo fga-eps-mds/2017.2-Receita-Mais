@@ -16,9 +16,10 @@ from reportlab.lib.pagesizes import letter, A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.colors import (black, purple, white, yellow)
 from reportlab.lib.units import inch, mm
+from reportlab.lib.utils import ImageReader
 
 
 class PrintPrescription:
@@ -101,6 +102,10 @@ class PrintPrescription:
         )
         # Draw things on the PDF. Here's where the PDF generation happens.
         elements.append(Spacer(1, 50))
+        if pattern.logo:
+            im = Image(pattern.logo, 1*inch, 1*inch)
+            elements.append(im)
+
         if len(prescription.medicines.all()) != 0 or prescription.manipulated_medicines.all() != 0:
             elements.append(Paragraph('Medicamentos', styles['Heading1']))
             for medicine in prescription.medicines.all():

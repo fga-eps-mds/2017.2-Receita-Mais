@@ -24,5 +24,5 @@ class Pattern(models.Model):
     header = models.CharField(max_length=constants.MAX_LENGTH_HEADER)
     footer = models.CharField(max_length=constants.MAX_LENGTH_FOOTER)
 
-    logo = models.FileField(upload_to=UploadToPathAndRename(os.path.join('logos', 'files')), blank=True, null=True)
+    logo = models.FileField(upload_to=UploadToPathAndRename(os.path.join('logos', 'files')), blank=True, null=True, default=constants.DEFAULT_IMG)
     date = models.DateField(auto_now=True)

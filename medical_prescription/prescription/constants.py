@@ -58,3 +58,6 @@ FONT_CHOICE = (('Times-Roman', 'Times-Roman'), ('Helvetica', 'Helvetica'), ('Ari
 
 # Fonts size fields
 FONT_SIZE_CHOICE = ((9, 9), (10, 10), (12, 12), (14, 14))
+
+# DEFAULT PATH IMAGE.
+DEFAULT_IMG = 'medical_prescription/static/img/user.png'
