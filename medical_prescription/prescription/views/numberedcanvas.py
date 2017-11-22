@@ -29,12 +29,8 @@ class NumberedCanvas(canvas.Canvas):
         x = 100
         self.saveState()
         self.setStrokeColorRGB(0, 0, 0)
-        self.setLineWidth(0.5)
-        self.line(66, 78, letter[0] - 66, 78)
+
         self.setFont('Times-Roman', 10)
         self.drawString(letter[0]-x, 65, page)
-        self.setLineWidth(.3)
-
-        self.line(30, 703, 580, 700)
 
         self.restoreState()

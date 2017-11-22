@@ -16,7 +16,7 @@ from reportlab.lib.pagesizes import letter, A4, A5
 from reportlab.pdfgen import canvas
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageTemplate, Frame
 from reportlab.lib.colors import (black, purple, white, yellow)
 from reportlab.lib.units import inch, mm
 from reportlab.lib.utils import ImageReader
@@ -40,6 +40,8 @@ class PrintPrescription:
         GlobalPattern = pattern
         global GlobalPrescription
         GlobalPrescription = prescription
+        global GlobalPageSize
+        GlobalPageSize = self.pagesize
 
     @staticmethod
     def _header_footer(canvas, doc):
@@ -53,13 +55,24 @@ class PrintPrescription:
         w, h = header.wrap(doc.width, doc.topMargin)
         header.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - h)
 
+        if GlobalPattern.logo:
+            img = ImageReader(GlobalPattern.logo.path)
+            canvas.drawImage(img, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
+
         # Footer
         footer = Paragraph(GlobalPattern.footer, styles['centered'])
         w, h = footer.wrap(doc.width, doc.bottomMargin)
         footer.drawOn(canvas, doc.leftMargin, h)
 
+        canvas.setLineWidth(0.5)
+        canvas.line(66, 78, letter[0] - 66, 78)
+
+        canvas.setLineWidth(.3)
+        canvas.line(30, 703, 580, 700)
+
         # Release the canvas
         canvas.restoreState()
+
 
     def print_users(self):
         prescription = self.prescription
@@ -103,11 +116,9 @@ class PrintPrescription:
                 endDots=None,
                 splitLongWords=1,)
         )
+
         # Draw things on the PDF. Here's where the PDF generation happens.
         elements.append(Spacer(1, 50))
-        if pattern.logo:
-            im = Image(pattern.logo, 1*inch, 1*inch)
-            elements.append(im)
 
         if len(prescription.medicines.all()) != 0 or prescription.manipulated_medicines.all() != 0:
             elements.append(Paragraph('Medicamentos', styles['Heading1']))
@@ -181,14 +192,3 @@ class PrintPrescription:
 
         response.write(pdf)
         return response
-
-
-# if __name__ == '__main__':
-#     buffer = BytesIO()
-#
-#     report = PrintPrescription(buffer, 'letter')
-#     pdf = report.print_users()
-#     buffer.seek(0)
-#
-#     with open('arquivo.pdf', 'wb') as f:
-#         f.write(buffer.read())
