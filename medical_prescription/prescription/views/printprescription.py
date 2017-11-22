@@ -16,11 +16,12 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.colors import (black, purple, white, yellow)
 
 
 # @method_decorator(login_required)
 # @method_decorator(is_health_professional)
-def generate_pdf(request, pk):
+def generate_pdf(request, pk, jk):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="My Users.pdf"'
 
@@ -38,10 +39,33 @@ def generate_pdf(request, pk):
     elements = []
 
     styles = getSampleStyleSheet()
-    styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
+    styles.add(ParagraphStyle(
+                name='centered', alignment=TA_CENTER,
+                fontName='Times-Roman',
+                fontSize=10,
+                leading=12,
+                leftIndent=0,
+                rightIndent=0,
+                firstLineIndent=0,
+                spaceBefore=0,
+                spaceAfter=0,
+                bulletFontName='Times-Roman',
+                bulletFontSize=10,
+                bulletIndent=0,
+                textColor=black,
+                backColor=None,
+                wordWrap=None,
+                borderWidth=0,
+                borderPadding=0,
+                borderColor=None,
+                borderRadius=None,
+                allowWidows=1,
+                allowOrphans=0,
+                textTransform=None,
+                endDots=None,
+                splitLongWords=1,))
 
-    # Draw things on the PDF. Here's where the PDF generation happens.
-
+    # Generate a PDF
     if len(prescription.medicines.all()) != 0 or prescription.manipulated_medicines.all() != 0:
         elements.append(Paragraph('Medicamentos', styles['Heading1']))
         for medicine in prescription.medicines.all():
