@@ -12,7 +12,7 @@ from prescription.models import Prescription, Pattern
 from prescription.views import NumberedCanvas
 
 # Third-Party
-from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.pagesizes import letter, A4, A5
 from reportlab.pdfgen import canvas
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
@@ -24,15 +24,18 @@ from reportlab.lib.utils import ImageReader
 
 class PrintPrescription:
 
-    def __init__(self, buffer, pagesize, prescription, pattern):
+    def __init__(self, buffer, prescription, pattern):
         self.buffer = buffer
-        if pagesize == 'A4':
-            self.pagesize = A4
-        elif pagesize == 'Letter':
-            self.pagesize = letter
-        self.width, self.height = self.pagesize
         self.prescription = prescription
         self.pattern = pattern
+        self.width = pattern.pagesize
+        self.height = pattern.pagesize
+        if pattern.pagesize == 'A4':
+            self.pagesize = A4
+        elif pattern.pagesize == 'A5':
+            self.pagesize = A5
+        elif pattern.pagesize == 'letter':
+            self.pagesize = letter
         global GlobalPattern
         GlobalPattern = pattern
         global GlobalPrescription
@@ -67,7 +70,7 @@ class PrintPrescription:
                                 leftMargin=100,
                                 topMargin=50,
                                 bottomMargin=50,
-                                pagesize=letter)
+                                pagesize=self.pagesize)
 
         elements = []
 
@@ -173,19 +176,19 @@ class PrintPrescription:
         pattern = Pattern.objects.get(pk=jk)
         buffer = BytesIO()
 
-        report = PrintPrescription(buffer, 'Letter', prescription, pattern)
+        report = PrintPrescription(buffer, prescription, pattern)
         pdf = report.print_users()
 
         response.write(pdf)
         return response
 
 
-if __name__ == '__main__':
-    buffer = BytesIO()
-
-    report = PrintPrescription(buffer, 'Letter')
-    pdf = report.print_users()
-    buffer.seek(0)
-
-    with open('arquivo.pdf', 'wb') as f:
-        f.write(buffer.read())
+# if __name__ == '__main__':
+#     buffer = BytesIO()
+#
+#     report = PrintPrescription(buffer, 'letter')
+#     pdf = report.print_users()
+#     buffer.seek(0)
+#
+#     with open('arquivo.pdf', 'wb') as f:
+#         f.write(buffer.read())
