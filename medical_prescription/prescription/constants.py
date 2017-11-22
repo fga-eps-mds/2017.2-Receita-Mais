@@ -41,3 +41,25 @@ PATIENT_INVALID = "This field is required."
 
 # Empty constants
 EMPTY = 0
+
+# Constants for print prescription
+MAX_LENGTH_CLINIC = 150
+MAX_LENGTH_HEADER = 150
+MAX_LENGTH_FOOTER = 150
+MAX_LENGTH_NAME = 50
+
+# Fonts fields
+TIMES_ROMAN = 'Times-Roman'
+HELVETICA = 'Helvetica'
+ARIAL = 'Arial'
+COURIER = 'Courier'
+
+FONT_CHOICE = ((TIMES_ROMAN, 'Times-Roman'), (HELVETICA, 'Helvetica'), (ARIAL, 'Arial'), (COURIER, 'Courier'))
+
+# Fonts size fields
+NINE = '9'
+TEN = '10'
+TWELVE = '12'
+FOURTEEN = '14'
+
+FONT_SIZE_CHOICE = ((NINE, '9'), (TEN, '10'), (TWELVE, '12'), (FOURTEEN, '14'))

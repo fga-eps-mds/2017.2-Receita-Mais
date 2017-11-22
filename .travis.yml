@@ -17,8 +17,8 @@ before_install:
 
 script:
   - docker-compose up --build -d
-  - docker-compose run web sh migrate.sh
-  - docker-compose exec web sh coverage.sh
+  - docker-compose start
+  - docker-compose run web sh coverage.sh
 
 after_success:
   - docker-compose run web sh coveragereport.sh

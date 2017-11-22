@@ -1,7 +1,9 @@
 import os
 
+# Django
 from django.db import models
 
+# Django Local
 from chat import constants
 from user.models import User
 from .pathfile import UploadToPathAndRename

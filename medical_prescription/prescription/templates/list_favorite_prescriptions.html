@@ -1,14 +1,14 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
   <ul class="nav nav-tabs">
-   <li class="active">
+   <li>
      <a href="{% url 'list_prescription' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
    </li>
    <li id="tag-custom">
      <a data-toggle="nab-tabs" href="#">{% trans "Personalizadas" %}</a>
    </li>
-   <li id="tag-favorite">
-     <a data-toggle="nab-tabs" href="{% url 'list_favorite_prescription' %}">{% trans "Favoritas" %}</a>
+   <li class="active" id="tag-favorite">
+     <a data-toggle="nab-tabs" href="{% url 'list_favorite_prescription' %}" >{% trans "Favoritas" %}</a>
    </li>
  </ul>
  <div class="panel-body">
@@ -21,11 +21,10 @@
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
-      <th>Imprimir</th>
     </thead>
 
     <tbody>
-      {% for prescription in list_prescription %}
+      {% for prescription in list_favorite_prescriptions %}
         <tr class='clickable-row'>
 
             <td>
@@ -84,16 +83,9 @@
           {% endfor %}
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
-          <td>
-              <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
-          </td>
-
-          <td><a href='{% url 'print_prescription' prescription.id %}'><i class="fa fa-print"></i></a></td>
 
           </tr>
         {% endfor %}
-
-
     </tbody>
   </table>
 

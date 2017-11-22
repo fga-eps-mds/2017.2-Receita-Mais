@@ -8,12 +8,12 @@ from user.decorators import is_health_professional
 from prescription.models import Prescription
 
 
-class ListPrescription(ListView):
+class ListFavoritePrescription(ListView):
     '''
-        View for list all prescriptions in database.
+        View for list favorite prescriptions in database.
     '''
-    template_name = 'list_prescription.html'
-    context_object_name = 'list_prescription'
+    template_name = 'list_favorite_prescriptions.html'
+    context_object_name = 'list_favorite_prescriptions'
     model = Prescription
     paginate_by = 20
     ordering = ['-date_created']
@@ -21,8 +21,7 @@ class ListPrescription(ListView):
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
     def dispatch(self, *args, **kwargs):
-        return super(ListPrescription, self).dispatch(*args, **kwargs)
+        return super(ListFavoritePrescription, self).dispatch(*args, **kwargs)
 
-    # Listing all objects Medication in database.
     def get_queryset(self):
-        return self.model.objects.filter(health_professional=self.request.user)
+        return self.model.objects.filter(health_professional=self.request.user, is_favorite=True)
