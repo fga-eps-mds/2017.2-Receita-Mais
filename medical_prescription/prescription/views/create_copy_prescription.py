@@ -78,7 +78,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
         for medicine in medicine_models:
             medicine_context = {
                 'medicine': medicine.medicine.name,
-                'medicine_pk': medicine.medicine.pk,
+                'medicine_id': medicine.medicine.pk,
                 'medicine_type': 'medicine',
                 'quantity': medicine.quantity,
                 'via': medicine.via,
@@ -92,7 +92,7 @@ class CreateCopyPrescription(CreatePrescriptionView):
         for manipulated_medicine in manipulated_medicine_models:
             manipulated_medicine_context = {
                 'medicine': manipulated_medicine.manipulated_medicine.recipe_name,
-                'medicine_pk': manipulated_medicine.manipulated_medicine.pk,
+                'medicine_id': manipulated_medicine.manipulated_medicine.pk,
                 'medicine_type': 'manipulated_medicine',
                 'quantity': manipulated_medicine.quantity,
                 'via': manipulated_medicine.via,
@@ -131,4 +131,4 @@ class CreateCopyPrescription(CreatePrescriptionView):
             context.append(recommendation_context)
         return self.RecommendationPrescriptionFormSet(request.GET or None,
                                                       initial=context,
-                                                      prefix='form_reccomendation')
+                                                      prefix='form_recomendation')

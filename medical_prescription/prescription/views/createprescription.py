@@ -182,7 +182,7 @@ class CreatePrescriptionView(FormView):
 
         # Save objects of fields in database.
         form_medicine = self.MedicinePrescriptionFormSet(request.GET or None, prefix='form_medicine')
-        form_recommendation = self.RecommendationPrescriptionFormSet(request.GET or None, prefix='form_reccomendation')
+        form_recommendation = self.RecommendationPrescriptionFormSet(request.GET or None, prefix='form_recomendation')
         form_exam = self.ExamPrescriptionFormSet(request.GET or None, prefix='form_exam')
 
         # Get context.
@@ -203,7 +203,7 @@ class CreatePrescriptionView(FormView):
 
         # Save objcts of fields in database.
         form_medicine = self.MedicinePrescriptionFormSet(request.POST or None, prefix='form_medicine')
-        form_recommendation = self.RecommendationPrescriptionFormSet(request.POST or None, prefix='form_reccomendation')
+        form_recommendation = self.RecommendationPrescriptionFormSet(request.POST or None, prefix='form_recomendation')
         form_exam = self.ExamPrescriptionFormSet(request.POST or None, prefix='form_exam')
 
         data = dict()
