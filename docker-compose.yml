@@ -8,7 +8,9 @@ services:
     command: ./init.sh
     volumes:
       - .:/code
+      - /code/node_modules
     ports:
-      - "8000:8000"
+      - 8000:8000
+      - 3000:3000
     depends_on:
       - db

@@ -1,0 +1,24 @@
+{
+  "name": "medical_prescription",
+  "version": "1.0.0",
+  "description": "Gulp and webpack medical_prescription",
+  "scripts": {
+    "gulp": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ronyell/2017.2-Receituario-Medico"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
+    "gulp": "^3.9.0",
+    "run-sequence": "^2.2.0"
+  }
+}

@@ -30,7 +30,7 @@ SECRET_KEY = 'kw&cp#em42$66%lprfln@!25t%(wb9j4gzz%vxaah(v-e8zxbt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['medicalprescription.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['preskribe.herokuapp.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Set initial database
@@ -129,17 +129,7 @@ WSGI_APPLICATION = 'medical_prescription.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': '',
-            'HOST': 'localhost'
-        }
-    }
-elif 'DYNO' in os.environ:
+if 'DYNO' in os.environ:
     default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
     DATABASES = {'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
 else:
