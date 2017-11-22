@@ -47,4 +47,4 @@ Toda a documentação pode ser acessada através da wiki do projeto <a href="htt
 
 ## Deploy
 
-Uma versão mais estável do sistema pode ser acessada no seguinte link: [https://medicalprescription.herokuapp.com/](https://medicalprescription.herokuapp.com/)
+Uma versão mais estável do sistema pode ser acessada no seguinte link: [https://preskribe.herokuapp.com/](https://preskribe.herokuapp.com/)
