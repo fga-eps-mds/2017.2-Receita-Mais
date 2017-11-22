@@ -10,3 +10,4 @@ from .createpatternview import CreatePatternView
 from .favorite_prescription import FavoritePrescription
 from .listfavoriteprescription import ListFavoritePrescription
 from .showprescription import ShowDetailPrescriptionView
+from .listprescriptionpatient import ListPatientPrescription
