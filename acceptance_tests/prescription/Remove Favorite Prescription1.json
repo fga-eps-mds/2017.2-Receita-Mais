@@ -1,0 +1,25 @@
+{
+  "CreationDate": "2017-11-19",
+  "Commands": [
+    {
+      "Command": "open",
+      "Target": "http://localhost:8000/dashboard_health_professional/health_professional/",
+      "Value": ""
+    },
+    {
+      "Command": "clickAndWait",
+      "Target": "link= Prescrições",
+      "Value": ""
+    },
+    {
+      "Command": "click",
+      "Target": "/html/body/div/div[2]/section/div/table/tbody/tr[2]/td[1]/button",
+      "Value": ""
+    },
+    {
+      "Command": "assertText",
+      "Target": "css=span.fa.fa-star-o",
+      "Value": ""
+    }
+  ]
+}
