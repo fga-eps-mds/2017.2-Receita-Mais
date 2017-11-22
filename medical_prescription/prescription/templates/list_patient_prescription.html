@@ -4,7 +4,6 @@
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
     <thead>
-      <th></th>
       <th>CID</th>
       <th>Paciente</th>
       <th>Medicamentos</th>
@@ -14,18 +13,8 @@
     </thead>
 
     <tbody>
-      {% for prescription in list_prescription %}
+      {% for prescription in list_patient_prescription %}
         <tr class='clickable-row'>
-
-            <td>
-              <button class="likes post-likes" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
-                 {% if prescription.is_favorite %}
-                 <span class="fa fa-star" style="color:orange"></span>
-                 {% else %}
-                 <span class="fa fa-star-o" style="color:black"></span>
-                 {% endif %}
-             </button>
-            </td>
 
           {% if  prescription.cid %}
             <td>{{ prescription.cid }}</td>
@@ -72,9 +61,6 @@
                 {{ exam.description|truncatechars:25 }};
           {% endfor %}
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
-          </td>
-          <td>
-              <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
           </td>
 
           <td><a href='{% url 'print_prescription' prescription.id %}'><i class="fa fa-print"></i></a></td>
