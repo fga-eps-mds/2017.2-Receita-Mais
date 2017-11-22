@@ -131,4 +131,4 @@ class CreateCopyPrescription(CreatePrescriptionView):
             context.append(recommendation_context)
         return self.RecommendationPrescriptionFormSet(request.GET or None,
                                                       initial=context,
-                                                      prefix='form_reccommendation')
+                                                      prefix='form_reccomendation')
