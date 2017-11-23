@@ -47,13 +47,13 @@
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                     {% if message.is_active_inbox_health_professional %}
                         <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
-                    {% endif %}
-                    {% if message.is_active_outbox_health_professional %}
+                    {% elif message.is_active_outbox_health_professional %}
                         <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
-                    {% endif %}
-                    {% if message.is_active_outbox_health_professional == False %}
-                        {% if message.is_active_inbox_health_professional == False %}
+                    {% else %}
+                        {% if request.user == message.user_to %}
                             <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
+                        {% else %}
+                            <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
                         {% endif %}
                     {% endif %}
                     <td class="mailbox-subject"><b>{{message.subject}}</b>
@@ -84,7 +84,7 @@
               <!-- /.btn-group -->
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
               <div class="pull-right">
-                <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html--> 
+                <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html-->
                 {% if is_paginated %}
                   <ul class="pagination">
                     {% if page_obj.has_previous %}
