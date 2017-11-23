@@ -36,7 +36,7 @@ CID_INVALID = "This disease does not exists."
 # Exam invalid constants
 EXAM_INVALID = "This exams does not exists."
 
-# Pacient invalid constants
+# Patient invalid constants
 PATIENT_INVALID = "This field is required."
 
 # Empty constants
@@ -47,6 +47,12 @@ MAX_LENGTH_CLINIC = 50
 MAX_LENGTH_HEADER = 200
 MAX_LENGTH_FOOTER = 200
 MAX_LENGTH_NAME = 50
+
+# Print prescription errors message
+LENGTH_CLINIC = "Clinic must have a maximum of  50 characters."
+LENGTH_HEADER = "Header must have a maximum of  200 characters."
+LENGTH_FOOTER = "Footer must have a maximum of  200 characters."
+LENGTH_NAME = "Name must have a maximum of 50 characters."
 
 # Fonts fields
 TIMES_ROMAN = 'Times-Roman'
