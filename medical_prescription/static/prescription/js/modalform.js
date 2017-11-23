@@ -48,18 +48,19 @@ $(function () {
 
     /* Binding */
 
-    // Create prescription
+    // Create prescription.
     $(".js-create-prescription").click(loadForm);
     $("#modal-prescription").on("submit", ".js-prescription-create-form", saveForm);
 
-    // Update prescription
+    // Update prescription.
     $("#prescription-table").on("click", ".js-update-prescription", loadForm);
     $("#modal-prescription").on("submit", ".js-prescription-update-form", saveForm);
 
-    // Delete prescription
+    // Delete prescription.
     $("#prescription-table").on("click", ".js-delete-prescription", loadForm);
     $("#modal-prescription").on("submit", ".js-prescription-delete-form", saveForm);
 
-    $(".js-show-prescription").click(loadForm)
+    // Show prescription.
+    $(".js-show-prescription").click(loadForm);
 
 });
