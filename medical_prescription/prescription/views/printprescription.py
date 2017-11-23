@@ -16,14 +16,16 @@ from reportlab.lib.pagesizes import letter, A4, A5
 from reportlab.pdfgen import canvas
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageTemplate, Frame
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.colors import (black, purple, white, yellow)
 from reportlab.lib.units import inch, mm
 from reportlab.lib.utils import ImageReader
 
 
 class PrintPrescription:
-
+    """
+     Print PDF.
+     """
     def __init__(self, buffer, prescription, pattern):
         self.buffer = buffer
         self.prescription = prescription
@@ -37,32 +39,63 @@ class PrintPrescription:
         elif pattern.pagesize == 'letter':
             self.pagesize = letter
 
-
     def _header_footer(self, canvas, doc):
         # Save the state of our canvas so we can draw on it
         canvas.saveState()
         styles = getSampleStyleSheet()
         styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
         styles.add(ParagraphStyle(name='right', alignment=TA_RIGHT))
-        # Header
-        header = Paragraph(self.pattern.header, styles['right'])
-        w, h = header.wrap(doc.width, doc.topMargin)
-        header.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - h)
 
-        # Footer
-        footer = Paragraph(self.pattern.footer, styles['centered'])
-        w, h = footer.wrap(doc.width, doc.bottomMargin)
-        footer.drawOn(canvas, doc.leftMargin, h)
         if self.pagesize == A4:
+
+            # Header
+            header = Paragraph(self.pattern.header, styles['right'])
+            w, h = header.wrap(doc.width, doc.topMargin)
+            header.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - h)
+
+            # Footer
+            medic_name = Paragraph(self.prescription.health_professional.name, styles['centered'])
+            w, h = medic_name.wrap(doc.width, doc.bottomMargin)
+            medic_name.drawOn(canvas, doc.leftMargin + 10, h + 50)
+
+            medic_crm = Paragraph(self.prescription.health_professional.crm +'/'+ self.prescription.health_professional.crm_state, styles['centered'])
+            w, h = medic_crm.wrap(doc.width, doc.bottomMargin)
+            medic_crm.drawOn(canvas, doc.leftMargin + 10, h + 40)
+
+            footer = Paragraph(self.pattern.footer, styles['centered'])
+            w, h = footer.wrap(doc.width, doc.bottomMargin)
+            footer.drawOn(canvas, doc.leftMargin + 10, h)
+
             canvas.setLineWidth(0.5)
             canvas.line(66, 78, letter[0] - 66, 78)
             canvas.setLineWidth(.3)
             canvas.line(30, 750, 580, 750)
             if self.pattern.logo:
                 img = ImageReader(self.pattern.logo.path)
-                canvas.drawImage(img, 30, 730, 0.75 * inch, 0.75 * inch, mask='auto')
+                canvas.drawImage(img, 30, 760, 1 * inch, 1 * inch, mask='auto')
 
         elif self.pagesize == A5:
+
+            # Header
+            header = Paragraph(self.pattern.header, styles['right'])
+            w, h = header.wrap(doc.width, doc.topMargin)
+            header.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin + 20)
+
+            # Footer
+            medic_name = Paragraph(self.prescription.health_professional.name, styles['centered'])
+            w, h = medic_name.wrap(doc.width, doc.bottomMargin)
+            medic_name.drawOn(canvas, doc.leftMargin + 10, h + 50)
+
+            medic_crm = Paragraph(
+            self.prescription.health_professional.crm + '/' + self.prescription.health_professional.crm_state,
+            styles['centered'])
+            w, h = medic_crm.wrap(doc.width, doc.bottomMargin)
+            medic_crm.drawOn(canvas, doc.leftMargin + 10, h + 40)
+
+            footer = Paragraph(self.pattern.footer, styles['centered'])
+            w, h = footer.wrap(doc.width, doc.bottomMargin)
+            footer.drawOn(canvas, doc.leftMargin + 10, h - 18)
+
             canvas.setLineWidth(0.5)
             canvas.line(66, 78, A5[0] - 66, 78)
             canvas.setLineWidth(.3)
@@ -72,13 +105,34 @@ class PrintPrescription:
                 canvas.drawImage(img, 30, 510, 0.75 * inch, 0.75 * inch, mask='auto')
 
         elif self.pagesize == letter:
+
+            # Header
+            header = Paragraph(self.pattern.header, styles['right'])
+            w, h = header.wrap(doc.width, doc.topMargin)
+            header.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - h)
+
+            # Footer
+            medic_name = Paragraph(self.prescription.health_professional.name, styles['centered'])
+            w, h = medic_name.wrap(doc.width, doc.bottomMargin)
+            medic_name.drawOn(canvas, doc.leftMargin + 10, h + 50)
+
+            medic_crm = Paragraph(
+            self.prescription.health_professional.crm + '/' + self.prescription.health_professional.crm_state,
+            styles['centered'])
+            w, h = medic_crm.wrap(doc.width, doc.bottomMargin)
+            medic_crm.drawOn(canvas, doc.leftMargin + 10, h + 40)
+
+            footer = Paragraph(self.pattern.footer, styles['centered'])
+            w, h = footer.wrap(doc.width, doc.bottomMargin)
+            footer.drawOn(canvas, doc.leftMargin + 10, h - 18)
+
             canvas.setLineWidth(0.5)
             canvas.line(66, 78, letter[0] - 66, 78)
             canvas.setLineWidth(.3)
             canvas.line(30, 700, 580, 700)
             if self.pattern.logo:
                 img = ImageReader(self.pattern.logo.path)
-                canvas.drawImage(img, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
+                canvas.drawImage(img, 30, 710, 1 * inch, 1 * inch, mask='auto')
 
         # Release the canvas
         canvas.restoreState()
@@ -101,7 +155,7 @@ class PrintPrescription:
                                     rightMargin=50,
                                     leftMargin=50,
                                     topMargin=50,
-                                    bottomMargin=50,
+                                    bottomMargin=100,
                                     pagesize=self.pagesize)
 
         elif self.pagesize == letter:
@@ -168,6 +222,8 @@ class PrintPrescription:
                         elements.append(Paragraph(custom_prescription_medicine.posology, styles['default']))
                         elements.append(Paragraph(custom_prescription_medicine.get_quantity_display(), styles['default']))
                 elements.append(Spacer(1, 12))
+            elements.append(PageBreak())
+            elements.append(Spacer(1, 32))
         else:
             # Nothing to do.
             pass
@@ -178,6 +234,8 @@ class PrintPrescription:
             for recommendation in prescription.recommendation_prescription.all():
                 elements.append(Paragraph(recommendation.recommendation, styles['default']))
                 elements.append(Spacer(1, 12))
+            elements.append(PageBreak())
+            elements.append(Spacer(1, 32))
         else:
             # Nothing to do.
             pass
@@ -192,7 +250,6 @@ class PrintPrescription:
             for custom_exams in prescription.custom_exams.all():
                 elements.append(Paragraph(custom_exams.description, styles['default']))
                 elements.append(Spacer(1, 12))
-
         else:
             # NOTHING TO DO
             pass

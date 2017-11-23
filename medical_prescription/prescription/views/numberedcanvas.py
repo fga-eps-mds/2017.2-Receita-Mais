@@ -31,6 +31,6 @@ class NumberedCanvas(canvas.Canvas):
         self.setStrokeColorRGB(0, 0, 0)
 
         self.setFont('Times-Roman', 10)
-        self.drawString(letter[0]-x, 65, page)
+        self.drawString(10, 65, page)
 
         self.restoreState()
