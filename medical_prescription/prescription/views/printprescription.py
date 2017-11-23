@@ -36,54 +36,81 @@ class PrintPrescription:
             self.pagesize = A5
         elif pattern.pagesize == 'letter':
             self.pagesize = letter
-        global GlobalPattern
-        GlobalPattern = pattern
-        global GlobalPrescription
-        GlobalPrescription = prescription
-        global GlobalPageSize
-        GlobalPageSize = self.pagesize
 
-    @staticmethod
-    def _header_footer(canvas, doc):
+
+    def _header_footer(self, canvas, doc):
         # Save the state of our canvas so we can draw on it
         canvas.saveState()
         styles = getSampleStyleSheet()
         styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
         styles.add(ParagraphStyle(name='right', alignment=TA_RIGHT))
         # Header
-        header = Paragraph(GlobalPattern.header, styles['right'])
+        header = Paragraph(self.pattern.header, styles['right'])
         w, h = header.wrap(doc.width, doc.topMargin)
         header.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - h)
 
-        if GlobalPattern.logo:
-            img = ImageReader(GlobalPattern.logo.path)
-            canvas.drawImage(img, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
-
         # Footer
-        footer = Paragraph(GlobalPattern.footer, styles['centered'])
+        footer = Paragraph(self.pattern.footer, styles['centered'])
         w, h = footer.wrap(doc.width, doc.bottomMargin)
         footer.drawOn(canvas, doc.leftMargin, h)
+        if self.pagesize == A4:
+            canvas.setLineWidth(0.5)
+            canvas.line(66, 78, letter[0] - 66, 78)
+            canvas.setLineWidth(.3)
+            canvas.line(30, 750, 580, 750)
+            if self.pattern.logo:
+                img = ImageReader(self.pattern.logo.path)
+                canvas.drawImage(img, 30, 730, 0.75 * inch, 0.75 * inch, mask='auto')
 
-        canvas.setLineWidth(0.5)
-        canvas.line(66, 78, letter[0] - 66, 78)
+        elif self.pagesize == A5:
+            canvas.setLineWidth(0.5)
+            canvas.line(66, 78, A5[0] - 66, 78)
+            canvas.setLineWidth(.3)
+            canvas.line(30, 500, 390, 500)
+            if self.pattern.logo:
+                img = ImageReader(self.pattern.logo.path)
+                canvas.drawImage(img, 30, 510, 0.75 * inch, 0.75 * inch, mask='auto')
 
-        canvas.setLineWidth(.3)
-        canvas.line(30, 703, 580, 700)
+        elif self.pagesize == letter:
+            canvas.setLineWidth(0.5)
+            canvas.line(66, 78, letter[0] - 66, 78)
+            canvas.setLineWidth(.3)
+            canvas.line(30, 700, 580, 700)
+            if self.pattern.logo:
+                img = ImageReader(self.pattern.logo.path)
+                canvas.drawImage(img, 30, 730, 0.75*inch, 0.75*inch, mask='auto')
 
         # Release the canvas
         canvas.restoreState()
-
 
     def print_users(self):
         prescription = self.prescription
         pattern = self.pattern
         buffer = self.buffer
-        doc = SimpleDocTemplate(buffer,
-                                rightMargin=100,
-                                leftMargin=100,
-                                topMargin=50,
-                                bottomMargin=50,
-                                pagesize=self.pagesize)
+
+        if self.pagesize == A4:
+            doc = SimpleDocTemplate(buffer,
+                                    rightMargin=100,
+                                    leftMargin=100,
+                                    topMargin=50,
+                                    bottomMargin=50,
+                                    pagesize=self.pagesize)
+
+        elif self.pagesize == A5:
+            doc = SimpleDocTemplate(buffer,
+                                    rightMargin=50,
+                                    leftMargin=50,
+                                    topMargin=50,
+                                    bottomMargin=50,
+                                    pagesize=self.pagesize)
+
+        elif self.pagesize == letter:
+            doc = SimpleDocTemplate(buffer,
+                                    rightMargin=100,
+                                    leftMargin=100,
+                                    topMargin=50,
+                                    bottomMargin=50,
+                                    pagesize=self.pagesize)
 
         elements = []
 
@@ -169,11 +196,10 @@ class PrintPrescription:
         else:
             # NOTHING TO DO
             pass
-        #
-        # doc.build(elements, canvasmaker=HeaderFooter)
-        #
+
         doc.build(elements, onFirstPage=self._header_footer, onLaterPages=self._header_footer,
                   canvasmaker=NumberedCanvas)
+
         # Get the value of the BytesIO buffer and write it to the response.
         pdf = buffer.getvalue()
         buffer.close()
