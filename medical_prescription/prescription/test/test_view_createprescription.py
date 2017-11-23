@@ -70,8 +70,8 @@ class TestCreatePrescription(TestCase):
     def test_prescription_post_with_health_professional(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
-                   'form_reccomendation-TOTAL_FORMS': 1,
-                   'form_reccomendation-INITIAL_FORMS': 0,
+                   'form_recomendation-TOTAL_FORMS': 1,
+                   'form_recomendation-INITIAL_FORMS': 0,
                    'form_exam-TOTAL_FORMS': 1,
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
@@ -100,8 +100,8 @@ class TestCreatePrescription(TestCase):
     def test_prescription_post_with_health_professional_patient(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
-                   'form_reccomendation-TOTAL_FORMS': 1,
-                   'form_reccomendation-INITIAL_FORMS': 0,
+                   'form_recomendation-TOTAL_FORMS': 1,
+                   'form_recomendation-INITIAL_FORMS': 0,
                    'form_exam-TOTAL_FORMS': 1,
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
