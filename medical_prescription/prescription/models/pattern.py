@@ -24,7 +24,6 @@ class Pattern(models.Model):
     clinic = models.CharField(max_length=constants.MAX_LENGTH_CLINIC)
     header = models.CharField(max_length=constants.MAX_LENGTH_HEADER)
     footer = models.CharField(max_length=constants.MAX_LENGTH_FOOTER)
-    footer = models.CharField(max_length=constants.MAX_LENGTH_FOOTER)
 
     logo = models.FileField(upload_to=UploadToPathAndRename(os.path.join('logos', 'files')), blank=True, null=True, default=constants.DEFAULT_IMG)
     date = models.DateField(auto_now=True)

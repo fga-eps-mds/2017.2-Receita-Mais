@@ -70,3 +70,16 @@ DEFAULT_IMG = 'medical_prescription/static/img/user.png'
 
 # Page size fields
 PAGE_SIZE_CHOICE = (('letter', 'letter'), ('A4', 'A4'), ('A5', 'A5'))
+
+CONTENT_TYPES = ['jpeg', 'png']
+FORMAT_ERROR = 'File type is not supported'
+FILE_SIZE = 'Please keep filesize under 20MB'
+# 2.5MB - 2621440
+# 5MB - 5242880
+# 10MB - 10485760
+# 20MB - 20971520
+# 50MB - 5242880
+# 100MB 104857600
+# 250MB - 214958080
+# 500MB - 429916160
+MAX_UPLOAD_SIZE = 20971520

@@ -10,5 +10,4 @@ class RecommendationPrescriptionForm(forms.Form):
                                                             'placeholder': 'Recomendação'}), required=False)
 
     def clean(self, *args, **kwargs):
-
         return super(RecommendationPrescriptionForm, self).clean(*args, **kwargs)
