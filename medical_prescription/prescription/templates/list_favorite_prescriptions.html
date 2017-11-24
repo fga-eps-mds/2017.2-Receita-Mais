@@ -21,6 +21,7 @@
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
+      <th></th>
     </thead>
 
     <tbody>
@@ -84,8 +85,13 @@
           <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
           </td>
 
-          </tr>
+          <td>
+              <a class="js-show-prescription" data-url="{% url 'show_prescription' prescription.pk %}">Visualizar</a>
+          </td>
+
+        </tr>
         {% endfor %}
+
     </tbody>
   </table>
 

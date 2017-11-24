@@ -120,8 +120,25 @@ function select_type_field(element, field, ui) {
   }
 }
 
+// Set autocomplete in all medicines in form
+function autocompleteAllMedicines(){
+  var totalMedicines = $('#id_form_medicine-TOTAL_FORMS').val() - 1;
+  for(medicineNumber=totalMedicines; medicineNumber>=0; medicineNumber--){
+    autocompleteElement('#id_form_medicine-' + medicineNumber + '-medicine', autocompleteMedicine, "medicine");
+  }
+}
+
+// Set autocomplete in all exams in form
+function autocompleteAllExams(){
+  var totalExams = $('#id_form_exam-TOTAL_FORMS').val() - 1;
+  for(examNumber=totalExams; examNumber>=0; examNumber--){
+    autocompleteElement('#id_form_exam-' + totalExam + '-exam', autocompleteExam, "exam");
+  }
+}
+
 // Performs autocomplete in the specified fields.
-autocompleteElement('#id_form_medicine-0-medicine', autocompleteMedicine, "medicine");
-autocompleteElement('#id_form_exam-0-exam', autocompleteExam, "medicine");
+var totalExam = $('#id_form_exam-TOTAL_FORMS').val() - 1;
+autocompleteAllMedicines();
+autocompleteAllExams();
 autocompleteElement('#id_patient', autocompletePatient, "patient");
 autocompleteElement('#id_cid', autocompleteCid, "cid");
