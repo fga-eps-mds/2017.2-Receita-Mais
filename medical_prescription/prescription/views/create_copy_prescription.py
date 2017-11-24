@@ -28,20 +28,20 @@ class CreateCopyPrescription(CreatePrescriptionView):
             specialize_prescription = NoPatientPrescription.objects.get(prescription_ptr=prescription_base)
         except:
             specialize_prescription = None
-
         if specialize_prescription is None:
 
             specialize_prescription = PatientPrescription.objects.get(prescription_ptr=prescription_base)
+            print("Nome: "+specialize_prescription.patient.name)
+            print("ID: "+str(specialize_prescription.patient.pk))
 
             if specialize_prescription.cid is None:
-
-                prescription_form = CreatePrescriptionForm(request.GET, initial={
+                prescription_form = CreatePrescriptionForm(request.GET or None, initial={
                     'patient': specialize_prescription.patient.name,
                     'patient_id': specialize_prescription.patient.pk,
                     'email': specialize_prescription.patient.email,
                 })
             else:
-                prescription_form = CreatePrescriptionForm(request.GET, initial={
+                prescription_form = CreatePrescriptionForm(request.GET or None, initial={
                     'patient': specialize_prescription.patient.name,
                     'patient_id': specialize_prescription.patient.pk,
                     'email': specialize_prescription.patient.email,
@@ -49,11 +49,19 @@ class CreateCopyPrescription(CreatePrescriptionView):
                     'cid_id': specialize_prescription.cid.pk
                 })
         else:
-            prescription_form = CreatePrescriptionForm(request.GET or None, initial={
-                'patient': specialize_prescription.patient,
-                'cid': specialize_prescription.cid.description,
-                'cid_id': specialize_prescription.cid.pk
-            })
+            if specialize_prescription.cid is not None:
+                prescription_form = CreatePrescriptionForm(request.GET or None, initial={
+                    'patient': specialize_prescription.patient,
+                    'cid': specialize_prescription.cid.description,
+                    'cid_id': specialize_prescription.cid.pk
+                })
+            else:
+                prescription_form = CreatePrescriptionForm(request.GET or None, initial={
+                    'patient': specialize_prescription.patient,
+                    'cid': None,
+                    'cid_id': None
+                })
+
 
         # Save objects of fields in database.
         form_medicine = self.get_initial_medicine_formset(prescription_base, request)
@@ -100,7 +108,6 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'posology': manipulated_medicine.posology,
                 }
             context.append(manipulated_medicine_context)
-        print(context)
         return self.MedicinePrescriptionFormSet(request.GET or None, initial=context, prefix='form_medicine')
 
     # Get context data of Exams in Prescription.
@@ -121,7 +128,6 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'exam_type': 'custom_exam',
                 }
             context.append(custom_exam_context)
-        print(context)
         return self.ExamPrescriptionFormSet(request.GET or None, initial=context, prefix='form_exam')
 
     # Get context data of Recommendation in Prescription.
