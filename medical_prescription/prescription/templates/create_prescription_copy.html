@@ -63,11 +63,14 @@
           <!-- This tab have been set as the default. -->
             <div id="home" class="tab-pane fade in active">
                 <br>
-
                   {{ form_medicine.management_form }}
                   {% for atom_form in form_medicine %}
                   <ul id='object_medicine' class='list-medicine'>
-                    <div class="table_medicine row col-md-12" hidden>
+                    {% if form_medicine|last == atom_form%}
+                      <div class="table_medicine row col-md-12" hidden>
+                    {%else%}
+                      <div class="table_medicine row col-md-12">
+                    {%endif%}
                       <div class="panel panel-default" id="panel">
                           <div class="panel-heading">
                             <div class="row">
@@ -82,7 +85,6 @@
                             </div>
                           </div>
                           <div class="panel-body">
-
                                 <li>
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
@@ -112,9 +114,6 @@
                                         {{atom_form.medicine_id}}
                                         {{atom_form.medicine_type}}
                                       </div>
-                                    <!-- <div class="col-md-1">
-                                      <a class="remove-medicine fa fa-times fa-2x" type="button"/>
-                                    </div> -->
                                 </li>
 
                         </div>
@@ -135,11 +134,14 @@
 
             <!-- This tab is where the exams take place in prescription. -->
             <div id="menu2" class="tab-pane fade">
-
                 {{ form_exam.management_form }}
                 {% for atom_form in form_exam %}
                 <ul id='object_exam'>
-                  <div class="table_exam" hidden>
+                  {% if form_exam|last == atom_form%}
+                    <div class="table_exam" hidden>
+                  {%else%}
+                    <div class="table_exam">
+                  {%endif%}
                     <li>
                       <div class="row">
                         <div class="col-md-11">
@@ -163,18 +165,21 @@
 
                 {% endfor %}
                 <div align="center">
-                  <button class="btn btn-success align="center"" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                  <button class="btn btn-success"  align="center" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                 </div>
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
             <div id="menu3" class="tab-pane fade">
-
                 {{ form_recommendation.management_form }}
                 {% for recommendationField in form_recommendation %}
 
                 <ul id='object_recommendation'>
-                  <div class="table_recommendation" hidden>
+                  {% if form_recommendation|last == recommendationField%}
+                    <div class="table_recommendation" hidden>
+                  {%else%}
+                    <div class="table_recommendation">
+                  {%endif%}
                     <li>
                       <div class="row">
                         <div class="col-md-11">
