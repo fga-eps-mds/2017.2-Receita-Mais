@@ -100,14 +100,14 @@ $(document).ready(function() {
     deleteForm("form_exam", ".table_exam", $(this).parent());
   });
 
-  // Method to clone reccomendation fields in the document
-  $('#add_more_reccomendation').click(function() {
-    cloneOrShow('div.table_recommendation:last', 'form_reccomendation', "", "recommendation");
+  // Method to clone recomendation fields in the document
+  $('#add_more_recomendation').click(function() {
+    cloneOrShow('div.table_recommendation:last', 'form_recomendation', "", "recommendation");
   });
 
   // This function is responsable to remove recommendation form.
    $("body").on("click",".remove-recommendation",function() {
-    deleteForm("form_reccomendation", ".table_recommendation", $(this).parent());
+    deleteForm("form_recomendation", ".table_recommendation", $(this).parent());
   });
 
 });
