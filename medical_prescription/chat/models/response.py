@@ -19,5 +19,6 @@ class Response(models.Model):
 
     text = models.CharField(max_length=constants.MAX_LENGTH_TEXT_MESSAGE)
     files = models.FileField(upload_to=UploadToPathAndRename(os.path.join('upload', 'files')), blank=True, null=True)
+    file_name = models.CharField(max_length=300, blank=True)
 
     date = models.DateField(auto_now=True)

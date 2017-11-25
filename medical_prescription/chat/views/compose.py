@@ -49,8 +49,11 @@ class ComposeView(FormView):
             message.user_from = user_from
             message.date = date.today()
 
-            response = Response()
             response = Response(files=request.FILES.get('files', None))
+
+            if response.files:
+                response.file_name = response.files.name
+
             response.user_from = user_from
             response.user_to = user_to
             response.text = text
