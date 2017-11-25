@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from chat.views import (InboxHealthProfessionalView,
+from chat.views import (ListArchives,
+                        InboxHealthProfessionalView,
                         ComposeView,
                         AutoCompleteEmail,
                         OutboxView,
@@ -16,6 +17,7 @@ from chat.views import (InboxHealthProfessionalView,
                         UnarchiveMessageHealthProfessionalView,)
 
 urlpatterns = (
+    url(r'^list_archives/$', ListArchives.as_view(), name='list_archive'),
     url(r'^inbox_health_professional/$', InboxHealthProfessionalView.as_view(), name='inbox_health_professional'),
     url(r'^inbox_patient/$', InboxPatientView.as_view(), name='inbox_patient'),
     url(r'^outbox/$', OutboxView.as_view(), name='outbox'),

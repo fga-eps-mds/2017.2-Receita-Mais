@@ -1,0 +1,34 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+
+    <div class="panel-body">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <th>{% trans "Arquivo Enviado" %}</th>
+        </thead>
+      <tbody>
+
+      {% for response in list_archive %}
+      <tr class='clickable-row'>
+            <td>{{ response.file_name }}</td>
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+    {# .... **Now the pagination section** ....#}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">{% trans "Página Anterior" %}</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">{% trans "Próxima Página" %}</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+{% endblock %}

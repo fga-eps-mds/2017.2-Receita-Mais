@@ -14,3 +14,4 @@ from .archive_box_patient_view import ArchiveBoxPatientView
 from .archive_box_health_professional_view import ArchiveBoxHealthProfessionalView
 from .unarchive_message_patient_view import UnarchiveMessagePatientView
 from .unarchive_message_health_professional_view import UnarchiveMessageHealthProfessionalView
+from .list_archive import ListArchives
