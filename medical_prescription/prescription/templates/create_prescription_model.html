@@ -8,49 +8,73 @@
 <!-- Panel -->
 
 {% csrf_token %}
-<div class = "col-sm-4 center-block center">
+<div class = "col-sm-12 center-block center">
     <form action=''  method="POST" enctype="multipart/form-data">
 
       {% csrf_token %}
+      <div class="row">
+        <div class = "col-md-12">
+          <font size="5">
+            <span class="label label-primary">{% trans "Nome do Modelo" %}</span>
+          </font>
+        </div>
+        <div class = "col-md-8">
+          {% for error in form.name.errors %}
+              <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endfor %}
+          {{ form.name }}
+        </div>
+      </div>
+      <br>
 
-      <font size="5">
-        <span class="label label-primary">{% trans "Nome do Modelo" %}</span>
-      </font>
-      {% for error in form.name.errors %}
-          <div class="alert alert-danger" role="alert">{{ error }}</div>
-      {% endfor %}
-      {{ form.name }}
+      <div class="row">
+        <div class = "col-md-12">
+            <font size="5">
+              <span class="label label-primary">{% trans "Clinica" %}</span>
+            </font>
+        </div>
+        <div class = "col-md-8">
+            {% for error in form.clinic.errors %}
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% endfor %}
+            {{ form.clinic }}
+        </div>
+      </div>
 
       <br>
 
-      <font size="5">
-        <span class="label label-primary">{% trans "Clinica" %}</span>
-      </font>
-      {% for error in form.clinic.errors %}
-          <div class="alert alert-danger" role="alert">{{ error }}</div>
-      {% endfor %}
-      {{ form.clinic }}
+      <div class="row">
+        <div class = "col-md-12">
+          <font size="5">
+            <span class="label label-primary">{% trans "Header" %}</span>
+          </font>
+        </div>
+        <div class = "col-md-8">
+          {% for error in form.header.errors %}
+              <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endfor %}
+          {{ form.header }}
+       </div>
+     </div>
 
       <br>
 
-      <font size="5">
-        <span class="label label-primary">{% trans "Header" %}</span>
-      </font>
-      {% for error in form.header.errors %}
-          <div class="alert alert-danger" role="alert">{{ error }}</div>
-      {% endfor %}
-      {{ form.header }}
+      <div class="row">
+        <div class = "col-md-12">
+            <font size="5">
+              <span class="label label-primary">{% trans "Footer" %}</span>
+            </font>
+        </div>
+        <div class = "col-md-8">
+          {% for error in form.footer.errors %}
+              <div class="alert alert-danger" role="alert">{{ error }}</div>
+          {% endfor %}
+          {{ form.footer }}
+        </div>
+      </div>
 
       <br>
 
-      <font size="5">
-        <span class="label label-primary">{% trans "Footer" %}</span>
-      </font>
-      {% for error in form.footer.errors %}
-          <div class="alert alert-danger" role="alert">{{ error }}</div>
-      {% endfor %}
-      {{ form.footer }}
-      <br>
 
       <font size="5">
         <span class="label label-primary">{% trans "Tamanho da Página" %}</span>
@@ -59,6 +83,7 @@
           <div class="alert alert-danger" role="alert">{{ error }}</div>
       {% endfor %}
       {{ form.pagesize }}
+      <br>
       <br>
 
       <font size ="5">
@@ -69,6 +94,7 @@
       {% endfor %}
        {{ form.font }}
       <br>
+      <br>
 
       <font size="5">
         <span class="label label-primary">{% trans "Tamanho da Fonte" %}</span>
@@ -77,6 +103,7 @@
           <div class="alert alert-danger" role="alert">{{ error }}</div>
       {% endfor %}
       {{ form.font_size }}
+      <br>
       <br>
 
       <font size="5">
