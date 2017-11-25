@@ -14,7 +14,7 @@ from .views import (
 urlpatterns = (url(r'^list_all_principle/$', ListAllPrinciple.as_view(), name='list_all_principle'),
                url(r'^list_custom_principle/$', ListCustomPrinciple.as_view(), name='list_custom_principle'),
                url(r'^create/$', CreateCustomActivePrinciple.as_view(), name='create_activePrinciple'),
-               url(r'^edit/(?P<pk>[0-9]+)/$', EditCustomActivePrinciple.as_view(), name='edit_activePrinciple'),
+               url(r'^edit_principle/(?P<pk>[0-9]+)/$', EditCustomActivePrinciple.as_view(), name='edit_principle'),
                url(r'^list_manipulated_medicines/$', ListManipulatedMedicinenByHealthProfessional.as_view(),
                    name='list_manipulated_medicines'),
                url(r'^list_all_medicines/$', ListAllMedicines.as_view(), name='list_all_medicines'),

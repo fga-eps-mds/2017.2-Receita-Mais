@@ -20,6 +20,7 @@
       {% for principle in list_custom_principle %}
         <tr class='clickable-row'>
           <td>{{ principle.name }}</td>
+          <td><a href="{% url 'edit_principle' principle.pk %}"><i class="fa-pencil" aria-hidden="true"></></a></td>
         </tr>
 
       {% empty %}
