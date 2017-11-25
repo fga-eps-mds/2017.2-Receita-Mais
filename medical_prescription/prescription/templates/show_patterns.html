@@ -18,12 +18,39 @@
 
       <div class="modal-body modal-open">
         {% for pattern in list_patterns %}
-              <li><a href='{% url 'print_prescription' prescription.pk pattern.pk %}'>{{ pattern.name }}</a></li>
+              <!-- <li><a href='{% url 'print_prescription' prescription.pk pattern.pk %}'>{{ pattern.name }}</a></li> -->
+
+
+
+                      <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h4 class="panel-title">
+                              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"></a>
+                              {{ pattern.name }}
+                              <!-- <li><a href='{% url 'print_prescription' prescription.pk pattern.pk %}'>Imprimir</a></li> -->
+                                
+                            </h4>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse in">
+                              <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div  class="col-md-8">
+                                  <b> Fonte:</b> {{ pattern.font }}<br>
+                                  <b> Tamanho da Fonte:</b> {{ pattern.font_size }}<br>
+                                  <b> Tamanho da Folha:</b> {{ pattern.pagesize }}
+                                </div>
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+
         {% endfor %}
+
 
       </div>
 
-  <div class="modal-footer">
-    <button data-dismiss="modal" class="btn btn-primary">Salvar</button>
-  </div>
 </div>
