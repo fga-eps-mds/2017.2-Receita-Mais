@@ -11,8 +11,6 @@ from django.utils.decorators import method_decorator
 from chat.models import Message, Response
 from chat.forms import CreateResponse
 
-from django.shortcuts import render_to_response
-
 
 @method_decorator(login_required, name='dispatch')
 class MessageDetailView(DetailView, FormMixin):
