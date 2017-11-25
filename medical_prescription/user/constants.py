@@ -136,7 +136,7 @@ INVITATION_EMAIL_BODY = """
                         fácil e rápida.
 
                         Para realizar o cadastro, clique neste link:
-                        http://localhost:8000/user/register_patient/%s
+                        http://preskribe.herokuapp.com/user/register_patient/%s
 
                         """
 

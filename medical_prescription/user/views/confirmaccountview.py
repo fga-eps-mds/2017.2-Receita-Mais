@@ -47,7 +47,7 @@ class ConfirmAccountView(View):
         email_subject = 'Confirmação de Conta'
         email_body = """
                      Obrigado por se registrar. Para ativar sua conta, clique
-                     neste link: http://localhost:8000/user/confirm/%s
+                     neste link: http://preskribe.herokuapp.com/user/confirm/%s
                      """
 
         send_mail(email_subject, email_body % UserActivateProfile.activation_key,
