@@ -1,0 +1,60 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+
+  <ul class="nav nav-tabs">
+   <li>
+     <a href="{% url 'list_all_principle' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
+   </li>
+   <li id="tag-custom" class="active">
+     <a data-toggle="nab-tabs" href=#>{% trans "Manipulados" %}</a>
+   </li>
+ </ul>
+ <div class="panel-body">
+  <!-- tab component -->
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <th>{% trans "Nome" %}</th>
+    </thead>
+
+    <tbody>
+
+      {% for principle in list_custom_principle %}
+        <tr class='clickable-row'>
+          <td>{{ principle.name }}</td>
+        </tr>
+
+      {% empty %}
+
+        <li>{% trans "Não existem principios ativos cadastrados." %}</li>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% comment "Source" %}
+  <p>Retirado de: https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html</p>
+  {% endcomment %}
+
+  {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+
+{%endblock %}
