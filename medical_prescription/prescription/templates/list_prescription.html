@@ -21,6 +21,8 @@
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
+      <th>Visualizar</th>
+      <th>Editar Cópia</th>
       <th>Imprimir</th>
     </thead>
 
@@ -91,7 +93,7 @@
               <a data-url="{% url 'copy_prescription' prescription.pk %}" class="js-create-prescription">Editar Copia</a>
           </td>
 
-          <td><a href='{% url 'print_prescription' prescription.id %}'><i class="fa fa-print"></i></a></td>
+          <td><a class="js-show-prescription" data-url='{% url 'show_patterns' prescription.pk %}'><i class="fa fa-print"></i></a></td>
 
           </tr>
         {% endfor %}

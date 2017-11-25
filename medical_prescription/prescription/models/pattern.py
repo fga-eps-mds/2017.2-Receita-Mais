@@ -17,12 +17,13 @@ class Pattern(models.Model):
     name = models.CharField(max_length=constants.MAX_LENGTH_NAME)
     user_creator = models.ForeignKey(User, related_name="user_creator")
 
-    font = models.CharField(choices=constants.FONT_CHOICE, max_length=100, default=constants.TIMES_ROMAN)
-    font_size = models.CharField(choices=constants.FONT_SIZE_CHOICE, max_length=100, default=constants.TWELVE)
+    font = models.CharField(choices=constants.FONT_CHOICE, max_length=100, default='Times-Roman')
+    font_size = models.CharField(choices=constants.FONT_SIZE_CHOICE, max_length=100, default=12)
+    pagesize = models.CharField(choices=constants.PAGE_SIZE_CHOICE, max_length=100, default='letter')
 
     clinic = models.CharField(max_length=constants.MAX_LENGTH_CLINIC)
     header = models.CharField(max_length=constants.MAX_LENGTH_HEADER)
     footer = models.CharField(max_length=constants.MAX_LENGTH_FOOTER)
 
-    logo = models.FileField(upload_to=UploadToPathAndRename(os.path.join('logos', 'files')), blank=True, null=True)
+    logo = models.FileField(upload_to=UploadToPathAndRename(os.path.join('logos', 'files')), blank=True, null=True, default=constants.DEFAULT_IMG)
     date = models.DateField(auto_now=True)

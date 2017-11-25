@@ -43,6 +43,7 @@ class CreatePatternView(FormView):
 
             font = form.cleaned_data.get('font')
             font_size = form.cleaned_data.get('font_size')
+            pagesize = form.cleaned_data.get('pagesize')
 
             # Create a Prescription type
             pattern_instance = Pattern()
@@ -54,6 +55,7 @@ class CreatePatternView(FormView):
             pattern_instance.clinic = clinic
             pattern_instance.font = font
             pattern_instance.font_size = font_size
+            pattern_instance.pagesize = pagesize
             pattern_instance.date = date.today()
             pattern_instance.save()
 

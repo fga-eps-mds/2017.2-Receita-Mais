@@ -9,45 +9,21 @@ from prescription.models import (
                                 PrescriptionDefaultExam,
                                 PrescriptionCustomExam,
                                 Recommendation,
-                                Pattern,
+                                Pattern
                                 )
+from prescription.views import ShowPatternsView
 from disease.models import Disease
 from exam.models import DefaultExam, CustomExam
 from medicine.models import Medicine, ManipulatedMedicine
 from user.models import Patient, HealthProfessional
-from prescription.views import PrintPrescription
 
 
-class TestPrintPrescription(TestCase):
+class TestShowDetailPrescriptionView(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
-        self.client = Client()
-        self.view = PrintPrescription.generate_pdf
-
-        self.patient = Patient()
-        self.patient.pk = 1
-        self.patient.name = "Paciente de teste"
-        self.patient.date_of_birth = "1991-10-21"
-        self.patient.phone = "06199999999"
-        self.patient.email = "paciente@emp.com"
-        self.patient.sex = "M"
-        self.patient.id_document = "1000331"
-        self.patient.CEP = "72850735"
-        self.patient.UF = "DF"
-        self.patient.city = "Brasília"
-        self.patient.neighborhood = "Asa sul"
-        self.patient.complement = "Bloco 2 QD 701"
-        self.patient.save()
-
-        self.health_professional = HealthProfessional()
-        self.health_professional.pk = 1
-        self.health_professional.crm = '12345'
-        self.health_professional.crm_state = 'US'
-        self.health_professional.save()
 
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12')
-
         self.disease = Disease()
         self.disease.pk = 1
         self.disease.id_cid_10 = "A01"
@@ -200,77 +176,10 @@ class TestPrintPrescription(TestCase):
         self.prescription_custom_exam.prescription = self.prescription
         self.prescription_custom_exam.save()
 
-        self.pattern = Pattern()
-        self.pattern.name = "Pattern de teste"
-        self.pattern.user_creator = self.health_professional
-        self.pattern.clinic = "clinica de teste"
-        self.pattern.header = "header de teste"
-        self.pattern.font = 'Helvetica'
-        self.pattern.font_size = '12'
-        self.pattern.footer = "footer de teste"
-        self.pattern.pagesize = "letter"
-        self.pattern.pk = 1
-        self.pattern.logo = None
-        self.pattern.save()
+    def test_prescription_get_with_health_professional(self):
+        request = self.factory.get('/prescription/show_patterns/')
+        request.user = self.health_professional
 
-        self.pattern = Pattern()
-        self.pattern.name = "Pattern de teste"
-        self.pattern.user_creator = self.health_professional
-        self.pattern.clinic = "clinica de teste"
-        self.pattern.header = "header de teste"
-        self.pattern.font = 'Helvetica'
-        self.pattern.font_size = '12'
-        self.pattern.footer = "footer de teste"
-        self.pattern.pagesize = "A4"
-        self.pattern.pk = 2
-        self.pattern.logo = None
-        self.pattern.save()
-
-        self.pattern = Pattern()
-        self.pattern.name = "Pattern de teste"
-        self.pattern.user_creator = self.health_professional
-        self.pattern.clinic = "clinica de teste"
-        self.pattern.header = "header de teste"
-        self.pattern.font = 'Helvetica'
-        self.pattern.font_size = '12'
-        self.pattern.footer = "footer de teste"
-        self.pattern.pagesize = "A5"
-        self.pattern.pk = 3
-        self.pattern.logo = None
-        self.pattern.save()
-
-
-    def test_print_prescription_get_letter(self):
-        request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=1, jk=1)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_A4(self):
-        request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=1, jk=2)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_A5(self):
-        request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=1, jk=3)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_invalid_medicine(self):
-        request = self.factory.get('/prescription/print_prescription/2/3')
-        response = self.view(request, pk=2, jk=3)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_invalid_recommendation(self):
-        request = self.factory.get('/prescription/print_prescription/3/3')
-        response = self.view(request, pk=3, jk=3)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_invalid_exam(self):
-        request = self.factory.get('/prescription/print_prescription/4/3')
-        response = self.view(request, pk=4, jk=3)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_invalid(self):
-        request = self.factory.get('/prescription/print_prescription/5/3')
-        response = self.view(request, pk=5, jk=3)
+        # Get the response
+        response = ShowPatternsView.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 200)
