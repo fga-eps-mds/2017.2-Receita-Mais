@@ -2,7 +2,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-
 # local django
 from chat import constants
 from user.models import User
