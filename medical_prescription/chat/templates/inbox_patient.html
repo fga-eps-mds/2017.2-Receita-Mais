@@ -48,6 +48,15 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
+
+
+                      <!--TODO(Felipe) Remove this debug -->
+
+                      {% if message.as_read is True %}
+                        <td>True</td>
+                      {% else %}
+                        <td>False</td>
+                      {% endif%}
                     <td><button><a href="{% url 'archive_message_patient' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
@@ -72,7 +81,7 @@
               <!-- /.btn-group -->
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
               <div class="pull-right">
-                <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html--> 
+                <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html-->
                 {% if is_paginated %}
                   <ul class="pagination">
                     {% if page_obj.has_previous %}

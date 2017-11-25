@@ -11,6 +11,8 @@ from django.utils.decorators import method_decorator
 from chat.models import Message, Response
 from chat.forms import CreateResponse
 
+from django.shortcuts import render_to_response
+
 
 @method_decorator(login_required, name='dispatch')
 class MessageDetailView(DetailView, FormMixin):
@@ -42,9 +44,20 @@ class MessageDetailView(DetailView, FormMixin):
         context['messages'] = messages_page_object
         return context
 
+    def get(self, request, *args, **kwargs):
+        self.object = Message.objects.get(pk=self.kwargs['pk'])
+
+        context = self.get_context_data()
+
+        self.object.as_read = True
+        self.object.save()
+
+        return self.render_to_response(context)
+
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = CreateResponse(request.POST, request.FILES)
+
         if form.is_valid():
             return self.form_valid(form, request)
         else:
