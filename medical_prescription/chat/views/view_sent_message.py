@@ -59,17 +59,10 @@ class SentMessageDetailView(DetailView, FormMixin):
     def form_valid(self, form, request):
         text = form.cleaned_data.get('text')
 
-        if request.FILES.get('files') is not None:
-            print ('========== REQUESTED FILES ===========')
-        else:
-            print ('============ NO REQUESTED FILES ==============')
-
         response = Response(files=request.FILES.get('files', None))
 
         if response.files:
             response.file_name = response.files.name
-        else:
-            print('============ NO FILES ============')
 
         response.user_from = self.object.user_from
         response.user_to = self.object.user_to
