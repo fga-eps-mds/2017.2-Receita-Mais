@@ -53,8 +53,11 @@ class MessageDetailView(DetailView, FormMixin):
     def form_valid(self, form, request):
         text = form.cleaned_data.get('text')
 
-        response = Response()
         response = Response(files=request.FILES.get('files', None))
+
+        if response.files:
+            response.file_name = response.files.name
+
         response.user_from = self.object.user_to
         response.user_to = self.object.user_from
         response.text = text

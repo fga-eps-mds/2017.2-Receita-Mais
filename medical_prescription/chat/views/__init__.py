@@ -1,3 +1,4 @@
+from .list_patient_files import ListPatientFiles
 from .inbox_health_professional import InboxHealthProfessionalView
 from .outbox import OutboxView
 from .compose import ComposeView

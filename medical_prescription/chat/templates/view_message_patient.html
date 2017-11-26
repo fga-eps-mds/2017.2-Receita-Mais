@@ -39,7 +39,7 @@
 
           <div class="mailbox-read-message">
               {% if element.files %}
-              <a href="{{element.files.url}}">Uploaded File</a>
+                <a href="{{element.files.url}}">{{element.file_name}}</a>
               {% endif %}
           </div>
           <!-- /.mailbox-read-message -->
@@ -72,7 +72,7 @@
               {% with messages|first as element %}
                   {% with element.message_set.all|first as message %}
                       {% if message.is_active_patient %}
-                        <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+                        <form class="center-block g-width-500--sm g-width-550--md" method='POST' action='' enctype="multipart/form-data">
                           {% csrf_token %}
 
                           <div class="form-group">
