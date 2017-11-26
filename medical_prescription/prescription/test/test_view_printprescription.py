@@ -2,7 +2,8 @@ from django.test import TestCase
 from django.test.client import RequestFactory, Client
 
 from prescription.models import (
-                                Prescription,
+                                NoPatientPrescription,
+                                PatientPrescription,
                                 PrescriptionHasManipulatedMedicine,
                                 PrescriptionRecommendation,
                                 PrescriptionHasMedicine,
@@ -54,34 +55,39 @@ class TestPrintPrescription(TestCase):
         self.disease.description = "A random disease"
         self.disease.save()
 
-        self.prescription = Prescription()
+        self.prescription = NoPatientPrescription()
         self.prescription.pk = 1
         self.prescription.health_professional = self.health_professional
         self.prescription.cid = self.disease
+        self.prescription.patient = "Algum nome"
         self.prescription.save()
 
-        self.prescription_2 = Prescription()
+        self.prescription_2 = NoPatientPrescription()
         self.prescription_2.pk = 2
         self.prescription_2.health_professional = self.health_professional
         self.prescription_2.cid = self.disease
+        self.prescription_2.patient = "Algum nome"
         self.prescription_2.save()
 
-        self.prescription_3 = Prescription()
+        self.prescription_3 = PatientPrescription()
         self.prescription_3.pk = 3
         self.prescription_3.health_professional = self.health_professional
         self.prescription_3.cid = self.disease
+        self.prescription_3.patient = self.patient
         self.prescription_3.save()
 
-        self.prescription_4 = Prescription()
+        self.prescription_4 = PatientPrescription()
         self.prescription_4.pk = 4
         self.prescription_4.health_professional = self.health_professional
         self.prescription_4.cid = self.disease
+        self.prescription_4.patient = self.patient
         self.prescription_4.save()
 
-        self.prescription_5 = Prescription()
+        self.prescription_5 = PatientPrescription()
         self.prescription_5.pk = 5
         self.prescription_5.health_professional = self.health_professional
         self.prescription_5.cid = self.disease
+        self.prescription_5.patient = self.patient
         self.prescription_5.save()
 
         self.manipulated_medicine = ManipulatedMedicine()
@@ -273,4 +279,9 @@ class TestPrintPrescription(TestCase):
     def test_print_prescription_get_invalid(self):
         request = self.factory.get('/prescription/print_prescription/5/3')
         response = self.view(request, pk=5, jk=3)
+        self.assertEqual(response.status_code, 200)
+
+    def test_print_prescription_get_invalid(self):
+        request = self.factory.get('/prescription/print_prescription/5/3')
+        response = self.view(request, pk=3, jk=1)
         self.assertEqual(response.status_code, 200)
