@@ -1,0 +1,65 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
+
+<script>
+        var formset = "{% static "prescription/js/formset.js" %}";
+        $.getScript(formset);
+</script>
+
+  <div class="js-prescription-create-form">
+    <div class="modal-header">
+      <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+      <h3 class="modal-title">Modelos de Prescrições</h3>
+    </div>
+
+      <div class="modal-body modal-open">
+        {% for pattern in list_patterns %}
+              <!-- <li><a href='{% url 'print_prescription' prescription.pk pattern.pk %}'>{{ pattern.name }}</a></li> -->
+              <div class="col-md-6">
+                      <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-sm-10">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"></a>
+                                  {{ pattern.name }}
+                                </h4>
+                              </div>
+                              <div class="col-sm-2">
+                                <a href='{% url 'print_prescription' prescription.pk pattern.pk %}'><i class="fa fa-print"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="collapse1" class="panel-collapse collapse in">
+                              <div class="row">
+                                <div class="col-sm-1">
+
+                                </div>
+                                {% if pattern.logo %}
+                                <div class="col-sm-3">
+                                  <img src="/public/{{pattern.logo}}" width="75px" height="50px"></img>
+                                </div>
+                                {% endif%}
+                                <div  class="col-md-8">
+                                  <b> Fonte:</b> {{ pattern.font }}<br>
+                                  <b> Tamanho da Fonte:</b> {{ pattern.font_size }}<br>
+                                  <b> Tamanho da Folha:</b> {{ pattern.pagesize }}
+                                </div>
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+        {% endfor %}
+
+
+      </div>
+
+</div>

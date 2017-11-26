@@ -24,6 +24,7 @@ class TestCreatePattern(TestCase):
         self.font = 'Helvetica'
         self.font_size = '12'
         self.footer = "footer de teste"
+        self.pagesize = "letter"
 
     def test_pattern_redirect_valid(self):
         data = {
@@ -32,7 +33,8 @@ class TestCreatePattern(TestCase):
                 'font': 'Helvetica',
                 'font_size': '12',
                 'header': self.header,
-                'footer': self.footer
+                'footer': self.footer,
+                'pagesize': self.pagesize,
                 }
 
         request = self.factory.post('/', data)

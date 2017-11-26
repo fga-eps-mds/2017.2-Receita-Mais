@@ -36,17 +36,23 @@ CID_INVALID = "This disease does not exists."
 # Exam invalid constants
 EXAM_INVALID = "This exams does not exists."
 
-# Pacient invalid constants
+# Patient invalid constants
 PATIENT_INVALID = "This field is required."
 
 # Empty constants
 EMPTY = 0
 
 # Constants for print prescription
-MAX_LENGTH_CLINIC = 150
-MAX_LENGTH_HEADER = 150
-MAX_LENGTH_FOOTER = 150
+MAX_LENGTH_CLINIC = 50
+MAX_LENGTH_HEADER = 200
+MAX_LENGTH_FOOTER = 200
 MAX_LENGTH_NAME = 50
+
+# Print prescription errors message
+LENGTH_CLINIC = "Clinic must have a maximum of  50 characters."
+LENGTH_HEADER = "Header must have a maximum of  200 characters."
+LENGTH_FOOTER = "Footer must have a maximum of  200 characters."
+LENGTH_NAME = "Name must have a maximum of 50 characters."
 
 # Fonts fields
 TIMES_ROMAN = 'Times-Roman'
@@ -54,12 +60,26 @@ HELVETICA = 'Helvetica'
 ARIAL = 'Arial'
 COURIER = 'Courier'
 
-FONT_CHOICE = ((TIMES_ROMAN, 'Times-Roman'), (HELVETICA, 'Helvetica'), (ARIAL, 'Arial'), (COURIER, 'Courier'))
+FONT_CHOICE = (('Times-Roman', 'Times-Roman'), ('Helvetica', 'Helvetica'), ('Courier', 'Courier'))
 
 # Fonts size fields
-NINE = '9'
-TEN = '10'
-TWELVE = '12'
-FOURTEEN = '14'
+FONT_SIZE_CHOICE = (('9', '9'), ('10', '10'), ('12', '12'), ('14', '14'))
 
-FONT_SIZE_CHOICE = ((NINE, '9'), (TEN, '10'), (TWELVE, '12'), (FOURTEEN, '14'))
+# DEFAULT PATH IMAGE.
+DEFAULT_IMG = 'medical_prescription/static/img/user.png'
+
+# Page size fields
+PAGE_SIZE_CHOICE = (('letter', 'letter'), ('A4', 'A4'), ('A5', 'A5'))
+
+CONTENT_TYPES = ['jpeg', 'png']
+FORMAT_ERROR = 'File type is not supported'
+FILE_SIZE = 'Please keep filesize under 20MB'
+# 2.5MB - 2621440
+# 5MB - 5242880
+# 10MB - 10485760
+# 20MB - 20971520
+# 50MB - 5242880
+# 100MB 104857600
+# 250MB - 214958080
+# 500MB - 429916160
+MAX_UPLOAD_SIZE = 20971520
