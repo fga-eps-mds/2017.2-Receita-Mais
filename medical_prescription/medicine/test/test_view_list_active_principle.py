@@ -5,7 +5,7 @@ from django.contrib.auth.models import AnonymousUser
 
 from medicine.models import ActivePrinciple
 from user.models import User, Patient, HealthProfessional
-from medicine.views import ListActivePrinciple
+from medicine.views import ListAllPrinciple
 
 
 class ListActivePrincipleViewTest(TestCase):
@@ -25,21 +25,21 @@ class ListActivePrincipleViewTest(TestCase):
         request = self.factory.get('/medicine/list/')
         request.user = AnonymousUser()
 
-        response = ListActivePrinciple.as_view()(request)
+        response = ListAllPrinciple.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
     def test_medicine_get_with_patient(self):
         request = self.factory.get('/medicine/list/')
         request.user = self.patient
 
-        response = ListActivePrinciple.as_view()(request)
+        response = ListAllPrinciple.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
     def test_medicine_get_with_health_professional(self):
         request = self.factory.get('/medicine/list/')
         request.user = self.health_professional
 
-        response = ListActivePrinciple.as_view()(request)
+        response = ListAllPrinciple.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
     def test_medicine_active_principle_str(self):

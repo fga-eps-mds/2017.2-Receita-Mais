@@ -24,7 +24,7 @@ echo "Create makemigrations and migrate"
 python3 medical_prescription/manage.py makemigrations
 python3 medical_prescription/manage.py migrate
 echo "Load all datas"
-python3 medical_prescription/manage.py loaddata data.json
+python3 medical_prescription/manage.py loaddata data2.json
 echo "Run server"
 python3 medical_prescription/manage.py runserver 0.0.0.0:8000 & .
 ./node_modules/.bin/gulp default
