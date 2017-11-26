@@ -25,6 +25,7 @@ class TestResponseModel(TestCase):
     def test_add_photo(self):
         newResponse = Response()
         newResponse.files = self.get_image_file()
+        newResponse.file_name = newResponse.files.name
         newResponse.user_from = self.user
         newResponse.user_to = self.user
         newResponse.text = 'asdad'
