@@ -40,9 +40,11 @@
                                 <div class="col-sm-1">
 
                                 </div>
+                                {% if pattern.logo %}
                                 <div class="col-sm-3">
                                   <img src="/public/{{pattern.logo}}" width="75px" height="50px"></img>
                                 </div>
+                                {% endif%}
                                 <div  class="col-md-8">
                                   <b> Fonte:</b> {{ pattern.font }}<br>
                                   <b> Tamanho da Fonte:</b> {{ pattern.font_size }}<br>
