@@ -40,7 +40,9 @@
               <table class="table table-hover table-striped">
                 {% for message in inbox %}
                 <tbody>
-                  <tr>
+                  <tr {% if message.as_read is True %}
+                        class = "success"
+                      {% endif %}>
                     <td><input type="checkbox"></td>
 
                     <td class="mailbox-name"><a href="{% url 'view_message_patient' message.pk %}">{{message.user_from}}</a></td>
@@ -49,14 +51,6 @@
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
 
-
-                      <!--TODO(Felipe) Remove this debug -->
-
-                      {% if message.as_read is True %}
-                        <td>True</td>
-                      {% else %}
-                        <td>False</td>
-                      {% endif%}
                     <td><button><a href="{% url 'archive_message_patient' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
                 </tbody>

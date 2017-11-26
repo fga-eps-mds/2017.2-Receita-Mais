@@ -42,6 +42,7 @@
 
                 <!-- List Message in outbox-->
                 {% for message in outbox %}
+
                 <tbody>
                   <tr>
                     <td><input type="checkbox"></td>
@@ -54,7 +55,7 @@
 
                     <td><button><a href="{% url 'archive_message_outbox' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
-                </tbody>
+                  </tbody>
                 {% endfor %}
 
 
