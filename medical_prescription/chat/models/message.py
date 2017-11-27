@@ -14,7 +14,6 @@ class Message(models.Model):
 
     subject = models.CharField(max_length=constants.MAX_LENGTH_TEXT_SUBJECT)
     date = models.DateField(auto_now=True)
-    as_read = models.BooleanField(default=False)
 
     is_active_patient = models.BooleanField(default=True)
     is_active_inbox_health_professional = models.BooleanField(default=True)

@@ -47,7 +47,18 @@ class MessageDetailView(DetailView, FormMixin):
 
         context = self.get_context_data()
 
-        self.object.as_read = True
+        # TODO(Felipe) Remove debugger.
+        print("SAJÇLDKJFLKASJDFKLAJSDKLFJAÇLKSJDF")
+        print(self.object.messages.all().last().user_from)
+        print(self.request.user)
+        print('\n\n\n\n\n\n')
+
+        # Mark all responses with read = True.
+        for message in self.object.messages.filter(as_read=False):
+            message.as_read = True
+            message.save()
+
+        # Save the Message.
         self.object.save()
 
         return self.render_to_response(context)
@@ -64,12 +75,20 @@ class MessageDetailView(DetailView, FormMixin):
     def form_valid(self, form, request):
         text = form.cleaned_data.get('text')
 
+        # Get elements of Form and save the response.
         response = Response()
         response = Response(files=request.FILES.get('files', None))
         response.user_from = self.object.user_to
         response.user_to = self.object.user_from
         response.text = text
         response.dat = date.today()
+
+        if(response.user_from is request.user):
+            response.as_read = True
+        else:
+            # Nothing to do.
+            pass
+
         response.save()
 
         self.object.messages.add(response)

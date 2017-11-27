@@ -21,3 +21,5 @@ class Response(models.Model):
     files = models.FileField(upload_to=UploadToPathAndRename(os.path.join('upload', 'files')), blank=True, null=True)
 
     date = models.DateField(auto_now=True)
+
+    as_read = models.BooleanField(default=False)
