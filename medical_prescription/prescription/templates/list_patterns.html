@@ -5,11 +5,28 @@
       <thead>
         <th>{% trans "Modelo(s) de impressão criado(s)" %}</th>
       </thead>
+      <thead>
+        <th>Nome</th>
+        <th>Clínica</th>
+        <th>Tipo de fonte</th>
+        <th>Tamanho da fonte</th>
+        <th>Tamanho da página</th>
+        <th>Cabeçalho</th>
+        <th>Rodapé</th>
+        <th>Editar</th>
+      </thead>
     <tbody>
 
     {% for pattern in list_patterns %}
     <tr class='clickable-row'>
-          <td>{{pattern.name}}</td>
+          <td>{{pattern.name|truncatechars:25}}</td>
+          <td>{{pattern.clinic|truncatechars:25}}</td>
+          <td>{{pattern.font}}</td>
+          <td>{{pattern.font_size}}</td>
+          <td>{{pattern.pagesize}}</td>
+          <td>{{pattern.header|truncatechars:15}}</td>
+          <td>{{pattern.footer|truncatechars:15}}</td>
+          <td><a href="#"><i class="fa-pencil" aria-hidden="true"></></a></td>
     </tr>
     {% endfor %}
     </table>
