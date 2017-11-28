@@ -1,9 +1,5 @@
 $(document).ready(function($) {
 
-  //Creating mascara for form fields
-  var $date_of_birth = $("#id_date_of_birth");
-  $date_of_birth.mask('00/00/0000');
-
   function clean_form_cep() {
     // Cleans cep form values.
     $("#id_complement").val("");

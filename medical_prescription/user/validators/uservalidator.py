@@ -96,8 +96,6 @@ class UserValidator():
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
         elif len(phone) < constants.PHONE_NUMBER_FIELD_LENGTH_MIN:
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
-        elif not phone.isdigit():
-            raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_FORMAT)]})
 
         logger.debug("Exit validator_phone_number.")
 
