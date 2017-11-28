@@ -16,7 +16,7 @@ class TestUpdateUserForm(TestCase):
         self.date_of_birth_invalid = '18'
         self.date_of_birth_invalid_MIN = '10/12/2022'
 
-        self.phone_valid = '1234567890'
+        self.phone_valid = '(61) 1234-56789'
         self.phone_invalid = 'a1234567890a'
         self.phone_invalid_MAX = '12345678912312310111212345612345678'
         self.phone_invalid_MIN = '12345'

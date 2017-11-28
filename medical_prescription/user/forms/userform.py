@@ -22,7 +22,7 @@ class UserForm(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control s-form-v4__input',
                                                             'placeholder': '* exemplo@exemplo.com'}))
     phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
-                                                          'placeholder': '* (xx)xxxxx-xxxx'}))
+                                                          'placeholder': '* (xx)xxxx-xxxxx'}))
     sex = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v4__input'}),
                             choices=constants.SEX_CHOICE)
 

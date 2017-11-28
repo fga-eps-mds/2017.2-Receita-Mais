@@ -11,7 +11,7 @@ class TestPatientForm(TestCase):
         self.name_invalid_MAX = 'aasdkgasghdhjadjasvdashdjavcdbnmhasdvbdmmasbdnmhamsjdhgegdhjgsavdhabvdbnasd'
         self.name_invalid_MIN = 'a'
 
-        self.phone_valid = '1234567890'
+        self.phone_valid = '(61) 1234-56789'
         self.phone_invalid = '456'
         self.phone_invalid_MIN = '456'
         self.phone_invalid_TYPE = 'asdaaaaaads'
