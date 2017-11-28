@@ -24,4 +24,4 @@ class ListPatterns(ListView):
         return super(ListPatterns, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
-        return self.model.objects.filter(health_professional=self.request.user)
+        return self.model.objects.filter(user_creator=self.request.user)
