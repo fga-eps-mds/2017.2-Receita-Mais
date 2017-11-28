@@ -40,7 +40,7 @@
               <table class="table table-hover table-striped">
                 {% for message in inbox %}
                 <tbody>
-                  <tr {% if message.as_read is True %}
+                  <tr {% if message.messages.all.last.as_read is True %}
                         class = "success"
                       {% endif %}>
                     <td><input type="checkbox"></td>

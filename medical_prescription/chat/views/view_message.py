@@ -47,12 +47,6 @@ class MessageDetailView(DetailView, FormMixin):
 
         context = self.get_context_data()
 
-        # TODO(Felipe) Remove debugger.
-        print("SAJÇLDKJFLKASJDFKLAJSDKLFJAÇLKSJDF")
-        print(self.object.messages.all().last().user_from)
-        print(self.request.user)
-        print('\n\n\n\n\n\n')
-
         # Mark all responses with read = True.
         for message in self.object.messages.filter(as_read=False):
             message.as_read = True
