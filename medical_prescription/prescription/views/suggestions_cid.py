@@ -25,7 +25,8 @@ class SuggestionsCid(View):
     def post(self, request, *args, **kwargs):
         if request.is_ajax():
             id_cid = request.POST.get('id', False)
-            prescriptions = Prescription.objects.filter(cid=id_cid, health_professional=request.user.healthprofessional)
+            prescriptions = Prescription.objects.filter(cid=id_cid,
+                                                        health_professional=request.user.healthprofessional)[:5]
 
             result = dict()
             list_prescription = []
@@ -37,6 +38,7 @@ class SuggestionsCid(View):
                 prescription_item['cid'] = prescription.cid.description
                 prescription_item['medicines'] = self.get_medicines(prescription)
                 prescription_item['exams'] = self.get_exams(prescription)
+                prescription_item['recommendations'] = self.get_recomendations(prescription)
                 if hasattr(prescription, 'patientprescription'):
                     prescription_item['patient'] = prescription.patientprescription.patient.name
                 else:
@@ -75,3 +77,12 @@ class SuggestionsCid(View):
             list_exams.append(exam_item)
 
         return list_exams
+
+    def get_recomendations(self, prescription):
+        list_recommendations = []
+        for recommendation in prescription.recommendation_prescription.all():
+            recommendation_item = {}
+            recommendation_item['name'] = recommendation.recommendation
+            list_recommendations.append(recommendation_item)
+
+        return list_recommendations
