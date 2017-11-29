@@ -34,7 +34,8 @@ class HealthProfessionalForm(UserForm):
     class Meta:
         # Define model to form.
         model = HealthProfessional
-        fields = ('name', 'email', 'date_of_birth', 'phone', 'sex', 'crm', 'crm_state', 'password',)
+        fields = ('name', 'email', 'date_of_birth', 'phone', 'sex', 'crm', 'crm_state', 'password',
+                  'specialty_first', 'specialty_second')
 
     def clean(self):
         """
