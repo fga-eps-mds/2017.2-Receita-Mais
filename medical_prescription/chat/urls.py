@@ -13,7 +13,8 @@ from chat.views import (InboxHealthProfessionalView,
                         ArchiveBoxPatientView,
                         ArchiveBoxHealthProfessionalView,
                         UnarchiveMessagePatientView,
-                        UnarchiveMessageHealthProfessionalView,)
+                        UnarchiveMessageHealthProfessionalView,
+                        CountMessagesView)
 
 urlpatterns = (
     url(r'^inbox_health_professional/$', InboxHealthProfessionalView.as_view(), name='inbox_health_professional'),
@@ -38,4 +39,5 @@ urlpatterns = (
         name='unarchive_message_patient'),
     url(r'^unarchive_message_health_professional/(?P<pk>[\w-]+)$',
         UnarchiveMessageHealthProfessionalView.post, name='unarchive_message_health_professional'),
+    url(r'^count_message/ajax/$', CountMessagesView.as_view(), name='count_messages'),
 )

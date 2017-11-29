@@ -1,7 +1,26 @@
 {% load static %} {% load staticfiles %} {% load i18n %}
-
 <!-- Main Header -->
 <header class="main-header">
+
+  {% csrf_token %}
+  <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      var data;
+
+      $.ajax({
+        url: "{% url 'count_messages' %}",
+        type: "GET",
+        dataType: 'json',
+        success: function(data){
+          alert("asldfkjasdd");
+        }
+      });
+    });
+
+  </script>
 
     <!-- Logo -->
     <a href="" class="logo">

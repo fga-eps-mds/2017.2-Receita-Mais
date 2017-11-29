@@ -17,10 +17,13 @@ class CountMessagesView(View):
             query_list = []
 
             for user in queryset:
-                query_list.append(user.email)
+                query_list.append(user.description)
+
+            print('askdljfaçlskdjflaksjdfkljaçsdlkfjas')
+            print(query_list)
+            print('\n\n\n\n')
 
             data = {
                 'list': query_list,
-                'list_len': len(query_list)
             }
             return JsonResponse(data)
