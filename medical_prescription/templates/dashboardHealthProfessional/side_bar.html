@@ -33,7 +33,19 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">HEADER</li>
       <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="{% url 'list_prescription' %}"><i class="fa fa-files-o"></i> <span>Prescrições</span></a></li>
+      <li class= "treeview">
+        <a href="#">
+          <i class="fa fa-files-o"></i><span>{% trans "Prescrições" %}</span>
+          <span class ="pull-right-container">
+            <i class = "fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class = "treeview-menu">
+          <li><a href="{% url 'list_prescription' %}">{% trans "Listar Prescrições"%}</a></li>
+          <li><a href="{% url 'list_patterns' %}">{% trans "Listar modelos de impressão"%}</a></li>
+        </ul>
+      </li>
+
 
 
       <li class= "treeview">
