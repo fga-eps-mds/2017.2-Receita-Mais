@@ -113,6 +113,7 @@ function select_type_field(element, field, ui) {
       break;
     case 'cid':
       $("#" + element.id + "_id").val(ui.item.id);
+      $("#" + element.id + "_id").trigger( "change" );
       break;
     case 'recommendation':
       $("#" + element.id + "_id").val(ui.item.id);
