@@ -35,9 +35,39 @@ class SugestionsCid(View):
                 prescription_item = {}
                 prescription_item['id'] = prescription.id
                 prescription_item['cid'] = prescription.cid.description
+                prescription_item['medicines'] = self.get_medicines(prescription)
+                # prescription_item['exams'] = self.get_exams(prescription)
                 list_prescription.append(prescription_item)
 
             result['data'] = list_prescription
 
             mimetype = 'application/json'
             return HttpResponse(json.dumps(result), mimetype)
+
+    def get_medicines(self, prescription):
+        list_medicines = []
+        for medicine in prescription.medicines.all():
+            medicine_item = {}
+            medicine_item['name'] = medicine.name
+            list_medicines.append(medicine_item)
+
+        for medicine in prescription.manipulated_medicines.all():
+            medicine_item = {}
+            medicine_item['name'] = medicine.recipe_name
+            list_medicines.append(medicine_item)
+
+        return list_medicines
+
+    def get_exams(self, prescription):
+        list_exams = []
+        for exam in prescription.default_exams.all():
+            exam_item = {}
+            exam_item['name'] = exam.description
+            list_exams.append(exam_item)
+
+        for exam in prescription.custom_exams.all():
+            exam_item = {}
+            exam_item['name'] = exam.name
+            list_exams.append(exam_item)
+
+        return list_exams
