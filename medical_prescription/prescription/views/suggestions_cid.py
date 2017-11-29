@@ -12,7 +12,7 @@ from user.decorators import is_health_professional
 from prescription.models import Prescription
 
 
-class SugestionsCid(View):
+class SuggestionsCid(View):
     """
     Responsible for obtaining suggested prescriptions to the CID.
     """
@@ -20,7 +20,7 @@ class SugestionsCid(View):
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
     def dispatch(self, *args, **kwargs):
-        return super(SugestionsCid, self).dispatch(*args, **kwargs)
+        return super(SuggestionsCid, self).dispatch(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if request.is_ajax():
@@ -36,7 +36,11 @@ class SugestionsCid(View):
                 prescription_item['id'] = prescription.id
                 prescription_item['cid'] = prescription.cid.description
                 prescription_item['medicines'] = self.get_medicines(prescription)
-                # prescription_item['exams'] = self.get_exams(prescription)
+                prescription_item['exams'] = self.get_exams(prescription)
+                if hasattr(prescription, 'patientprescription'):
+                    prescription_item['patient'] = prescription.patientprescription.patient.name
+                else:
+                    prescription_item['patient'] = prescription.nopatientprescription.patient
                 list_prescription.append(prescription_item)
 
             result['data'] = list_prescription
