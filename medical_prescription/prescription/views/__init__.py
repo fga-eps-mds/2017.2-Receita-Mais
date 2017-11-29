@@ -14,3 +14,4 @@ from .create_copy_prescription import CreateCopyPrescription
 from .listprescriptionpatient import ListPatientPrescription
 from .showpattern import ShowPatternsView
 from .printprescription import PrintPrescription
+from .sugestions_cid import SugestionsCid
