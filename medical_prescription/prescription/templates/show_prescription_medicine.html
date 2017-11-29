@@ -8,14 +8,17 @@
 <script>
         var formset = "{% static "prescription/js/formset.js" %}";
         var sortable = "{% static "prescription/js/sortable.js" %}";
+        var cidSugestion = "{% static "sugestion/sugestions_cid.js" %}";
 
         $.getScript(formset);
         $.getScript(sortable);
+        $.getScript(cidSugestion);
 
         var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
         var autocompletePatient = "{% url 'autocomplete_patient' %}"
         var autocompleteCid = "{% url 'autocomplete_cid' %}"
         var autocompleteExam = "{% url 'autocomplete_exam' %}"
+        var sugestionsCid = "{% url 'sugestions_cid' %}";
 </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
@@ -207,7 +210,21 @@
 
         </div>
     </div>
+    <div class="panel-body">
+     <!-- tab component -->
+     <h4>Sugestões CID:</h4>
+     <table class="table table-striped table-bordered table-hover sugestions_cid">
+       <thead>
+         <th>CID</th>
+         <th>Medicamentos</th>
+         <th>Recomendações</th>
+         <th>Exames</th>
+       </thead>
 
+       <tbody>
+       </tbody>
+     </table>
+   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Salvar</button>
   </div>

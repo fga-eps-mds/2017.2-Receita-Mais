@@ -18,7 +18,8 @@ from .views import (AutoCompleteExam,
                     ListPrescription,
                     PrintPrescription,
                     CreatePatternView,
-                    ShowPatternsView
+                    ShowPatternsView,
+                    SugestionsCid
                     )
 
 urlpatterns = (
@@ -28,6 +29,7 @@ urlpatterns = (
     url(r'^ajax/autocomplete_patient/$', AutoCompletePatient.as_view(), name='autocomplete_patient'),
     url(r'^ajax/autocomplete_medicine/$', AutoCompleteMedicine.as_view(),
         name='autocomplete_medicine'),
+    url(r'^ajax/sugestions_cid/$', SugestionsCid.as_view(), name='sugestions_cid'),
     url(r'^create_modal/$', CreatePrescriptionView.as_view(), name='create_modal'),
     url(r'^list_prescription/$', ListPrescription.as_view(), name='list_prescription'),
     url(r'^list_prescription_patient/$', ListPatientPrescription.as_view(), name='list_patient_prescription'),
@@ -40,5 +42,6 @@ urlpatterns = (
         name='copy_prescription'),
     url(r'^show_patterns/(?P<pk>[\w-]+)$', ShowPatternsView.as_view(),
         name='show_patterns'),
-    url(r'^print_prescription/(?P<pk>[0-9]+)/(?P<jk>[0-9]+)/$', PrintPrescription.generate_pdf, name='print_prescription'),
+    url(r'^print_prescription/(?P<pk>[0-9]+)/(?P<jk>[0-9]+)/$', PrintPrescription.generate_pdf,
+        name='print_prescription'),
     )
