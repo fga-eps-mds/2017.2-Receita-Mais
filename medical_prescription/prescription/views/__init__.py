@@ -15,3 +15,4 @@ from .listprescriptionpatient import ListPatientPrescription
 from .showpattern import ShowPatternsView
 from .printprescription import PrintPrescription
 from .listpatterns import ListPatterns
+from .editpattern import EditPatternView
