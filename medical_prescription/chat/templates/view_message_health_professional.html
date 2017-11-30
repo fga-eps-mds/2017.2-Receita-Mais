@@ -72,6 +72,7 @@
             {% with messages|first as element %}
                 {% with element.message_set.all|first as message %}
                     {% if message.is_active_inbox_health_professional %}
+<<<<<<< HEAD
                     <form class="center-block g-width-500--sm g-width-550--md" method='POST' action='' enctype="multipart/form-data">
                       {% csrf_token %}
 

@@ -42,9 +42,25 @@ class MessageDetailView(DetailView, FormMixin):
         context['messages'] = messages_page_object
         return context
 
+    def get(self, request, *args, **kwargs):
+        self.object = Message.objects.get(pk=self.kwargs['pk'])
+
+        context = self.get_context_data()
+
+        # Mark all responses with read = True.
+        for message in self.object.messages.filter(as_read=False):
+            message.as_read = True
+            message.save()
+
+        # Save the Message.
+        self.object.save()
+
+        return self.render_to_response(context)
+
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = CreateResponse(request.POST, request.FILES)
+
         if form.is_valid():
             return self.form_valid(form, request)
         else:
@@ -62,6 +78,13 @@ class MessageDetailView(DetailView, FormMixin):
         response.user_to = self.object.user_from
         response.text = text
         response.dat = date.today()
+
+        if(response.user_from is request.user):
+            response.as_read = True
+        else:
+            # Nothing to do.
+            pass
+
         response.save()
 
         self.object.messages.add(response)
