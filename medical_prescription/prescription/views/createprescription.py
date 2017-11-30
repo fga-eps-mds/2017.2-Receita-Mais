@@ -18,11 +18,12 @@ from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  PrescriptionRecommendation,
                                  PrescriptionDefaultExam,
                                  PrescriptionCustomExam,
+                                 PrescriptionNewExam,
                                  PatientPrescription,
                                  NoPatientPrescription,
                                  Recommendation
                                  )
-from exam.models import DefaultExam, CustomExam
+from exam.models import DefaultExam, CustomExam, NewExam
 from disease.models import Disease
 from user.models import (Patient,
                          HealthProfessional,
@@ -88,6 +89,7 @@ class CreatePrescriptionView(FormView):
         """
 
         exam_type = form.cleaned_data.get('exam_type')
+        print(exam_type)
         if exam_type == 'default_exam':
             id_tuss = form.cleaned_data.get('exam_id')
             self.create_prescription_default_exam(exam_prescription,
@@ -97,8 +99,12 @@ class CreatePrescriptionView(FormView):
             self.create_prescription_custom_exam(exam_prescription,
                                                  exam_id,
                                                  request)
+
         else:
-            # Nothing to do.
+            exam_id = form.cleaned_data.get('exam')
+            self.create_prescription_new_exam(exam_prescription,
+                                              exam_id,
+                                              request)
             pass
 
     def create_prescription_default_exam(self, prescription, exam_id):
@@ -118,6 +124,16 @@ class CreatePrescriptionView(FormView):
             )
 
         prescription_custom_exam_object.save()
+
+    def create_prescription_new_exam(self, prescription, exam_text, request):
+        new_exam = NewExam(exam_description=exam_text)
+        new_exam.save()
+        prescription_new_exam_object = PrescriptionNewExam(
+            prescription=prescription,
+            exam=new_exam,
+            )
+
+        prescription_new_exam_object.save()
 
     def create_prescription_has_manipulated_medicine(self, medicine_id, quantity, posology, prescription_medicine):
         prescription_has_manipulatedmedicine_object = PrescriptionHasManipulatedMedicine(
