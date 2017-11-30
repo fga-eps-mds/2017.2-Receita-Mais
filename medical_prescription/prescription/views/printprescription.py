@@ -65,8 +65,18 @@ class PrintPrescription:
         medic_name = Paragraph(self.prescription.health_professional.name, styles['centered'])
         w, h = medic_name.wrap(doc.width, doc.bottomMargin)
 
+        specialty = self.prescription.health_professional.specialty_second
+
+        if(specialty != 'Nao Possui'):
+            specialty = self.prescription.health_professional.specialty_first + ' / ' + specialty
+        else:
+            specialty = self.prescription.health_professional.specialty_first
+
+        medic_specialty = Paragraph(specialty, styles['centered'])
+        w, h = medic_specialty.wrap(doc.width, doc.bottomMargin)
+
         medic_crm = Paragraph(
-            self.prescription.health_professional.crm + '/' + self.prescription.health_professional.crm_state,
+            self.prescription.health_professional.crm + ' / ' + self.prescription.health_professional.crm_state,
             styles['centered'])
         w, h = medic_crm.wrap(doc.width, doc.bottomMargin)
 
@@ -81,8 +91,9 @@ class PrintPrescription:
 
             # Footer.
             medic_name.drawOn(canvas, doc.leftMargin + 10, 60)
-            medic_crm.drawOn(canvas, doc.leftMargin + 10, 50)
-            footer.drawOn(canvas, doc.leftMargin + 10, 15)
+            medic_specialty.drawOn(canvas, doc.leftMargin + 10, 48)
+            medic_crm.drawOn(canvas, doc.leftMargin + 10, 36)
+            footer.drawOn(canvas, doc.leftMargin + 10, 12)
 
             # Draw Lines.
             canvas.setLineWidth(0.5)
@@ -101,8 +112,9 @@ class PrintPrescription:
             patient_name.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - 15)
 
             # Footer
-            medic_name.drawOn(canvas, doc.leftMargin + 10, 65)
-            medic_crm.drawOn(canvas, doc.leftMargin + 10, 55)
+            medic_name.drawOn(canvas, doc.leftMargin + 10, 64)
+            medic_specialty.drawOn(canvas, doc.leftMargin + 10, 52)
+            medic_crm.drawOn(canvas, doc.leftMargin + 10, 40)
             footer.drawOn(canvas, doc.leftMargin + 10, 18)
 
             # Draw Lines.
@@ -122,8 +134,9 @@ class PrintPrescription:
 
             # Footer
             medic_name.drawOn(canvas, doc.leftMargin + 10, 60)
-            medic_crm.drawOn(canvas, doc.leftMargin + 10, 50)
-            footer.drawOn(canvas, doc.leftMargin + 10, 15)
+            medic_specialty.drawOn(canvas, doc.leftMargin + 10, 48)
+            medic_crm.drawOn(canvas, doc.leftMargin + 10, 36)
+            footer.drawOn(canvas, doc.leftMargin + 10, 12)
 
             # Draw Lines.
             canvas.setLineWidth(0.5)

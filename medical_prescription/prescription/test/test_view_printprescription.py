@@ -44,6 +44,8 @@ class TestPrintPrescription(TestCase):
         self.health_professional.pk = 1
         self.health_professional.crm = '12345'
         self.health_professional.crm_state = 'US'
+        self.health_professional.specialty_first = 'Nutricao'
+        self.health_professional.specialty_second = 'Pediatria'
         self.health_professional.save()
 
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
