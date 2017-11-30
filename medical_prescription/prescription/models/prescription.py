@@ -8,6 +8,7 @@ from medicine.models import Medicine
 from medicine.models import ManipulatedMedicine
 from exam.models import DefaultExam
 from exam.models import CustomExam
+from exam.models import NewExam
 
 
 class Prescription(models.Model):
@@ -23,6 +24,8 @@ class Prescription(models.Model):
                                                    related_name='manipulated_medicines')
     custom_exams = models.ManyToManyField(CustomExam, through='PrescriptionCustomExam', related_name='custom_exams')
     default_exams = models.ManyToManyField(DefaultExam, through='PrescriptionDefaultExam', related_name='default_exams')
+    new_exams = models.ManyToManyField(NewExam, through='PrescriptionNewExam', related_name='new_exams')
+
     recommendation_prescription = models.ManyToManyField('Recommendation', through='PrescriptionRecommendation',
                                                          related_name='recommendation_prescription')
     is_favorite = models.BooleanField(default=False)
