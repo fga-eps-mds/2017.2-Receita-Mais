@@ -8,14 +8,17 @@
 <script>
         var formset = "{% static "prescription/js/formset.js" %}";
         var sortable = "{% static "prescription/js/sortable.js" %}";
+        var cidSuggestion = "{% static "suggestion/suggestions_cid.js" %}";
 
         $.getScript(formset);
         $.getScript(sortable);
+        $.getScript(cidSuggestion);
 
         var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
         var autocompletePatient = "{% url 'autocomplete_patient' %}"
         var autocompleteCid = "{% url 'autocomplete_cid' %}"
         var autocompleteExam = "{% url 'autocomplete_exam' %}"
+        var suggestionsCid = "{% url 'suggestions_cid' %}";
 </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
@@ -201,13 +204,17 @@
                     <button class="btn btn-success" value="Add More Recomendation" id="add_more_recomendation" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                     <br>
                 </div>
-
-
             </div>
 
         </div>
     </div>
+    <div class="panel-body">
+     <!-- Where suggestions are loaded. -->
+     <div class="suggestions_cid">
 
+     </div>
+
+   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Salvar</button>
   </div>
