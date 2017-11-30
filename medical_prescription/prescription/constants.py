@@ -44,14 +44,14 @@ EMPTY = 0
 
 # Constants for print prescription
 MAX_LENGTH_CLINIC = 50
-MAX_LENGTH_HEADER = 200
-MAX_LENGTH_FOOTER = 200
+MAX_LENGTH_HEADER = 150
+MAX_LENGTH_FOOTER = 100
 MAX_LENGTH_NAME = 50
 
 # Print prescription errors message
 LENGTH_CLINIC = "Clinic must have a maximum of  50 characters."
-LENGTH_HEADER = "Header must have a maximum of  200 characters."
-LENGTH_FOOTER = "Footer must have a maximum of  200 characters."
+LENGTH_HEADER = "Header must have a maximum of  150 characters."
+LENGTH_FOOTER = "Footer must have a maximum of  100 characters."
 LENGTH_NAME = "Name must have a maximum of 50 characters."
 
 # Fonts fields

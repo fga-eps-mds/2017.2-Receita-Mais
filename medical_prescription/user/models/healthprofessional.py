@@ -14,5 +14,8 @@ class HealthProfessional(User):
 
     crm = models.CharField(max_length=constants.CRM_LENGTH)
     crm_state = models.CharField(choices=constants.UF_CHOICE, max_length=constants.CRM_STATE_LENGTH, default='DF')
+    specialty_first = models.CharField(choices=constants.SPECIALITY_CHOICE, max_length=constants.SPECIALITY_LENGTH)
+    specialty_second = models.CharField(choices=constants.SPECIALITY_CHOICE, max_length=constants.SPECIALITY_LENGTH,
+                                        default='Nao Possui')
 
     objects = UserManager()
