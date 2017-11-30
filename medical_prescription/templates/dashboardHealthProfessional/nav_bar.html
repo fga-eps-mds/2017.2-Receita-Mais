@@ -4,24 +4,13 @@
 
   {% csrf_token %}
   <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
+  <script src="{% static "dashboard/dist/js/message_feedback.js" %}" ></script>
 
-  <script type="text/javascript">
+  <script>
     $(document).ready(function(){
-      var csrf_token = $('.main-header [name="csrfmiddlewaretoken"]').val();
-      var data = {};
-      data["csrfmiddlewaretoken"] = csrf_token;;
+      feedback("{% url 'count_messages' %}")
 
-      $.ajax({
-        url: "{% url 'count_messages' %}",
-        type: "POST",
-        data: data,
-        dataType: 'json',
-        success: function(data){
-          alert("asldfkjasdd");
-        }
-      });
     });
-
   </script>
 
     <!-- Logo -->
@@ -51,14 +40,13 @@
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success"></span>
+                        <span class="label label-success" id="cont_responses"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header"></li>
                         <li>
                             <!-- inner menu: contains the messages -->
-                            <ul class="menu">
-                                <li>
+                            <ul class="menu"  id="notify_responses">
                                     <!-- start message -->
 
                                     <!-- end message -->
@@ -85,7 +73,6 @@
                             <ul class="menu">
                                 <li>
                                     <!-- start notification -->
-
                                 </li>
                                 <!-- end notification -->
                             </ul>
