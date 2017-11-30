@@ -7,6 +7,7 @@ from django.contrib import auth
 from django.views.generic import FormView
 
 # Local Django
+from user.models import HealthProfessional
 from user.forms import UserLoginForm
 from user import constants
 
@@ -59,6 +60,7 @@ class LoginView(FormView):
     # Define template and dashboard url
     def set_template_name(self, request):
         if "healthprofessional" in request.path:
+
             self.template_name = 'login_healthprofessional.html'
             self.dashboard_name = '/dashboard_health_professional/health_professional'
         else:

@@ -100,6 +100,30 @@
                 </div>
             </div>
 
+            <div class="row g-row-col-5 g-margin-b-50--xs">
+                <div class="col-sm-6">
+                    {% for error in form.specialty_first.errors %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                    {% endfor %}
+
+                    <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Especialidade: </h4>
+                     {{ form.specialty_first }}
+
+                </div>
+
+                <div class="col-sm-6">
+                     {% for error in form.specialty_second.errors %}
+                    <div class="alert alert-danger" role="alert">{{error}}</div>
+                    {% endfor %}
+
+                    <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">Especialidade:</h4>
+                     {{ form.specialty_second }}
+                </div>
+            </div>
+
+
+
+
             <div class="g-text-center--xs">
                 <button value='Criar' type="submit" class="text-uppercase s-btn s-btn--md s-btn--white-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">{% trans "Cadastrar"%}</button>
                 <br><a class="g-color--white g-font-size-13--xs" href="{% url 'login_healthprofessional' %}">{% trans "Já possui conta?Faça login agora!"%}</a><br>

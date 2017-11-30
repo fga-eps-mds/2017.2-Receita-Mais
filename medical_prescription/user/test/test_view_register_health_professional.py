@@ -25,6 +25,8 @@ class RegisterHealthProfessionalViewTest(TestCase):
                    'phone': '(61) 1234-56789',
                    'date_of_birth': '10/12/1990',
                    'crm': '12347',
+                   'specialty_first': 'Homeopatia',
+                   'specialty_second': 'Homeopatia',
                    'crm_state': 'DF'}
         response = self.client.post('/user/register_health_professional/', context)
 
@@ -39,6 +41,8 @@ class RegisterHealthProfessionalViewTest(TestCase):
                    'sex': 'A',
                    'phone': '6699999999',
                    'date_of_birth': '10/12/1990',
+                   'specialty_first': 'Homeopatia',
+                   'specialty_second': 'Homeopatia',
                    'crm': '12347',
                    'crm_state': 'DF'}
         response = self.client.post('/user/register_health_professional/', context)

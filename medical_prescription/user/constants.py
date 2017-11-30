@@ -43,6 +43,43 @@ UF_CHOICE = (
     ('TO', 'TO'),
 )
 
+# SPECIALITY FIELDS
+SPECIALITY_SIZE = 'Speciality can not be less than 5 characters'
+SPECIALITY_LENGTH = 25
+SPECIALITY_MIN_LENGTH = 5
+SPECIALITY_CHOICE = (
+    ('Nao Possui', 'Não Possui'),
+    ('Alergia', 'Alergia'),
+    ('Angiologia', 'Angiologia'),
+    ('Cardiologia', 'Cardiologia'),
+    ('Clinica Geral', 'Clínica Geral'),
+    ('Dermatologia', 'Dermatologia'),
+    ('Fisiatria', 'Fisiatria'),
+    ('Fisioterapia', 'Fisioterapia'),
+    ('Fonoaudiologia', 'Fonoaudiologia'),
+    ('Gastroenterologia', 'Gastroenterologia'),
+    ('Geriatria', 'Geriatria'),
+    ('Ginecologia', 'Ginecologia'),
+    ('Hematologia', 'Hematologia'),
+    ('Homeopatia', 'Homeopatia'),
+    ('Infectologia', 'Infectologia'),
+    ('Nefrologia', 'Nefrologia'),
+    ('Neurologia', 'Neurologia'),
+    ('Nutricao', 'Nutrição'),
+    ('Nutrologia', 'Nutrologia'),
+    ('Odontologia', 'Odontologia'),
+    ('Oftalmologia', 'Oftalmologia'),
+    ('Oncologia', 'Oncologia'),
+    ('Ortopedia e Traumatologia', 'Ortopedia e Traumatologia'),
+    ('Otorrinolaringologia', 'Otorrinolaringologia'),
+    ('Pediatria', 'Pediatria'),
+    ('Pneumologia', 'Pneumologia'),
+    ('Psicologia', 'Psicologia'),
+    ('Psicopedagogia', 'Psicopedagogia'),
+    ('Psiquiatria', 'Psiquiatria'),
+    ('Reumatologia', 'Reumatologia'),
+    ('Urologia', 'Urologia'),
+)
 # NAME FIELDS.
 NAME = "Name"
 NAME_FIELD_LENGTH = 50
