@@ -7,12 +7,14 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-
-      var data;
+      var csrf_token = $('.main-header [name="csrfmiddlewaretoken"]').val();
+      var data = {};
+      data["csrfmiddlewaretoken"] = csrf_token;;
 
       $.ajax({
         url: "{% url 'count_messages' %}",
-        type: "GET",
+        type: "POST",
+        data: data,
         dataType: 'json',
         success: function(data){
           alert("asldfkjasdd");

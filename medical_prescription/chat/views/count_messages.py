@@ -1,29 +1,33 @@
-from django.views.generic import View
-from django.http import JsonResponse
+import json
 
-from chat.models import Message
+from django.views.generic import View
+from django.http import HttpResponse
+
+from chat.models import Response
 
 
 class CountMessagesView(View):
     """
         Return a query of messages unread.
     """
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        print('==========================================================')
 
         if request.is_ajax():
 
-            queryset = Message.objects.filter(user_from=request.user, as_read=False)
+            queryset = Response.objects.filter(user_from=request.user, as_read=False)
 
             query_list = []
 
-            for user in queryset:
-                query_list.append(user.description)
+            for message in queryset:
+                message_item = {}
+                message_item['description'] = message.description
+                query_list.append(message_item)
 
-            print('askdljfaçlskdjflaksjdfkljaçsdlkfjas')
             print(query_list)
             print('\n\n\n\n')
 
-            data = {
-                'list': query_list,
-            }
-            return JsonResponse(data)
+            data = json.dumps(query_list)
+
+            mimetype = 'application/json'
+            return HttpResponse(json.dumps(data), mimetype)
