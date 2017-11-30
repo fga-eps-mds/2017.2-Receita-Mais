@@ -45,6 +45,7 @@ UF_CHOICE = (
 
 # SPECIALITY FIELDS
 SPECIALITY_SIZE = 'Speciality can not be less than 5 characters'
+SPECIALITY_REQUIRED = 'At least one specialty is required'
 SPECIALITY_LENGTH = 25
 SPECIALITY_MIN_LENGTH = 5
 SPECIALITY_CHOICE = (
