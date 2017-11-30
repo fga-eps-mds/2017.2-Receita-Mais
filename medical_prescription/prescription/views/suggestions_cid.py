@@ -49,10 +49,14 @@ class SuggestionsCid(View):
 
             mimetype = 'application/json'
             return HttpResponse(json.dumps(result), mimetype)
+        else:
+            # Nothing to do.
+            pass
 
+    # Get medicines related with some prescription.
     def get_medicines(self, prescription):
         list_medicines = []
-        for medicine in prescription.medicines.all():
+        for medicine in prescription.medicines.all()[:5]:
             medicine_item = {}
             medicine_item['name'] = medicine.name
             list_medicines.append(medicine_item)
@@ -64,6 +68,7 @@ class SuggestionsCid(View):
 
         return list_medicines
 
+    # Get exams related with some prescription.
     def get_exams(self, prescription):
         list_exams = []
         for exam in prescription.default_exams.all():
@@ -78,6 +83,7 @@ class SuggestionsCid(View):
 
         return list_exams
 
+    # Get recommendation related with some prescription.
     def get_recomendations(self, prescription):
         list_recommendations = []
         for recommendation in prescription.recommendation_prescription.all():
