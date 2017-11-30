@@ -1,7 +1,21 @@
-{% load static %} {% load staticfiles %} {% load i18n %} 
+{% load static %} {% load staticfiles %} {% load i18n %}
 
 <!-- Main Header -->
 <header class="main-header">
+
+
+
+
+    {% csrf_token %}
+    <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "dashboard/dist/js/message_feedback.js" %}" ></script>
+
+    <script>
+      $(document).ready(function(){
+        feedback("{% url 'count_messages' %}")
+
+      });
+    </script>
 
     <!-- Logo -->
     <a href="" class="logo">
@@ -25,26 +39,26 @@
                 <li><a href="#">Receitas</a></li>
                 <li><a href="#">Mensagens</a></li>
 
+
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success"></span>
+                        <span class="label label-success" id="cont_responses"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header"></li>
                         <li>
                             <!-- inner menu: contains the messages -->
-                            <ul class="menu">
-                                <li>
+                            <ul class="menu"  id="notify_responses">
                                     <!-- start message -->
 
                                     <!-- end message -->
                             </ul>
                             <!-- /.menu -->
                             </li>
-                            <li class="footer"><a href="#">Veja todas as mensagens</a></li>
+                            <li class="footer"><a href="#">{% trans "Veja todas as mensagens"%}</a></li>
                     </ul>
                 </li>
 

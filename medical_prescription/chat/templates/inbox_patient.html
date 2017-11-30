@@ -40,7 +40,9 @@
               <table class="table table-hover table-striped">
                 {% for message in inbox %}
                 <tbody>
-                  <tr>
+                  <tr {% if message.messages.all.last.as_read is True %}
+                        class = "success"
+                      {% endif %}>
                     <td><input type="checkbox"></td>
 
                     <td class="mailbox-name"><a href="{% url 'view_message_patient' message.pk %}">{{message.user_from}}</a></td>
@@ -48,6 +50,7 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
+
                     <td><button><a href="{% url 'archive_message_patient' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
@@ -72,7 +75,7 @@
               <!-- /.btn-group -->
               <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
               <div class="pull-right">
-                <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html--> 
+                <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html-->
                 {% if is_paginated %}
                   <ul class="pagination">
                     {% if page_obj.has_previous %}
