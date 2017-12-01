@@ -5,13 +5,6 @@
 <link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
-<script>
-        var formset = "{% static "prescription/js/formset.js" %}";
-        var sortable = "{% static "prescription/js/sortable.js" %}";
-
-        $.getScript(formset);
-</script>
-
   <div class="js-prescription-create-form">
     <div class="modal-header">
       <a href="#" data-dismiss="modal" class="class pull-right btn-return-modal"><span class="glyphicon glyphicon-remove"></span></a>
@@ -52,15 +45,15 @@
 
         <!-- This are the tabs in prescription -->
         <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a data-toggle="tab" href="#home">Medicamento</a></li>
-            <li><a data-toggle="tab" href="#menu2">Exames</a></li>
-            <li><a data-toggle="tab" href="#menu3">Recomendações</a></li>
+            <li class="active"><a data-toggle="tab" href="#home_detail">Medicamento</a></li>
+            <li><a data-toggle="tab" href="#menu2_detail">Exames</a></li>
+            <li><a data-toggle="tab" href="#menu3_detail">Recomendações</a></li>
         </ul>
 
         <div class="tab-content">
           <!-- This tab is where the medice take place in prescription. -->
           <!-- This tab have been set as the default. -->
-            <div id="home" class="tab-pane fade in active">
+            <div id="home_detail" class="tab-pane fade in active">
                 <br>
                   {% for medicine in prescription_medicine %}
                   <ul id='object_medicine' class='list-medicine'>
@@ -162,7 +155,7 @@
             </div>
 
             <!-- This tab is where the exams take place in prescription. -->
-            <div id="menu2" class="tab-pane fade">
+            <div id="menu2_detail" class="tab-pane fade">
 
                 {% for exam in prescription.custom_exams.all %}
                 <ul id='object_exam'>
@@ -204,7 +197,7 @@
             </div>
 
             <!-- This tab is where the recommendations take place in prescription. -->
-            <div id="menu3" class="tab-pane fade">
+            <div id="menu3_detail" class="tab-pane fade">
 
                 {% for recomendation in prescription.recommendation_prescription.all %}
                 <ul id='object_recommendation'>

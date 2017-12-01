@@ -14,10 +14,12 @@ $(document).on('click','.btn-return-modal', function(){
 
     function loadForm(event, id_modal) {
         var btn = $(event);
+
         $(id_modal).modal({
           backdrop: 'static',
           keyboard: false
         })
+
         if (!modalIsCreated){
         $.ajax({
             url: btn.attr("data-url"),

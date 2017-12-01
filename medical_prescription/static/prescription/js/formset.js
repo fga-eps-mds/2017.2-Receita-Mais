@@ -56,7 +56,6 @@ function cloneOrShow(selector, prefix, functionJson, field){
 // This function is used to delete a form dynamically when the button is clicked.
 function deleteForm(prefix, text, btn) {
   var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
-  console.log(total);
   if (total > 1) {
     btn.closest(text).remove();
     var forms = $(text);
@@ -77,37 +76,32 @@ function deleteForm(prefix, text, btn) {
   }
 }
 
-// Calls add and remove forms.
-$(document).ready(function() {
+// This function is responsable to remove medicine form.
+$(document).on('click','#add_more_medicine', function(){
+  cloneOrShow($('div.table_medicine:last'), 'form_medicine', autocompleteMedicine, "medicine");
+});
 
-  // Method to clone medicine fields in the document
-  $('#add_more').click(function() {
-    cloneOrShow('div.table_medicine:last', 'form_medicine', autocompleteMedicine, "medicine");
-  });
+// Method to clone medicine fields in the document
+$(document).on('click','.remove-medicine', function(){
+  deleteForm("form_medicine", ".table_medicine", $(this).parent());
+});
 
-  // This function is responsable to remove medicine form.
-   $("body").on("click",".remove-medicine",function() {
-    deleteForm("form_medicine", ".table_medicine", $(this).parent());
-  });
-
-  // Method to clone exam fields in the document
-  $('#add_more_exam').click(function() {
+// Method to clone exam fields in the document
+$(document).on('click','#add_more_exam', function(){
     cloneOrShow('div.table_exam:last', 'form_exam', autocompleteExam, "exam");
-  });
+});
 
-  // This function is responsable to remove exam form.
-   $("body").on("click",".remove-exam",function() {
-    deleteForm("form_exam", ".table_exam", $(this).parent());
-  });
+// This function is responsable to remove exam form.
+$(document).on('click','.remove-exam', function(){
+  deleteForm("form_exam", ".table_exam", $(this).parent());
+});
 
-  // Method to clone recomendation fields in the document
-  $('#add_more_recomendation').click(function() {
-    cloneOrShow('div.table_recommendation:last', 'form_recomendation', "", "recommendation");
-  });
+// Method to clone recomendation fields in the document
+$(document).on('click','#add_more_recomendation', function(){
+  cloneOrShow('div.table_recommendation:last', 'form_recomendation', "", "recommendation");
+});
 
-  // This function is responsable to remove recommendation form.
-   $("body").on("click",".remove-recommendation",function() {
-    deleteForm("form_recomendation", ".table_recommendation", $(this).parent());
-  });
-
+// This function is responsable to remove recommendation form.
+$(document).on('click','.remove-recommendation', function(){
+  deleteForm("form_recomendation", ".table_recommendation", $(this).parent());
 });
