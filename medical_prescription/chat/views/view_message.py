@@ -47,10 +47,14 @@ class MessageDetailView(DetailView, FormMixin):
 
         context = self.get_context_data()
 
+        # Get the last element of messages.
+        last_element = self.object.messages.all().last()
+
         # Mark all responses with read = True.
-        for message in self.object.messages.filter(as_read=False):
-            message.as_read = True
-            message.save()
+        if((last_element.as_read is False) and (last_element.user_to is request.user)):
+            for message in self.object.messages.filter(as_read=False):
+                message.as_read = True
+                message.save()
 
         # Save the Message.
         self.object.save()
@@ -82,6 +86,10 @@ class MessageDetailView(DetailView, FormMixin):
         else:
             # Nothing to do.
             pass
+
+        print("==================================")
+        print(response.user_to)
+        print(response.as_read)
 
         response.save()
 
