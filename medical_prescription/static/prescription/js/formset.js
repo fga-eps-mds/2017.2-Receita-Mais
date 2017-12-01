@@ -86,7 +86,7 @@ $(document).ready(function() {
   });
 
   // This function is responsable to remove medicine form.
-   $("body").off("click").on("click",".remove-medicine",function() {
+   $("body").on("click",".remove-medicine",function() {
     deleteForm("form_medicine", ".table_medicine", $(this).parent());
   });
 

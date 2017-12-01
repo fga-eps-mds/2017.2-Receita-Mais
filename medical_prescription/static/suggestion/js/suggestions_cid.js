@@ -6,6 +6,7 @@ $('#id_cid_id').change(function() {
   jsonText["csrfmiddlewaretoken"] = csrf_token;
   jsonText["id"] = $(this).val();
 
+  var suggestion = $("#modal-view").attr("data-suggestion");
   $.ajax({
     url: suggestionsCid,
     type: 'POST',
@@ -20,6 +21,8 @@ $('#id_cid_id').change(function() {
             var medicines = add_itens("Medicamentos", value.medicines);
             var exams = add_itens("Exames", value.exams);
             var recommendations = add_itens("Recomendações", value.recommendations);
+            var url_suggestion = suggestion.replace('None', value.id);
+            console.log(url_suggestion);
 
             $('.suggestions_cid').append(
         `<div>
@@ -35,7 +38,7 @@ $('#id_cid_id').change(function() {
                                </h4>
                              </div>
                              <div class="col-sm-2">
-                               <a href='#'><i class="fa fa-print"></i></a>
+                           <input type="button" class="js-show-suggestion" data-url="${url_suggestion}" value="Visualizar"></input>
                              </div>
                            </div>
                          </div>

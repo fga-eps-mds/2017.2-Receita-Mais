@@ -3,8 +3,12 @@ $(function () {
     /* Functions */
     var modalIsCreated = false;
 
-    var loadForm = function () {
+    function loadForm(event) {
         var btn = $(this);
+        $(event.data.id_modal).modal({
+          backdrop: 'static',
+          keyboard: false
+        })
         if (!modalIsCreated){
         $.ajax({
             url: btn.attr("data-url"),
@@ -12,18 +16,18 @@ $(function () {
             dataType: 'json',
             async: true,
             success: function (data) {
-                $("#modal-prescription .modal-content").html("");
-                $("#modal-prescription").modal("show");
+                $(event.data.id_modal + " .modal-content").html("");
+                $(event.data.id_modal).modal("show");
                 modalIsCreated = false;
-                $("#modal-prescription .modal-content").html(data.html_form);
+                $(event.data.id_modal + " .modal-content").html(data.html_form);
             }
         });
       }else{
-        $("#modal-prescription").modal("show");
+        $(id_modal).modal("show");
       }
     };
 
-    var saveForm = function () {
+    function saveForm(event) {
         var form = $(this);
         $.ajax({
             url: form.attr("action"),
@@ -34,11 +38,11 @@ $(function () {
             success: function (data) {
                 if (data.form_is_valid) {
                   modalIsCreated = false;
-                  $("#modal-prescription").modal("hide");
+                  $(event.data.id_modal).modal("hide");
                 }
                 else {
-                    $("#modal-prescription").modal("show");
-                    $("#modal-prescription .modal-content").html(data.html_form);
+                    $(event.data.id_modal).modal("show");
+                    $(event.data.id_modal + " .modal-content").html(data.html_form);
                 }
             }
         });
@@ -49,18 +53,17 @@ $(function () {
     /* Binding */
 
     // Create prescription.
-    $(".js-create-prescription").click(loadForm);
-    $("#modal-prescription").on("submit", ".js-prescription-create-form", saveForm);
+    $(".js-create-prescription").click({id_modal: "#modal-prescription"}, loadForm);
+    $("#modal-prescription").on("submit", ".js-prescription-create-form",{id_modal: "#modal-prescription"}, saveForm);
 
     // Update prescription.
-    $("#prescription-table").on("click", ".js-update-prescription", loadForm);
-    $("#modal-prescription").on("submit", ".js-prescription-update-form", saveForm);
+    $("#prescription-table").on("click", ".js-update-prescription", {id_modal: "#modal-prescription"}, loadForm);
+    $("#modal-prescription").on("submit", ".js-prescription-update-form", {id_modal: "#modal-prescription"}, saveForm);
 
     // Delete prescription.
-    $("#prescription-table").on("click", ".js-delete-prescription", loadForm);
-    $("#modal-prescription").on("submit", ".js-prescription-delete-form", saveForm);
+    $("#prescription-table").on("click", ".js-delete-prescription", {id_modal: "#modal-prescription"}, loadForm);
+    $("#modal-prescription").on("submit", ".js-prescription-delete-form", {id_modal: "#modal-prescription"}, saveForm);
 
     // Show prescription.
-    $(".js-show-prescription").click(loadForm);
-
+    $(".js-show-prescription").click({id_modal: "#modal-prescription"}, loadForm);
 });
