@@ -22,10 +22,5 @@ class ArchiveBoxHealthProfessionalView(ListView):
 
     # Return all Messages for the user.
     def get_queryset(self):
-        query_to_inbox = self.model.objects.filter(user_to=self.request.user,
-                                                   is_active_inbox_health_professional=False)
-        query_from_outbox = self.model.objects.filter(user_from=self.request.user,
-                                                      is_active_outbox_health_professional=False)
-
-        records = (query_to_inbox | query_from_outbox).distinct()
-        return records
+        return self.model.objects.filter(user_from=self.request.user,
+                                         is_active_health_professional=False)

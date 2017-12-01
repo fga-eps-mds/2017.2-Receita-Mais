@@ -45,16 +45,8 @@
                   <tr>
                     <td><input type="checkbox"></td>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    {% if message.is_active_inbox_health_professional %}
+                    {% if message.is_active_health_professional == False %}
                         <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
-                    {% elif message.is_active_outbox_health_professional %}
-                        <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
-                    {% else %}
-                        {% if request.user == message.user_to %}
-                            <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
-                        {% else %}
-                            <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
-                        {% endif %}
                     {% endif %}
                     <td class="mailbox-subject"><b>{{message.subject}}</b>
                     </td>
@@ -128,8 +120,7 @@
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
-              <li><a href="{% url 'inbox_health_professional'%}"><i class="fa fa-inbox"></i> Inbox</a><li>
-              <li><a href="{% url 'outbox'%}"><i class="fa fa-envelope-o"></i> Sent</a></li>
+              <li><a href="{% url 'outbox'%}"><i class="fa fa-envelope-o"></i> Messages</a></li>
               <li><a href="{% url 'archive_box_health_professional'%}"><i class="fa fa-envelope-o"></i> Archive</a></li>
             </ul>
           </div>
