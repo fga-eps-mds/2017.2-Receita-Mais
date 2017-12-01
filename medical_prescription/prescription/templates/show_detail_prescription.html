@@ -180,7 +180,24 @@
                      </li>
                   </div>
                 </ul>
+                {% endfor %}
 
+                {% for exam in prescription.new_exams.all %}
+                <ul id='object_exam'>
+                  <div class="table_exam">
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              <div class="form-control">
+                                  {{ exam.exam_description|truncatechars:175 }}
+                              </div>
+                           </div>
+                        </div>
+                   </div>
+                     </li>
+                  </div>
+                </ul>
                 {% endfor %}
 
                 {% for exam in prescription.default_exams.all %}
