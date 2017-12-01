@@ -39,7 +39,10 @@
             </div>
             <div class="table-responsive mailbox-messages">
               <table class="table table-hover table-striped">
+
+                <!-- List Message in outbox-->
                 {% for message in outbox %}
+
                 <tbody>
                   <tr>
                     <td><input type="checkbox"></td>
@@ -49,10 +52,13 @@
                     </td>
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">{{message.date}}</td>
+
                     <td><button><a href="{% url 'archive_message_outbox' message.pk %}" onclick="return confirm('Arquivar Conversa?')">Arquivar Conversa</a></button></td>
                   </tr>
-                </tbody>
+                  </tbody>
                 {% endfor %}
+
+
               </table>
               <!-- /.table -->
             </div>

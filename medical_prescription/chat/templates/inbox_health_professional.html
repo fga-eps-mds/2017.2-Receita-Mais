@@ -41,7 +41,11 @@
               <table class="table table-hover table-striped">
                 {% for message in inbox %}
                 <tbody>
-                  <tr>
+
+                  <!-- Case the last Message is unread, the message is unread to-->
+                  <tr {% if message.messages.all.last.as_read is True %}
+                        class = "success"
+                      {% endif %}>
                     <td><input type="checkbox"></td>
 
                     <td class="mailbox-name"><a href="{% url 'view_message_health_professional' message.pk %}">{{message.user_from}}</a></td>
