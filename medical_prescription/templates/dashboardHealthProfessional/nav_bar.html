@@ -116,7 +116,7 @@
 </header>
 
 <!-- This divs created the general structure of modal -->
-<div class="modal fade bs-example-modal-lg" data-toggle="modal" id="modal-prescription">
+<div class="modal bs-example-modal-lg" data-toggle="modal" id="modal-prescription">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <!-- Here is where the content of modal, the informations, will take place. -->
@@ -124,6 +124,38 @@
     </div>
 </div>
 
+
+<!-- This divs created the general structure of modal -->
+<div class="modal bs-example-modal-lg" data-toggle="modal" id="modal-view", data-suggestion="{% url 'show_prescription' None %}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <!-- Here is where the content of modal, the informations, will take place. -->
+        </div>
+    </div>
+</div>
+<!--
+<style>
+.modal-backdrop {
+    background-color: gray;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";       /* IE 8 */
+    filter: alpha(opacity=70)!important;  /* IE 5-7 */
+    -moz-opacity: 0.7!important;          /* Netscape */
+    -khtml-opacity: 0.7!important;        /* Safari 1.x */
+    opacity: 0.95!important;
+}
+
+.modal-dialog {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  min-height: 100%;
+  border-radius: 0;
+}
+</style>
+-->
 <link rel="stylesheet" href="{% static "prescription/css/charfield.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">

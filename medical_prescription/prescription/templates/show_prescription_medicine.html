@@ -8,11 +8,14 @@
 <script>
         var formset = "{% static "prescription/js/formset.js" %}";
         var sortable = "{% static "prescription/js/sortable.js" %}";
-        var cidSuggestion = "{% static "suggestion/suggestions_cid.js" %}";
+        var cidSuggestion = "{% static "suggestion/js/suggestions_cid.js" %}";
+        var modal_form = "{% static "suggestion/js/modalform.js" %}";
+
 
         $.getScript(formset);
         $.getScript(sortable);
         $.getScript(cidSuggestion);
+        $.getScript(modal_form);
 
         var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
         var autocompletePatient = "{% url 'autocomplete_patient' %}"
@@ -85,7 +88,7 @@
                             </div>
                           </div>
                           <div class="panel-body">
-
+                            çlsjfçlajfçjasçl
                                 <li>
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
