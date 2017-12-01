@@ -66,7 +66,7 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(response.status_code, 200)
 
     @patch('prescription.models.NoPatientPrescription.save', MagicMock(name="save"))
-    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionNewRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_health_professional(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
@@ -96,7 +96,7 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(NoPatientPrescription.save.call_count, 1)
 
     @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
-    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionNewRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_health_professional_patient(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
