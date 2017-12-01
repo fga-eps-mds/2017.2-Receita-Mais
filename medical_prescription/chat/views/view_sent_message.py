@@ -46,7 +46,26 @@ class SentMessageDetailView(DetailView, FormMixin):
 
         context['messages'] = messages_page_object
         context['form'] = self.get_form()
+
         return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = Message.objects.get(pk=self.kwargs['pk'])
+
+        context = self.get_context_data()
+
+        last_element = self.object.messages.all().last()
+
+        # Mark all responses with read = True.
+        if(last_element.user_to.email == request.user.email):
+            for message in self.object.messages.filter(as_read=False):
+                message.as_read = True
+                message.save()
+
+        # Save the Message.
+        self.object.save()
+
+        return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

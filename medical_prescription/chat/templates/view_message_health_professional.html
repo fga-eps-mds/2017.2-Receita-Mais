@@ -72,8 +72,18 @@
             {% with messages|first as element %}
                 {% with element.message_set.all|first as message %}
                     {% if message.is_active_inbox_health_professional %}
-                    <form class="center-block g-width-500--sm g-width-550--md" method='POST' action='' enctype="multipart/form-data">
-                      {% csrf_token %}
+                      <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                          {% for error in form.text.errors %}
+                              <div class="alert alert-danger" role="alert">{{ error }}</div>
+                          {% endfor %}
+
+                          <!-- Text field -->
+                          {{ form.text }}
+
+                        </div>
 
                       <div class="form-group">
                         {% for error in form.text.errors %}

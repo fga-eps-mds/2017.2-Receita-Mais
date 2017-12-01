@@ -22,3 +22,5 @@ class Response(models.Model):
     file_name = models.CharField(max_length=300, blank=True)
 
     date = models.DateField(auto_now=True)
+
+    as_read = models.BooleanField(default=False)
