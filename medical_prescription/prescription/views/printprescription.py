@@ -250,6 +250,10 @@ class PrintPrescription:
             for custom_exams in prescription.custom_exams.all():
                 elements.append(Paragraph(custom_exams.description, styles['default']))
                 elements.append(Spacer(1, 12))
+
+            for new_exams in prescription.new_exams.all():
+                elements.append(Paragraph(new_exams.exam_description, styles['default']))
+                elements.append(Spacer(1, 12))
         else:
             # Nothing to do.
             pass
