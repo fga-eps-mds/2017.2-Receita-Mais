@@ -9,10 +9,10 @@ $(function(){
             'search': request.term
           },
           success:function(data){
-            response(data.list)
+              response(data.list)
           }
       });
     },
-    minLenght: 3
-  });
+    minLenght: 3,
+})
 });
