@@ -54,6 +54,10 @@ class TestHealthProfessionalForm(TestCase):
         self.crm_state_invalid_MIN = 'A'
         self.crm_state_invalid_NONE = None
 
+        self.speciality_valid = 'Alergia'
+        self.speciality_invalid_MIN = 'A'
+        self.speciality_invalid_MAX = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+
         user = HealthProfessional()
         user.crm = "54321"
         user.save()
@@ -69,6 +73,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -83,6 +89,8 @@ class TestHealthProfessionalForm(TestCase):
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
         form = HealthProfessionalForm(data=form_data)
@@ -95,6 +103,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -108,6 +118,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -121,6 +133,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -134,6 +148,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -147,6 +163,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -160,6 +178,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'password_confirmation': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -173,6 +193,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -186,6 +208,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -198,6 +222,8 @@ class TestHealthProfessionalForm(TestCase):
                      'email': self.email_invalid_MIN,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
@@ -211,6 +237,8 @@ class TestHealthProfessionalForm(TestCase):
                      'email': self.email_invalid_BASE,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
@@ -224,6 +252,8 @@ class TestHealthProfessionalForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_MAX,
                      'confirm_password': self.password_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
@@ -237,6 +267,8 @@ class TestHealthProfessionalForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_MIN,
                      'confirm_password': self.password_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
@@ -250,6 +282,8 @@ class TestHealthProfessionalForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_invalid_TYPE,
                      'confirm_password': self.password_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
@@ -264,6 +298,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_invalid_MIN,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -279,6 +315,8 @@ class TestHealthProfessionalForm(TestCase):
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'date_of_birth': self.date_of_birth_valid}
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
@@ -292,6 +330,8 @@ class TestHealthProfessionalForm(TestCase):
                      'crm': self.crm_invalid_FORMAT,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'date_of_birth': self.date_of_birth_valid}
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())
@@ -312,6 +352,8 @@ class TestHealthProfessionalForm(TestCase):
     def test_user_forms_health_professional_crm_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
@@ -325,6 +367,8 @@ class TestHealthProfessionalForm(TestCase):
     def test_user_forms_health_professional_crm_is_not_valid_TYPE(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
@@ -338,6 +382,8 @@ class TestHealthProfessionalForm(TestCase):
     def test_user_forms_health_professional_crm_is_not_valid_existent(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
@@ -352,6 +398,8 @@ class TestHealthProfessionalForm(TestCase):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
                      'email': self.email_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
@@ -365,6 +413,8 @@ class TestHealthProfessionalForm(TestCase):
     def test_user_forms_health_professional_crm_state_is_not_valid_MIN(self):
         form_data = {'name': self.name_valid,
                      'phone': self.phone_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
@@ -383,6 +433,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_invalid,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -397,6 +449,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_invalid_NONE,
                      'sex': self.sex_valid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -411,6 +465,8 @@ class TestHealthProfessionalForm(TestCase):
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
                      'crm': self.crm_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_invalid,
                      'date_of_birth': self.date_of_birth_valid}
@@ -423,6 +479,8 @@ class TestHealthProfessionalForm(TestCase):
                      'email': self.email_valid,
                      'password': self.password_valid,
                      'confirm_password': self.password_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
@@ -439,6 +497,68 @@ class TestHealthProfessionalForm(TestCase):
                      'crm': self.crm_valid,
                      'crm_state': self.crm_state_valid,
                      'sex': self.sex_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_valid,
                      'date_of_birth': self.date_of_birth_invalid_MIN}
+        form = HealthProfessionalForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_forms_health_professional_specialty_first_is_not_valid_MIN(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'crm': self.crm_valid,
+                     'crm_state': self.crm_state_valid,
+                     'sex': self.sex_valid,
+                     'specialty_first': self.speciality_invalid_MIN,
+                     'specialty_second': self.speciality_valid,
+                     'date_of_birth': self.date_of_birth_valid}
+        form = HealthProfessionalForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_forms_health_professional_specialty_first_is_not_valid_MAX(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'crm': self.crm_valid,
+                     'crm_state': self.crm_state_valid,
+                     'sex': self.sex_valid,
+                     'specialty_first': self.speciality_invalid_MAX,
+                     'specialty_second': self.speciality_valid,
+                     'date_of_birth': self.date_of_birth_valid}
+        form = HealthProfessionalForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_forms_health_professional_specialty_second_is_not_valid_MIN(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'crm': self.crm_valid,
+                     'crm_state': self.crm_state_valid,
+                     'sex': self.sex_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_invalid_MIN,
+                     'date_of_birth': self.date_of_birth_valid}
+        form = HealthProfessionalForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_forms_health_professional_specialty_second_is_not_valid_MAX(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'crm': self.crm_valid,
+                     'crm_state': self.crm_state_valid,
+                     'sex': self.sex_valid,
+                     'specialty_first': self.speciality_valid,
+                     'specialty_second': self.speciality_invalid_MAX,
+                     'date_of_birth': self.date_of_birth_valid}
         form = HealthProfessionalForm(data=form_data)
         self.assertFalse(form.is_valid())

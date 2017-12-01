@@ -41,9 +41,13 @@ class RegisterHealthProfessionalView(FormView):
             crm = form.cleaned_data.get('crm')
             crm_state = form.cleaned_data.get('crm_state')
 
+            specialty_first = form.cleaned_data.get('specialty_first')
+            specialty_second = form.cleaned_data.get('specialty_second')
             HealthProfessional.objects.create_user(email=email, password=password, name=name,
                                                    sex=sex, date_of_birth=date_of_birth,
-                                                   phone=phone, crm=crm, crm_state=crm_state)
+                                                   phone=phone, crm=crm, crm_state=crm_state,
+                                                   specialty_first=specialty_first,
+                                                   specialty_second=specialty_second)
 
             ConfirmAccountView.activate_account_request(email)
             messages.success(

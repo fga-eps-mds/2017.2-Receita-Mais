@@ -41,6 +41,19 @@ class HealthProfessionalValidator(UserValidator):
 
         logger.debug("Exit validator_crm.")
 
+    def validartor_specialty(self, specialty_first, specialty_second):
+        """
+        Validating specialty.
+        """
+        logger.debug("Start validartor_specialty.")
+        if specialty_first is not None and len(specialty_first) < constants.SPECIALITY_MIN_LENGTH:
+            raise forms.ValidationError({'specialty_first': [_(constants.SPECIALITY_SIZE)]})
+        elif specialty_first == 'Nao Possui':
+            raise forms.ValidationError({'specialty_first': [_(constants.SPECIALITY_REQUIRED)]})
+        if specialty_second is not None and len(specialty_second) < constants.SPECIALITY_MIN_LENGTH:
+            raise forms.ValidationError({'specialty_second': [_(constants.SPECIALITY_SIZE)]})
+            logger.debug("Exit validartor_specialty.")
+
     def validator_date_of_birth(self, date_of_birth):
         """
         Validating date of birth.

@@ -89,7 +89,8 @@
 
                             <p>
                                  {{ request.user.name }}
-                                <small>{% trans "Especialização"%}</small>
+                                <small>{{ request.user.healthprofessional.specialty_first}}</small>
+                                <small>{{ request.user.healthprofessional.specialty_second}}</small>
                             </p>
                         </li>
 
