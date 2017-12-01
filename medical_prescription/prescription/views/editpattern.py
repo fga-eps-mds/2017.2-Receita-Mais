@@ -4,7 +4,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
-#Local
+# Local
 from user.decorators import is_health_professional
 from prescription.forms import UpdatePatternForm
 from prescription.models import Pattern
