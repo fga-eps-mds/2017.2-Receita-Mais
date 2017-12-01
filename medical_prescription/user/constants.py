@@ -44,11 +44,11 @@ UF_CHOICE = (
 )
 
 # SPECIALITY FIELDS
-SPECIALITY_SIZE = 'Speciality can not be less than 5 characters'
+SPECIALITY_SIZE = 'The main specialty must be chosen'
 SPECIALITY_REQUIRED = 'At least one specialty is required'
 SPECIALITY_LENGTH = 25
 SPECIALITY_MIN_LENGTH = 5
-SPECIALITY_CHOICE = (
+SPECIALITY_CHOICE = [
     ('Nao Possui', 'Não Possui'),
     ('Alergia', 'Alergia'),
     ('Angiologia', 'Angiologia'),
@@ -80,7 +80,7 @@ SPECIALITY_CHOICE = (
     ('Psiquiatria', 'Psiquiatria'),
     ('Reumatologia', 'Reumatologia'),
     ('Urologia', 'Urologia'),
-)
+]
 # NAME FIELDS.
 NAME = "Name"
 NAME_FIELD_LENGTH = 50

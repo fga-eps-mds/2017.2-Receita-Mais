@@ -19,14 +19,15 @@ class HealthProfessionalForm(UserForm):
     """
     Form to register health professional.
     """
-
+    list_main_specialty = constants.SPECIALITY_CHOICE.copy()
+    del list_main_specialty[0]
     crm = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
                                                         'placeholder': '* 00000'}))
     crm_state = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v4__input',
                                                              'placeholder': '* Crm'}), choices=constants.UF_CHOICE)
     specialty_first = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v4__input',
                                                                    'placeholder': '* Crm'}),
-                                        choices=constants.SPECIALITY_CHOICE)
+                                        choices=list_main_specialty)
     specialty_second = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control s-form-v4__input',
                                                                     'placeholder': '* Crm'}),
                                          choices=constants.SPECIALITY_CHOICE)
