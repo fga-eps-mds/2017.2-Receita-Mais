@@ -6,7 +6,6 @@ $(document).on('click', '.js-create-prescription', function() {
 });
 
 $(document).on('submit', '.js-prescription-create-form', function() {
-  console.log("()()()()()()()()()()");
   saveForm(this, "#modal-prescription");
 });
 
@@ -50,7 +49,6 @@ $(document).on('click', '.btn-return-modal', function() {
 });
 
 $(document).on('click', '.js-create-copy', function() {
-  console.log("(-)(-)(-)(-)(-)(-)(-)(-)(-)(-)");
   $("#modal-view").modal("hide");
   loadForm(this, "#modal-prescription");
 });
@@ -85,7 +83,6 @@ function loadForm(event, id_modal) {
 };
 
 function saveForm(event) {
-  console.log("++++++++++++++++++++++++++++++");
   var form = $(this);
 
   $.ajax({
@@ -93,9 +90,7 @@ function saveForm(event) {
     data: form.serialize(),
     type: form.attr("method"),
     dataType: 'json',
-    async: true,
     success: function(data) {
-      console.log(data.form_is_valid+"++++++++++++++++++++++++++++++");
       if (data.form_is_valid) {
         modalIsCreated = false;
         $(event.data.id_modal).modal("hide");

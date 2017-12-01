@@ -6,16 +6,9 @@
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
 <script>
-        var formset = "{% static "prescription/js/formset.js" %}";
         var sortable = "{% static "prescription/js/sortable.js" %}";
 
-        $.getScript(formset);
         $.getScript(sortable);
-
-        var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
-        var autocompletePatient = "{% url 'autocomplete_patient' %}"
-        var autocompleteCid = "{% url 'autocomplete_cid' %}"
-        var autocompleteExam = "{% url 'autocomplete_exam' %}"
 </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
@@ -123,11 +116,9 @@
                   {% endfor %}
 
                   <div class="input-group-btn" align="center">
-                      <br>
-                      <button class="btn btn-success" value="Add More" id="add_more" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
-                  </div>
-                  <br>
-                  <br>
+                    <div align="center">
+                      <button class="btn btn-success" align="center" value="Add More Medicine" id="add_more_medicine_copy" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    </div>
 
                         <!-- End Via Panel structure -->
             </div>
@@ -165,7 +156,7 @@
 
                 {% endfor %}
                 <div align="center">
-                  <button class="btn btn-success"  align="center" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                  <button class="btn btn-success"  align="center" value="Add More Exam" id="add_more_exam_copy" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                 </div>
             </div>
 
@@ -203,7 +194,7 @@
 
                 <div class="input-group-btn" align="center">
                     <br>
-                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_recomendation" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_recomendation_copy" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                     <br>
                 </div>
 
