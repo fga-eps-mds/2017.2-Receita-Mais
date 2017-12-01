@@ -63,8 +63,16 @@ function autocomplete_patient(ul, item) {
     .appendTo(ul);
 }
 
-// Customize the autocomplete pattern.
+// Customize the autocomplete pattern for CID.
 function autocomplete_cid(ul, item) {
+  return $("<li></li>")
+    .data("item.autocomplete", item)
+    .append("<a>" + item.label + "</a>")
+    .appendTo(ul);
+}
+
+// Customize the autocomplete pattern for CID.
+function autocomplete_recommendation(ul, item) {
   return $("<li></li>")
     .data("item.autocomplete", item)
     .append("<a>" + item.label + "</a>")
@@ -84,6 +92,8 @@ function select_field(ul, item, field) {
       return autocomplete_exam(ul, item);
     case 'cid':
       return autocomplete_cid(ul, item);
+    case 'recommendation':
+      return autocomplete_recommendation(ul, item);
     default:
       return;
   }
@@ -116,6 +126,7 @@ function select_type_field(element, field, ui) {
       $("#" + element.id + "_id").trigger( "change" );
       break;
     case 'recommendation':
+      $("#" + element.id + "_type").val(ui.item.type);
       $("#" + element.id + "_id").val(ui.item.id);
       break;
   }
@@ -134,6 +145,14 @@ function autocompleteAllExams(){
   var totalExams = $('#id_form_exam-TOTAL_FORMS').val() - 1;
   for(examNumber=totalExams; examNumber>=0; examNumber--){
     autocompleteElement('#id_form_exam-' + totalExam + '-exam', autocompleteExam, "exam");
+  }
+}
+
+// Set autocomplete in all exams in form
+function autocompleteAllRecommendations(){
+  var totalRecommendations = $('#id_form_exam-TOTAL_FORMS').val() - 1;
+  for(recommendationNumber=totalRecommendations; recommendationNumber>=0; recommendationNumber--){
+    autocompleteElement('#id_form_recommendation-' + totalRecommendations + '-recommendation', autocompleteRecommendatio, "recommendation");
   }
 }
 
