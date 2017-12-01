@@ -57,7 +57,7 @@ class SentMessageDetailView(DetailView, FormMixin):
         last_element = self.object.messages.all().last()
 
         # Mark all responses with read = True.
-        if((last_element.as_read is False) and (last_element.user_to is request.user)):
+        if(last_element.user_to.email == request.user.email):
             for message in self.object.messages.filter(as_read=False):
                 message.as_read = True
                 message.save()

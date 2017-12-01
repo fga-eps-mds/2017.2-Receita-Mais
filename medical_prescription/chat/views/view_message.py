@@ -51,7 +51,7 @@ class MessageDetailView(DetailView, FormMixin):
         last_element = self.object.messages.all().last()
 
         # Mark all responses with read = True.
-        if((last_element.as_read is False) and (last_element.user_to is request.user)):
+        if(last_element.user_to.email == request.user.email):
             for message in self.object.messages.filter(as_read=False):
                 message.as_read = True
                 message.save()
@@ -86,10 +86,6 @@ class MessageDetailView(DetailView, FormMixin):
         else:
             # Nothing to do.
             pass
-
-        print("==================================")
-        print(response.user_to)
-        print(response.as_read)
 
         response.save()
 
