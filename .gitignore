@@ -7,6 +7,7 @@ db.sqlite3
 .DS_Store
 .coverage
 media
+**/dist/**
 debug.log
 htmlcov
 **/migrations/**
