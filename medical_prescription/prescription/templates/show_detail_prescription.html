@@ -223,7 +223,7 @@
             <!-- This tab is where the recommendations take place in prescription. -->
             <div id="menu3" class="tab-pane fade">
 
-                {% for recomendation in prescription.recommendation_prescription.all %}
+                {% for recomendation in prescription.new_recommendations.all %}
                 <ul id='object_recommendation'>
                   <div class="table_recommendation">
                     <li>
@@ -231,7 +231,7 @@
                         <div class="col-md-11">
                           <div class="form-group">
                               <div class="form-control">
-                                  {{ recomendation.recommendation|truncatechars:185 }}
+                                  {{ recomendation.recommendation_description|truncatechars:185 }}
                               </div>
                            </div>
                          </div>
