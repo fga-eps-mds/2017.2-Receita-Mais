@@ -4,7 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 # local django
 from chat import constants
-from user.models import User
+from user.models import (User,
+                         HealthProfessional)
 
 
 class MessageValidator():
@@ -24,6 +25,13 @@ class MessageValidator():
 
         if not email_from_database.exists():
             raise forms.ValidationError({'user_to': [_(constants.USER_EXISTS)]})
+
+    def validator_user_to_is_health_professional(self, user_to):
+
+        email_health_professional = HealthProfessional.objects.filter(email=user_to)
+
+        if email_health_professional.exists():
+            raise forms.ValidationError({'user_to': [_(constants.USER_TO_IS_HEALTH_PROFESSIONAL)]})
 
     # Validanting subject.
     def validator_subject(self, subject):

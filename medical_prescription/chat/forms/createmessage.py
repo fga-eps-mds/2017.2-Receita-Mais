@@ -42,6 +42,7 @@ class CreateMessage(forms.Form):
         validator.validator_text(text)
         validator.validator_subject(subject)
         validator.validator_user_to(user_to)
+        validator.validator_user_to_is_health_professional(user_to)
 
         if files is not None:
             validator.validator_file(files)

@@ -14,7 +14,7 @@ class TestUnarchiveMessageHealthProfessionalView(TestCase):
                                                                      phone='1111111111',
                                                                      is_active=True)
         self.patient = Patient.objects.create(name='User Test',
-                                              email='test@teste.com',
+                                              email='testpatient@teste.com',
                                               sex='M',
                                               phone='1111111111',
                                               is_active=True)
