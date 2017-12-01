@@ -7,7 +7,7 @@
 
   <div class="js-prescription-create-form">
     <div class="modal-header">
-      <a href="#" data-dismiss="modal" class="class pull-right btn-return-modal"><span class="glyphicon glyphicon-remove"></span></a>
+      <a href="#" class="class pull-right btn-return-modal"><span class="glyphicon glyphicon-remove"></span></a>
       <h3 class="modal-title">Prescrição</h3>
     </div>
 
@@ -15,6 +15,13 @@
 
         <!-- This fields are responsable off patient information. -->
         {% csrf_token %}
+
+        <div class="medicines-list">
+          <b>Paciente</b>: {{prescription.nopatientprescription.patient}}{{prescription.patientprescription.patient.name}}<br>
+          <b>CID</b>: {{prescription.cid.description}}<br>
+          <br>
+        </div>
+
         <div class="medicines-list">
           {% if prescription.medicines.all.count|add:prescription.manipulated_medicines.all.count > 0 %}
             <h3>Medicamentos</h3>
@@ -65,6 +72,8 @@
 
       </div>
   <div class="modal-footer">
-    <button data-dismiss="modal" class="btn btn-primary btn-return-modal">Voltar</button>
+    <button data-url="{% url 'copy_prescription' prescription.pk %}" class="js-create-prescription btn btn-primary btn-return-modal">Editar Copia</button>
+    <button class="btn btn-primary btn-return-modal">Voltar</button>
+
   </div>
 </div>
