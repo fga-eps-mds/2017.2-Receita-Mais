@@ -6,9 +6,13 @@
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
 <script>
-        var sortable = "{% static "prescription/js/sortable.js" %}";
+        var initautocomplete = "{% static "prescription/js/autocomplete.js" %}";
+        var cidSuggestion = "{% static "suggestion/js/suggestions_cid.js" %}";
 
-        $.getScript(sortable);
+        $.getScript(cidSuggestion);
+        $.getScript(initautocomplete);
+
+        var suggestionsCid = "{% url 'suggestions_cid' %}";
 </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
@@ -203,6 +207,7 @@
 
         </div>
     </div>
+  </div>
 
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Salvar</button>

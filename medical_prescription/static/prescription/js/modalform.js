@@ -6,8 +6,11 @@ $(document).on('click', '.js-create-prescription', function() {
 });
 
 $(document).on('submit', '.js-prescription-create-form', function() {
-  saveForm(this, "#modal-prescription");
+  saveForm("#modal-prescription");
 });
+
+$("#modal-prescription").on("submit", ".js-prescription-create-form",{id_modal: "#modal-prescription"} ,saveForm);
+
 
 // Update prescription.
 $(document).on('click', '.js-update-prescription', function() {
@@ -84,13 +87,14 @@ function loadForm(event, id_modal) {
 
 function saveForm(event) {
   var form = $(this);
-
+  console.log("============================");
   $.ajax({
     url: form.attr("action"),
     data: form.serialize(),
     type: form.attr("method"),
     dataType: 'json',
     success: function(data) {
+      console.log(data.form_is_valid);
       if (data.form_is_valid) {
         modalIsCreated = false;
         $(event.data.id_modal).modal("hide");

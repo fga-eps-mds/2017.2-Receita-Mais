@@ -138,7 +138,9 @@ function autocompleteAllExams(){
 }
 
 // Performs autocomplete in the specified fields.
-autocompleteAllMedicines();
-autocompleteAllExams();
-autocompleteElement('#id_patient', autocompletePatient, "patient");
-autocompleteElement('#id_cid', autocompleteCid, "cid");
+$(document).ready(function() {
+  autocompleteAllMedicines();
+  autocompleteAllExams();
+  autocompleteElement('#id_patient', autocompletePatient, "patient");
+  autocompleteElement('#id_cid', autocompleteCid, "cid");
+});

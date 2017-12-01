@@ -6,18 +6,12 @@
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
 <script>
-        var sortable = "{% static "prescription/js/sortable.js" %}";
+        var initautocomplete = "{% static "prescription/js/autocomplete.js" %}";
         var cidSuggestion = "{% static "suggestion/js/suggestions_cid.js" %}";
-        var formset = "{% static "prescription/js/formset_copy.js" %}";
 
-        $.getScript(sortable);
         $.getScript(cidSuggestion);
-        $.getScript(formset);
+        $.getScript(initautocomplete);
 
-        var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
-        var autocompletePatient = "{% url 'autocomplete_patient' %}"
-        var autocompleteCid = "{% url 'autocomplete_cid' %}"
-        var autocompleteExam = "{% url 'autocomplete_exam' %}"
         var suggestionsCid = "{% url 'suggestions_cid' %}";
 </script>
 
