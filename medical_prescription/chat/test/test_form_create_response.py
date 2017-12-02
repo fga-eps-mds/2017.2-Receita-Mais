@@ -1,10 +1,10 @@
 from django.test import TestCase
 from chat.forms import CreateResponse
 from user.models import User
-from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
+
 
 class TesteCreateResponseForm(TestCase):
 

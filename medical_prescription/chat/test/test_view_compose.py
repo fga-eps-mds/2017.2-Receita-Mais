@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory, Client
 
 from chat.views import ComposeView
-from user.models import HealthProfessional
+from user.models import HealthProfessional, Patient
 
 
 class TestComposeView(TestCase):
@@ -16,6 +16,11 @@ class TestComposeView(TestCase):
         self.user.email = "test@test.com"
         self.user.password = "test404"
         self.user.save()
+
+        self.patient = Patient()
+        self.patient.email = "testpatient@test.com"
+        self.patient.password = "test404"
+        self.patient.save()
 
         self.user_to_invalid = "test@test"
         self.user_to = "test@test.com"
@@ -38,8 +43,8 @@ class TestComposeView(TestCase):
         request = self.factory.post('chat/compose',
                                     {'text': 'isso e um texto',
                                      'subject': 'test suject',
-                                     'user_to': 'test@test.com',
-                                     'user_to': 'test@test.com'})
+                                     'user_from': 'test@test.com',
+                                     'user_to': 'testpatient@test.com'})
         request.user = self.user
 
         response = self.my_view_class.as_view()(request)
@@ -49,7 +54,7 @@ class TestComposeView(TestCase):
         request = self.factory.post('chat/compose',
                                     {'text': 'a'*10000,
                                      'subject': 'test suject',
-                                     'user_to': 'test@test.com',
+                                     'user_from': 'test@test.com',
                                      'user_to': 'test@test.com'})
         request.user = self.user
 
