@@ -44,6 +44,8 @@
                   <tr>
                     <td><input type="checkbox"></td>
 
+
+
                     <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
                     <td class="mailbox-subject"><b>{{message.subject}}</b>
                     </td>
@@ -104,9 +106,28 @@
       <div class="col-md-3">
         <a href="{% url 'compose' %}" class="btn btn-primary btn-block margin-bottom">Compose</a>
 
+
+        <div class ="box box-solid">
+          <div class = "box-header with-border">
+            <h3 class = "box-title">Profile</h3>
+              <div class = "box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+              </div>
+              <div class = "box-body no-pading">
+                <ul class = "nav nav-pills nav-stacked">
+                  <li>
+                    <img class= "img-circle" src="{{ image_profile }}"></img>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+
         <div class="box box-solid">
           <div class="box-header with-border">
             <h3 class="box-title">Mensagens</h3>
+
 
             <div class="box-tools">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -121,7 +142,14 @@
           </div>
           <!-- /.box-body -->
         </div>
+
+
+        <!-- Profile -->
+
       </div>
+
+
+
       <!-- /.col -->
     </div>
     <!-- /.row -->
