@@ -26,7 +26,7 @@
           <td>{{pattern.pagesize}}</td>
           <td>{{pattern.header|truncatechars:15}}</td>
           <td>{{pattern.footer|truncatechars:15}}</td>
-          <td><a href="#"><i class="fa-pencil" aria-hidden="true"></></a></td>
+          <td><a href='{% url 'edit_pattern' pattern.pk %}'><i class="fa-pencil" aria-hidden="true"></></a></td>
     </tr>
     {% endfor %}
     </table>

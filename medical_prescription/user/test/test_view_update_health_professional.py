@@ -26,12 +26,6 @@ class UpdateHealthProfessionalTest(TestCase):
         self.user = User.objects.create_user(email='user@user.com',
                                              password='senha12')
 
-    def _without_login(self):
-        request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
-        request.user = AnonymousUser()
-
-        response = UpdateHealthProfessional.as_view()(request, pk=99)
-        self.assertEqual(response.status_code, 302)
 
     def test_user_edit_health_professional_with_patient(self):
         request = self.factory.get('user/edit_health_professional/(?P<pk>[0-9]+)/')
