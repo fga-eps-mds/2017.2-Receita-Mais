@@ -28,11 +28,12 @@ class AutoCompleteRecommendation(View):
             search = request.GET.get('term', '')
             list_recommendations = []
 
-            self.get_new_recommendations(search, list_recommendations)
+            # self.get_new_recommendations(search, list_recommendations)
             self.get_custom_recommendations(search, request.user, list_recommendations)
 
             data = json.dumps(list_recommendations)
             mimetype = 'application/json'
+            print("================== OI =================")
             return HttpResponse(data, mimetype)
 
     def get_custom_recommendations(self, search, health_professional, list_recommendations):
@@ -48,17 +49,17 @@ class AutoCompleteRecommendation(View):
 
             list_recommendations.append(custom_recommendation_item)
 
-    def get_new_recommendations(self, search, list_recommendations):
-        queryset = NewRecommendation.objects.filter(description__icontains=search)[:5]
-
-        # Encapsulates in a json needed to be sent.
-        for new_recommendation in queryset:
-            new_recommendation_item = {}
-            new_recommendation_item['value'] = self.parse_description(new_recommendation.recommendation_description)
-            new_recommendation_item['type'] = 'new_recommendation'
-            new_recommendation_item['description'] = self.parse_description(new_recommendation.recommendation_description)
-
-            list_recommendations.append(new_recommendation_item)
+    # def get_new_recommendations(self, search, list_recommendations):
+    #     queryset = NewRecommendation.objects.filter(description__icontains=search)[:5]
+    #
+    #     # Encapsulates in a json needed to be sent.
+    #     for new_recommendation in queryset:
+    #         new_recommendation_item = {}
+    #         new_recommendation_item['value'] = self.parse_description(new_recommendation.recommendation_description)
+    #         new_recommendation_item['type'] = 'new_recommendation'
+    #         new_recommendation_item['description'] = self.parse_description(new_recommendation.recommendation_description)
+    #
+    #         list_recommendations.append(new_recommendation_item)
 
     # Print only the first 175 characters of the exam description.
     def parse_description(self, description):

@@ -2,6 +2,7 @@ from .numberedcanvas import NumberedCanvas
 from .autocompletecid import AutoCompleteCid
 from .autocompleteexam import AutoCompleteExam
 from .autocompletepatient import AutoCompletePatient
+from .autocompleterecommendation import AutoCompleteRecommendation
 from .openprescriptionview import OpenPrescriptionView
 from .autocompletemedicine import AutoCompleteMedicine
 from .createprescription import CreatePrescriptionView

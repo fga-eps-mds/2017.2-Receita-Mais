@@ -148,9 +148,9 @@ function autocompleteAllExams(){
   }
 }
 
-// Set autocomplete in all exams in form
+// Set autocomplete in all recommendations in form
 function autocompleteAllRecommendations(){
-  var totalRecommendations = $('#id_form_exam-TOTAL_FORMS').val() - 1;
+  var totalRecommendations = $('#id_form_recommendation-TOTAL_FORMS').val() - 1;
   for(recommendationNumber=totalRecommendations; recommendationNumber>=0; recommendationNumber--){
     autocompleteElement('#id_form_recommendation-' + totalRecommendations + '-recommendation', autocompleteRecommendatio, "recommendation");
   }
@@ -160,5 +160,6 @@ function autocompleteAllRecommendations(){
 var totalExam = $('#id_form_exam-TOTAL_FORMS').val() - 1;
 autocompleteAllMedicines();
 autocompleteAllExams();
+autocompleteAllRecommendations();
 autocompleteElement('#id_patient', autocompletePatient, "patient");
 autocompleteElement('#id_cid', autocompleteCid, "cid");
