@@ -32,6 +32,7 @@ class SuggestionsCid(View):
             list_prescription = []
             result['status'] = "success"
 
+            # Load dictionary with prescriptions.
             for prescription in prescriptions:
                 prescription_item = {}
                 prescription_item['id'] = prescription.id
