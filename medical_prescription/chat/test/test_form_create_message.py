@@ -39,6 +39,7 @@ class TestCreateMessageForm(TestCase):
     def test_chat_invalid_text(self):
         form_data = {'subject': self.subject,
                      'text': self.text_max,
+                     'user_to': self.email,
                      }
         form = CreateMessage(data=form_data)
         self.assertFalse(form.is_valid())
@@ -46,6 +47,22 @@ class TestCreateMessageForm(TestCase):
     def test_chat_invalid_email(self):
         form_data = {'subject': self.subject,
                      'text': self.text,
+                     'user_to': self.email_invalid
+                     }
+        form = CreateMessage(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_chat_invalid_subject_None(self):
+        form_data = {'subject': None,
+                     'text': self.text,
+                     'user_to': self.email_invalid
+                     }
+        form = CreateMessage(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_chat_invalid_text_None(self):
+        form_data = {'subject': self.subject,
+                     'text': None,
                      'user_to': self.email_invalid
                      }
         form = CreateMessage(data=form_data)
