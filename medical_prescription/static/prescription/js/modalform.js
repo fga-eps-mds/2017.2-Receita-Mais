@@ -5,10 +5,6 @@ $(document).on('click', '.js-create-prescription', function() {
   loadForm(this, "#modal-prescription");
 });
 
-$(document).on('submit', '.js-prescription-create-form', function() {
-  saveForm("#modal-prescription");
-});
-
 $("#modal-prescription").on("submit", ".js-prescription-create-form",{id_modal: "#modal-prescription"} ,saveForm);
 
 

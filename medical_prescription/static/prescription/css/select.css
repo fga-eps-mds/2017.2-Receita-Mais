@@ -21,6 +21,12 @@
   padding: 0px;
 }
 
+.list-exam {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
 
 .table{
   margin-left: 0px;
@@ -33,6 +39,11 @@
  }
 
 .list-recommendation li {
+  margin-left: 3%;
+  padding: 0px;
+}
+
+.list-exam li {
   margin-left: 3%;
   padding: 0px;
 }
