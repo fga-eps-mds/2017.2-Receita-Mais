@@ -26,12 +26,16 @@ class MessageDetailView(DetailView, FormMixin):
     def get_queryset(self):
         return self.model.objects.filter(user_to=self.request.user)
 
+    # Returns all messages in chat.
     def get_context_data(self, **kwargs):
         context = super(MessageDetailView, self).get_context_data(**kwargs)
 
         messages_page = self.request.GET.get('page')
         messages = Response.objects.filter(message__id=context['object'].id)
-        messages_paginator = paginator.Paginator(messages, 15)
+
+        messages_list = messages[::-1]
+
+        messages_paginator = paginator.Paginator(messages_list, 10)
 
         try:
             messages_page_object = messages_paginator.page(messages_page)

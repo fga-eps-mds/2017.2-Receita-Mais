@@ -32,12 +32,16 @@ class SentMessageDetailView(DetailView, FormMixin):
     def get_success_url(self):
         return reverse('view_sent_message', kwargs={'pk': self.object.pk})
 
+    # Returns all messages in chat.
     def get_context_data(self, **kwargs):
         context = super(SentMessageDetailView, self).get_context_data(**kwargs)
 
         messages_page = self.request.GET.get('page')
         messages = Response.objects.filter(message__id=context['object'].id)
-        messages_paginator = paginator.Paginator(messages, 15)
+
+        messages_list = messages[::-1]
+
+        messages_paginator = paginator.Paginator(messages_list, 10)
 
         try:
             messages_page_object = messages_paginator.page(messages_page)
