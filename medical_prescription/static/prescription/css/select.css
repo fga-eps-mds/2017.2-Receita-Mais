@@ -53,3 +53,8 @@
   vertical-align: middle;
   min-height: 100%;
 }
+
+.js-show-suggestion {
+  background-color:white!important;
+  color:black!important;
+}

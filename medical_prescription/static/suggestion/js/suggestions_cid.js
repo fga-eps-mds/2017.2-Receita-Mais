@@ -25,34 +25,18 @@ $('#id_cid_id').change(function() {
             console.log(url_suggestion);
 
             $('.suggestions_cid').append(
-        `<div>
-             <div class="col-md-6">
-                     <div class="panel-group" id="accordion">
-                       <div class="panel panel-default">
-                         <div class="panel-heading">
-                           <div class="row">
-                             <div class="col-sm-10">
-                               <h4 class="panel-title">
-                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"></a>
-                                  ${value.patient}
-                               </h4>
-                             </div>
-                             <div class="col-sm-2">
-                           <input type="button" class="js-show-suggestion" data-url="${url_suggestion}" value="Visualizar"></input>
-                             </div>
-                           </div>
-                         </div>
-                         <div id="collapse1" class="panel-collapse collapse in">
-                             <div class="row">
-                               <div  class="col-md-8">
-                               ${medicines} ${exams} ${recommendations}
-                               </div>
-                             </div>
+      ` <div class="box box-primary box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">${value.patient}</h3>
 
-                         </div>
-                       </div>
-                     </div>
-              </div>`);
+            <div class="box-tools pull-right">
+              <input type="button" class="js-show-suggestion btn btn-secondary" data-url="${url_suggestion}" value="Visualizar"></input>
+            </div>
+          </div>
+          <div class="box-body">
+            ${medicines} ${exams} ${recommendations}
+          </div>
+        </div>`);
           });
         }
       }
