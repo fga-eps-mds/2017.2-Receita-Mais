@@ -6,6 +6,8 @@ SUBJECT_SIZE = "Subject must be between 0 and 80 characters."
 
 USER_EXISTS = "User don't exists."
 
+USER_TO_IS_HEALTH_PROFESSIONAL = "The email entered belongs to a health professional."
+
 
 CONTENT_TYPES = ['jpeg', 'png', 'pdf']
 FORMAT_ERROR = 'File type is not supported'

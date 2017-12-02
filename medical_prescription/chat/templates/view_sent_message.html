@@ -71,7 +71,7 @@
 
                 {% with messages|first as element %}
                     {% with element.message_set.all|first as message %}
-                        {% if message.is_active_outbox_health_professional %}
+                        {% if message.is_active_health_professional %}
                           <form class="center-block g-width-500--sm g-width-550--md" method='POST' action='' enctype="multipart/form-data">
                             {% csrf_token %}
 
@@ -90,7 +90,7 @@
                             </div>
                             </li>
 
-            
+
                             <div class="form-group">
                               {% for error in form.image.errors %}
                                   <div class="alert alert-danger" role="alert">{{ error }}</div>
@@ -117,7 +117,7 @@
       <!-- /. box -->
     </div>
     <div class="col-md-3">
-      <a href="{% url 'inbox_health_professional'%}" class="btn btn-primary btn-block margin-bottom">Back to Inbox</a>
+      <a href="{% url 'outbox'%}" class="btn btn-primary btn-block margin-bottom">Back to Messages</a>
 
       <div class="box box-solid">
         <div class="box-header with-border">
@@ -130,8 +130,7 @@
         </div>
         <div class="box-body no-padding">
           <ul class="nav nav-pills nav-stacked">
-            <li><a href="{% url 'inbox_health_professional'%}"><i class="fa fa-inbox"></i> Inbox</a><li>
-            <li><a href="{% url 'outbox'%}"><i class="fa fa-envelope-o"></i> Sent</a></li>
+            <li><a href="{% url 'outbox'%}"><i class="fa fa-envelope-o"></i> Messages</a></li>
             <li><a href="{% url 'archive_box_health_professional'%}"><i class="fa fa-envelope-o"></i> Archive</a></li>
         </ul>
         </div>

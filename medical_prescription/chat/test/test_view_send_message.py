@@ -1,18 +1,24 @@
 from django.test import TestCase, RequestFactory, Client
 from chat.views import SentMessageDetailView
 from chat.models import Message
-from user.models import HealthProfessional
+from user.models import HealthProfessional, Patient
 
 
 class TestSentMessageDetailView(TestCase):
 
     def setUp(self):
 
-        self.user = HealthProfessional.objects.create(name='User Test',
-                                                      email='test@teste.com',
-                                                      sex='M',
-                                                      phone='1111111111',
-                                                      is_active=True)
+        self.health_professional = HealthProfessional.objects.create(name='User Test',
+                                                                     email='test@teste.com',
+                                                                     sex='M',
+                                                                     phone='1111111111',
+                                                                     is_active=True)
+        self.patient = Patient.objects.create(name='User Test',
+                                              email='testpatient@teste.com',
+                                              sex='M',
+                                              phone='1111111111',
+                                              is_active=True)
+
         self.view = SentMessageDetailView()
         self.view_class = SentMessageDetailView
         self.factory = RequestFactory()
@@ -22,14 +28,14 @@ class TestSentMessageDetailView(TestCase):
         self.message = Message()
         self.message.text = "meu texto"
         self.message.subject = "Assunto"
-        self.message.user_from = self.user
-        self.message.user_to = self.user
+        self.message.user_from = self.health_professional
+        self.message.user_to = self.patient
         self.message.pk = '1'
         self.message.save()
 
     def test_chat_queryset_true(self):
         request = self.view_class.as_view()
-        request.user = self.user
+        request.user = self.health_professional
 
         self.view.request = request
         query = self.view.get_queryset()
@@ -37,7 +43,7 @@ class TestSentMessageDetailView(TestCase):
 
     def test_chat_get_context_true(self):
         request = self.factory.get('/')
-        request.user = self.user
+        request.user = self.health_professional
         self.view.request = request
         self.view.object = self.message
         self.assertEqual(type(self.view.get_context_data()), type(dict()))
@@ -47,7 +53,7 @@ class TestSentMessageDetailView(TestCase):
                                     {'text': 'isso e um texto',
                                      'user_to': 'test@teste.com',
                                      'user_from': 'teste@teste.com'})
-        request.user = self.user
+        request.user = self.health_professional
         self.view.request = request
         self.view.object = self.message
 
@@ -58,7 +64,7 @@ class TestSentMessageDetailView(TestCase):
         request = self.factory.post('/',
                                     {'user_to': 'test@teste.com',
                                      'user_from': 'teste@teste.com'})
-        request.user = self.user
+        request.user = self.health_professional
         self.view.request = request
         self.view.object = self.message
 

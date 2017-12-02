@@ -19,12 +19,6 @@ class UnarchiveMessageHealthProfessionalView(View):
 
     def post(self, pk):
         message = Message.objects.get(pk=pk)
-
-        if message.is_active_inbox_health_professional is False:
-            message.is_active_inbox_health_professional = True
-            
-        if message.is_active_outbox_health_professional is False:
-            message.is_active_outbox_health_professional = True
-
+        message.is_active_health_professional = True
         message.save()
         return HttpResponseRedirect(reverse_lazy('archive_box_health_professional'))
