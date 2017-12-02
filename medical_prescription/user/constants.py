@@ -122,11 +122,12 @@ DATE_OF_BIRTH_MIN_ERROR = "User must be 18 years"
 DATE_OF_BIRTH_MIN_PATIENT_ERROR = "User cannot be born in the future"
 # PHONE_NUMBER FIELDS.
 PHONE_NUMBER = "Phone number"
-PHONE_NUMBER_FIELD_LENGTH_MAX = 15
-PHONE_NUMBER_FIELD_LENGTH_MIN = 14
+PHONE_NUMBER_FIELD_LENGTH_MAX = 14
+PHONE_NUMBER_FIELD_LENGTH_MIN = 13
 
 # PHONE_NUMBER VALIDATION MESSAGES.
-PHONE_NUMBER_SIZE = 'Phone number must be between 10 and 11 characters'
+PHONE_NUMBER_SIZE = 'Phone number must be between 13 and 14 characters'
+PHONE_NULL = 'Phone can not null'
 
 # SEX FIELDS.
 SEX = 'Sex'

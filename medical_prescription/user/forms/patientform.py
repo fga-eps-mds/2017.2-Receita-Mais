@@ -29,7 +29,6 @@ class PatientForm(UserForm):
 
     CPF_document = BRCPFField(max_length=14, min_length=11,
                               widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
-                                                            'type': 'number',
                                                             'placeholder': '* 12345678911'}))
 
     CEP = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control s-form-v4__input',
