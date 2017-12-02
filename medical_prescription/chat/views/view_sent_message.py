@@ -6,11 +6,13 @@ from datetime import date
 from django.core import paginator
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.shortcuts import render
 
 # Local Django
 from chat.models import Message, Response
 from chat.forms import CreateResponse
 from user.decorators import is_health_professional
+from user.models import User
 
 
 @method_decorator(login_required, name='dispatch')
@@ -51,6 +53,14 @@ class SentMessageDetailView(DetailView, FormMixin):
         context['messages'] = messages_page_object
         context['form'] = self.get_form()
         return context
+
+    def get(self, request, *args, **kwargs):
+        self.object = Message.objects.get(pk=self.kwargs['pk'])
+        context = self.get_context_data()
+
+        context['img_from'] = self.object.user_from.image_profile.url
+        context['my_user'] = request.user
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
