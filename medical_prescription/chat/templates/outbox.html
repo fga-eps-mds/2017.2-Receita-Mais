@@ -21,16 +21,7 @@
           <!-- /.box-header -->
           <div class="box-body no-padding">
             <div class="mailbox-controls">
-              <!-- Check all button -->
-              <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-              </div>
-              <!-- /.btn-group -->
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+
               <div class="pull-right">
 
                 <!-- /.btn-group -->
@@ -45,7 +36,6 @@
 
                 <tbody>
                   <tr>
-                    <td><input type="checkbox"></td>
 
                     <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
                     <td class="mailbox-subject"><b>{{message.subject}}</b>
@@ -67,16 +57,7 @@
           <!-- /.box-body -->
           <div class="box-footer no-padding">
             <div class="mailbox-controls">
-              <!-- Check all button -->
-              <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-              </div>
-              <!-- /.btn-group -->
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+
               <div class="pull-right">
                 <!--https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html-->
                 {% if is_paginated %}
