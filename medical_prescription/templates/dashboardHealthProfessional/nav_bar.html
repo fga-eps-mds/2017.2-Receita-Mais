@@ -85,17 +85,18 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{% static 'img/user.png' %}" class="user-image" alt="User Image">
+                        <img src="/public/{{ request.user.image_profile }}" class="img-circle" alt="Cinque Terre" width="30px" height="30px"></img>
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">{{ request.user.name }}</span>
+                        <span class="hidden-xs">{{ request.user.name | truncatechars:25 }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src= "{% static 'img/user.png' %}" class="img-circle" alt="User Image">
+                            <img src="/public/{{ request.user.image_profile }}" class="img-circle" alt="Cinque Terre" width="150px" height="150px"></img>
+
 
                             <p>
-                                 {{ request.user.name }}
+                                 {{ request.user.name | truncatechars:25 }}
                                 <small>{{ request.user.healthprofessional.specialty_first}}</small>
                                 <small>{{ request.user.healthprofessional.specialty_second}}</small>
                             </p>
