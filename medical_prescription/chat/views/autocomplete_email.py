@@ -9,7 +9,7 @@ from user.models import (AssociatedHealthProfessionalAndPatient,
 
 class AutoCompleteEmail(View):
     """
-    Return a query of email users.
+    Return a query of linked patients by email and name.
     """
     def get(self, request, *args, **kwargs):
 
@@ -20,12 +20,14 @@ class AutoCompleteEmail(View):
             query_name = Patient.objects.filter(name__icontains=search)[:5]
             query_list = []
 
+            # Search by email.
             for patient in query_email:
                 relation = AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=request.user,
                                                                               associated_patient=patient,
                                                                               is_active=True)
                 self.create_item(query_list, patient)
 
+            # Search by name.
             for patient in query_name:
                 relation = AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=request.user,
                                                                               associated_patient=patient,
@@ -38,6 +40,7 @@ class AutoCompleteEmail(View):
             mimetype = 'application/json'
             return HttpResponse(data, mimetype)
 
+    # Creating a new item for query list.
     def create_item(self, query_list, patient):
         patient_item = {}
         patient_item['value'] = patient.email
@@ -45,6 +48,7 @@ class AutoCompleteEmail(View):
 
         query_list.append(patient_item)
 
+    # Checking if item already exists in query list.
     def check_query_list(self, query_list, patient):
 
         for patient_item in query_list:
