@@ -6,16 +6,15 @@
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
 <script>
-        var formset = "{% static "prescription/js/formset.js" %}";
         var sortable = "{% static "prescription/js/sortable.js" %}";
+        var initautocomplete = "{% static "prescription/js/autocomplete.js" %}";
+        var cidSuggestion = "{% static "suggestion/js/suggestions_cid.js" %}";
 
-        $.getScript(formset);
         $.getScript(sortable);
+        $.getScript(cidSuggestion);
+        $.getScript(initautocomplete);
 
-        var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
-        var autocompletePatient = "{% url 'autocomplete_patient' %}"
-        var autocompleteCid = "{% url 'autocomplete_cid' %}"
-        var autocompleteExam = "{% url 'autocomplete_exam' %}"
+        var suggestionsCid = "{% url 'suggestions_cid' %}";
 </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
@@ -71,21 +70,18 @@
                     {%else%}
                       <div class="table_medicine row col-md-12">
                     {%endif%}
-                      <div class="panel panel-default" id="panel">
-                          <div class="panel-heading">
-                            <div class="row">
-                              <div class="col-sm-11">
+                    <li>
+                      <div class="box box-primary" id="panel">
+                          <div class="box-header with-border">
+                              <div class="box-title col-sm-11">
                                 {{ atom_form.via }}
                               </div>
-                              <div class="col-sm-1">
-                                <div class="col-md-1">
-                                  <a class="remove-medicine fa fa-times fa-2x" type="button"/>
-                                </div>
+                              <div class="box-tools pull-right">
+                                <a type="button" class="remove-medicine btn btn-box-tool"><i class="fa fa-times"></i></a>
                               </div>
-                            </div>
                           </div>
-                          <div class="panel-body">
-                                <li>
+                      </div>
+                          <div class="box-body">
                                   <div class="col-md-11">
                                     <div class="row g-row-col-3">
                                         <div class="col-sm-9">
@@ -113,21 +109,16 @@
                                       <!-- Hidden fields -->
                                         {{atom_form.medicine_id}}
                                         {{atom_form.medicine_type}}
-                                      </div>
-                                </li>
-
+                                  </div>
+                              </div>
+                          </li>
                         </div>
-                      </div>
-                    </div>
-                  </ul>
+                    </ul>
                   {% endfor %}
 
-                  <div class="input-group-btn" align="center">
-                      <br>
-                      <button class="btn btn-success" value="Add More" id="add_more" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
-                  </div>
-                  <br>
-                  <br>
+                    <div align="center">
+                      <button class="btn btn-success" align="center" value="Add More Medicine" id="add_more_medicine_copy" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    </div>
 
                         <!-- End Via Panel structure -->
             </div>
@@ -136,15 +127,15 @@
             <div id="menu2" class="tab-pane fade">
                 {{ form_exam.management_form }}
                 {% for atom_form in form_exam %}
-                <ul id='object_exam'>
+                <ul id='object_exam' class="list-exam">
                   {% if form_exam|last == atom_form%}
                     <div class="table_exam" hidden>
                   {%else%}
                     <div class="table_exam">
                   {%endif%}
                     <li>
-                      <div class="row">
-                        <div class="col-md-11">
+                      <div class="box box-primary">
+                        <div class="col-md-11 box-header with-border">
                           <div class="form-group">
                               {% for error in atom_form.exam.errors %}
                               <div class="alert alert-danger" role="alert">{{error}}</div>
@@ -155,9 +146,12 @@
                               {{atom_form.exam_type}}
                            </div>
                         </div>
-                     <div class="col-md-1 remove-div">
-                       <a class="remove-exam fa fa-times fa-2x" type="button"/>
-                     </div>
+                        <div class="box-tools pull-right">
+                          <a type="button" class="remove-exam btn btn-box-tool"><i class="fa fa-times"></i></a>
+                        </div>
+                        <div class="box-body">
+                          <!-- Nothing to do -->
+                        </div>
                    </div>
                      </li>
                   </div>
@@ -165,7 +159,7 @@
 
                 {% endfor %}
                 <div align="center">
-                  <button class="btn btn-success"  align="center" value="Add More Exam" id="add_more_exam" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                  <button class="btn btn-success"  align="center" value="Add More Exam" id="add_more_exam_copy" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                 </div>
             </div>
 
@@ -174,15 +168,15 @@
                 {{ form_recommendation.management_form }}
                 {% for recommendationField in form_recommendation %}
 
-                <ul id='object_recommendation'>
+                <ul id='object_recommendation' class="list-recommendation">
                   {% if form_recommendation|last == recommendationField%}
                     <div class="table_recommendation" hidden>
                   {%else%}
                     <div class="table_recommendation">
                   {%endif%}
                     <li>
-                      <div class="row">
-                        <div class="col-md-11">
+                      <div class="box box-primary">
+                        <div class="col-md-11 box-header with-border">
                           <div class="form-group">
                               {% for error in recommendationField.recommendation.errors %}
                               <div class="alert alert-danger" role="alert">{{error}}</div>
@@ -190,20 +184,21 @@
                               {{recommendationField.recommendation}}
                            </div>
                          </div>
-                         <div class="col-md-1 remove-div">
-                           <a class="remove-recommendation fa fa-times fa-2x" type="button"/>
+                         <div class="box-tools pull-right">
+                           <a type="button" class="remove-recommendation btn btn-box-tool"><i class="fa fa-times"></i></a>
+                         </div>
+                         <div class="box-body">
+                           <!-- Nothing to do -->
                          </div>
                        </div>
                      </li>
                   </div>
                 </ul>
-
-
                 {% endfor %}
 
                 <div class="input-group-btn" align="center">
                     <br>
-                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_recomendation" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
+                    <button class="btn btn-success" value="Add More Recomendation" id="add_more_recomendation_copy" type="button"><i class="glyphicon glyphicon-plus">Adicionar</i></button>
                     <br>
                 </div>
 
@@ -212,6 +207,7 @@
 
         </div>
     </div>
+  </div>
 
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Salvar</button>

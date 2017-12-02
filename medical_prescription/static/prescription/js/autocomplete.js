@@ -8,7 +8,6 @@ function autocompleteElement(element, functionJson, field) {
   $(element).autocomplete({
     source: functionJson,
     select: function(event, ui) {
-      $(this).prop("readonly", true);
       select_type_field(this, field, ui);
     },
     minLength: 2,
@@ -93,6 +92,7 @@ function select_field(ul, item, field) {
 function select_type_field(element, field, ui) {
   switch (field) {
     case 'medicine':
+      $(element).prop("readonly", true);
       $("#" + element.id + "_id").val(ui.item.id);
       $("#" + element.id + "_type").val(ui.item.type);
       break;
@@ -104,10 +104,10 @@ function select_type_field(element, field, ui) {
       $("#id_email").val(ui.item.email);
       break;
     case 'disease':
-      console.log(ui.item.id);
       $("#" + element.id + "_id").val(ui.item.id);
       break;
     case 'exam':
+      $(element).prop("readonly", true);
       $("#" + element.id + "_type").val(ui.item.type);
       $("#" + element.id + "_id").val(ui.item.id);
       break;
@@ -133,13 +133,14 @@ function autocompleteAllMedicines(){
 function autocompleteAllExams(){
   var totalExams = $('#id_form_exam-TOTAL_FORMS').val() - 1;
   for(examNumber=totalExams; examNumber>=0; examNumber--){
-    autocompleteElement('#id_form_exam-' + totalExam + '-exam', autocompleteExam, "exam");
+    autocompleteElement('#id_form_exam-' + examNumber + '-exam', autocompleteExam, "exam");
   }
 }
 
 // Performs autocomplete in the specified fields.
-var totalExam = $('#id_form_exam-TOTAL_FORMS').val() - 1;
-autocompleteAllMedicines();
-autocompleteAllExams();
-autocompleteElement('#id_patient', autocompletePatient, "patient");
-autocompleteElement('#id_cid', autocompleteCid, "cid");
+$(document).ready(function() {
+  autocompleteAllMedicines();
+  autocompleteAllExams();
+  autocompleteElement('#id_patient', autocompletePatient, "patient");
+  autocompleteElement('#id_cid', autocompleteCid, "cid");
+});

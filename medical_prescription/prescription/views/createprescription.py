@@ -256,5 +256,6 @@ class CreatePrescriptionView(FormView):
                    'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
+        print(data['form_is_valid'])
         # Json to communication Ajax.
         return JsonResponse(data)
