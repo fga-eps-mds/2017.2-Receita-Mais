@@ -1,5 +1,6 @@
 # Django
 from django import forms
+from django.db import models
 
 # Local Django
 from django.utils.translation import ugettext_lazy as _
@@ -27,7 +28,7 @@ class UpdatePatternForm(forms.ModelForm):
 
     pagesize = forms.ChoiceField(choices=constants.PAGE_SIZE_CHOICE)
 
-    logo = forms.FileField(required=False, widget=forms.FileInput)
+    logo = forms.FileField(required=False, widget=forms.FileInput, initial='')
 
     font = forms.ChoiceField(choices=constants.FONT_CHOICE)
     font_size = forms.ChoiceField(choices=constants.FONT_SIZE_CHOICE)
@@ -35,6 +36,7 @@ class UpdatePatternForm(forms.ModelForm):
     class Meta:
         model = Pattern
         fields = ['name', 'clinic', 'header', 'footer', 'pagesize', 'logo', 'font', 'font_size']
+
     # Get Pattern fields.
     def clean(self):
 
@@ -43,7 +45,6 @@ class UpdatePatternForm(forms.ModelForm):
         header = self.cleaned_data.get('header')
         footer = self.cleaned_data.get('footer')
         files = self.cleaned_data['logo']
-
         self.validator_all(name, clinic, header, footer, files)
 
     # Verify validations in form.
@@ -56,8 +57,7 @@ class UpdatePatternForm(forms.ModelForm):
         validator.validator_header(header)
         validator.validator_footer(footer)
 
-        if files is not None:
-            validator.validator_file(files)
-        else:
-            # Nothing to do.
+        if files is None or type(files) == models.fields.files.FieldFile:
             pass
+        else:
+            validator.validator_file(files)
