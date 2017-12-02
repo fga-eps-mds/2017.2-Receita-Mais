@@ -4,11 +4,10 @@ from django.test.client import RequestFactory, Client
 from prescription.models import (
                                 Prescription,
                                 PrescriptionHasManipulatedMedicine,
-                                PrescriptionRecommendation,
+                                PrescriptionNewRecommendation,
                                 PrescriptionHasMedicine,
                                 PrescriptionDefaultExam,
                                 PrescriptionCustomExam,
-                                Recommendation,
                                 Pattern
                                 )
 from prescription.views import ShowPatternsView
@@ -16,6 +15,7 @@ from disease.models import Disease
 from exam.models import DefaultExam, CustomExam
 from medicine.models import Medicine, ManipulatedMedicine
 from user.models import Patient, HealthProfessional
+from recommendation.models import NewRecommendation
 
 
 class TestShowDetailPrescriptionView(TestCase):
@@ -107,16 +107,16 @@ class TestShowDetailPrescriptionView(TestCase):
         self.hasmanipulated_medicine.prescription_medicine = self.prescription_2
         self.hasmanipulated_medicine.save()
 
-        self.recommendation = Recommendation()
-        self.recommendation.recommendation = "recomendacao de teste"
+        self.recommendation = NewRecommendation()
+        self.recommendation.recommendation_description = "recomendacao de teste"
         self.recommendation.save()
 
-        self.prescription_has_recommendation = PrescriptionRecommendation()
+        self.prescription_has_recommendation = PrescriptionNewRecommendation()
         self.prescription_has_recommendation.prescription = self.prescription
         self.prescription_has_recommendation.recommendation = self.recommendation
         self.prescription_has_recommendation.save()
 
-        self.prescription_has_recommendation = PrescriptionRecommendation()
+        self.prescription_has_recommendation = PrescriptionNewRecommendation()
         self.prescription_has_recommendation.prescription = self.prescription_3
         self.prescription_has_recommendation.recommendation = self.recommendation
         self.prescription_has_recommendation.save()

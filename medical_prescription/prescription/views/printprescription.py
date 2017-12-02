@@ -242,10 +242,10 @@ class PrintPrescription:
             pass
 
         elements.append(Spacer(1, 12))
-        if len(prescription.recommendation_prescription.all()) != 0:
+        if len(prescription.new_recommendations.all()) != 0:
             elements.append(Paragraph('Recomendacoes', styles['Heading1']))
-            for recommendation in prescription.recommendation_prescription.all():
-                elements.append(Paragraph(recommendation.recommendation, styles['default']))
+            for recommendation in prescription.new_recommendations.all():
+                elements.append(Paragraph(recommendation.recommendation_description, styles['default']))
                 elements.append(Spacer(1, 12))
             elements.append(PageBreak())
             elements.append(Spacer(1, 32))
@@ -262,6 +262,10 @@ class PrintPrescription:
 
             for custom_exams in prescription.custom_exams.all():
                 elements.append(Paragraph(custom_exams.description, styles['default']))
+                elements.append(Spacer(1, 12))
+
+            for new_exams in prescription.new_exams.all():
+                elements.append(Paragraph(new_exams.exam_description, styles['default']))
                 elements.append(Spacer(1, 12))
         else:
             # Nothing to do.
