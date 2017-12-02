@@ -112,10 +112,9 @@
       {% for error in form.logo.errors %}
           <div class="alert alert-danger" role="alert">{{ error }}</div>
       {% endfor %}
-      {% if pattern.logo.name != '' %}
+      {% if pattern.logo.name %}
           <br><br>
         <img src="/public/{{pattern.logo}}" width="100px" height="100px"></img>
-
       {% endif %}
 
         {{ form.logo }}
