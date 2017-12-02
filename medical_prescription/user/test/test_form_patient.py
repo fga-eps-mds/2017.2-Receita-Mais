@@ -42,6 +42,7 @@ class TestPatientForm(TestCase):
         self.CPF_document_invalid_MIN = '111111111'
         self.CPF_document_invalid_MAX = '11111111111'
         self.CPF_document_invalid_TYPE = '252627282930asdf'
+        self.CPF_document_invalid_NONE = None
 
         self.CEP_valid = 72850735
         self.CEP_invalid = '7285073A'
@@ -544,5 +545,22 @@ class TestPatientForm(TestCase):
                      'city': self.city_valid,
                      'neighborhood': self.neighborhood_valid,
                      'complement': self.complement_invalid_MAX}
+        form = PatientForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_user_forms_patient_id_document_is_not_valid_NONE(self):
+        form_data = {'name': self.name_valid,
+                     'phone': self.phone_valid,
+                     'email': self.email_valid,
+                     'password': self.password_valid,
+                     'confirm_password': self.password_valid,
+                     'CPF_document': self.CPF_document_invalid_NONE,
+                     'sex': self.sex_valid,
+                     'date_of_birth': self.date_of_birth_valid,
+                     'CEP': self.CEP_valid,
+                     'UF': self.UF_valid,
+                     'city': self.city_valid,
+                     'neighborhood': self.neighborhood_valid,
+                     'complement': self.complement_valid}
         form = PatientForm(data=form_data)
         self.assertFalse(form.is_valid())

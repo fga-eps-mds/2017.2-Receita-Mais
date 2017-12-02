@@ -26,14 +26,6 @@ class TestUpdateHealthProfessionalPassword(TestCase):
         self.user = User.objects.create_user(email='user@user.com',
                                              password='senha12')
 
-    def get_without_login(self):
-        request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
-        request.user = AnonymousUser()
-
-        response = UpdateUserPassword.edit_health_professional_password_view(request,
-                                                                             email=self.health_professional.email)
-        self.assertEqual(response.status_code, 302)
-
     def test_user_get_health_professional_with_patient(self):
         request = self.factory.get('user/editpasswordhealthprofessional/(?P<email>[\w|\W]+)')
         request.user = self.patient

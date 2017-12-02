@@ -26,20 +26,13 @@ class UpdatePatientTest(TestCase):
         self.user = User.objects.create_user(email='user@user.com',
                                              password='senha12')
 
-    def _without_login(self):
-        request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
-        request.user = AnonymousUser()
-
-        response = UpdatePatient.as_view()(request, pk=98)
-        self.assertEqual(response.status_code, 302)
-
     def test_user_edit_patient_with_health_professional(self):
         request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
         request.user = self.health_professional
 
         with self.assertRaises(PermissionDenied):
             UpdatePatient.as_view()(request, pk=98)
-
+    
     def test_user_edit_patient_with_patient(self):
         request = self.factory.get('user/edit_patient/(?P<pk>[0-9]+)/')
         request.user = self.patient
