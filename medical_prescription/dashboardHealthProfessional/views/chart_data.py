@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 # local django
 from user.decorators import is_health_professional
 from prescription.models import Prescription
+from dashboardHealthProfessional import constants
 
 
 class ChartData(View):
@@ -30,7 +31,7 @@ class ChartData(View):
                 chart_item = {}
                 date_ago = datetime.today() - timedelta(days=count)
 
-                # Set initial date to first hour
+                # Set initial date first hour
                 actual_date = datetime(date_ago.year, date_ago.month, date_ago.day)
                 prescription_count = Prescription.objects.filter(date__year=actual_date.year,
                                                                  date__month=actual_date.month,
@@ -40,7 +41,7 @@ class ChartData(View):
                 if count:
                     chart_item['name'] = actual_date.strftime('%A')
                 else:
-                    chart_item['name'] = 'Today'
+                    chart_item['name'] = constants.TODAY
 
                 chart_item['quantity'] = prescription_count
                 list_date.append(chart_item)

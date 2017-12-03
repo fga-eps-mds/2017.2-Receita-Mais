@@ -17,20 +17,20 @@ class TestRequiredChartData(TestCase):
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12')
 
-    def test_prescription_request_autocomplete_cid_fail(self):
+    def test_prescription_request_chart_data_fail(self):
         request = self.factory.get('/dashboard_health_professional/ajax/chart_data')
         request.user = self.health_professional
         response = ChartData.as_view()(request)
         self.assertNotEquals(response, HttpResponse)
 
-    def test_prescription_request_autocomplete_cid_return_no_disease(self):
+    def test_prescription_request_chart_data_return_no_data(self):
         request = self.factory.get('/dashboard_health_professional/ajax/chart_data',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional
         response = ChartData.as_view()(request)
         self.assertEquals(response.status_code, 200)
 
-    def test_prescription_request_autocomplete_cid_return_one_disease(self):
+    def test_prescription_request_chart_data_return_data(self):
         request = self.factory.get('/dashboard_health_professional/ajax/chart_data',
                                    HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         request.user = self.health_professional

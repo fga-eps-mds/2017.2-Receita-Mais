@@ -13,7 +13,7 @@ from user.decorators import is_health_professional
 from prescription.models import Prescription
 
 
-class Home(View):
+class HomeHealthProfessional(View):
     """
     Renders the home page (dashboard) of the health professional.
     """
@@ -22,15 +22,18 @@ class Home(View):
     @method_decorator(login_required)
     @method_decorator(is_health_professional)
     def dispatch(self, *args, **kwargs):
-        return super(Home, self).dispatch(*args, **kwargs)
+        return super(HomeHealthProfessional, self).dispatch(*args, **kwargs)
 
     def get(self, request):
         health_professional = request.user.healthprofessional
         one_week_ago = datetime.today() - timedelta(days=7)
+
+        # Set initial date first hour
         week_ago = datetime(one_week_ago.year, one_week_ago.month, one_week_ago.day)
         prescription_quantity = Prescription.objects.filter(date__gte=week_ago,
                                                             health_professional=health_professional).count()
 
+        # Get six latest prescriptions
         latest_prescriptions = Prescription.objects.filter(health_professional=health_professional).order_by('-id')[:6]
 
         return render(request, self.template_name, {'prescription_quantity': prescription_quantity,
