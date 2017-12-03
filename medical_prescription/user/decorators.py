@@ -12,7 +12,7 @@ def is_health_professional(method):
         if is_health_professional:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/user/login_healthprofessional')
+            raise PermissionDenied
 
     return wrap
 
@@ -26,7 +26,7 @@ def is_patient(method):
         if is_patient:
             return method(request, *args, **kwargs)
         else:
-            return redirect('/user/login_patient')
+            raise PermissionDenied
 
     return wrap
 

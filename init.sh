@@ -20,11 +20,15 @@ done
 echo "Delete migrations"
 find . -path "*/migrations/*.pyc"  -delete
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+echo "Delete old staticfiles dir"
+find . -path "*/staticfiles/*"  -delete
 echo "Create makemigrations and migrate"
 python3 medical_prescription/manage.py makemigrations
 python3 medical_prescription/manage.py migrate
 echo "Load all datas"
 python3 medical_prescription/manage.py loaddata data2.json
+echo "Collecting static"
+python3 medical_prescription/manage.py collectstatic
 echo "Run server"
 python3 medical_prescription/manage.py runserver 0.0.0.0:8000 & .
 ./node_modules/.bin/gulp default
