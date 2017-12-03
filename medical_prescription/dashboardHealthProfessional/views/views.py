@@ -19,7 +19,7 @@ def home(request):
     prescription_quantity = Prescription.objects.filter(date__gte=one_week_ago,
                                                         health_professional=health_professional).count()
 
-    last_prescriptions = Prescription.objects.filter(health_professional=health_professional).order_by('-id')[:5]
+    last_prescriptions = Prescription.objects.filter(health_professional=health_professional).order_by('-id')[:6]
 
     print(last_prescriptions)
     return render(request, 'healthprofessional.html', {'prescription_quantity': prescription_quantity,
