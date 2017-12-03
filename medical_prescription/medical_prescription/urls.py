@@ -47,7 +47,8 @@ urlpatterns += i18n_patterns(
     url(r'^$', home, name='landing_page'),
 )
 
-if settings.DEBUG:
-    urlpatterns += [
-        url(r'^', TemplateResponse, {'template': 'erro404.html'}),
-    ]
+# if settings.DEBUG:
+#     urlpatterns += [
+#         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+#                                 {'document_root': settings.MEDIA_ROOT, 'show_indexes': True,})
+#     ]
