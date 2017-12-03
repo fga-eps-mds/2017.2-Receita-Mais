@@ -6,6 +6,7 @@ from datetime import date
 from django.core import paginator
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.shortcuts import render
 
 # Local Django
 from chat.models import Message, Response
@@ -60,6 +61,10 @@ class SentMessageDetailView(DetailView, FormMixin):
 
         last_element = self.object.messages.all().last()
 
+        context['img_from'] = self.object.user_from.image_profile.url
+        context['img_to'] = self.object.user_to.image_profile.url
+        context['my_user'] = request.user
+
         # Mark all responses with read = True.
         if(last_element.user_to.email == request.user.email):
             for message in self.object.messages.filter(as_read=False):
@@ -69,7 +74,7 @@ class SentMessageDetailView(DetailView, FormMixin):
         # Save the Message.
         self.object.save()
 
-        return self.render_to_response(context)
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

@@ -30,6 +30,8 @@
                 <tbody>
                   <tr>
 
+
+
                     <td class="mailbox-name"><a href="{% url 'view_sent_message' message.pk %}">{{message.user_to}}</a></td>
                     <td class="mailbox-subject"><b>{{message.subject}}</b>
                     </td>
@@ -90,6 +92,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Mensagens</h3>
 
+
             <div class="box-tools">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -103,7 +106,14 @@
           </div>
           <!-- /.box-body -->
         </div>
+
+
+        <!-- Profile -->
+
       </div>
+
+
+
       <!-- /.col -->
     </div>
     <!-- /.row -->

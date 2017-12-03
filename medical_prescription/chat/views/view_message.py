@@ -6,6 +6,7 @@ from django.core import paginator
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.shortcuts import render
 
 # Local Django
 from chat.models import Message, Response
@@ -21,6 +22,7 @@ class MessageDetailView(DetailView, FormMixin):
     form_class = CreateResponse
     context_object_name = 'list'
     model = Message
+    template_name = 'view_message_patient.html'
 
     # Return a query of Message from the user.
     def get_queryset(self):
@@ -99,6 +101,16 @@ class MessageDetailView(DetailView, FormMixin):
         self.object.messages.add(response)
 
         return super(MessageDetailView, self).form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.object = Message.objects.get(pk=self.kwargs['pk'])
+        context = self.get_context_data()
+
+        context['img_from'] = self.object.user_from.image_profile.url
+        context['img_to'] = self.object.user_to.image_profile.url
+        context['my_user'] = request.user
+
+        return render(request, self.template_name, context)
 
     def get_success_url(self):
         return reverse('view_message_patient', kwargs={'pk': self.object.pk})
