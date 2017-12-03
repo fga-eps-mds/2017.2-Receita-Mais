@@ -1,4 +1,4 @@
-{% extends "dashboardPatient/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "dashboardPatient/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
   <!-- Main content -->
   <section class="content">
@@ -34,6 +34,8 @@
                     <td><button><a href="{% url 'unarchive_message_patient' message.pk %}" onclick="return confirm('Desarquivar Conversa?')">Desarquivar Conversa</a></button></td>
                   </tr>
                 </tbody>
+                {% empty %}
+                    <ul> {% trans "Não existem mensagens." %}</ul>
                 {% endfor %}
               </table>
               <!-- /.table -->

@@ -14,6 +14,7 @@
  <div class="panel-body">
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
+      {% if list_prescription %}
     <thead>
       <th></th>
       <th>CID</th>
@@ -25,6 +26,7 @@
       <th>Editar</th>
       <th>Imprimir</th>
     </thead>
+    {% endif %}
 
     <tbody>
       {% for prescription in list_prescription %}
@@ -96,6 +98,10 @@
           <td><a class="js-show-prescription" data-url='{% url 'show_patterns' prescription.pk %}'><i class="fa fa-print"></i></a></td>
 
           </tr>
+          {% empty %}
+
+          Não existem Prescrições Cadastradas.
+
         {% endfor %}
 
 
