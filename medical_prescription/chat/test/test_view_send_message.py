@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory, Client
 from chat.views import SentMessageDetailView
-from chat.models import Message
+from chat.models import Message, Response
 from user.models import HealthProfessional, Patient
 
 
@@ -23,14 +23,20 @@ class TestSentMessageDetailView(TestCase):
         self.view_class = SentMessageDetailView
         self.factory = RequestFactory()
         self.client = Client()
-        # Create Message.
 
+        self.response = Response()
+        self.response.user_from = self.health_professional
+        self.response.user_to = self.patient
+        self.response.save()
+
+        # Create Message.
         self.message = Message()
         self.message.text = "meu texto"
         self.message.subject = "Assunto"
         self.message.user_from = self.health_professional
         self.message.user_to = self.patient
         self.message.pk = 1
+        self.message.messages.add(self.response)
         self.message.save()
 
     def test_chat_queryset_true(self):
