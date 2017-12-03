@@ -49,7 +49,7 @@ class UserValidator():
         if email_from_database.exists():
             pass
         else:
-            raise ValidationError({'email': [_(constants.EMAIL_EXISTS)]})
+            pass
 
         logger.debug("Exit validator_email_in_reset_password.")
 

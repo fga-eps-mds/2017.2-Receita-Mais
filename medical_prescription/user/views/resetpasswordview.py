@@ -48,7 +48,9 @@ class ResetPasswordView(FormView):
             user = User.objects.get(email=email)
         except:
             logger.exception("User not found.")
-            return render(request, 'message.html', {"message": "usuário não encontrado"})
+            messages.error(request, constants.EMAIL_NOT_EXIST_MESSAGE)
+            return render(request, 'reset_password.html',
+                          {"form": form})
 
         try:
 
@@ -61,7 +63,6 @@ class ResetPasswordView(FormView):
                       constants.EMAIL_ADRESS,
                       [email],
                       fail_silently=False)
-
             messages.success(request, constants.EMAIL_SUCESS_MESSAGE)
 
             return redirect('/')
