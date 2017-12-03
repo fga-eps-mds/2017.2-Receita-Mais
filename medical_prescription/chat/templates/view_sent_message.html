@@ -30,7 +30,7 @@
         <div class="row box-body no-padding">
 
           {% if element.user_from.email == my_user.email %}
-            <img class = "col-sm-2 img-circle" src = "{{ img_from }}"></img>
+            <img class = "col-sm-1 img-circle"  style="width:90px;height:50px;" src = "{{ img_from }}"></img>
           {% endif %}
           <div class = "col-sm-10">
             <div class="mailbox-read-info">
@@ -51,8 +51,8 @@
           </div>
 
 
-          {% if element.user_to is not my_user %}
-            <img class = "col-sm-2 img-circle" src = "{{ img_to }}"></img>
+          {% if element.user_from.email != my_user.email %}
+            <img class = "col-sm-1 img-circle" style="width:90px;height:50px;" src = "{{ img_to }}"></img>
           {% endif %}
         </div>
         {% endfor %}

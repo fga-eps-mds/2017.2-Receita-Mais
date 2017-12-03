@@ -59,6 +59,7 @@ class SentMessageDetailView(DetailView, FormMixin):
         context = self.get_context_data()
 
         context['img_from'] = self.object.user_from.image_profile.url
+        context['img_to'] = self.object.user_to.image_profile.url
         context['my_user'] = request.user
         return render(request, self.template_name, context)
 
