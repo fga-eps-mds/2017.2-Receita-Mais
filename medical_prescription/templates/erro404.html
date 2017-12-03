@@ -1,0 +1,74 @@
+{% extends "landing/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
+
+        <!--========== PAGE CONTENT ==========-->
+        <!-- Feedback Form -->
+        <div class="g-position--relative g-bg-color--primary">
+          <div class=" g-padding-y-100--xs">
+                      <div class="s-faq g-bg-color--primary">
+                        <!-- Form -->
+                        <div id="js__scroll-to-appointment" class="g-bg-color--sky-light g-padding-y-0--xs g-padding-y-0--sm">
+                          <div class="">
+                            <div class="row">
+                              <!-- Form -->
+                              <div class="col-md-8 js__form-eqaul-height-v1">
+                                <div class="g-padding-x-40--xs g-padding-y-50--xs">
+                                  <h2 class="g-font-size-24--xs g-color--primary g-margin-b-50--xs">{% trans "Recupere sua senha"%} </h2>
+                                  <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="g-margin-b-50--xs">
+                                      {% for error in form.email.errors %}
+                                      <div class="alert alert-danger" role="alert">{{error}}</div>
+                                      {% endfor %}
+
+                                      <div class="g-text-center--xs g-margin-b-80--xs">
+                                        <p>{% trans "Um email com um link de recuperação será enviado no email digitado abaixo<br>Obs: Digite o email informado no registro da sua conta." %} </p>
+                                      </div>
+                                      {{ form.email }}
+
+                                    </div>
+                                    <div class="g-text-center--xs">
+                                      <button type="submit" class="text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-70--xs g-margin-b-20--xs">{% trans "Enviar" %}</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                              <!-- End Form -->
+
+                              <!-- Contacts -->
+                              <div class="col-md-4 g-bg-color--primary-ltr js__form-equal-height-v1">
+                                <br><br><br>
+                                <div class="g-overflow--hidden g-padding-x-40--xs g-padding-y-50--xs">
+                                  <h2 class="g-font-size-24--xs g-color--white g-margin-b-150--xs">{% trans "Contate-nos"%}</h2>
+                                  <ul class="list-unstyled g-margin-b-70--xs">
+
+                                    <li class="clearfix g-color--white g-margin-b-40--xs">
+                                      <div class="g-media g-width-40--xs g-margin-t-5--xs">
+                                        <i class="g-font-size-20--xs g-color--white-opacity-light ti-email"></i>
+                                      </div>
+                                      <div class="g-media__body">
+                                        receitamaisSAC@receitamais.com
+                                      </div>
+                                    </li>
+                                  </ul>
+                                  <ul class="list-inline g-ul-li-lr-15--xs">
+                                    <li><a href="#"><i class="g-font-size-20--xs g-color--white-opacity ti-facebook"></i></a></li>
+                                    <li><a href="#"><i class="g-font-size-20--xs g-color--white-opacity ti-twitter"></i></a></li>
+                                    <li><a href="#"><i class="g-font-size-20--xs g-color--white-opacity ti-instagram"></i></a></li>
+                                  </ul>
+                                  <i class="g-font-size-150--xs g-color--white-opacity-lightest ti-comments" style="position: absolute; bottom: -1.25rem; right: -1.25rem;"></i>
+                                </div>
+                              </div>
+                              <!-- End Contacts -->
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Form -->
+                      </div>
+
+
+          </div>
+        </div>
+        <!-- End Feedback Form -->
+        <!--========== END PAGE CONTENT ==========-->
+
+{% endblock %}
