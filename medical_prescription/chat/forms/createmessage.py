@@ -24,6 +24,8 @@ class CreateMessage(forms.Form):
 
     files = forms.FileField(required=False)
 
+    pk = 0
+
     def get_pk(self, pk):
             self.pk = pk
 

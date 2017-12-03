@@ -36,7 +36,9 @@ class MessageValidator():
             raise forms.ValidationError({'user_to': [_(constants.USER_TO_IS_HEALTH_PROFESSIONAL)]})
 
     def validator_user_to_not_linked(self, user_to, user_from):
+
         patient = Patient.objects.get(email=user_to)
+
         relation = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=user_from,
                                                                          associated_patient=patient,
                                                                          is_active=True)

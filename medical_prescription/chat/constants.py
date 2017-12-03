@@ -4,7 +4,7 @@ MAX_LENGTH_TEXT_SUBJECT = 80
 TEXT_SIZE = "The text must be between 0 and 800 characters."
 SUBJECT_SIZE = "Subject must be between 0 and 80 characters."
 
-USER_EXISTS = "User don't exists."
+USER_EXISTS = "User doesn't exist."
 
 USER_TO_IS_HEALTH_PROFESSIONAL = "The email entered belongs to a health professional."
 USER_TO_IS_NOT_LINKED = "The email entered doesn't belong to any patient in your list."
