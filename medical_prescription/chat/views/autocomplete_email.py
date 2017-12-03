@@ -22,19 +22,21 @@ class AutoCompleteEmail(View):
 
             # Search by email.
             for patient in query_email:
-                relation = AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=request.user,
-                                                                              associated_patient=patient,
-                                                                              is_active=True)
-                self.create_item(query_list, patient)
+                relation = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=request.user,
+                                                                                 associated_patient=patient,
+                                                                                 is_active=True)
+                if relation.exists():
+                    self.create_item(query_list, patient)
 
             # Search by name.
             for patient in query_name:
-                relation = AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=request.user,
-                                                                              associated_patient=patient,
-                                                                              is_active=True)
+                relation = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=request.user,
+                                                                                 associated_patient=patient,
+                                                                                 is_active=True)
 
-                if self.check_query_list(query_list, relation.associated_patient) is False:
-                    self.create_item(query_list, patient)
+                if relation.exists():
+                    if self.check_query_list(query_list, patient) is False:
+                        self.create_item(query_list, patient)
 
             data = json.dumps(query_list)
             mimetype = 'application/json'

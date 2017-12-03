@@ -5,7 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 # local django
 from chat import constants
 from user.models import (User,
-                         HealthProfessional)
+                         Patient,
+                         HealthProfessional,
+                         AssociatedHealthProfessionalAndPatient)
 
 
 class MessageValidator():
@@ -32,6 +34,15 @@ class MessageValidator():
 
         if email_health_professional.exists():
             raise forms.ValidationError({'user_to': [_(constants.USER_TO_IS_HEALTH_PROFESSIONAL)]})
+
+    def validator_user_to_not_linked(self, user_to, user_from):
+        patient = Patient.objects.get(email=user_to)
+        relation = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=user_from,
+                                                                         associated_patient=patient,
+                                                                         is_active=True)
+
+        if relation.exists() is False:
+            raise forms.ValidationError({'user_to': [_(constants.USER_TO_IS_NOT_LINKED)]})
 
     # Validanting subject.
     def validator_subject(self, subject):

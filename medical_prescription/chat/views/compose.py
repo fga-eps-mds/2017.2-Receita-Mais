@@ -32,6 +32,8 @@ class ComposeView(FormView):
     @method_decorator(is_health_professional)
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST, request.FILES)
+        pk = self.request.user.pk
+        form.get_pk(pk)
 
         # Validanting form.
         if form.is_valid():
