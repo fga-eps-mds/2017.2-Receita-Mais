@@ -1,0 +1,38 @@
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-length{
+  height: 100%!important;
+}
+
+.body{
+  margin: 1%!important;
+}
+
+.col-lg-4{
+  padding: 0%!important;
+}
+
+.col-lg-8{
+  padding-left: 1%!important;
+}
+
+.small-box-footer{
+  position: absolute!important;
+  bottom: 0!important;
+  width: 100%!important;
+}
+
+.chart{
+  height: 300px!important;
+}
+
+h1{
+  font-size: 600%;
+}
