@@ -11,3 +11,4 @@ class CustomRecommendation(models.Model):
     name = models.CharField(max_length=MAX_NAME, unique=True, default="")
     recommendation = models.CharField(max_length=MAX_DESCRIPTION)
     health_professional = models.ForeignKey(HealthProfessional)
+    auto_increment_id = models.AutoField(primary_key=True)

@@ -39,12 +39,13 @@ class AutoCompleteRecommendation(View):
     def get_custom_recommendations(self, search, health_professional, list_recommendations):
         queryset = CustomRecommendation.objects.filter(description__icontains=search,
                                                        health_professional=health_professional)[:5]
-
+        print("================== OI 2 =================")
         # Encapsulates in a json needed to be sent.
         for custom_recommendation in queryset:
             custom_recommendation_item = {}
             custom_recommendation_item['value'] = self.parse_description(custom_recommendation.recommendation)
-            custom_recommendation_item['type'] = 'custom_recommendation'
+            custom_recommendation_item['type'] = 'recommendation'
+            custom_recommendation_item['id'] = custom_recommendation.auto_increment_id
             custom_recommendation_item['description'] = self.parse_description(custom_recommendation.recommendation)
 
             list_recommendations.append(custom_recommendation_item)

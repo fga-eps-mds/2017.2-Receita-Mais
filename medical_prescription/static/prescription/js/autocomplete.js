@@ -152,7 +152,7 @@ function autocompleteAllExams(){
 function autocompleteAllRecommendations(){
   var totalRecommendations = $('#id_form_recommendation-TOTAL_FORMS').val() - 1;
   for(recommendationNumber=totalRecommendations; recommendationNumber>=0; recommendationNumber--){
-    autocompleteElement('#id_form_recommendation-' + totalRecommendations + '-recommendation', autocompleteRecommendatio, "recommendation");
+    autocompleteElement('#id_form_recommendation-' + totalRecommendations + '-recommendation', autocompleteRecommendation, "recommendation");
   }
 }
 
