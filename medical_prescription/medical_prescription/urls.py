@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from landing.views import home
 from medical_prescription import settings
 
+from django.template.response import TemplateResponse
+
 
 @login_required
 def protected_serve(request, path, document_root=None, show_indexes=False):
@@ -44,3 +46,11 @@ urlpatterns += i18n_patterns(
     url(r'^chat/', include('chat.urls')),
     url(r'^$', home, name='landing_page'),
 )
+
+# TODO(Joao) Discomment this lines when DEBUG=FALSE.
+
+# if settings.DEBUG:
+#     urlpatterns += [
+#         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+#                                 {'document_root': settings.MEDIA_ROOT, 'show_indexes': True,})
+#     ]

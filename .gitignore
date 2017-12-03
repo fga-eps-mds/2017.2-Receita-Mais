@@ -17,3 +17,4 @@ htmlcov
 .ropeproject/
 **/public/**
 **/ReceitaMais.egg-info/**
+staticfiles
