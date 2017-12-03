@@ -47,6 +47,8 @@ urlpatterns += i18n_patterns(
     url(r'^$', home, name='landing_page'),
 )
 
+# TODO(Joao) Discomment this lines when DEBUG=FALSE.
+
 # if settings.DEBUG:
 #     urlpatterns += [
 #         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
