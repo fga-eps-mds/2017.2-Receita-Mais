@@ -48,16 +48,18 @@ body{
 	-moz-border-radius:.5em;
 	-border-radius:.5em;
 }
+
 .footer{
 	color:black;
-	position:absolute;
-	right:10px;
-	bottom:10px;
+	position:relative;
+	bottom:0px;
+	text-align: center;
 }
+
 .footer a{
 	color:rgb(114, 173, 38);
 }
-@media screen and (max-width: 1024px){
+/*@media screen and (max-width: 1024px){
 	.logo img {
 		width: 330px;
 	}
@@ -136,6 +138,7 @@ body{
 	}
 	.footer {
       font-size: 15px;
+			bottom: 0;
 	}
 }
 @media screen and (max-width: 480px){}
@@ -166,26 +169,27 @@ body{
 	.logo img {
 		width: 172px;
 	}
-}
+}*/
 </style>
 </head>
 {% load static %} {% load staticfiles %} {% load i18n %}
 
 <body>
-
-	<div class="logo">
-			<p>OOPS! - A página que você procura não foi encontrada ;(</p>
-			<img src="{% static 'error/404.png' %}"/>
-      <h2> Verique se a url foi digitada corretamente e tente novamente!</h2>
-			<div class="sub">
-			  <p><a href="#">Voltar a página inicial </a></p>
-			</div>
+	<div>
+		<div class="logo">
+				<p>OOPS! - A página que você procura não foi encontrada ;(</p>
+				<img src="{% static 'error/404.png' %}"/>
+	      <h2> Verifique se a url foi digitada corretamente e tente novamente!</h2>
+				<div class="sub">
+				  <p><a href="{% url 'landing_page'%}">Voltar a página inicial </a></p>
+				</div>
+		</div>
 	</div>
 
-
-
-	<div class="footer">
-	 <h4>&copy 2012 Oops 404 . All Rights Reserved | Design by<a href="http://w3layouts.com">W3layouts</a></h4>
+	<div>
+		<div class="footer">
+			&copy 2012 Oops 404 . All Rights Reserved | Design by<a href="http://w3layouts.com">W3layouts</a>
+		</div>
 	</div>
 
 </body>
