@@ -2,11 +2,13 @@
 
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
+      {% if list_exam %}
         <thead>
           <th>{% trans "Código Tuss" %}</th>
           <th>{% trans "Descrição" %}</th>
         </thead>
       <tbody>
+      {% endif %}
 
       {% for exam in list_exam %}
       <tr class='clickable-row'>
@@ -15,6 +17,8 @@
             <td>{{ exam.description }}</td>
         {% endif %}
       </tr>
+          {% empty %}
+          Não existem Exames cadastrados.
       {% endfor %}
       </table>
     </div>

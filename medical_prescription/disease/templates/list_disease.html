@@ -4,37 +4,41 @@
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
         <thead>
-          <th>{% trans "Código" %}</th>
-          <th>{% trans "Descrição" %}</th>
+          <th>{% trans "Código Descrição" %}</th>
         </thead>
       <tbody>
 
       {% for disease in list_disease %}
       <tr class='clickable-row'>
-        <td>{{ disease.id_cid_10 }}</td>
         <td>{{ disease.description }}</td>
       </tr>        
       {% endfor %}
       </table>
     </div>
-    {# .... **Now the pagination section** .... #}
-    {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}">Página Anterior</a>
+    {# .... **Now the pagination section** ....#}
+                {% if is_paginated %}
+                  <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                      {% if page_obj.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                      {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                  </ul>
                 {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">Próxima página</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
     {% else %}
-      <li>{% trans "Não existem doenças cadastradas." %}</li>
+      {% trans "Não existem doenças cadastradas." %}
     {% endif %}
 
 

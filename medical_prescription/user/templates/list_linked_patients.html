@@ -9,23 +9,33 @@
           <i class="fa fa-info-circle"></i>{{ message }}</div>
       {% endfor %}
       <table class="table table-striped table-bordered table-hover">
+      {% if list_linked_patients %}
         <thead>
           <th>{% trans "Nome" %}</th>
           <th>{% trans "Email" %}</th>
+        <th>{% trans "Status" %}</th>
         </thead>
       <tbody>
+    {% endif %}
 
       {% for relation in list_linked_patients %}
       <tr class='clickable-row'>
-        {% if relation.is_active%}
+            {% if relation.associated_patient.name %}
             <td>{{ relation.associated_patient.name }}</td>
+                {% else %}
+            <td>------------------</td>
+            {% endif %}
             <td>{{ relation.associated_patient.email }}</td>
-        {% endif %}
+            {% if relation.is_active %}
+                 <td><span class="glyphicon glyphicon-ok"></span></td>
+                {% else %}
+                <td><span class="glyphicon glyphicon-remove"></span></td>
+                {% endif %}
       </tr>
 
       {% empty %}
 
-        <li>{% trans "Não existem pacientes em sua lista." %}</li>
+        {% trans "Não existem pacientes em sua lista." %}
 
       {% endfor %}
       </table>

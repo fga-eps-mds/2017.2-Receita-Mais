@@ -2,16 +2,20 @@
 
     <div class="panel-body">
       <table class="table table-striped table-bordered table-hover">
+      {% if list_files %}
         <thead>
           <th>{% trans "Arquivo(s) Enviado(s)" %}</th>
         </thead>
       <tbody>
+      {% endif %}
 
       {% for response in list_files %}
       <tr class='clickable-row'>
             <td><a href="{{response.files.url}}">{{response.file_name}}</a></td>
       </tr>
-      {% endfor %}
+        {% empty %}
+        {% trans "Não existem Arquivos enviados." %}
+        {% endfor %}
       </table>
     </div>
     {# .... **Now the pagination section** ....#}
