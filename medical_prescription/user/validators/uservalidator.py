@@ -93,7 +93,7 @@ class UserValidator():
         logger.debug("Start validator_phone_number.")
 
         if phone is None:
-            raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
+            raise forms.ValidationError({'phone': [_(constants.PHONE_NULL)]})
         elif len(phone) < constants.PHONE_NUMBER_FIELD_LENGTH_MIN:
             raise forms.ValidationError({'phone': [_(constants.PHONE_NUMBER_SIZE)]})
 

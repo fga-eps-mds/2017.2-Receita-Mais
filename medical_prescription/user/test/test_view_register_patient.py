@@ -33,7 +33,7 @@ class RegisterPatientViewTest(TestCase):
         self.name_valid = 'Teste Nome'
         self.name_invalid = 'Te'
         self.date_of_birth_valid = '10/12/1990'
-        self.phone_valid = '(61) 1234-56789'
+        self.phone_valid = '(61)1234-56789'
         self.sex_valid = 'M'
         self.password_valid = '1234567'
         self.password_invalid = '1'

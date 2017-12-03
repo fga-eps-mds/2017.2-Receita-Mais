@@ -11,7 +11,8 @@ class CreateCustomExams(forms.ModelForm):
     """
     Form to create a custom exam.
     """
-    description = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
     class Meta:
         # Define model to form.

@@ -3,9 +3,19 @@
 <div class="container" style="display:none;" id="myAlert">
 </div>
 <form method="POST" class="post-form">
+  <div class="form-group">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="save btn btn-success" value="showAlert" onclick="showAlert();">{% trans "Criar" %}</button>
+  <div class="col-sm-12">
+    <font size="5">
+      <span class="label label-primary">{% trans "Nome do Principio Ativo" %}</span>
+    </font>
+  {{ form.name }}
+  <div class="col-sm-12">
+    <div class="col-sm-2 col-sm-push-5">
+      <br>
+      <button type="submit" class="save btn btn-success" value="showAlert" onclick="showAlert();">{% trans "Cadastrar" %}</button>
+    </div>
+</div>
 </form>
 <script>
 function showAlert(){
