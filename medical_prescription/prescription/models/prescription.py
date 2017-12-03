@@ -18,6 +18,8 @@ class Prescription(models.Model):
     health_professional = models.ForeignKey(HealthProfessional, related_name='health_professsional',
                                             on_delete=models.CASCADE)
 
+    date = models.DateTimeField(blank=True, auto_now_add=True)
+
     medicines = models.ManyToManyField(Medicine, through='PrescriptionHasMedicine', related_name='medicines')
     manipulated_medicines = models.ManyToManyField(ManipulatedMedicine, through='PrescriptionHasManipulatedMedicine',
                                                    related_name='manipulated_medicines')
