@@ -1,35 +1,30 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
-<form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
 
-  {% csrf_token %}
-  
+<!-- Panel -->
+
+{% csrf_token %}
+<form class="post-form" action='' method="POST">
   <div class="form-group">
-    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
-      {% for error in form.name.errors %}
-      <div class="alert alert-danger" role="alert">{{error}}</div>
-      {% endfor %}
-
-      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">{% trans "Nome" %}</h4>
-      {{ form.name }}
+    {% csrf_token %}
+    <div class="col-md-12">
+      <font size="5">
+        <span class="label label-primary">{% trans "Nome do Exame" %}</span>
+      </font>
+      <br> {{ form.name }}
     </div>
-  </div>
+    <br><br>
 
-  <div class="form-group">
-    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
-      {% for error in form.description.errors %}
-      <div class="alert alert-danger" role="alert">{{error}}</div>
-      {% endfor %}
-
-      <h4 class="g-font-size-14--xs g-font-size-14--sm g-color--white">{% trans "Descrição" %}</h4>
-      {{ form.description }}
+    <div class="col-sm-12">
+      <font size="5">
+        <span class="label label-primary">{% trans "Descrição" %}</span>
+      </font>
+      <br> {{ form.description }}
     </div>
-  </div>
-
-  <div class="control-group">
-    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
-      <button class="btn btn-primary" align="center">{% trans "Cadastrar" %}</button>
+    <br><br>
+    <div class="col-sm-2 col-sm-push-5">
+      <br>
+      <button type="submit" class="btn btn-success">{% trans "Cadastrar" %}</button>
     </div>
   </div>
 </form>
-
 {% endblock %}
