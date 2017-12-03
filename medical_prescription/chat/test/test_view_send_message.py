@@ -30,7 +30,7 @@ class TestSentMessageDetailView(TestCase):
         self.message.subject = "Assunto"
         self.message.user_from = self.health_professional
         self.message.user_to = self.patient
-        self.message.pk = '1'
+        self.message.pk = 1
         self.message.save()
 
     def test_chat_queryset_true(self):
@@ -47,6 +47,16 @@ class TestSentMessageDetailView(TestCase):
         self.view.request = request
         self.view.object = self.message
         self.assertEqual(type(self.view.get_context_data()), type(dict()))
+
+    def test_chat_get(self):
+        request = self.factory.get('/chat/view_sent_message/1')
+
+        request.user = self.health_professional
+        self.view.request = request
+        self.view.object = self.message
+
+        response = SentMessageDetailView.as_view()(request, pk=1)
+        self.assertEqual(response.status_code, 200)
 
     def test_chat_post_true(self):
         request = self.factory.post('/',

@@ -7,7 +7,6 @@ from django.utils.decorators import method_decorator
 # Local Django
 from user.decorators import is_health_professional
 
-
 @method_decorator(login_required, name='dispatch')
 @method_decorator(is_health_professional, name='dispatch')
 class OutboxView(ListView):

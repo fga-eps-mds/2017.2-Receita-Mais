@@ -54,6 +54,16 @@ class TestViewMessage(TestCase):
         response = self.view_class.as_view()(request, pk=1)
         self.assertEqual(response.status_code, 302)
 
+    def test_chat_get(self):
+        request = self.factory.get('/')
+
+        request.user = self.user
+        self.view.request = request
+        self.view.object = self.message
+
+        response = MessageDetailView.as_view()(request, pk=1)
+        self.assertEqual(response.status_code, 200)
+
     def test_chat_post_false(self):
         request = self.factory.post('/',
                                     {'user_to': 'test@teste.com',
