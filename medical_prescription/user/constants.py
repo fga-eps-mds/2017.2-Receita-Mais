@@ -110,6 +110,7 @@ EMAIL_BODY = 'Clique no link a seguir para recuperar sua senha http://0.0.0.0:80
 EMAIL_ADRESS = 'medicalprescriptionapp@gmail.com'
 EMAIL_SUCESS_MESSAGE = 'Verifique a caixa de entrada do seu email para recuperar sua senha.'
 EMAIL_MESSAGE_EXIST = 'Um email de recuperação de senha já foi enviado para este endereço!'
+EMAIL_NOT_EXIST_MESSAGE = "Usuário não encontrado"
 
 # DATE_OF_BIRTH FIELDS.
 DATE_OF_BIRTH = "Date of birth"

@@ -48,4 +48,4 @@ class TestResetPassword(TestCase):
     def test_user_reset_password_form_invalid(self):
         form_data = {'email': self.email_valid_reset}
         form = ResetPasswordForm(data=form_data)
-        self.assertFalse(form.is_valid())
+        self.assertTrue(form.is_valid())
