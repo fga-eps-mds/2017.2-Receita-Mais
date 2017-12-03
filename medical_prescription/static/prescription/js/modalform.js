@@ -83,7 +83,6 @@ function loadForm(event, id_modal) {
 
 function saveForm(event) {
   var form = $(this);
-  console.log("============================");
   $.ajax({
     url: form.attr("action"),
     data: form.serialize(),

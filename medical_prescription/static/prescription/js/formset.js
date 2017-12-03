@@ -65,13 +65,13 @@ function deleteForm(prefix, text, btn) {
         updateElementIndex(this, prefix, i);
       });
     }
-    return false;
+    return true;
   } else if(total == 1){
     $(text).find(':input').each(function() {
       $(this).prop("readonly", false);
       $(this).val('');
     });
     btn.closest(text).hide();
-    return false;
+    return true;
   }
 }
