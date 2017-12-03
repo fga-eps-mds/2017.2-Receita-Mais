@@ -12,7 +12,6 @@ from django.shortcuts import render
 from chat.models import Message, Response
 from chat.forms import CreateResponse
 from user.decorators import is_health_professional
-from user.models import User
 
 
 @method_decorator(login_required, name='dispatch')
