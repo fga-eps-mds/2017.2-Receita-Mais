@@ -1,1 +1,2 @@
-from .views import home
+from .home import Home
+from .chart_data import ChartData

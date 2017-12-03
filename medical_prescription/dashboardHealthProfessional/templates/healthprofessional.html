@@ -1,69 +1,20 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
-<style>
-.row.display-flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-.row.display-flex > [class*='col-'] {
-  display: flex;
-  flex-direction: column;
-}
-
-.box-length{
-  height: 100%!important;
-}
-
-.body{
-  margin: 1%!important;
-}
-
-.col-lg-4{
-  padding: 0%!important;
-}
-
-.col-lg-8{
-  padding-left: 1%!important;
-}
-
-.small-box-footer{
-  position: absolute!important;
-  bottom: 0!important;
-  width: 100%!important;
-}
-</style>
+<link rel="stylesheet" href="{% static "dashboard/bowercomponents/morris.js/morris.css" %}">
+<link rel="stylesheet" href="{% static "dashboard/chart/css/block_chart.css" %}">
 
 <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
 <script src="{% static "dashboard/bowercomponents/bootstrap/dist/js/bootstrap.min.js" %}"></script>
 <script src="{% static "dashboard/bowercomponents/morris.js/morris.min.js" %}"></script>
 <script src="{% static "dashboard/bowercomponents/raphael/raphael.min.js" %}"></script>
+<script src="{% static "dashboard/bowercomponents/fastclick/lib/fastclick.js" %}"></script>
 
 <script>
-$(function () {
-  "use strict";
-var line = new Morris.Line({
-  element: 'line-chart',
-  resize: true,
-  data: [
-    {y: '2011 Q1', item1: 2666},
-    {y: '2012 Q1', item1: 2778},
-    {y: '2013 Q1', item1: 4912},
-    {y: '2014 Q1', item1: 3767},
-    {y: '2015 Q1', item1: 6810},
-    {y: '2016 Q1', item1: 5670},
-    {y: '2017 Q1', item1: 4820},
-    {y: '2018 Q1', item1: 15073},
-    {y: '2019 Q1', item1: 10687},
-    {y: '2020 Q1', item1: 8432}
-  ],
-  xkey: 'y',
-  ykeys: ['item1'],
-  labels: ['Item 1'],
-  lineColors: ['#3c8dbc'],
-  hideHover: 'auto'
-});
-});
+  var chartData = "{% url 'chart_data' %}";
 </script>
+
+<script src="{% static "dashboard/chart/js/chart.js"%}"></script>
+
 <div class="body">
   <div class="row display-flex">
 
@@ -73,14 +24,13 @@ var line = new Morris.Line({
         <div class="inner">
           <h1><b>{{prescription_quantity}}</b></h1><br><br>
           <p>
-            <h2>Prescrições na última semana</h2>
+            <h2>Prescrições na Última Semana</h2>
           </p>
         </div>
         <div class="icon">
-          <i class="fa fa-file-excel-o"></i>
+          <i class="fa fa-file-excel-o fa-2x" style="margin-top:20px;"></i>
         </div>
-        <a href="#" class="small-box-footer">
-        Listar Prescrições <i class="fa fa-arrow-circle-right"></i>
+        <a href="#" class="small-box-footer"> Listar Prescrições <i class="fa fa-arrow-circle-right"></i>
       </a>
       </div>
     </div>
@@ -89,12 +39,11 @@ var line = new Morris.Line({
 
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Line Chart</h3>
+        <h3 class="box-title">Prescrições Por Dia</h3>
       </div>
       <div class="box-body chart-responsive">
-        <div class="chart" id="line-chart" style="height: 200px;"></div>
+        <div class="chart" id="line-chart"></div>
       </div>
-      <!-- /.box-body -->
     </div>
   </div>
 </div>
