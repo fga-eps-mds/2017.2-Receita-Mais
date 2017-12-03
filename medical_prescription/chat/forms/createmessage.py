@@ -4,6 +4,7 @@ from django import forms
 # local django
 from django.utils.translation import ugettext_lazy as _
 from chat.validators import MessageValidator
+from user.models import HealthProfessional
 
 
 class CreateMessage(forms.Form):
@@ -23,6 +24,11 @@ class CreateMessage(forms.Form):
 
     files = forms.FileField(required=False)
 
+    pk = 0
+
+    def get_pk(self, pk):
+            self.pk = pk
+
     # Get Messages fields.
     def clean(self):
 
@@ -31,11 +37,13 @@ class CreateMessage(forms.Form):
         user_to = self.cleaned_data.get('user_to')
         files = self.cleaned_data['files']
 
-        self.validator_all(text, subject, user_to, files)
+        user_from = HealthProfessional.objects.get(pk=self.pk)
+
+        self.validator_all(text, subject, user_to, user_from, files)
 
         # Verify validations in form.
     # Checks validator in all fields.
-    def validator_all(self, text, subject, user_to, files):
+    def validator_all(self, text, subject, user_to, user_from, files):
         validator = MessageValidator()
 
         # Fields common all users.
@@ -43,6 +51,7 @@ class CreateMessage(forms.Form):
         validator.validator_subject(subject)
         validator.validator_user_to(user_to)
         validator.validator_user_to_is_health_professional(user_to)
+        validator.validator_user_to_not_linked(user_to, user_from)
 
         if files is not None:
             validator.validator_file(files)
