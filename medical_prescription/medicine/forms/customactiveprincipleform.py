@@ -7,6 +7,8 @@ from medicine.models import CustomActivePrinciple
 
 
 class CustomActivePrincipleForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                         'type': 'text'}))
 
     class Meta:
         model = CustomActivePrinciple

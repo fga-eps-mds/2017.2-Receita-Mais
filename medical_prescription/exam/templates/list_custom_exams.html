@@ -6,6 +6,7 @@
         <thead>
           <th>{% trans "Nome" %}</th>
           <th>{% trans "Descrição" %}</th>
+          <th>{% trans "Editar" %}</th>
         </thead>
       {%  endif %}
       <tbody>
@@ -16,7 +17,7 @@
             <td>{{ exam.name }}</td>
             <td>{{ exam.description }}</td>
 
-            <td><a href="{% url 'update_custom_exams' pk=exam.pk %}" class="btn">{% trans "Editar" %}</a></td>
+            <td><a href="{% url 'update_custom_exams' pk=exam.pk %}" class="btn"><i class="fa-pencil" aria-hidden="true"></a></td>
         {% endif %}
       </tr>
         {% empty %}

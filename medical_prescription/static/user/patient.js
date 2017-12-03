@@ -1,5 +1,11 @@
 $(document).ready(function($) {
 
+  var $cpf = $("#id_CPF_document");
+  $cpf.mask('00000000000');
+
+  var $cep = $("#id_CEP");
+  $cep.mask('00000000');
+
   function clean_form_cep() {
     // Cleans cep form values.
     $("#id_complement").val("");

@@ -8,7 +8,7 @@
       <h2 class="g-font-size-32--xs g-font-size-36--sm g-color--white">{% trans "Dados Cadastrais"%}</h2>
     </div>
 
-    <form class="center-block g-width-500--sm g-width-550--md" method='POST' action=''>
+    <form class="center-block g-width-500--sm g-width-550--md" method='POST' action='' name='form'>
       {% csrf_token %}
 
       <div class="row g-row-col-5 g-margin-b-50--xs">
@@ -146,8 +146,11 @@
 
 <!-- Adicionando JQuery -->
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://digitalbush.com/wp-content/uploads/2014/10/jquery.maskedinput.js"></script>
+<script src="{% static "mask/jquery.mask.min.js" %}"></script>
+<!-- Adicionando Javascript -->
+<script src="{% static "user/mask_user.js" %}"></script>
 <script src="{% static "mask/jquery.mask.min.js" %}"></script>
 <!-- Adicionando Javascript -->
 <script src="{% static "user/patient.js" %}"></script>
-<script src="{% static "user/mask_user.js" %}"></script>
 {% endblock %}
