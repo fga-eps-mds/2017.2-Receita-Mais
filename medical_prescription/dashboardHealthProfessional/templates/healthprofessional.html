@@ -1,4 +1,40 @@
 {% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
 
-<p>Em breve!</p>
+<div class="row">
+
+  <div class="col-lg-4 col-xs-9">
+    <!-- small box -->
+    <div class="small-box bg-primary">
+      <div class="inner">
+        <h3>{{prescription_quantity}}</h3>
+        <p>
+          <br> Prescrições Recentes <br> <br> <br>
+        </p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-file-excel-o"></i>
+      </div>
+      <a href="#" class="small-box-footer">
+      Listar Prescrições <i class="fa fa-arrow-circle-right"></i>
+    </a>
+    </div>
+  </div>
+  <div class="col-lg-8 col-xs-6">
+    {% for prescription in last_prescriptions %}
+    <div class="col-lg-2 col-xs-6">
+      <div class="box box-primary box-solid">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{prescription.nopatientprescription.patient|truncatechars:10}}</h3>
+
+          <div class="box-tools pull-right">
+          </div>
+        </div>
+        <div class="box-body">
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+
 {%endblock %}
