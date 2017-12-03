@@ -11,9 +11,11 @@
  <div class="panel-body">
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
+      {% if list_all_principle %}
     <thead>
       <th>{% trans "Nome" %}</th>
     </thead>
+    {% endif %}
 
     <tbody>
 
@@ -24,7 +26,7 @@
 
       {% empty %}
 
-        <li>{% trans "Não existem principios ativos cadastrados." %}</li>
+        {% trans "Não existem principios ativos cadastrados." %}
 
       {% endfor %}
     </tbody>
