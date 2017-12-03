@@ -15,7 +15,7 @@ from prescription.models import Prescription
 
 class ChartData(View):
     """
-    Responsible for obtaining suggested prescriptions to the CID.
+    Responsible for obtaining data for the chart.
     """
 
     @method_decorator(login_required)
@@ -29,10 +29,14 @@ class ChartData(View):
             for count in range(7, -1, -1):
                 chart_item = {}
                 date_ago = datetime.today() - timedelta(days=count)
+
+                # Set initial date to first hour
                 actual_date = datetime(date_ago.year, date_ago.month, date_ago.day)
                 prescription_count = Prescription.objects.filter(date__year=actual_date.year,
                                                                  date__month=actual_date.month,
                                                                  date__day=actual_date.day).count()
+
+                # Checks whether the date in question is the current date.
                 if count:
                     chart_item['name'] = actual_date.strftime('%A')
                 else:
