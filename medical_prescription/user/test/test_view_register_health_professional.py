@@ -22,7 +22,7 @@ class RegisterHealthProfessionalViewTest(TestCase):
                    'confirm_password': '1st234567',
                    'name': 'Teste registro',
                    'sex': 'M',
-                   'phone': '(61) 1234-56789',
+                   'phone': '(61)1234-56789',
                    'date_of_birth': '10/12/1990',
                    'crm': '12347',
                    'specialty_first': 'Homeopatia',
