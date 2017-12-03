@@ -26,7 +26,7 @@
           <!-- /.mailbox-read-message -->
         </div>
         <!-- /.box-header -->
-        {% for element in messages %}
+        {% for element in messages reversed %}
         <div class="box-body no-padding">
           <div class="mailbox-read-info">
             <h5>De: {{element.user_from}}
@@ -69,6 +69,7 @@
               </ul>
               <p>Página <b>{{ messages.number }}</b> de <b>{{ messages.paginator.num_pages }}</b>.</p>
 
+              {% if messages.number == 1%}
                 {% with messages|first as element %}
                     {% with element.message_set.all|first as message %}
                         {% if message.is_active_health_professional %}
@@ -110,6 +111,7 @@
                           {% endif %}
                     {% endwith %}
                 {% endwith %}
+            {% endif %}
 
         </div>
 

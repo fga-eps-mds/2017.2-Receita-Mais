@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory, Client
 
 from chat.views import ComposeView
-from user.models import HealthProfessional, Patient
+from user.models import HealthProfessional, Patient, AssociatedHealthProfessionalAndPatient
 
 
 class TestComposeView(TestCase):
@@ -14,19 +14,24 @@ class TestComposeView(TestCase):
         # Creating user in database.
         self.user = HealthProfessional()
         self.user.email = "test@test.com"
-        self.user.password = "test404"
         self.user.save()
 
         self.patient = Patient()
-        self.patient.email = "testpatient@test.com"
-        self.patient.password = "test404"
+        self.patient.email = "patient@test.com"
         self.patient.save()
 
-        self.user_to_invalid = "test@test"
-        self.user_to = "test@test.com"
-        self.user_from = "test@test.com"
-        self.text = "a"
+        self.link = AssociatedHealthProfessionalAndPatient()
+        self.link.associated_health_professional = self.user
+        self.link.associated_patient = self.patient
+        self.link.is_active = True
+        self.link.save()
+
+        self.not_linked_patient = Patient()
+        self.not_linked_patient.email = "not_linked@patient.com"
+        self.not_linked_patient.save()
+
         self.subject = "a"
+        self.text = "a"
 
         self.factory = RequestFactory()
         self.my_view = ComposeView()
@@ -41,21 +46,35 @@ class TestComposeView(TestCase):
 
     def test_chat_post(self):
         request = self.factory.post('chat/compose',
-                                    {'text': 'isso e um texto',
-                                     'subject': 'test suject',
-                                     'user_from': 'test@test.com',
-                                     'user_to': 'testpatient@test.com'})
+                                    {'text': self.text,
+                                     'subject': self.subject,
+                                     'user_from': self.user.email,
+                                     'user_to': self.patient.email
+                                     })
         request.user = self.user
 
         response = self.my_view_class.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
-    def test_chat_post_invalid(self):
+    def test_chat_post_invalid_user_to_health_professional(self):
+        request = self.factory.post('chat/compose',
+                                    {'text': self.text,
+                                     'subject': self.subject,
+                                     'user_from': self.user.email,
+                                     'user_to': self.user.email
+                                     })
+        request.user = self.user
+
+        response = self.my_view_class.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_chat_post_invalid_user_to_not_linked(self):
         request = self.factory.post('chat/compose',
                                     {'text': 'a'*10000,
                                      'subject': 'test suject',
-                                     'user_from': 'test@test.com',
-                                     'user_to': 'test@test.com'})
+                                     'user_from': self.user.email,
+                                     'user_to': self.not_linked_patient.email
+                                     })
         request.user = self.user
 
         response = self.my_view_class.as_view()(request)
