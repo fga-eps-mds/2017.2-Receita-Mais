@@ -37,7 +37,7 @@ class AutoCompleteRecommendation(View):
             return HttpResponse(data, mimetype)
 
     def get_custom_recommendations(self, search, health_professional, list_recommendations):
-        queryset = CustomRecommendation.objects.filter(description__icontains=search,
+        queryset = CustomRecommendation.objects.filter(recommendation__icontains=search,
                                                        health_professional=health_professional)[:5]
         print("================== OI 2 =================")
         # Encapsulates in a json needed to be sent.
