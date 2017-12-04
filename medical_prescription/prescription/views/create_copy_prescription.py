@@ -115,6 +115,14 @@ class CreateCopyPrescription(CreatePrescriptionView):
                 'exam_type': 'custom_exam',
                 }
             context.append(custom_exam_context)
+
+        for new_exam in prescription.new_exams.all():
+            new_exam_context = {
+                'exam': new_exam.exam_description,
+                'exam_id': new_exam.pk,
+                'exam_type': 'new_exams',
+                }
+            context.append(new_exam_context)
         # Adding a initial context with exams and return the formset.
         return self.ExamPrescriptionFormSet(request.GET or None, initial=context, prefix='form_exam')
 
