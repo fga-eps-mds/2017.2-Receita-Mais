@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 
 # Local Django imports
 from user.decorators import is_health_professional
-from prescription.models import Prescription, Pattern, NoPatientPrescription, PatientPrescription
+from prescription.models import Prescription, NoPatientPrescription, PatientPrescription
 from prescription.views import NumberedCanvas
 
 # Third-Party
@@ -19,25 +19,17 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.colors import (black, purple, white, yellow)
 from reportlab.lib.units import inch, mm
-from reportlab.lib.utils import ImageReader
 
 
-class PrintPrescription:
+class PrintPrescriptionPatient:
     """
      Print PDF.
      """
-    def __init__(self, buffer, prescription, pattern):
+    def __init__(self, buffer, prescription):
         self.buffer = buffer
         self.prescription = prescription
-        self.pattern = pattern
-        self.width = pattern.pagesize
-        self.height = pattern.pagesize
-        if pattern.pagesize == 'A4':
-            self.pagesize = A4
-        elif pattern.pagesize == 'A5':
-            self.pagesize = A5
-        elif pattern.pagesize == 'letter':
-            self.pagesize = letter
+        self.width = A4
+        self.height = A4
 
     def _header_footer(self, canvas, doc):
         # Save the state of our canvas so we can draw on it.
@@ -45,9 +37,6 @@ class PrintPrescription:
         styles = getSampleStyleSheet()
         styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
         styles.add(ParagraphStyle(name='right', alignment=TA_RIGHT))
-
-        header = Paragraph(self.pattern.header, styles['right'])
-        w, h = header.wrap(doc.width, doc.topMargin)
 
         try:
             specialize_prescription = NoPatientPrescription.objects.get(prescription_ptr=self.prescription)
@@ -80,104 +69,31 @@ class PrintPrescription:
             styles['centered'])
         w, h = medic_crm.wrap(doc.width, doc.bottomMargin)
 
-        footer = Paragraph(self.pattern.footer, styles['centered'])
-        w, h = footer.wrap(doc.width, doc.bottomMargin)
+        # Footer.
+        medic_name.drawOn(canvas, doc.leftMargin + 10, 60)
+        medic_specialty.drawOn(canvas, doc.leftMargin + 10, 48)
+        medic_crm.drawOn(canvas, doc.leftMargin + 10, 36)
 
-        if self.pagesize == A4:
-
-            # Header.
-            header.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - h)
-            patient_name.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - 60)
-
-            # Footer.
-            medic_name.drawOn(canvas, doc.leftMargin + 10, 60)
-            medic_specialty.drawOn(canvas, doc.leftMargin + 10, 48)
-            medic_crm.drawOn(canvas, doc.leftMargin + 10, 36)
-            footer.drawOn(canvas, doc.leftMargin + 10, 12)
-
-            # Draw Lines.
-            canvas.setLineWidth(0.5)
-            canvas.line(66, 78, letter[0] - 66, 78)
-            canvas.setLineWidth(.3)
-            canvas.line(30, 750, 580, 750)
-
-            if self.pattern.logo:
-                img = ImageReader(self.pattern.logo.path)
-                canvas.drawImage(img, 30, 760, 1 * inch, 1 * inch, mask='auto')
-
-        elif self.pagesize == A5:
-
-            # Header
-            header.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin + 20)
-            patient_name.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - 15)
-
-            # Footer
-            medic_name.drawOn(canvas, doc.leftMargin + 10, 64)
-            medic_specialty.drawOn(canvas, doc.leftMargin + 10, 52)
-            medic_crm.drawOn(canvas, doc.leftMargin + 10, 40)
-            footer.drawOn(canvas, doc.leftMargin + 10, 18)
-
-            # Draw Lines.
-            canvas.setLineWidth(0.5)
-            canvas.line(66, 78, A5[0] - 66, 78)
-            canvas.setLineWidth(.3)
-            canvas.line(30, 500, 390, 500)
-            if self.pattern.logo:
-                img = ImageReader(self.pattern.logo.path)
-                canvas.drawImage(img, 30, 510, 0.75 * inch, 0.75 * inch, mask='auto')
-
-        elif self.pagesize == letter:
-
-            # Header
-            header.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - h)
-            patient_name.drawOn(canvas, doc.leftMargin + 40, doc.height + doc.topMargin - 60)
-
-            # Footer
-            medic_name.drawOn(canvas, doc.leftMargin + 10, 60)
-            medic_specialty.drawOn(canvas, doc.leftMargin + 10, 48)
-            medic_crm.drawOn(canvas, doc.leftMargin + 10, 36)
-            footer.drawOn(canvas, doc.leftMargin + 10, 12)
-
-            # Draw Lines.
-            canvas.setLineWidth(0.5)
-            canvas.line(66, 78, letter[0] - 66, 78)
-            canvas.setLineWidth(.3)
-            canvas.line(30, 700, 580, 700)
-            if self.pattern.logo:
-                img = ImageReader(self.pattern.logo.path)
-                canvas.drawImage(img, 30, 710, 1 * inch, 1 * inch, mask='auto')
+        # Draw Lines.
+        canvas.setLineWidth(0.5)
+        canvas.line(66, 78, letter[0] - 66, 78)
+        canvas.setLineWidth(.3)
+        canvas.line(30, 750, 580, 750)
 
         # Release the canvas.
         canvas.restoreState()
 
     def print_users(self):
         prescription = self.prescription
-        pattern = self.pattern
         buffer = self.buffer
 
-        if self.pagesize == A4:
-            doc = SimpleDocTemplate(buffer,
-                                    rightMargin=100,
-                                    leftMargin=100,
-                                    topMargin=50,
-                                    bottomMargin=50,
-                                    pagesize=self.pagesize)
-
-        elif self.pagesize == A5:
-            doc = SimpleDocTemplate(buffer,
-                                    rightMargin=50,
-                                    leftMargin=50,
-                                    topMargin=50,
-                                    bottomMargin=100,
-                                    pagesize=self.pagesize)
-
-        elif self.pagesize == letter:
-            doc = SimpleDocTemplate(buffer,
-                                    rightMargin=100,
-                                    leftMargin=100,
-                                    topMargin=50,
-                                    bottomMargin=50,
-                                    pagesize=self.pagesize)
+        doc = SimpleDocTemplate(buffer,
+                                rightMargin=100,
+                                leftMargin=100,
+                                topMargin=50,
+                                bottomMargin=50,
+                                pagesize=A4
+                                )
 
         elements = []
 
@@ -185,8 +101,7 @@ class PrintPrescription:
         styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
         styles.add(ParagraphStyle(
                 'default',
-                fontName=pattern.font,
-                fontSize=int(pattern.font_size),
+                fontSize=12,
                 leading=12,
                 leftIndent=0,
                 rightIndent=0,
@@ -194,8 +109,7 @@ class PrintPrescription:
                 alignment=TA_LEFT,
                 spaceBefore=0,
                 spaceAfter=0,
-                bulletFontName=pattern.font,
-                bulletFontSize=int(pattern.font_size),
+                bulletFontSize=12,
                 bulletIndent=0,
                 textColor=black,
                 backColor=None,
@@ -279,15 +193,14 @@ class PrintPrescription:
         buffer.close()
         return pdf
 
-    def generate_pdf(request, pk, jk):
+    def generate_pdf(request, pk):
         # Create the HttpResponse object with the appropriate PDF headers.
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="PrescriptionPDF.pdf"'
         prescription = Prescription.objects.get(pk=pk)
-        pattern = Pattern.objects.get(pk=jk)
         buffer = BytesIO()
 
-        report = PrintPrescription(buffer, prescription, pattern)
+        report = PrintPrescriptionPatient(buffer, prescription)
         pdf = report.print_users()
 
         response.write(pdf)
