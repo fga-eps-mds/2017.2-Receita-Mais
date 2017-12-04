@@ -2,6 +2,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import PermissionDenied
 
 # Local Django imports
 from exam.views import CreateCustomExamsView
@@ -33,15 +34,15 @@ class CreateCustomExamsViewTest(TestCase):
         request = self.factory.get('/exam/create_custom_exams/')
         request.user = self.patient
 
-        response = CreateCustomExamsView.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            CreateCustomExamsView.as_view()(request)
 
     def teste_exam_get_with_user(self):
         request = self.factory.get('/exam/create_custom_exams/')
         request.user = self.user
 
-        response = CreateCustomExamsView.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            CreateCustomExamsView.as_view()(request)
 
     def teste_exam_get_with_health_professional(self):
         request = self.factory.get('/exam/create_custom_exams/')
@@ -53,20 +54,23 @@ class CreateCustomExamsViewTest(TestCase):
     def teste_exam_post_without_login(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = AnonymousUser()
+
         response = CreateCustomExamsView.as_view()(request)
         self.assertEqual(response.status_code, 302)
 
     def teste_exam_post_with_patient(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = self.patient
-        response = CreateCustomExamsView.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+
+        with self.assertRaises(PermissionDenied):
+            CreateCustomExamsView.as_view()(request)
 
     def teste_exam_post_with_user(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})
         request.user = self.user
-        response = CreateCustomExamsView.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+
+        with self.assertRaises(PermissionDenied):
+            CreateCustomExamsView.as_view()(request)
 
     def teste_exam_post_with_health_professional(self):
         request = self.factory.post('/exam/create_custom_exams/', {'name': '', 'description': self.description})

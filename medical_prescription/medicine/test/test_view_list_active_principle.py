@@ -2,6 +2,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import PermissionDenied
 
 from medicine.models import ActivePrinciple
 from user.models import User, Patient, HealthProfessional
@@ -32,8 +33,8 @@ class ListActivePrincipleViewTest(TestCase):
         request = self.factory.get('/medicine/list/')
         request.user = self.patient
 
-        response = ListAllPrinciple.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            ListAllPrinciple.as_view()(request)
 
     def test_medicine_get_with_health_professional(self):
         request = self.factory.get('/medicine/list/')

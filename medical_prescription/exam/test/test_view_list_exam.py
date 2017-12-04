@@ -2,6 +2,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import PermissionDenied
 
 # Local Django imports
 from exam.views import ListExams
@@ -32,15 +33,15 @@ class ListExamsTest(TestCase):
         request = self.factory.get('/exam/list_exams/')
         request.user = self.patient
 
-        response = ListExams.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            ListExams.as_view()(request)
 
     def teste_exam_get_exam_with_user(self):
         request = self.factory.get('/exam/list_exams/')
         request.user = self.user
 
-        response = ListExams.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            ListExams.as_view()(request)
 
     def teste_exam_get_exam_with_health_professional(self):
         request = self.factory.get('/exam/list_exams/')
