@@ -254,7 +254,7 @@ class PrintPrescription:
             pass
 
         elements.append(Spacer(1, 12))
-        if len(prescription.default_exams.all()) != 0 or len(prescription.custom_exams.all()) != 0:
+        if len(prescription.default_exams.all()) != 0 or len(prescription.custom_exams.all()) != 0 or len(prescription.new_exams.all()) != 0:
             elements.append(Paragraph('Exames', styles['Heading1']))
             for default_exams in prescription.default_exams.all():
                 elements.append(Paragraph(default_exams.description, styles['default']))
