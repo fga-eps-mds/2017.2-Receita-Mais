@@ -36,12 +36,6 @@ class TestCreatePrescription(TestCase):
         self.health_professional.crm_state = 'US'
         self.health_professional.save()
 
-        self.relation = AssociatedHealthProfessionalAndPatient()
-        self.relation.associated_health_professional = self.health_professional
-        self.relation.associated_patient = self.patient
-        self.relation.is_active = True
-        self.relation.save()
-
         self.manipulated_medicine = ManipulatedMedicine()
         self.manipulated_medicine.pk = 1
         self.manipulated_medicine.recipe_name = "teste"
@@ -58,13 +52,14 @@ class TestCreatePrescription(TestCase):
         self.disease.description = "A random disease"
         self.disease.save()
 
-        # self.prescription = Prescription()
-        # self.prescription.patient = self.patient
-        # self.prescription.cid = self.disease
-        # self.prescription.save()
-
         self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
                                                                           password='senha12')
+
+        self.relation = AssociatedHealthProfessionalAndPatient()
+        self.relation.associated_health_professional = self.health_professional
+        self.relation.associated_patient = self.patient
+        self.relation.is_active = True
+        self.relation.save()
 
     def test_prescription_get(self):
         request = self.factory.get('/prescription/create_modal/')
@@ -112,7 +107,7 @@ class TestCreatePrescription(TestCase):
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
                    'patient_id': 1,
-                   'email': 'paciente@emp.com',
+                   'email': "paciente@emp.com",
                    'cid_id': 1,
                    'medicine_type': 'manipulated_medicine',
                    'medicine_id': 1,
@@ -129,8 +124,8 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(response.status_code, 200)
 
         # # Check save was called
-        self.assertFalse(PatientPrescription.save.called)
-        self.assertEqual(PatientPrescription.save.call_count, 0)
+        self.assertTrue(PatientPrescription.save.called)
+        self.assertEqual(PatientPrescription.save.call_count, 1)
 
     def test_prescription_get_with_health_professional(self):
 

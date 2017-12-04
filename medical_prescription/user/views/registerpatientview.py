@@ -36,9 +36,7 @@ class RegisterPatientView(FormView):
 
         # Defining the email field with the invitated patient email.
         form = self.form_class(initial=self.initial)
-        form.fields["email"].initial = patient.email
-        # form.fields['email'].widget.attrs['disabled'] = True
-        return render(request, self.template_name, {'form': form,'user_email':patient.email})
+        return render(request, self.template_name, {'form': form, 'user_email': patient.email})
 
     def post(self, request, activation_key, *args, **kwargs):
         logger.debug("Start post method.")
@@ -51,8 +49,7 @@ class RegisterPatientView(FormView):
                 request, 'Não há convites para esta conta!', extra_tags='alert')
             return redirect('/')
 
-        # If the time to make the register is expired, a error message is
-        # displayed.
+        # Time to register expirated.
         if patient_profile.key_expires < timezone.now():
             messages.success(
                 request, 'Tempo de registro expirado!', extra_tags='alert')
@@ -67,10 +64,9 @@ class RegisterPatientView(FormView):
                 request, 'Registro Realizado!', extra_tags='alert')
             return redirect('/user/login_patient/')
 
-        return render(request, self.template_name, {'form': patient_form})
+        return render(request, self.template_name, {'form': patient_form, 'user_email': patient.email})
 
-    # This method is responsible for make the register of the invited patient
-    # informations in database.
+    # Making the register of the invited patient informations in database.
     def register_patient(patient, patient_form, patient_profile):
         patient.name = patient_form.cleaned_data.get('name')
         patient.sex = patient_form.cleaned_data.get('sex')
