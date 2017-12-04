@@ -22,11 +22,11 @@ from prescription.models import (NoPatientPrescription,
                                  PrescriptionHasManipulatedMedicine,
                                  PrescriptionHasMedicine,
                                  PrescriptionDefaultExam,
-                                 PrescriptionRecommendation,
-                                 Recommendation,
+                                 PrescriptionNewRecommendation,
                                  PrescriptionCustomExam,
                                  )
 from prescription import constants
+from recommendation.models import NewExam
 from exam.models import (DefaultExam,
                          CustomExam,
                          )
@@ -151,16 +151,16 @@ class TestRequiredSuggestionCid(TestCase):
         self.hasmanipulated_medicine.prescription_medicine = self.nopatientprescription.prescription_ptr
         self.hasmanipulated_medicine.save()
 
-        self.recommendation = Recommendation()
-        self.recommendation.recommendation = "recomendacao de teste"
+        self.recommendation = NewRecommendation()
+        self.recommendation.recommendation_description = "recomendacao de teste"
         self.recommendation.save()
 
-        self.prescription_has_recommendation = PrescriptionRecommendation()
+        self.prescription_has_recommendation = PrescriptionNewRecommendation()
         self.prescription_has_recommendation.prescription = self.nopatientprescription.prescription_ptr
         self.prescription_has_recommendation.recommendation = self.recommendation
         self.prescription_has_recommendation.save()
 
-        self.prescription_has_recommendation = PrescriptionRecommendation()
+        self.prescription_has_recommendation = PrescriptionNewRecommendation()
         self.prescription_has_recommendation.prescription = self.nopatientprescription.prescription_ptr
         self.prescription_has_recommendation.recommendation = self.recommendation
         self.prescription_has_recommendation.save()
