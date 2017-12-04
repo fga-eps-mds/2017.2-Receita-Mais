@@ -26,7 +26,7 @@ from prescription.models import (NoPatientPrescription,
                                  PrescriptionCustomExam,
                                  )
 from prescription import constants
-from recommendation.models import NewExam
+from recommendation.models import NewRecommendation
 from exam.models import (DefaultExam,
                          CustomExam,
                          )
