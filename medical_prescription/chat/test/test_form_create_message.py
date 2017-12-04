@@ -39,7 +39,7 @@ class TestCreateMessageForm(TestCase):
                      'user_to': self.patient.email,
                      }
         form = CreateMessage(data=form_data)
-        self.assertFalse(form.is_valid())
+        self.assertTrue(form.is_valid())
 
     def test_chat_invalid_subject(self):
         form_data = {'subject': self.subject_max,
