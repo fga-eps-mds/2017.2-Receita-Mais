@@ -1,7 +1,7 @@
 # standard library
 import hashlib
-import datetime
 import random
+import datetime
 
 # Django
 from django.views.generic import FormView
@@ -18,9 +18,11 @@ from user.models import (Patient,
                          AssociatedHealthProfessionalAndPatient)
 
 
-# This class is responsible for link patient and health professional and make
-# all the necessary procedures to establish this relationship.
 class AddPatientView(FormView):
+    """
+    This class is responsible for link patients and health professionals.
+    """
+
     form_class = AddPatientForm
     template_name = 'add_patient.html'
 
@@ -28,15 +30,12 @@ class AddPatientView(FormView):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
 
-    # This method receives the request made by health_professional to make link
-    # between him and the especific patient by email.
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         actual_user = request.user
 
         if form.is_valid():
-            # Preparing the informations necessary to make the especific
-            # link procedures.
+            # Preparing the informations necessary to make the especific link procedures.
             email = form.cleaned_data.get('email')
             email_from_database_health_professional = HealthProfessional.objects.filter(email=email)
 
@@ -63,9 +62,6 @@ class AddPatientView(FormView):
                     messages.info(request, message, extra_tags='alert')
                     return redirect('/user/listlinkedpatients/')
 
-            # The patient added for the request health professional does not
-            # exist in database, then a temporary profile is created, till he
-            # make his registration by email.
             else:
                 message = AddPatientView.patient_does_not_exist(email,
                                                                 health_professional_profile)
@@ -78,13 +74,8 @@ class AddPatientView(FormView):
 
         return render(request, self.template_name, {'form': form})
 
-    # If the patient provided by the health professional exists in databases
-    # and there is a relationship between him and health professional,
-    # the next steps are made.
+    # If link between users already exists.
     def relationship_exists(patient_profile, health_professional_profile):
-
-        # If the patient is actived, then the relationship between him and
-        # health professional already exists. Nothing is made.
         if patient_profile.is_active:
             message = constants.LINKED_PATIENT_EXISTS
         else:
@@ -92,17 +83,13 @@ class AddPatientView(FormView):
 
         return message
 
-    # If the patient provided by the health professional exists in database,
-    # but there isn't a relationship between him and the request health
-    # professional, the next steps are made.
+    # If link between users doesn't yet exist.
     def relationship_does_not_exist(patient_profile, health_professional_profile):
 
         # Link between the users is created.
         AddPatientView.create_link_patient_health_professional(health_professional_profile,
                                                                patient_profile)
 
-        # If the exist patient is actived, then link between him and the
-        # request health professional is actived.
         if patient_profile.is_active:
             relationship = AssociatedHealthProfessionalAndPatient.objects.get(associated_health_professional=health_professional_profile,
                                                                               associated_patient=patient_profile)
@@ -114,9 +101,7 @@ class AddPatientView(FormView):
 
         return message
 
-    # If patient is not actived, it means tha he never registered or never
-    # activated his account. A new email is sended and his key_expires is
-    # updated.
+    # Sending a new e-mail and updating key expires.
     def profile_is_not_active(patient_profile, health_professional_profile):
         profile = SendInvitationProfile.objects.get(patient=patient_profile)
         profile.key_expires = datetime.datetime.today() + datetime.timedelta(2)
@@ -126,9 +111,7 @@ class AddPatientView(FormView):
 
         return message
 
-    # This method calls the methods responsible for create a temporary profile,
-    # with an activation_key and a key_expires, for send to patient an
-    # invitation email and create the link between the users.
+    # Creating a temporary profile.
     def patient_does_not_exist(email, health_professional_profile):
         send_invitation_profile = AddPatientView.create_send_invitation_profile(email)
         patient_profile = Patient.objects.get(email=email)
@@ -140,14 +123,13 @@ class AddPatientView(FormView):
 
         return message
 
+    # Prepare the information needed to send invitation and to make link between the users.
     def create_send_invitation_profile(email):
-        # Prepare the information needed to send invitation and to make link
-        # between the users.
         salt = hashlib.sha1(str(random.random()).
                             encode('utf-8')).hexdigest()[:5]
         activation_key = hashlib.sha1(str(salt+email).
                                       encode('utf‌​-8')).hexdigest()
-        key_expires = datetime.datetime.today() + datetime.timedelta(2)
+        key_expires = datetime.datetime.now() + datetime.timedelta(2)
 
         patient = Patient(email=email)
         patient.save()
@@ -175,8 +157,7 @@ class AddPatientView(FormView):
                                                       associated_patient=Patient)
         link.save()
 
-    # This method is responsible for activate the link between the users and
-    # delete the created temporary profile.
+    # Activating the link between the users.
     def activate_link_patient_health_professional(email):
         patient_from_database = Patient.objects.filter(email=email)
 

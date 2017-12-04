@@ -28,6 +28,7 @@ from user.models import (Patient,
                          HealthProfessional,
                          AssociatedHealthProfessionalAndPatient
                          )
+from user.views import AddPatientView
 
 
 class CreatePrescriptionView(FormView):
@@ -46,25 +47,12 @@ class CreatePrescriptionView(FormView):
     def dispatch(self, *args, **kwargs):
         return super(CreatePrescriptionView, self).dispatch(*args, **kwargs)
 
-    def check_relation(self, patient_id, request):
-        patient = Patient.objects.filter(pk=patient_id)
-
-        if patient.exists():
-            relation = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=request.user,
-                                                                             associated_patient=patient,
-                                                                             is_active=True)
-
-            if relation.exists():
-                return True
-
-        return False
-
     def create_prescription(self, form, request):
         """
         Creates the prescription object.
         """
-        patient = form.cleaned_data.get('patient')
-        patient_id = form.cleaned_data.get('patient_id')
+        patient_name = form.cleaned_data.get('patient')
+        patient_email = form.cleaned_data.get('email')
         cid_id = form.cleaned_data.get('cid_id')
 
         if cid_id is not None:
@@ -72,12 +60,34 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
-        if self.check_relation(patient_id, request):
-            prescription_object = self.create_patient_prescription(request, patient_id, disease)
+        if self.check_relation(patient_email, request):
+            prescription_object = self.create_patient_prescription(request, patient_email, disease)
         else:
-            prescription_object = self.create_no_patient_prescription(request, patient, disease)
+            prescription_object = self.create_no_patient_prescription(request, patient_name, disease)
 
         return prescription_object
+
+    def check_relation(self, patient_email, request):
+        health_professional = HealthProfessional.objects.get(email=request.user.email)
+
+        if patient_email:
+            patient_from_database = Patient.objects.filter(email=patient_email)
+
+            if patient_from_database.exists():
+                patient = Patient.objects.get(email=patient_email)
+                link = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=health_professional,
+                                                                             associated_patient=patient)
+
+                if link.exists():
+                    message = AddPatientView.relationship_exists(patient, health_professional)
+                else:
+                    message = AddPatientView.relationship_does_not_exist(patient, health_professional)
+            else:
+                message = AddPatientView.patient_does_not_exist(patient_email, health_professional)
+        else:
+            return False
+
+        return True
 
     def create_no_patient_prescription(self, request, name, disease):
         health_professional = HealthProfessional.objects.get(email=request.user)
@@ -87,14 +97,14 @@ class CreatePrescriptionView(FormView):
 
         return no_patient_prescription
 
-    def create_patient_prescription(self, request, patient_id, disease):
+    def create_patient_prescription(self, request, patient_email, disease):
         health_professional = HealthProfessional.objects.get(email=request.user)
-        patient = Patient.objects.get(pk=patient_id)
+        patient = Patient.objects.get(email=patient_email)
         patient_prescription = PatientPrescription(health_professional=health_professional,
                                                    patient=patient, cid=disease)
         patient_prescription.save()
 
-        return patient_prescription
+        return None
 
     def create_many_to_many_exam(self, form, exam_prescription, request):
         """
