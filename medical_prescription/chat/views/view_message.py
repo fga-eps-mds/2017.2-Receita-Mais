@@ -6,6 +6,7 @@ from django.core import paginator
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.shortcuts import render
 
 # Local Django
 from chat.models import Message, Response
@@ -21,6 +22,7 @@ class MessageDetailView(DetailView, FormMixin):
     form_class = CreateResponse
     context_object_name = 'list'
     model = Message
+    template_name = 'view_message_patient.html'
 
     # Return a query of Message from the user.
     def get_queryset(self):
@@ -44,12 +46,17 @@ class MessageDetailView(DetailView, FormMixin):
 
         context['form'] = self.get_form()
         context['messages'] = messages_page_object
+
         return context
 
     def get(self, request, *args, **kwargs):
         self.object = Message.objects.get(pk=self.kwargs['pk'])
 
         context = self.get_context_data()
+
+        context['img_from'] = self.object.user_from.image_profile.url
+        context['img_to'] = self.object.user_to.image_profile.url
+        context['my_user'] = request.user
 
         # Get the last element of messages.
         last_element = self.object.messages.all().last()
@@ -63,7 +70,7 @@ class MessageDetailView(DetailView, FormMixin):
         # Save the Message.
         self.object.save()
 
-        return self.render_to_response(context)
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
