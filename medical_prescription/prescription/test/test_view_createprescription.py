@@ -4,7 +4,10 @@ from unittest.mock import patch, MagicMock
 
 from disease.models import Disease
 from medicine.models import ManipulatedMedicine
-from user.models import Patient, HealthProfessional, AssociatedHealthProfessionalAndPatient
+from user.models import (Patient,
+                         HealthProfessional,
+                         AssociatedHealthProfessionalAndPatient,
+                         SendInvitationProfile)
 from prescription.views import CreatePrescriptionView
 from prescription.models import NoPatientPrescription, PatientPrescription
 
@@ -28,12 +31,14 @@ class TestCreatePrescription(TestCase):
         self.patient.city = "Brasília"
         self.patient.neighborhood = "Asa sul"
         self.patient.complement = "Bloco 2 QD 701"
+        self.patient.is_active = True
         self.patient.save()
 
         self.health_professional = HealthProfessional()
         self.health_professional.pk = 1
         self.health_professional.crm = '12345'
         self.health_professional.crm_state = 'US'
+        self.health_professional.is_active = True
         self.health_professional.save()
 
         self.manipulated_medicine = ManipulatedMedicine()
@@ -60,6 +65,20 @@ class TestCreatePrescription(TestCase):
         self.relation.associated_patient = self.patient
         self.relation.is_active = True
         self.relation.save()
+
+        self.not_patient = Patient()
+        self.not_patient.email = "teste@patient.com"
+        self.not_patient.is_active = True
+        self.not_patient.save()
+
+        self.patient_not_actived = Patient()
+        self.patient_not_actived.email = "not@pac.com"
+        self.patient_not_actived.is_active = True
+        self.patient_not_actived.save()
+
+        self.invitation = SendInvitationProfile()
+        self.invitation.patient = self.patient_not_actived
+        self.invitation.save()
 
     def test_prescription_get(self):
         request = self.factory.get('/prescription/create_modal/')
@@ -107,7 +126,97 @@ class TestCreatePrescription(TestCase):
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
                    'patient_id': 1,
-                   'email': "paciente@emp.com",
+                   'email': self.patient.email,
+                   'cid_id': 1,
+                   'medicine_type': 'manipulated_medicine',
+                   'medicine_id': 1,
+                   'quantity': 10,
+                   'posology': 'nao fazer nada',
+                   'via': 'Via oral',
+                   }
+
+        request = self.factory.post('/prescription/create_modal/', context)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CreatePrescriptionView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+        # # Check save was called
+        self.assertTrue(PatientPrescription.save.called)
+        self.assertEqual(PatientPrescription.save.call_count, 1)
+
+    @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    def test_prescription_post_with_patient_not_linked(self):
+        context = {'form_medicine-TOTAL_FORMS': 1,
+                   'form_medicine-INITIAL_FORMS': 0,
+                   'form_recomendation-TOTAL_FORMS': 1,
+                   'form_recomendation-INITIAL_FORMS': 0,
+                   'form_exam-TOTAL_FORMS': 1,
+                   'form_exam-INITIAL_FORMS': 0,
+                   'patient': "JOAO",
+                   'email': self.not_patient.email,
+                   'cid_id': 1,
+                   'medicine_type': 'manipulated_medicine',
+                   'medicine_id': 1,
+                   'quantity': 10,
+                   'posology': 'nao fazer nada',
+                   'via': 'Via oral',
+                   }
+
+        request = self.factory.post('/prescription/create_modal/', context)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CreatePrescriptionView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+        # # Check save was called
+        self.assertTrue(PatientPrescription.save.called)
+        self.assertEqual(PatientPrescription.save.call_count, 1)
+
+    @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    def test_prescription_post_with_patient_doesnt_exist(self):
+        context = {'form_medicine-TOTAL_FORMS': 1,
+                   'form_medicine-INITIAL_FORMS': 0,
+                   'form_recomendation-TOTAL_FORMS': 1,
+                   'form_recomendation-INITIAL_FORMS': 0,
+                   'form_exam-TOTAL_FORMS': 1,
+                   'form_exam-INITIAL_FORMS': 0,
+                   'patient': "JOAO",
+                   'email': "patient@doesnt.com",
+                   'cid_id': 1,
+                   'medicine_type': 'manipulated_medicine',
+                   'medicine_id': 1,
+                   'quantity': 10,
+                   'posology': 'nao fazer nada',
+                   'via': 'Via oral',
+                   }
+
+        request = self.factory.post('/prescription/create_modal/', context)
+        request.user = self.health_professional
+
+        # Get the response
+        response = CreatePrescriptionView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+        # # Check save was called
+        self.assertTrue(PatientPrescription.save.called)
+        self.assertEqual(PatientPrescription.save.call_count, 1)
+
+    @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    def test_prescription_post_with_patient_not_actived(self):
+        context = {'form_medicine-TOTAL_FORMS': 1,
+                   'form_medicine-INITIAL_FORMS': 0,
+                   'form_recomendation-TOTAL_FORMS': 1,
+                   'form_recomendation-INITIAL_FORMS': 0,
+                   'form_exam-TOTAL_FORMS': 1,
+                   'form_exam-INITIAL_FORMS': 0,
+                   'patient': "JOAO",
+                   'email': self.patient_not_actived.email,
                    'cid_id': 1,
                    'medicine_type': 'manipulated_medicine',
                    'medicine_id': 1,

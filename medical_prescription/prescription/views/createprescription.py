@@ -61,13 +61,18 @@ class CreatePrescriptionView(FormView):
             disease = None
 
         if self.check_relation(patient_email, request):
-            prescription_object = self.create_patient_prescription(request, patient_email, disease)
+            prescription_object = self.create_patient_prescription(request, patient_email, patient_name, disease)
         else:
             prescription_object = self.create_no_patient_prescription(request, patient_name, disease)
 
         return prescription_object
 
     def check_relation(self, patient_email, request):
+
+        """
+        Creating link between users if it doesn't exist.
+        """
+
         health_professional = HealthProfessional.objects.get(email=request.user.email)
 
         if patient_email:
@@ -77,8 +82,9 @@ class CreatePrescriptionView(FormView):
                 patient = Patient.objects.get(email=patient_email)
                 link = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=health_professional,
                                                                              associated_patient=patient)
-
-                if link.exists():
+                if link.exists() and link is True:
+                    return True
+                elif link.exists() and link is False:
                     message = AddPatientView.relationship_exists(patient, health_professional)
                 else:
                     message = AddPatientView.relationship_does_not_exist(patient, health_professional)
@@ -97,11 +103,12 @@ class CreatePrescriptionView(FormView):
 
         return no_patient_prescription
 
-    def create_patient_prescription(self, request, patient_email, disease):
+    def create_patient_prescription(self, request, patient_email, patient_name, disease):
         health_professional = HealthProfessional.objects.get(email=request.user)
         patient = Patient.objects.get(email=patient_email)
         patient_prescription = PatientPrescription(health_professional=health_professional,
-                                                   patient=patient, cid=disease)
+                                                   patient=patient, name=patient_name,
+                                                   cid=disease)
         patient_prescription.save()
 
         return None
