@@ -6,17 +6,19 @@
         <thead>
           <th>Nome</th>
           <th>Recomendação</th>
+          <th>Editar</th>
+          <th>Excluir</th>
         </thead>
       <tbody>
             {% endif %}
 
       {% for recommendation in list_custom_recommendation %}
       <tr class='clickable-row'>
-        {% if recommendation.health_professional.email == request.user.email %}
+        {% if recommendation.is_active %}
             <td>{{ recommendation.name }}</td>
             <td>{{ recommendation.recommendation }}</td>
-
-            <td><a href="#" class="btn">Editar</a></td>
+            <td><a href="#" class="fa fa-pencil-square-o"> Editar</a></td>
+            <td> <a href="#" class="fa fa-trash-o"> Excluir</a> </td>
         {% endif %}
       </tr>
           {% empty %}
