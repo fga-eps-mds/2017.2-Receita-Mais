@@ -9,10 +9,11 @@ from prescription.models import (
                                 PrescriptionHasMedicine,
                                 PrescriptionDefaultExam,
                                 PrescriptionCustomExam,
+                                PrescriptionNewExam,
                                 Pattern,
                                 )
 from disease.models import Disease
-from exam.models import DefaultExam, CustomExam
+from exam.models import DefaultExam, CustomExam, NewExam
 from medicine.models import Medicine, ManipulatedMedicine
 from user.models import Patient, HealthProfessional
 from prescription.views import PrintPrescription
@@ -193,6 +194,10 @@ class TestPrintPrescription(TestCase):
         self.custom_exam.health_professional_FK = self.health_professional
         self.custom_exam.save()
 
+        self.new_exam = NewExam()
+        self.new_exam.exam_description = 'Test String'
+        self.new_exam.save()
+
         self.prescription_default_exam = PrescriptionDefaultExam()
         self.prescription_default_exam.exam = self.default_exam
         self.prescription_default_exam.prescription = self.prescription
@@ -207,6 +212,11 @@ class TestPrintPrescription(TestCase):
         self.prescription_custom_exam.exam = self.custom_exam
         self.prescription_custom_exam.prescription = self.prescription
         self.prescription_custom_exam.save()
+
+        self.prescription_new_exam = PrescriptionNewExam()
+        self.prescription_new_exam.exam = self.new_exam
+        self.prescription_new_exam.prescription = self.prescription
+        self.prescription_new_exam.save()
 
         self.pattern = Pattern()
         self.pattern.name = "Pattern de teste"
@@ -282,7 +292,7 @@ class TestPrintPrescription(TestCase):
         response = self.view(request, pk=5, jk=3)
         self.assertEqual(response.status_code, 200)
 
-    def test_print_prescription_get_invalid(self):
+    def test_print_prescription_get_invalid_prescription(self):
         request = self.factory.get('/prescription/print_prescription/5/3')
         response = self.view(request, pk=3, jk=1)
         self.assertEqual(response.status_code, 200)
