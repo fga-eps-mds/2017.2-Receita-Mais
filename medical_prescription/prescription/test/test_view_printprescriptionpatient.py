@@ -9,22 +9,21 @@ from prescription.models import (
                                 PrescriptionHasMedicine,
                                 PrescriptionDefaultExam,
                                 PrescriptionCustomExam,
-                                PrescriptionNewExam,
                                 Pattern,
                                 )
 from disease.models import Disease
-from exam.models import DefaultExam, CustomExam, NewExam
+from exam.models import DefaultExam, CustomExam
 from medicine.models import Medicine, ManipulatedMedicine
 from user.models import Patient, HealthProfessional
-from prescription.views import PrintPrescription
+from prescription.views import PrintPrescriptionPatient
 from recommendation.models import NewRecommendation
 
 
-class TestPrintPrescription(TestCase):
+class TestPrintPrescriptionPatient(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.client = Client()
-        self.view = PrintPrescription.generate_pdf
+        self.view = PrintPrescriptionPatient.generate_pdf
 
         self.patient = Patient()
         self.patient.pk = 1
@@ -47,10 +46,9 @@ class TestPrintPrescription(TestCase):
         self.health_professional.crm_state = 'US'
         self.health_professional.specialty_first = 'Nutricao'
         self.health_professional.specialty_second = 'Pediatria'
+        self.health_professional.email = 'doctor@doctor.com'
+        self.health_professional.password = 'senha12'
         self.health_professional.save()
-
-        self.health_professional = HealthProfessional.objects.create_user(email='doctor@doctor.com',
-                                                                          password='senha12')
 
         self.health_professional_no_specialty_second = HealthProfessional()
         self.health_professional_no_specialty_second.pk = 2
@@ -211,10 +209,6 @@ class TestPrintPrescription(TestCase):
         self.custom_exam.health_professional_FK = self.health_professional
         self.custom_exam.save()
 
-        self.new_exam = NewExam()
-        self.new_exam.exam_description = 'Test String'
-        self.new_exam.save()
-
         self.prescription_default_exam = PrescriptionDefaultExam()
         self.prescription_default_exam.exam = self.default_exam
         self.prescription_default_exam.prescription = self.prescription
@@ -230,91 +224,32 @@ class TestPrintPrescription(TestCase):
         self.prescription_custom_exam.prescription = self.prescription
         self.prescription_custom_exam.save()
 
-        self.prescription_new_exam = PrescriptionNewExam()
-        self.prescription_new_exam.exam = self.new_exam
-        self.prescription_new_exam.prescription = self.prescription
-        self.prescription_new_exam.save()
-
-        self.pattern = Pattern()
-        self.pattern.name = "Pattern de teste"
-        self.pattern.user_creator = self.health_professional
-        self.pattern.clinic = "clinica de teste"
-        self.pattern.header = "header de teste"
-        self.pattern.font = 'Helvetica'
-        self.pattern.font_size = '12'
-        self.pattern.footer = "footer de teste"
-        self.pattern.pagesize = "letter"
-        self.pattern.pk = 1
-        self.pattern.logo = None
-        self.pattern.save()
-
-        self.pattern = Pattern()
-        self.pattern.name = "Pattern de teste"
-        self.pattern.user_creator = self.health_professional
-        self.pattern.clinic = "clinica de teste"
-        self.pattern.header = "header de teste"
-        self.pattern.font = 'Helvetica'
-        self.pattern.font_size = '12'
-        self.pattern.footer = "footer de teste"
-        self.pattern.pagesize = "A4"
-        self.pattern.pk = 2
-        self.pattern.logo = None
-        self.pattern.save()
-
-        self.pattern = Pattern()
-        self.pattern.name = "Pattern de teste"
-        self.pattern.user_creator = self.health_professional
-        self.pattern.clinic = "clinica de teste"
-        self.pattern.header = "header de teste"
-        self.pattern.font = 'Helvetica'
-        self.pattern.font_size = '12'
-        self.pattern.footer = "footer de teste"
-        self.pattern.pagesize = "A5"
-        self.pattern.pk = 3
-        self.pattern.logo = None
-        self.pattern.save()
-
     def test_print_prescription_get_no_second_speciality(self):
         request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=6, jk=1)
+        response = self.view(request, pk=6)
         self.assertEqual(response.status_code, 200)
 
-    def test_print_prescription_get_letter(self):
+    def test_print_prescription(self):
         request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=1, jk=1)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_A4(self):
-        request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=1, jk=2)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_A5(self):
-        request = self.factory.get('/prescription/print_prescription/1/3')
-        response = self.view(request, pk=1, jk=3)
+        response = self.view(request, pk=1)
         self.assertEqual(response.status_code, 200)
 
     def test_print_prescription_get_invalid_medicine(self):
-        request = self.factory.get('/prescription/print_prescription/2/3')
-        response = self.view(request, pk=2, jk=3)
+        request = self.factory.get('/prescription/print_prescription/2')
+        response = self.view(request, pk=2)
         self.assertEqual(response.status_code, 200)
 
     def test_print_prescription_get_invalid_recommendation(self):
-        request = self.factory.get('/prescription/print_prescription/3/3')
-        response = self.view(request, pk=3, jk=3)
+        request = self.factory.get('/prescription/print_prescription/3')
+        response = self.view(request, pk=3)
         self.assertEqual(response.status_code, 200)
 
     def test_print_prescription_get_invalid_exam(self):
-        request = self.factory.get('/prescription/print_prescription/4/3')
-        response = self.view(request, pk=4, jk=3)
+        request = self.factory.get('/prescription/print_prescription/4')
+        response = self.view(request, pk=4)
         self.assertEqual(response.status_code, 200)
 
     def test_print_prescription_get_invalid(self):
-        request = self.factory.get('/prescription/print_prescription/5/3')
-        response = self.view(request, pk=5, jk=3)
-        self.assertEqual(response.status_code, 200)
-
-    def test_print_prescription_get_invalid_prescription(self):
-        request = self.factory.get('/prescription/print_prescription/5/3')
-        response = self.view(request, pk=3, jk=1)
+        request = self.factory.get('/prescription/print_prescription/3')
+        response = self.view(request, pk=3)
         self.assertEqual(response.status_code, 200)

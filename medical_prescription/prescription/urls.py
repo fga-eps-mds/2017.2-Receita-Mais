@@ -12,8 +12,6 @@ from .views import (AutoCompleteExam,
                     ListFavoritePrescription,
                     FavoritePrescription,
                     ListPatientPrescription,
-                    CreatePatternView,
-                    ListPrescription,
                     CreateCopyPrescription,
                     ListPrescription,
                     PrintPrescription,
@@ -22,6 +20,7 @@ from .views import (AutoCompleteExam,
                     ShowPatternsView,
                     ListPatterns,
                     SuggestionsCid,
+                    PrintPrescriptionPatient,
                     )
 
 urlpatterns = (
@@ -48,4 +47,6 @@ urlpatterns = (
         name='show_patterns'),
     url(r'^print_prescription/(?P<pk>[0-9]+)/(?P<jk>[0-9]+)/$', PrintPrescription.generate_pdf,
         name='print_prescription'),
+    url(r'^print_prescription_patient/(?P<pk>[\w-]+)$', PrintPrescriptionPatient.generate_pdf,
+        name='print_prescription_patient'),
     )

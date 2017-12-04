@@ -282,7 +282,7 @@ class PrintPrescription:
     def generate_pdf(request, pk, jk):
         # Create the HttpResponse object with the appropriate PDF headers.
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="My Users.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="PrescriptionPDF.pdf"'
         prescription = Prescription.objects.get(pk=pk)
         pattern = Pattern.objects.get(pk=jk)
         buffer = BytesIO()
