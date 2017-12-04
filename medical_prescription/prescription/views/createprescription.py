@@ -26,6 +26,7 @@ from exam.models import DefaultExam, CustomExam
 from disease.models import Disease
 from user.models import (Patient,
                          HealthProfessional,
+                         AssociatedHealthProfessionalAndPatient
                          )
 
 
@@ -45,6 +46,19 @@ class CreatePrescriptionView(FormView):
     def dispatch(self, *args, **kwargs):
         return super(CreatePrescriptionView, self).dispatch(*args, **kwargs)
 
+    def check_relation(self, patient_id, request):
+        patient = Patient.objects.filter(pk=patient_id)
+
+        if patient.exists():
+            relation = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=request.user,
+                                                                             associated_patient=patient,
+                                                                             is_active=True)
+
+            if relation.exists():
+                return True
+
+        return False
+
     def create_prescription(self, form, request):
         """
         Creates the prescription object.
@@ -58,10 +72,10 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
-        if patient_id is None or patient_id is 0:
-            prescription_object = self.create_no_patient_prescription(request, patient, disease)
-        else:
+        if self.check_relation(patient_id, request):
             prescription_object = self.create_patient_prescription(request, patient_id, disease)
+        else:
+            prescription_object = self.create_no_patient_prescription(request, patient, disease)
 
         return prescription_object
 

@@ -56,6 +56,7 @@ class AddPatientView(FormView):
                 if relationship_database.exists():
                     message = AddPatientView.relationship_exists(patient_profile, health_professional_profile)
                     messages.info(request, message, extra_tags='alert')
+                    return redirect('/user/listlinkedpatients/')
                 else:
                     message = AddPatientView.relationship_does_not_exist(patient_profile,
                                                                          health_professional_profile)
