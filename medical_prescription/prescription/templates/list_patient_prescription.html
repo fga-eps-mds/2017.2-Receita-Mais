@@ -6,7 +6,6 @@
   {% if  list_patient_prescription %}
     <thead>
       <th>CID</th>
-      <th>Professional de Saúde</th>
       <th>Medicamentos</th>
       <th>Recomendações</th>
       <th>Exames</th>
@@ -18,15 +17,12 @@
       {% for prescription in list_patient_prescription %}
         <tr class='clickable-row'>
 
+
           {% if  prescription.cid %}
             <td>{{ prescription.cid }}</td>
           {% else %}
               <td>------</td>
           {% endif %}
-
-
-          <td>{{ prescription.health_professional.name|truncatechars:25 }}</td>
-
 
           <!--  list medicines -->
           <td>
@@ -43,11 +39,11 @@
 
           <!--  list recommendations -->
           <td>
-          {% for recommendation in prescription.recommendation_prescription.all %}
-                {{ recommendation.recommendation|truncatechars:25 }};
+          {% for new_recommendations in prescription.new_recommendations.all %}
+                {{ new_recommendations.recommendation_description|truncatechars:25 }};
           {% endfor %}
 
-          <span class="badge">  {{ prescription.recommendation_prescription.all.count}}</span>
+          <span class="badge">  {{ prescription.new_recommendations.all.count}}</span>
 
           </td>
 
@@ -60,13 +56,21 @@
           {% for exam in prescription.custom_exams.all %}
                 {{ exam.description|truncatechars:25 }};
           {% endfor %}
-          <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count}}</span>
+
+          {% for new_exams in prescription.new_exams.all %}
+                {{ new_exams.exam_description|truncatechars:25 }};
+          {% endfor %}
+          <span class="badge">{{ prescription.default_exams.all.count|add:prescription.custom_exams.all.count|add:prescription.new_exams.all.count}}</span>
           </td>
+
+            <td><a href='{% url 'print_prescription_patient' prescription.pk %}'><i class="fa fa-print"></i></a></td>
+
           </tr>
           {% empty %}
             {% trans "Não existem Prescrições para"%}
            {{ request.user.name|truncatechars:25 }}
         {% endfor %}
+
 
 
     </tbody>
