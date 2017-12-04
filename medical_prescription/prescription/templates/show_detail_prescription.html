@@ -5,75 +5,81 @@
 <link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
-  <div class="js-prescription-create-form">
-    <div class="modal-header">
-      <a href="#" class="class pull-right btn-return-modal"><span class="glyphicon glyphicon-remove"></span></a>
-      <h3 class="modal-title">Prescrição</h3>
-    </div>
+ <div class="js-prescription-create-form">
+   <div class="modal-header">
+     <a href="#" class="class pull-right btn-return-modal"><span class="glyphicon glyphicon-remove"></span></a>
+     <h3 class="modal-title">Prescrição</h3>
+   </div>
 
-      <div class="modal-body modal-open">
+     <div class="modal-body modal-open">
 
-        <!-- This fields are responsable off patient information. -->
-        {% csrf_token %}
+       <!-- This fields are responsable off patient information. -->
+       {% csrf_token %}
 
-        <div class="medicines-list">
-          <b>Paciente</b>: {{prescription.nopatientprescription.patient}}{{prescription.patientprescription.patient.name}}<br>
-          <b>CID</b>: {{prescription.cid.description}}<br>
-          <br>
-        </div>
+       <div class="cid-list">
+         <b>Paciente</b>: {{prescription.nopatientprescription.patient}}{{prescription.patientprescription.patient.name}}<br>
+         <b>CID</b>: {{prescription.cid.description}}<br>
+         <br>
+       </div>
 
-        <div class="medicines-list">
-          {% if prescription.medicines.all.count|add:prescription.manipulated_medicines.all.count > 0 %}
-            <h3>Medicamentos</h3>
-          {% endif %}
+       <div class="medicines-list">
+         {% if prescription.medicines.all.count|add:prescription.manipulated_medicines.all.count > 0 %}
+           <h3>Medicamentos</h3>
+         {% endif %}
 
-          {% for medicine_prescription in prescription.prescriptionhasmedicine_set.all %}
-                <b>Nome</b>: {{medicine_prescription.medicine.name}}<br>
-                <b>Via</b>: {{medicine_prescription.via}}<br>
-                <b>Posologia</b>: {{medicine_prescription.posology}}<br>
-                <b>Quantidade</b>: {{medicine_prescription.get_quantity_display}}<br>
-                <br>
-          {% endfor %}
+         {% for medicine_prescription in prescription.prescriptionhasmedicine_set.all %}
+               <b>Nome</b>: {{medicine_prescription.medicine.name}}<br>
+               <b>Via</b>: {{medicine_prescription.via}}<br>
+               <b>Posologia</b>: {{medicine_prescription.posology}}<br>
+               <b>Quantidade</b>: {{medicine_prescription.get_quantity_display}}<br>
+               <br>
+         {% endfor %}
 
-          {% for medicine_prescription in prescription.prescriptionhasmanipulatedmedicine_set.all %}
-                <b>Nome</b>: {{medicine_prescription.manipulated_medicine.recipe_name}}<br>
-                <b>Via</b>: {{medicine_prescription.via}}<br>
-                <b>Posologia</b>: {{medicine_prescription.posology}}<br>
-                <b>Quantidade</b>: {{medicine_prescription.get_quantity_display}}<br>
-                <br>
-          {% endfor %}
-        </div>
+         {% for medicine_prescription in prescription.prescriptionhasmanipulatedmedicine_set.all %}
+               <b>Nome</b>: {{medicine_prescription.manipulated_medicine.recipe_name}}<br>
+               <b>Via</b>: {{medicine_prescription.via}}<br>
+               <b>Posologia</b>: {{medicine_prescription.posology}}<br>
+               <b>Quantidade</b>: {{medicine_prescription.get_quantity_display}}<br>
+               <br>
+         {% endfor %}
+       </div>
+       <div class="exams-list">
+         {% if prescription.default_exams.all.count|add:prescription.custom_exams.all.count|add:prescription.new_exams.all.count > 0%}
+         <h3>Exames</h3>
+         {% endif %}
 
-        <div class="exams-list">
-          {% if prescription.default_exams.all.count|add:prescription.custom_exams.all.count > 0%}
-          <h3>Exames</h3>
-          {% endif %}
+         {% for exam in prescription.default_exams.all %}
+               <b>Descrição</b>: {{ exam.description }}<br>
+               <br>
+         {% endfor %}
 
-          {% for exam in prescription.default_exams.all %}
-                <b>Descrição</b>: {{ exam.description }}<br>
-                <br>
-          {% endfor %}
+         {% for exam in prescription.custom_exams.all %}
+               <b>Descrição</b>: {{ exam.description }}<br>
+               <br>
+         {% endfor %}
 
-          {% for exam in prescription.custom_exams.all %}
-                <b>Descrição</b>: {{ exam.description }}<br>
-                <br>
-          {% endfor %}
-        </div>
+         {% for new_exams in prescription.new_exams.all %}
+               <b>Descrição</b>: {{ new_exams.exam_description}}<br>
+               <br>
+         {% endfor %}
 
-        <div class="recommendations-list">
-          {% if prescription.recommendation_prescription.all.count > 0%}
-          <h3>Recomendações</h3>
-          {% endif %}
-          {% for recommendation in prescription.recommendation_prescription.all %}
-                <b>Descrição</b>: {{ recommendation.recommendation }}<br>
-                <br>
-          {% endfor %}
-        </div>
+       </div>
 
-      </div>
-  <div class="modal-footer">
-    <button data-url="{% url 'copy_prescription' prescription.pk %}" class="js-create-copy btn btn-primary btn-return-modal">Editar Copia</button>
-    <button class="btn btn-primary btn-return-modal">Voltar</button>
+       <div class="recommendations-list">
+         {% if prescription.new_recommendations.all.count > 0%}
+         <h3>Recomendações</h3>
+         {% endif %}
+         {% for new_recommendations in prescription.new_recommendations.all %}
+               <b>Descrição</b>: {{ new_recommendations.recommendation_description }}<br>
+               <br>
+         {% endfor %}
+       </div>
+                       <!-- End Via Panel structure -->
+           </div>
+     </div>
+ <div class="modal-footer">
+   <button data-url="{% url 'copy_prescription' prescription.pk %}" class="js-create-copy btn btn-primary btn-return-modal">Editar Copia</button>
+   <button class="btn btn-primary btn-return-modal">Voltar</button>
 
-  </div>
+ </div>
 </div>

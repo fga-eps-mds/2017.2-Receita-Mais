@@ -77,7 +77,7 @@
                   {% endfor %}
                 </ol>
 
-                  {% if prescription.default_exams.all.count or prescription.custom_exams.all.count%}
+                  {% if prescription.default_exams.all.count or prescription.custom_exams.all.count or prescription.new_exams.all.count%}
                     <b>Exames:</b>
                   {% endif %}
                   <ol>
@@ -88,14 +88,18 @@
                     {% for exam in prescription.custom_exams.all %}
                     <li>{{ exam.description|truncatechars:15 }}</li>
                     {% endfor %}
+
+                    {% for new_exam in prescription.new_exams.all %}
+                    <li>{{ new_exam.exam_description|truncatechars:15 }}</li>
+                    {% endfor %}
                   </ol>
 
-                  {% if prescription.recommendation_prescription.all.count%}
+                  {% if prescription.new_recommendations.all.count%}
                     <b>Recomendações:</b>
                   {% endif %}
                   <ol>
-                    {% for recommendation in prescription.recommendation_prescription.all %}
-                          <li>{{ recommendation.recommendation|truncatechars:15 }}</li>
+                    {% for new_recommendation in prescription.new_recommendations.all %}
+                          <li>{{ new_recommendation.recommendation_description|truncatechars:15 }}</li>
                     {% endfor %}
                   </ol>
               </div>

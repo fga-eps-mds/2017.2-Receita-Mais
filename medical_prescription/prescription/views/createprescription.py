@@ -15,15 +15,16 @@ from prescription.forms import (CreatePrescriptionForm,
                                 )
 from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  PrescriptionHasMedicine,
-                                 PrescriptionRecommendation,
                                  PrescriptionDefaultExam,
                                  PrescriptionCustomExam,
+                                 PrescriptionNewExam,
+                                 PrescriptionNewRecommendation,
                                  PatientPrescription,
-                                 NoPatientPrescription,
-                                 Recommendation
+                                 NoPatientPrescription
                                  )
-from exam.models import DefaultExam, CustomExam
+from exam.models import DefaultExam, CustomExam, NewExam
 from disease.models import Disease
+from recommendation.models import NewRecommendation
 from user.models import (Patient,
                          HealthProfessional,
                          )
@@ -88,15 +89,24 @@ class CreatePrescriptionView(FormView):
         """
 
         exam_type = form.cleaned_data.get('exam_type')
-        if exam_type == 'default_exam':
-            id_tuss = form.cleaned_data.get('exam_id')
-            self.create_prescription_default_exam(exam_prescription,
-                                                  id_tuss)
-        elif exam_type == 'custom_exam':
-            exam_id = form.cleaned_data.get('exam_id')
-            self.create_prescription_custom_exam(exam_prescription,
-                                                 exam_id,
-                                                 request)
+
+        if exam_type is not None:
+
+            if exam_type == 'default_exam':
+                id_tuss = form.cleaned_data.get('exam_id')
+                self.create_prescription_default_exam(exam_prescription,
+                                                      id_tuss)
+            elif exam_type == 'custom_exam':
+                exam_id = form.cleaned_data.get('exam_id')
+                self.create_prescription_custom_exam(exam_prescription,
+                                                     exam_id,
+                                                     request)
+
+            else:
+                exam_id = form.cleaned_data.get('exam')
+                self.create_prescription_new_exam(exam_prescription,
+                                                  exam_id,
+                                                  request)
         else:
             # Nothing to do.
             pass
@@ -118,6 +128,16 @@ class CreatePrescriptionView(FormView):
             )
 
         prescription_custom_exam_object.save()
+
+    def create_prescription_new_exam(self, prescription, exam_text, request):
+        new_exam = NewExam(exam_description=exam_text)
+        new_exam.save()
+        prescription_new_exam_object = PrescriptionNewExam(
+            prescription=prescription,
+            exam=new_exam,
+            )
+
+        prescription_new_exam_object.save()
 
     def create_prescription_has_manipulated_medicine(self, medicine_id, quantity, posology, prescription_medicine):
         prescription_has_manipulatedmedicine_object = PrescriptionHasManipulatedMedicine(
@@ -165,15 +185,20 @@ class CreatePrescriptionView(FormView):
         """
 
         recommendation = form_recommendation.cleaned_data.get('recommendation')
+
         if recommendation is not None:
 
-            recommendation_object = Recommendation(recommendation=recommendation)
+            recommendation_object = NewRecommendation(recommendation_description=recommendation)
             recommendation_object.save()
 
-            prescription_recommendation_object = PrescriptionRecommendation(
+            prescription_new_recommendation_object = PrescriptionNewRecommendation(
                 prescription=prescription_object, recommendation=recommendation_object)
 
-            prescription_recommendation_object.save()
+            prescription_new_recommendation_object.save()
+
+        else:
+            # Nothing to do.
+            pass
 
     # Rendering form view.
     def get(self, request, *args, **kwargs):
