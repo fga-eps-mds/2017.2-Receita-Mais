@@ -51,7 +51,7 @@
           {% if prescription.nopatientprescription %}
             <td>{{ prescription.nopatientprescription.patient }}</td>
           {% else %}
-            <td>{{ prescription.patientprescription.patient.name }}</td>
+            <td>{{ prescription.patientprescription.name }}</td>
           {% endif %}
 
           <!--  list medicines -->
