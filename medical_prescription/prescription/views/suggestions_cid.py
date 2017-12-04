@@ -87,9 +87,9 @@ class SuggestionsCid(View):
     # Get recommendation related with some prescription.
     def get_recomendations(self, prescription):
         list_recommendations = []
-        for recommendation in prescription.recommendation_prescription.all():
+        for recommendation in prescription.new_recommendations.all():
             recommendation_item = {}
-            recommendation_item['name'] = recommendation.recommendation
+            recommendation_item['name'] = recommendation.recommendation_description
             list_recommendations.append(recommendation_item)
 
         return list_recommendations
