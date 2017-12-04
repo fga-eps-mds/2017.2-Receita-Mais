@@ -121,9 +121,9 @@ class CreateCopyPrescription(CreatePrescriptionView):
     # Get context data of Recommendation in Prescription.
     def get_initial_recommendation_formset(self, prescription, request):
         context = []
-        for recommendation in prescription.recommendation_prescription.all():
+        for recommendation in prescription.new_recommendations.all():
             recommendation_context = {
-                'recommendation': recommendation.recommendation,
+                'recommendation': recommendation.recommendation_description,
                 }
             context.append(recommendation_context)
         # Adding a initial context with recommendation and return the formset.
