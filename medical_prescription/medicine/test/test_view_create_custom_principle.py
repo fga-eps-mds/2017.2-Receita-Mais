@@ -3,6 +3,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
 from unittest.mock import patch, MagicMock
+from django.core.exceptions import PermissionDenied
 
 # Local Django imports
 from medicine.forms import CustomActivePrincipleForm
@@ -41,8 +42,8 @@ class TestCreateCustom(TestCase):
         request = self.factory.get('/medicine/create/')
         request.user = self.patient
 
-        response = CreateCustomActivePrinciple.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            CreateCustomActivePrinciple.as_view()(request)
 
     def test_medicine_get_with_health_professional(self):
         request = self.factory.get('/medicine/create/')
@@ -110,8 +111,8 @@ class TestCreateCustom(TestCase):
         request.user = self.patient
 
         # Get the response
-        response = CreateCustomActivePrinciple.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            CreateCustomActivePrinciple.as_view()(request)
 
         # Check save was called
         self.assertFalse(CustomActivePrinciple.save.called)

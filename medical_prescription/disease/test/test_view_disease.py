@@ -2,10 +2,10 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import PermissionDenied
 
 # Local Django imports
 from disease.views import ListDisease
-from user.views import LoginView
 from user.models import User, Patient, HealthProfessional
 
 
@@ -34,15 +34,15 @@ class ListDiseaseViewTest(TestCase):
         request = self.factory.get('/disease/list_disease/')
         request.user = self.patient
 
-        response = ListDisease.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            ListDisease.as_view()(request)
 
     def test_get_disease_with_user(self):
         request = self.factory.get('/disease/list_disease/')
         request.user = self.user
 
-        response = ListDisease.as_view()(request)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            ListDisease.as_view()(request)
 
     def test_get_disease_with_health_professional(self):
         request = self.factory.get('/disease/list_disease/')

@@ -19,6 +19,7 @@ script:
   - docker-compose up --build -d
   - docker-compose start
   - docker-compose run web sh coverage.sh
+  - docker-compose run web sh showcoverage.sh
 
 after_success:
   - docker-compose run web sh coveragereport.sh

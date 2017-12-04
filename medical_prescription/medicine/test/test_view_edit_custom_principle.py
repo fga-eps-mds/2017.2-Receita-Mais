@@ -2,6 +2,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import PermissionDenied
 
 # Local Django imports
 from medicine.views import EditCustomActivePrinciple
@@ -44,8 +45,8 @@ class EditCustomActivePrincipleTest(TestCase):
         request = self.factory.get('medicine/edit/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
-        response = EditCustomActivePrinciple.as_view()(request, pk=1)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            EditCustomActivePrinciple.as_view()(request, pk=1)
 
     def test_medicine_get_with_health_professional(self):
         request = self.factory.get('medicine/edit/(?P<pk>[0-9]+)/')
@@ -68,8 +69,8 @@ class EditCustomActivePrincipleTest(TestCase):
                                     {'name': self.name})
         request.user = self.patient
 
-        response = EditCustomActivePrinciple.as_view()(request, pk=1)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            EditCustomActivePrinciple.as_view()(request, pk=1)
 
     def test_medicine_post_with_health_professional(self):
         request = self.factory.post('medicine/edit/(?P<pk>[0-9]+)/',

@@ -2,7 +2,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import AnonymousUser
-
+from django.core.exceptions import PermissionDenied
 
 # Local Django imports
 from exam.views import UpdateCustomExam
@@ -46,8 +46,8 @@ class UpdateCustomExamsViewTest(TestCase):
         request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
         request.user = self.patient
 
-        response = UpdateCustomExam.as_view()(request, pk=1)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            UpdateCustomExam.as_view()(request, pk=1)
 
     def teste_exam_get_with_health_professional(self):
         request = self.factory.get('/exam/update_custom_exams/(?P<pk>[0-9]+)/')
@@ -70,8 +70,8 @@ class UpdateCustomExamsViewTest(TestCase):
                                     {'name': self.name, 'description': self.description})
         request.user = self.patient
 
-        response = UpdateCustomExam.as_view()(request, pk=1)
-        self.assertEqual(response.status_code, 302)
+        with self.assertRaises(PermissionDenied):
+            UpdateCustomExam.as_view()(request, pk=1)
 
     def teste_exam_post_with_health_professional(self):
         request = self.factory.post('/exam/update_custom_exams/(?P<pk>[0-9]+)/',
