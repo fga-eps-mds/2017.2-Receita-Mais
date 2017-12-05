@@ -21,6 +21,7 @@ class CountMessagesView(View):
             for message in queryset:
                 message_item = {}
                 message_item['text'] = message.text
+                message_item['user_from'] = str(message.user_from.name)
                 query_list.append(message_item)
 
             data = json.dumps(query_list)
