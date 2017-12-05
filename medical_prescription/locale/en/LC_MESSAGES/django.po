@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-04 23:29-0200\n"
+"POT-Creation-Date: 2017-12-05 03:17-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -373,7 +373,7 @@ msgstr "Prescriptions"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:24
 msgid "Listar Prescrições"
-msgstr "Show Prescriptions"
+msgstr "View Prescriptions"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:25
 msgid "Criar Modelo de Prescrição"
@@ -381,7 +381,7 @@ msgstr "Create a Prescription Model"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:26
 msgid "Listar Modelos de Prescrição"
-msgstr "Show Prescription Models"
+msgstr "View Prescription Models"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:41
 msgid "Receita"
@@ -409,51 +409,47 @@ msgstr "Exams"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:57
 msgid "Visualizar Exames"
-msgstr "Visualize Exams"
+msgstr "View Exams"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:58
 msgid "Visualizar Exames Personalizados"
-msgstr "Visualize Custom Exams"
+msgstr "View Custom Exams"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:63
-#, fuzzy
-#| msgid "Paciente"
 msgid "Pacientes"
-msgstr "Patient"
+msgstr "Patients"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:69
-#, fuzzy
-#| msgid "Cadastro Paciente"
 msgid "Adicionar paciente"
-msgstr "Register Patient"
+msgstr "Add Patient"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:70
-#, fuzzy
-#| msgid "Visualizar Exames"
 msgid "Visualizar pacientes"
-msgstr "Visualize Exams"
+msgstr "View patients"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:76
 msgid "Medicamentos"
-msgstr "Visualize Medications"
+msgstr "Medications"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:82
-msgid "Visualizar medicamentos"
-msgstr "Visualize Medications"
+msgid "Visualizar Medicamentos"
+msgstr "View Medications"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:83
-#, fuzzy
-#| msgid "Visualizar favoritos"
-msgid "Visualizar manipulados"
-msgstr "Visualize Favorites"
+msgid "Visualizar Manipulados"
+msgstr "View Compoundings"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:84
 msgid "Visualizar princípios ativos"
-msgstr "Visualize Active Ingredients"
+msgstr "View Active Ingredients"
+
+#: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:89
+msgid "Recomendações"
+msgstr "Recommendations"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:95
 msgid "Recomedações Customizadas"
-msgstr ""
+msgstr "Custom Recommendations"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:100
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:106
@@ -466,21 +462,19 @@ msgstr "Messages"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:118
 msgid "Mensagens"
-msgstr ""
+msgstr "Messages"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:119
-#, fuzzy
-#| msgid "Nova senha"
 msgid "Nova Mensagem"
-msgstr "New Password"
+msgstr "New Message"
 
 #: medical_prescription/templates/dashboardHealthProfessional/side_bar.html:124
 msgid "Configurações"
-msgstr ""
+msgstr "Settings"
 
 #: medical_prescription/templates/dashboardPatient/side_bar.html:14
 msgid "Caixa de Entrada"
-msgstr ""
+msgstr "Inbox"
 
 #: medical_prescription/templates/editHealthProfessionalLanding/footer.html:11
 #: medical_prescription/templates/editPatientLanding/footer.html:11
