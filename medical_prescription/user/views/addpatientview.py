@@ -7,6 +7,7 @@ import datetime
 from django.views.generic import FormView
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.utils import timezone
 
 # Local Django
 from user import constants
@@ -105,7 +106,7 @@ class AddPatientView(FormView):
     # Sending a new e-mail and updating key expires.
     def profile_is_not_active(patient_profile, health_professional_profile):
         profile = SendInvitationProfile.objects.get(patient=patient_profile)
-        profile.key_expires = datetime.datetime.today() + datetime.timedelta(2)
+        profile.key_expires = timezone.now() + datetime.timedelta(days=2)
         profile.save()
         AddPatientView.send_invitation_email(patient_profile.email, profile, health_professional_profile)
         message = constants.SENDED_EMAIL
@@ -130,7 +131,7 @@ class AddPatientView(FormView):
                             encode('utf-8')).hexdigest()[:5]
         activation_key = hashlib.sha1(str(salt+email).
                                       encode('utf‌​-8')).hexdigest()
-        key_expires = datetime.datetime.now() + datetime.timedelta(2)
+        key_expires = timezone.now() + datetime.timedelta(days=2)
 
         patient = Patient(email=email)
         patient.save()
