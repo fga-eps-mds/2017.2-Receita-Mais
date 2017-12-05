@@ -14,8 +14,13 @@
         $.getScript(cidSuggestion);
         $.getScript(initautocomplete);
 
+        var autocompleteMedicine = "{% url 'autocomplete_medicine' %}"
+        var autocompletePatient = "{% url 'autocomplete_patient' %}"
+        var autocompleteCid = "{% url 'autocomplete_cid' %}"
+        var autocompleteExam = "{% url 'autocomplete_exam' %}"
+        var autocompleteRecommendation = "{% url 'autocomplete_recommendation' %}"
         var suggestionsCid = "{% url 'suggestions_cid' %}";
-</script>
+    </script>
 
   <form class="js-prescription-create-form" action="{% url 'create_modal' %}" method="post">
     <div class="modal-header">

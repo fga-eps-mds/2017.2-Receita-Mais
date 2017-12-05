@@ -38,7 +38,8 @@ class AutoCompleteRecommendation(View):
 
     def get_custom_recommendations(self, search, health_professional, list_recommendations):
         queryset = CustomRecommendation.objects.filter(recommendation__icontains=search,
-                                                       health_professional=health_professional)[:5]
+                                                       health_professional=health_professional,
+                                                       is_active=True)[:5]
 
         # Encapsulates in a json needed to be sent.
         for custom_recommendation in queryset:

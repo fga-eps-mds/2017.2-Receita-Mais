@@ -143,4 +143,4 @@ class CreateCopyPrescription(CreatePrescriptionView):
         # Adding a initial context with recommendation and return the formset.
         return self.RecommendationPrescriptionFormSet(request.GET or None,
                                                       initial=context,
-                                                      prefix='form_recomendation')
+                                                      prefix='form_recommendation')
