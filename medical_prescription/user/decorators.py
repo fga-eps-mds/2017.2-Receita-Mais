@@ -106,6 +106,8 @@ def user_is_logged(method):
                     return redirect('/dashboard_patient/patient/')
                 else:
                     return method(request, *args, **kwargs)
+            else:
+                return method(request, *args, **kwargs)
         else:
             return method(request, *args, **kwargs)
 
