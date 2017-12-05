@@ -102,7 +102,7 @@ $(document).ready(function() {
 
   // Method to clone recomendation fields in the document
   $('#add_more_recomendation').click(function() {
-    cloneOrShow('div.table_recommendation:last', 'form_recomendation', "", "recommendation");
+    cloneOrShow('div.table_recommendation:last', 'form_recommendation',autocompleteRecommendation, "recommendation");
   });
 
   // This function is responsable to remove recommendation form.

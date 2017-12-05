@@ -189,12 +189,9 @@ class CreatePrescriptionView(FormView):
         recommendation_id = form_recommendation.cleaned_data.get('recommendation_id')
         recommendation_type = form_recommendation.cleaned_data.get('recommendation_type')
 
-        print("============ type ============")
-        print(recommendation_type)
-
         if recommendation is not None:
             if recommendation_type == 'custom_recommendation':
-                print("============ CUSTOM ============")
+
                 custom_recommendation = CustomRecommendation.objects.get(pk=recommendation_id)
 
                 prescription_custom_recommendation_object = PrescriptionCustomRecommendation(
@@ -269,7 +266,6 @@ class CreatePrescriptionView(FormView):
                 if form_recommendation.is_valid():
                     form_recommendation_is_valid = True
                     for recommendation_field in form_recommendation:
-                        print("====================================")
                         print(recommendation_field)
                         self.add_recommendation_in_prescription(recommendation_field, prescription_medicine_object)
 
