@@ -19,5 +19,4 @@ class CustomRecommendationDeleteView(View):
         custom_recommendation = CustomRecommendation.objects.get(pk=pk)
         custom_recommendation.is_active = False
         custom_recommendation.save()
-        print("FOI A POHA DO POST")
         return HttpResponseRedirect(reverse_lazy('list_custom_recommendations'))
