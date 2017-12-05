@@ -28,7 +28,8 @@ class CustomRecommendationCreateView(FormView):
             health_professional_FK = user
 
             CustomRecommendation.objects.create(name=name, recommendation=description,
-                                                health_professional=health_professional_FK)
+                                                health_professional=health_professional_FK,
+                                                is_active=True)
 
             return redirect('/dashboard_health_professional/health_professional')
 
