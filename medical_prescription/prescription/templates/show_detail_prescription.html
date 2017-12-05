@@ -241,6 +241,24 @@
                 </ul>
                 {% endfor %}
 
+                {% for recomendation in prescription.custom_recommendations.all %}
+                <ul id='object_recommendation'>
+                  <div class="table_recommendation">
+                    <li>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="form-group">
+                              <div class="form-control">
+                                  {{ recomendation.recommendation|truncatechars:185 }}
+                              </div>
+                           </div>
+                         </div>
+                       </div>
+                     </li>
+                  </div>
+                </ul>
+                {% endfor %}
+
             </div>
         </div>
     </div>
