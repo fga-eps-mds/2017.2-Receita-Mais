@@ -22,7 +22,7 @@ $(document).on('click','.remove-exam', function(){
 
 // Method to clone recomendation fields in the document
 $(document).on('click','#add_more_recomendation_copy', function(){
-  cloneOrShow('div.table_recommendation:last', 'form_recomendation', "", "recommendation");
+cloneOrShow('div.table_recommendation:last', 'form_recommendation',autocompleteRecommendation, "recommendation");
 });
 
 // This function is responsable to remove recommendation form.
