@@ -23,7 +23,7 @@
         <ul class = "treeview-menu">
             <li><a href="{% url 'list_prescription' %}">{% trans "Listar Prescrições"%}</a></li>
             <li><a href="{% url 'create_prescription_model' %}">{% trans "Criar Modelo de Prescrição"%}</a></li>
-            <li><a href="{% url 'list_patterns' %}">{% trans "Listar modelos de impressão"%}</a></li>
+            <li><a href="{% url 'list_patterns' %}">{% trans "Listar Modelos de Prescrição"%}</a></li>
         </ul>
       </li>
 
@@ -41,8 +41,8 @@
           <li><a href="#">{% trans "Receita"%}</a></li>
           <li><a href="{% url 'create_custom_exams' %}">{% trans "Exame"%}</a></li>
           <li><a href="{% url 'create_medicine' %}">{% trans "Medicamento"%}</a></li>
-          <li><a href="{% url 'create_activePrinciple' %}">{% trans "Princípio ativo"%}</a></li>
-          <li><a href="{% url 'create_custom_recomendation' %}">Recomendações Customizadas</a></li>
+          <li><a href="{% url 'create_activePrinciple' %}">{% trans "Princípio Ativo"%}</a></li>
+          <li><a href="{% url 'create_custom_recomendation' %}">{% trans "Recomendações Customizada" %}</a></li>
         </ul>
       </li>
 
@@ -92,7 +92,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{% url 'list_custom_recommendations' %}">Recomedações Customizadas</a></li>
+            <li><a href="{% url 'list_custom_recommendations' %}">{% trans "Recomedações Customizadas" %}</a></li>
           </ul>
         </li>
 
@@ -121,7 +121,7 @@
       </li>
 
       <li><a href="{% url 'dashboard_hp' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      <li><a href="#"><i class="fa fa-cog"></i> <span>Configurações</span></a></li>
+      <li><a href="#"><i class="fa fa-cog"></i> <span>{% trans "Configurações" %}</span></a></li>
     </ul>
 
     <!-- /.sidebar-menu -->

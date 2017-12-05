@@ -44,6 +44,7 @@ urlpatterns += i18n_patterns(
     url(r'^disease/', include('disease.urls')),
     url(r'^prescription/', include('prescription.urls')),
     url(r'^chat/', include('chat.urls')),
+    url(r'^recommendation/', include('recommendation.urls')),
     url(r'^$', home, name='landing_page'),
 )
 
