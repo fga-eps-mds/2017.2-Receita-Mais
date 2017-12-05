@@ -5,12 +5,14 @@ import logging
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 
 # Local Django
 from user.models import HealthProfessional
 from user.forms import HealthProfessionalForm
 from user import constants
 from user.views import ConfirmAccountView
+from user.decorators import user_is_logged
 
 # Set level logger.
 logging.basicConfig(level=logging.DEBUG)
@@ -21,6 +23,7 @@ class RegisterHealthProfessionalView(FormView):
     form_class = HealthProfessionalForm
     template_name = 'register_health_professional.html'
 
+    @method_decorator(user_is_logged)
     def get(self, request, *args, **kwargs):
         logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)
