@@ -36,12 +36,36 @@
 <!--========== JAVASCRIPTS ==========-->
 
 <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "dashboard/bowercomponents/notify/js/bootstrap-notify.js" %}"></script>
 <script src="{% static "dashboard/bowercomponents/bootstrap/dist/js/bootstrap.min.js" %}"></script>
 <script src="{% static "dashboard/dist/js/adminlte.min.js" %}"></script>
 <script src="{% static "general/js/jquery-ui.js" %}"></script>
 
 <!--========== END JAVASCRIPTS ==========-->
 
+<link href="{% static "dashboard/bowercomponents/notify/css/notify.css" %}" rel="stylesheet"/>
+<style>
+.alert-minimalist {
+	background-color: rgb(241, 242, 240);
+	border-color: rgba(149, 149, 149, 0.3);
+	border-radius: 3px;
+	color: rgb(149, 149, 149);
+	padding: 10px;
+}
+.alert-minimalist > [data-notify="icon"] {
+	height: 50px;
+	margin-right: 12px;
+}
+.alert-minimalist > [data-notify="title"] {
+	color: rgb(51, 51, 51);
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.alert-minimalist > [data-notify="message"] {
+	font-size: 80%;
+}
+</style>
 </body>
 
 </html>

@@ -36,6 +36,7 @@ class CreatePrescriptionView(FormView):
         Responsible for rendering to fields.
     """
     template_name = 'show_prescription_medicine.html'
+    message = None
 
     # Defines that these forms will have multiple instances.
     MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
@@ -73,7 +74,7 @@ class CreatePrescriptionView(FormView):
         Creating link between users if it doesn't exist.
         """
 
-        health_professional = HealthProfessional.objects.get(email=request.user.email)
+        health_professional = request.user.healthprofessional
 
         if patient_email:
             patient_from_database = Patient.objects.filter(email=patient_email)
@@ -86,10 +87,13 @@ class CreatePrescriptionView(FormView):
                     return True
                 elif link.exists() and link is False:
                     message = AddPatientView.relationship_exists(patient, health_professional)
+                    self.set_message(patient, message)
                 else:
                     message = AddPatientView.relationship_does_not_exist(patient, health_professional)
+                    self.set_message(patient, message)
             else:
                 message = AddPatientView.patient_does_not_exist(patient_email, health_professional)
+                self.set_message(None, message)
         else:
             return False
 
@@ -287,6 +291,24 @@ class CreatePrescriptionView(FormView):
                    'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
-        print(data['form_is_valid'])
+
+        self.get_message(data)
+
         # Json to communication Ajax.
         return JsonResponse(data)
+
+    def set_message(self, patient, message_body):
+        if patient:
+            self.message = ({'message': message_body,
+                             'image': patient.image_profile.url,
+                             'name': patient.name})
+        else:
+            self.message = ({'message': message_body})
+
+    def get_message(self, data):
+        if self.message:
+            data['message'] = self.message
+            self.message = None
+        else:
+            # Nothing to do.
+            pass

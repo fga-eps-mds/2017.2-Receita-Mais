@@ -27,6 +27,8 @@ class ChartData(View):
     def get(self, request, *args, **kwargs):
         if request.is_ajax():
             list_date = []
+            health_professional = request.user.healthprofessional
+
             for count in range(7, -1, -1):
                 chart_item = {}
                 date_ago = datetime.today() - timedelta(days=count)
@@ -35,7 +37,8 @@ class ChartData(View):
                 actual_date = datetime(date_ago.year, date_ago.month, date_ago.day)
                 prescription_count = Prescription.objects.filter(date__year=actual_date.year,
                                                                  date__month=actual_date.month,
-                                                                 date__day=actual_date.day).count()
+                                                                 date__day=actual_date.day,
+                                                                 health_professional=health_professional).count()
 
                 # Checks whether the date in question is the current date.
                 if count:
