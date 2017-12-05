@@ -23,6 +23,7 @@ class Prescription(models.Model):
     date = models.DateTimeField(blank=True, auto_now_add=True)
 
     medicines = models.ManyToManyField(Medicine, through='PrescriptionHasMedicine', related_name='medicines')
+
     manipulated_medicines = models.ManyToManyField(ManipulatedMedicine, through='PrescriptionHasManipulatedMedicine',
                                                    related_name='manipulated_medicines')
 
@@ -37,4 +38,5 @@ class Prescription(models.Model):
 
     new_recommendations = models.ManyToManyField(NewRecommendation, through='PrescriptionNewRecommendation',
                                                  related_name='new_recommendations')
+
     is_favorite = models.BooleanField(default=False)

@@ -84,45 +84,26 @@ class PrintPrescriptionPatient:
         canvas.restoreState()
 
     def print_users(self):
-        prescription = self.prescription
-        buffer = self.buffer
-
-        doc = SimpleDocTemplate(buffer,
+        doc = SimpleDocTemplate(self.buffer,
                                 rightMargin=100,
                                 leftMargin=100,
                                 topMargin=50,
                                 bottomMargin=50,
                                 pagesize=A4
                                 )
-
         self.elements = []
-
         self.styles = getSampleStyleSheet()
         self.styles.add(ParagraphStyle(name='centered', alignment=TA_CENTER))
         self.styles.add(ParagraphStyle(
-                'default',
-                fontSize=12,
-                leading=12,
-                leftIndent=0,
-                rightIndent=0,
-                firstLineIndent=0,
-                alignment=TA_LEFT,
-                spaceBefore=0,
-                spaceAfter=0,
-                bulletFontSize=12,
-                bulletIndent=0,
-                textColor=black,
-                backColor=None,
-                wordWrap=None,
-                borderWidth=0,
-                borderPadding=0,
-                borderColor=None,
-                borderRadius=None,
-                allowWidows=1,
-                allowOrphans=0,
-                textTransform=None,  # 'uppercase' | 'lowercase' | None
-                endDots=None,
-                splitLongWords=1,)
+                        'default',
+                        fontSize=12,
+                        leading=12,
+                        alignment=TA_LEFT,
+                        bulletFontSize=12,
+                        bulletIndent=0,
+                        textColor=black,
+                        endDots=None,
+                        splitLongWords=1,)
         )
 
         # Draw things on the PDF. Here's where the PDF generation happens.
@@ -130,35 +111,32 @@ class PrintPrescriptionPatient:
         self.list_recommendation_pdf()
         self.list_exam_pdf()
 
-
-
         doc.build(self.elements, onFirstPage=self._header_footer, onLaterPages=self._header_footer,
                   canvasmaker=NumberedCanvas)
 
         # Get the value of the BytesIO buffer and write it to the response.
-        pdf = buffer.getvalue()
-        buffer.close()
+        pdf = self.buffer.getvalue()
+        self.buffer.close()
         return pdf
 
     def list_medicines_pdf(self):
-        prescription = self.prescription
         self.elements.append(Spacer(1, 50))
-        if len(prescription.medicines.all()) != 0 or prescription.manipulated_medicines.all() != 0:
+        if self.prescription.medicines.all() or self.prescription.manipulated_medicines.all():
             self.elements.append(Paragraph('Medicamentos', self.styles['Heading1']))
-            for medicine in prescription.medicines.all():
+            for medicine in self.prescription.medicines.all():
                 self.elements.append(Paragraph(medicine.name, self.styles['default']))
 
-                for prescription_medicine in prescription.prescriptionhasmedicine_set.all():
+                for prescription_medicine in self.prescription.prescriptionhasmedicine_set.all():
                     if prescription_medicine.medicine == medicine:
                         self.elements.append(Paragraph(prescription_medicine.via, self.styles['default']))
                         self.elements.append(Paragraph(prescription_medicine.posology, self.styles['default']))
                         self.elements.append(Paragraph(prescription_medicine.get_quantity_display(), self.styles['default']))
                 self.elements.append(Spacer(1, 12))
 
-            for custom_medicine in prescription.manipulated_medicines.all():
+            for custom_medicine in self.prescription.manipulated_medicines.all():
                 self.elements.append(Paragraph(custom_medicine.recipe_name, self.styles['default']))
 
-                for custom_prescription_medicine in prescription.prescriptionhasmanipulatedmedicine_set.all():
+                for custom_prescription_medicine in self.prescription.prescriptionhasmanipulatedmedicine_set.all():
                     if custom_prescription_medicine.manipulated_medicine == custom_medicine:
                         self.elements.append(Paragraph(custom_prescription_medicine.via, self.styles['default']))
                         self.elements.append(Paragraph(custom_prescription_medicine.posology, self.styles['default']))
@@ -171,11 +149,10 @@ class PrintPrescriptionPatient:
             pass
 
     def list_recommendation_pdf(self):
-        prescription = self.prescription
         self.elements.append(Spacer(1, 12))
-        if len(prescription.new_recommendations.all()) != 0:
+        if self.prescription.new_recommendations.all():
             self.elements.append(Paragraph('Recomendacoes', self.styles['Heading1']))
-            for recommendation in prescription.new_recommendations.all():
+            for recommendation in self.prescription.new_recommendations.all():
                 self.elements.append(Paragraph(recommendation.recommendation_description, self.styles['default']))
                 self.elements.append(Spacer(1, 12))
             self.elements.append(PageBreak())
@@ -185,19 +162,18 @@ class PrintPrescriptionPatient:
             pass
 
     def list_exam_pdf(self):
-        prescription = self.prescription
         self.elements.append(Spacer(1, 12))
-        if len(prescription.default_exams.all()) != 0 or len(prescription.custom_exams.all()) != 0:
+        if self.prescription.default_exams.all() or self.prescription.custom_exams.all()or self.prescription.new_exams.all():
             self.elements.append(Paragraph('Exames', self.styles['Heading1']))
-            for default_exams in prescription.default_exams.all():
+            for default_exams in self.prescription.default_exams.all():
                 self.elements.append(Paragraph(default_exams.description, self.styles['default']))
                 self.elements.append(Spacer(1, 12))
 
-            for custom_exams in prescription.custom_exams.all():
+            for custom_exams in self.prescription.custom_exams.all():
                 self.elements.append(Paragraph(custom_exams.description, self.styles['default']))
                 self.elements.append(Spacer(1, 12))
 
-            for new_exams in prescription.new_exams.all():
+            for new_exams in self.prescription.new_exams.all():
                 self.elements.append(Paragraph(new_exams.exam_description, self.styles['default']))
                 self.elements.append(Spacer(1, 12))
         else:
