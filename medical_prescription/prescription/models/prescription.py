@@ -9,7 +9,7 @@ from medicine.models import ManipulatedMedicine
 from exam.models import DefaultExam
 from exam.models import CustomExam
 from exam.models import NewExam
-from recommendation.models import NewRecommendation
+from recommendation.models import NewRecommendation, CustomRecommendation
 
 
 class Prescription(models.Model):
@@ -38,5 +38,8 @@ class Prescription(models.Model):
 
     new_recommendations = models.ManyToManyField(NewRecommendation, through='PrescriptionNewRecommendation',
                                                  related_name='new_recommendations')
+
+    custom_recommendations = models.ManyToManyField(CustomRecommendation, through='PrescriptionCustomRecommendation',
+                                                 related_name='custom_recommendations')
 
     is_favorite = models.BooleanField(default=False)

@@ -72,8 +72,11 @@
           {% for new_recommendations in prescription.new_recommendations.all %}
                 {{ new_recommendations.recommendation_description|truncatechars:25 }};
           {% endfor %}
+          {% for custom_recommendations in prescription.custom_recommendations.all %}
+                {{ custom_recommendations.recommendation|truncatechars:25 }};
+          {% endfor %}
 
-          <span class="badge">  {{ prescription.new_recommendations.all.count}}</span>
+          <span class="badge">  {{ prescription.custom_recommendations.all.count|add:prescription.new_recommendations.all.count}}</span>
 
           </td>
 

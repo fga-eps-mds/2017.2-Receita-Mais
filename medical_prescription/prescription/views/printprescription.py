@@ -222,10 +222,15 @@ class PrintPrescription:
 
     def list_recommendation_pdf(self):
         self.elements.append(Spacer(1, 12))
-        if self.prescription.new_recommendations.all():
+        if self.prescription.new_recommendations.all() or self.prescription.custom_recommendations.all():
             self.elements.append(Paragraph('Recomendacoes', self.styles['Heading1']))
+
             for recommendation in self.prescription.new_recommendations.all():
                 self.elements.append(Paragraph(recommendation.recommendation_description, self.styles['default']))
+                self.elements.append(Spacer(1, 12))
+
+            for recommendation in self.prescription.custom_recommendations.all():
+                self.elements.append(Paragraph(recommendation.recommendation, self.styles['default']))
                 self.elements.append(Spacer(1, 12))
             self.elements.append(PageBreak())
             self.elements.append(Spacer(1, 32))
