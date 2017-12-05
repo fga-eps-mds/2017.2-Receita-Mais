@@ -3,7 +3,7 @@ from django import forms
 
 # local django
 from recommendation.models import CustomRecommendation
-from recommendation.validators import CustomExamValidator
+from recommendation.validators import CustomRecommendationValidator
 from exam import constants
 
 
@@ -44,7 +44,7 @@ class UpdateCustomRecommendationForm(forms.ModelForm):
             Checks validator in all fields.
             """
 
-            validator = CustomExamValidator()
+            validator = CustomRecommendationValidator()
 
             validator.validator_name_update(name)
             validator.validator_description(description)

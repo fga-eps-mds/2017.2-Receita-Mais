@@ -10,6 +10,9 @@
       <font size="5">
         <span class="label label-primary">Nome do Recomendação</span>
       </font>
+      {% for error in form.name.errors %}
+      <div class="alert alert-danger" role="alert">{{error}}</div>
+      {% endfor %}
       <br> {{ form.name }}
     </div>
     <br><br>
@@ -18,6 +21,9 @@
       <font size="5">
         <span class="label label-primary">Descrição</span>
       </font>
+      {% for error in form.recommendation.errors %}
+      <div class="alert alert-danger" role="alert">{{error}}</div>
+      {% endfor %}
       <br> {{ form.recommendation }}
     </div>
     <br><br>

@@ -1,1 +1,2 @@
 from .createcustomrecomendationform import CreateRecomendationCustomForm
+from .editcustomrecommendation import UpdateCustomRecommendationForm

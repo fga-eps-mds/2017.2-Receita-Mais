@@ -9,7 +9,7 @@ from recommendation.models import CustomRecommendation
 
 class CustomRecommendationValidator(object):
     """
-    docstring for CustomRecommendationValidator.
+     Validation class to validate CustomRecommendationValidator.
     """
     def validator_name(self, name, request):
 
@@ -28,12 +28,14 @@ class CustomRecommendationValidator(object):
             # Nothing to do.
             pass
 
+    # Validate the field recommendation custom recommendation.
     def validator_description(self, description):
         if description is not None and len(description) > constants.MAX_DESCRIPTION:
             raise forms.ValidationError({'name': [_(constants.DESCRIPTION_SIZE_MAX)]})
         elif description is not None and len(description) < constants.MIN_DESCRIPTION:
             raise forms.ValidationError({'name': [_(constants.DESCRIPTION_SIZE_MIN)]})
 
+    # Validate name in update custom recommendation form.
     def validator_name_update(self, name):
         if name is not None and len(name) < constants.MIN_NAME:
             raise forms.ValidationError({'name': [_(constants.NAME_SIZE_MIN)]})
