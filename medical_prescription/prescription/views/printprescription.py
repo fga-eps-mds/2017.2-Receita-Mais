@@ -193,7 +193,7 @@ class PrintPrescription:
 
     def list_medicines_pdf(self):
         self.elements.append(Spacer(1, 50))
-        if len(self.prescription.medicines.all()) != 0 or self.prescription.manipulated_medicines.all() != 0:
+        if self.prescription.medicines.all() or self.prescription.manipulated_medicines.all():
             self.elements.append(Paragraph('Medicamentos', self.styles['Heading1']))
             for medicine in self.prescription.medicines.all():
                 self.elements.append(Paragraph(medicine.name, self.styles['default']))
@@ -222,7 +222,7 @@ class PrintPrescription:
 
     def list_recommendation_pdf(self):
         self.elements.append(Spacer(1, 12))
-        if len(self.prescription.new_recommendations.all()) != 0:
+        if self.prescription.new_recommendations.all():
             self.elements.append(Paragraph('Recomendacoes', self.styles['Heading1']))
             for recommendation in self.prescription.new_recommendations.all():
                 self.elements.append(Paragraph(recommendation.recommendation_description, self.styles['default']))
@@ -235,7 +235,7 @@ class PrintPrescription:
 
     def list_exam_pdf(self):
         self.elements.append(Spacer(1, 12))
-        if len(self.prescription.default_exams.all()) != 0 or len(self.prescription.custom_exams.all()) != 0:
+        if self.prescription.default_exams.all() or self.prescription.custom_exams.all()or self.prescription.new_exams.all():
             self.elements.append(Paragraph('Exames', self.styles['Heading1']))
             for default_exams in self.prescription.default_exams.all():
                 self.elements.append(Paragraph(default_exams.description, self.styles['default']))
