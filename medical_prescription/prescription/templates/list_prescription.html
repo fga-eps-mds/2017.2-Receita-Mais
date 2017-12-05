@@ -71,7 +71,7 @@
                 {{ recommendation.recommendation|truncatechars:25 }};
           {% endfor %}
 
-          <span class="badge">  {{ prescription.recommendation_prescription.all.count}}</span>
+          <span class="badge">  {{ prescription.custom_recommendations.all.count|add:prescription.new_recommendations.all.count}}</span>
 
           </td>
 
