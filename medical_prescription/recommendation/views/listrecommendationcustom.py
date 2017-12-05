@@ -24,4 +24,4 @@ class ListCustomRecommendations(ListView):
 
     # Get 20 queries of objects Custom Recommendation.
     def get_queryset(self):
-        return self.model.objects.all()
+        return self.model.objects.filter(health_professional=self.request.user, is_active=True)
