@@ -8,3 +8,4 @@ from .prescriptioncustomexam import PrescriptionCustomExam
 from .pattern import Pattern
 from .prescription_new_exam import PrescriptionNewExam
 from .prescription_new_recommendation import PrescriptionNewRecommendation
+from .prescription_custom_recommendation  import PrescriptionCustomRecommendation

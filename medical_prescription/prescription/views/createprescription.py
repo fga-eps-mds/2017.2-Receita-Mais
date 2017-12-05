@@ -19,12 +19,13 @@ from prescription.models import (PrescriptionHasManipulatedMedicine,
                                  PrescriptionCustomExam,
                                  PrescriptionNewExam,
                                  PrescriptionNewRecommendation,
+                                 PrescriptionCustomRecommendation,
                                  PatientPrescription,
                                  NoPatientPrescription
                                  )
 from exam.models import DefaultExam, CustomExam, NewExam
 from disease.models import Disease
-from recommendation.models import NewRecommendation
+from recommendation.models import NewRecommendation, CustomRecommendation
 from user.models import (Patient,
                          HealthProfessional,
                          )
@@ -185,16 +186,32 @@ class CreatePrescriptionView(FormView):
         """
 
         recommendation = form_recommendation.cleaned_data.get('recommendation')
+        recommendation_id = form_recommendation.cleaned_data.get('recommendation_id')
+        recommendation_type = form_recommendation.cleaned_data.get('recommendation_type')
+
+        print("============ type ============")
+        print(recommendation_type)
 
         if recommendation is not None:
+            if recommendation_type == 'custom_recommendation':
+                print("============ CUSTOM ============")
+                custom_recommendation = CustomRecommendation.objects.get(pk=recommendation_id)
 
-            recommendation_object = NewRecommendation(recommendation_description=recommendation)
-            recommendation_object.save()
+                prescription_custom_recommendation_object = PrescriptionCustomRecommendation(
+                    prescription=prescription_object,
+                    recommendation=custom_recommendation,
+                )
 
-            prescription_new_recommendation_object = PrescriptionNewRecommendation(
-                prescription=prescription_object, recommendation=recommendation_object)
+                prescription_custom_recommendation_object.save()
+            else:
 
-            prescription_new_recommendation_object.save()
+                recommendation_object = NewRecommendation(recommendation_description=recommendation)
+                recommendation_object.save()
+
+                prescription_new_recommendation_object = PrescriptionNewRecommendation(
+                    prescription=prescription_object, recommendation=recommendation_object)
+
+                prescription_new_recommendation_object.save()
 
         else:
             # Nothing to do.
@@ -252,6 +269,8 @@ class CreatePrescriptionView(FormView):
                 if form_recommendation.is_valid():
                     form_recommendation_is_valid = True
                     for recommendation_field in form_recommendation:
+                        print("====================================")
+                        print(recommendation_field)
                         self.add_recommendation_in_prescription(recommendation_field, prescription_medicine_object)
 
                     # Verirfy exam and adding fields in prescription.
