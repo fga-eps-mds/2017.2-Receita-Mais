@@ -24,9 +24,6 @@ class UpdateCustomRecommendation(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(UpdateCustomRecommendation, self).dispatch(*args, **kwargs)
 
-    def get_success_url(self, **kwargs):
-            return reverse_lazy('list_custom_exams')
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.form_class(request.POST or None)
