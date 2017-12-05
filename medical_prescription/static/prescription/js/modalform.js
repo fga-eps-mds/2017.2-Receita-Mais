@@ -95,7 +95,9 @@ function saveForm(event) {
       if (data.form_is_valid) {
         modalIsCreated = false;
         $(event.data.id_modal).modal("hide");
-        get_data_message(data);
+         if(data.message){
+           get_data_message(data);
+         }
       } else {
         $(event.data.id_modal).modal("show");
         $(event.data.id_modal + " .modal-content").html(data.html_form);
