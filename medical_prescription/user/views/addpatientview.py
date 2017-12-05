@@ -5,7 +5,6 @@ import datetime
 
 # Django
 from django.views.generic import FormView
-from django.core.mail import send_mail
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
@@ -16,6 +15,8 @@ from user.models import (Patient,
                          HealthProfessional,
                          SendInvitationProfile,
                          AssociatedHealthProfessionalAndPatient)
+
+from user.views import SendMail
 
 
 class AddPatientView(FormView):
@@ -144,12 +145,7 @@ class AddPatientView(FormView):
 
     # Sending invitation email.
     def send_invitation_email(email, SendInvitationProfile, HealthProfessional):
-        email_subject = constants.INVITATION_EMAIL_SUBJECT
-        email_body = constants.INVITATION_EMAIL_BODY
-
-        send_mail(email_subject, email_body % (HealthProfessional.name,
-                                               SendInvitationProfile.activation_key),
-                  'medicalprescriptionapp@gmail.com', [email], fail_silently=False)
+        SendMail(email, HealthProfessional, SendInvitationProfile).start()
 
     # This method is responsible for create the link between the users.
     def create_link_patient_health_professional(HealthProfessional, Patient):
