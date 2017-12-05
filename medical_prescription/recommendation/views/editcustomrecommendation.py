@@ -34,10 +34,10 @@ class UpdateCustomRecommendation(UpdateView):
         form.get_pk(pk)
 
         if form.is_valid():
-            recommendation = form.cleaned_data.get('recommendation')
+            description = form.cleaned_data.get('recommendation')
             name = form.cleaned_data.get('name')
 
-            CustomRecommendation.objects.filter(pk=pk).update(name=name, recommendation=recommendation)
+            CustomRecommendation.objects.filter(pk=pk).update(name=name, recommendation=description)
 
             return redirect('/exam/update_custom_recommendation/')
         else:

@@ -26,7 +26,7 @@ class UpdateCustomRecommendationForm(forms.ModelForm):
             """
             Get Custom Recommendation fields.
             """
-            description = self.cleaned_data.get('recommendation')
+            recommendation = self.cleaned_data.get('recommendation')
             name = self.cleaned_data.get('name')
 
             exists = CustomRecommendation.objects.get(pk=self.pk)
@@ -37,7 +37,7 @@ class UpdateCustomRecommendationForm(forms.ModelForm):
                 raise forms.ValidationError({'name': [(constants.NAME_EXISTS)]})
 
             # Verify validations in form.
-            self.validator_all(description, name)
+            self.validator_all(recommendation, name)
 
         def validator_all(self, description, name):
             """
