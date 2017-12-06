@@ -7,6 +7,8 @@
           <th>{% trans "Arquivo(s) Enviado(s)" %}</th>
         </thead>
       <tbody>
+      {% else %}
+        {% trans "Não existem Arquivos enviados." %}
       {% endif %}
 
       {% for response in list_files %}
@@ -14,8 +16,6 @@
             {% if response.files %}
               <td><a href="{{response.files.url}}">{{response.file_name}}</a></td>
             {% endif %}
-            {% empty %}
-              <td>{% trans "Não existem Arquivos enviados." %}</td>
       </tr>
       {% endfor %}
       </table>

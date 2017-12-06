@@ -25,4 +25,10 @@ class ListPatientFiles(ListView):
 
     # Get 20 queries of Archives objects.
     def get_queryset(self):
-        return self.model.objects.filter(user_from=self.request.user)
+        list_queryset = self.model.objects.filter(user_from=self.request.user)
+        list_messages = []
+        for message in list_queryset:
+            if message.files:
+                list_messages.append(message)
+
+        return list_messages
