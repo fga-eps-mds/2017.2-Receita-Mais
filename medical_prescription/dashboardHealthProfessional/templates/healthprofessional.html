@@ -94,12 +94,15 @@
                     {% endfor %}
                   </ol>
 
-                  {% if prescription.new_recommendations.all.count%}
+                  {% if prescription.custom_recommendations.all.count or prescription.new_recommendations.all.count%}
                     <b>Recomendações:</b>
                   {% endif %}
                   <ol>
                     {% for new_recommendation in prescription.new_recommendations.all %}
                           <li>{{ new_recommendation.recommendation_description|truncatechars:15 }}</li>
+                    {% endfor %}
+                    {% for custom_recommendation in prescription.custom_recommendations.all %}
+                          <li>{{ custom_recommendation.recommendation|truncatechars:15 }}</li>
                     {% endfor %}
                   </ol>
               </div>

@@ -12,3 +12,4 @@ class CustomRecommendation(models.Model):
     recommendation = models.CharField(max_length=MAX_DESCRIPTION)
     health_professional = models.ForeignKey(HealthProfessional)
     is_active = models.BooleanField(default=False)
+    auto_increment_id = models.AutoField(primary_key=True)

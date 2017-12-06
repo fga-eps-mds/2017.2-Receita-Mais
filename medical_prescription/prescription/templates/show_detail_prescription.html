@@ -66,11 +66,15 @@
        </div>
 
        <div class="recommendations-list">
-         {% if prescription.new_recommendations.all.count > 0%}
+         {% if prescription.new_recommendations.all.count|add:prescription.custom_recommendations.all.count > 0%}
          <h3>Recomendações</h3>
          {% endif %}
          {% for new_recommendations in prescription.new_recommendations.all %}
                <b>Descrição</b>: {{ new_recommendations.recommendation_description }}<br>
+               <br>
+         {% endfor %}
+         {% for custom_recommendations in prescription.custom_recommendations.all %}
+               <b>Descrição</b>: {{ custom_recommendations.recommendation }}<br>
                <br>
          {% endfor %}
        </div>
@@ -82,4 +86,3 @@
    <button class="btn btn-primary btn-return-modal">Voltar</button>
 
  </div>
-</div>
