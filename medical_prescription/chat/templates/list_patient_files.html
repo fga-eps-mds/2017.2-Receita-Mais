@@ -11,11 +11,13 @@
 
       {% for response in list_files %}
       <tr class='clickable-row'>
-            <td><a href="{{response.files.url}}">{{response.file_name}}</a></td>
+            {% if response.files %}
+              <td><a href="{{response.files.url}}">{{response.file_name}}</a></td>
+            {% endif %}
+            {% empty %}
+              <td>{% trans "Não existem Arquivos enviados." %}</td>
       </tr>
-        {% empty %}
-        {% trans "Não existem Arquivos enviados." %}
-        {% endfor %}
+      {% endfor %}
       </table>
     </div>
     {# .... **Now the pagination section** ....#}
