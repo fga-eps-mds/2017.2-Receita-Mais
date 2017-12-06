@@ -31,8 +31,7 @@
 
             <ul class="nav navbar-nav">
                 <li><a class="js-create-prescription" data-url="{% url 'create_modal' %}">{% trans "Nova Prescrição"%}</a></li>
-                <li><a href="#">{% trans "Novo Manipulado"%}</a></li>
-                <li><a href="#">{% trans "Personalizar Prescrições"%}</a></li>
+                <li><a href="{% url 'create_medicine' %}">{% trans "Novo Manipulado"%}</a></li>
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
