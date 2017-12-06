@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.views.static import serve
 from django.contrib.auth.decorators import login_required
 
-from landing.views import home
+from landing.views import home, team_page
 from medical_prescription import settings
 
 from django.template.response import TemplateResponse
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^disease/', include('disease.urls')),
     url(r'^$', home, name='landing_page'),
+    url(r'^team/', team_page, name='team_page'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^prescription/', include('prescription.urls')),
     url(r'^chat/', include('chat.urls')),
@@ -45,6 +46,7 @@ urlpatterns += i18n_patterns(
     url(r'^prescription/', include('prescription.urls')),
     url(r'^chat/', include('chat.urls')),
     url(r'^$', home, name='landing_page'),
+    url(r'^$team/', team_page, name='team_page'),
 )
 
 # TODO(Joao) Discomment this lines when DEBUG=FALSE.
