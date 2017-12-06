@@ -266,6 +266,7 @@ class CreatePrescriptionView(FormView):
             if form_medicine.is_valid():
                 atomic_is_valid = True
                 prescription_medicine_object = self.create_prescription(prescription_form, request)
+                data['id_prescription'] = prescription_medicine_object.id
 
                 for atomic_form in form_medicine:
                     self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
@@ -303,6 +304,7 @@ class CreatePrescriptionView(FormView):
                    'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
+
         print(data['form_is_valid'])
         # Json to communication Ajax.
         return JsonResponse(data)

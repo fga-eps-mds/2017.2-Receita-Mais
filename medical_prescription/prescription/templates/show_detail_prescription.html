@@ -82,7 +82,9 @@
            </div>
      </div>
  <div class="modal-footer">
-   <button data-url="{% url 'copy_prescription' prescription.pk %}" class="js-create-copy btn btn-primary btn-return-modal">Editar Copia</button>
-   <button class="btn btn-primary btn-return-modal">Voltar</button>
-
+   <div class="row text-center center-block">
+       <button class="col-lg-2 btn btn-primary btn-return-modal">Voltar</button>
+       <button class="col-centered js-show-prescription btn btn-primary" data-url='{% url 'show_patterns' prescription.pk %}'>Imprimir <i class="fa fa-print"></i></button>
+       <button class="col-lg-2 js-create-copy btn btn-primary btn-return-modal pull-right" data-url="{% url 'copy_prescription' prescription.pk %}">Editar Cópia</button>
+    </div>
  </div>

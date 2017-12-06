@@ -93,6 +93,13 @@ function saveForm(event) {
       if (data.form_is_valid) {
         modalIsCreated = false;
         $(event.data.id_modal).modal("hide");
+        modal_show_suggestion = false;
+
+        // Get url in button to render prescription in another modal.
+        var url_get = $("#save").attr("data-url");
+        url_get = url_get.replace('None',data.id_prescription);
+        event['data-url'] = url_get;
+        loadForm(event, "#modal-view");
       } else {
         $(event.data.id_modal).modal("show");
         $(event.data.id_modal + " .modal-content").html(data.html_form);
