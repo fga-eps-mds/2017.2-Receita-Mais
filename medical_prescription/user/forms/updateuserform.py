@@ -22,14 +22,25 @@ class UpdateUserForm(forms.ModelForm):
     Form to update the users.
     """
 
-    date_of_birth = FormattedDateField(initial=date.today)
-    # password = forms.CharField(widget=forms.PasswordInput())
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                         'type': 'text',
+                                                         'placeholder': _('Nome')}))
+
+    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control',
+                                                          'type': 'text',
+                                                          'placeholder': _('Telefone')}))
+
+    date_of_birth = FormattedDateField(initial=date.today, widget=forms.DateInput(format='%d/%m/%Y', attrs={'class': 'form-control'}))
+
+    image_profile = forms.FileField(required=False, widget=forms.FileInput, initial='')
+
+    password = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         # Define model to User.
         model = User
         fields = [
-            'name', 'date_of_birth', 'phone', 'sex'
+            'name', 'date_of_birth', 'phone', 'sex', 'image_profile'
         ]
 
     def clean(self):
