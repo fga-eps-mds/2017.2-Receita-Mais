@@ -4,22 +4,11 @@
 <footer class="g-bg-color--dark">
     <!-- Links -->
     <div class="g-hor-divider__dashed--white-opacity-lightest">
-        <div class="container g-padding-y-60--xs">
+        <div class="container g-padding-y-10--xs">
             <div class="row">
-                <div class="col-sm-3 g-margin-b-10--xs g-margin-b-10--md">
+                <div class="col-sm-3 col-sm-push-4 g-margin-b-10--xs g-margin-b-10--md">
                     <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
-                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="{% url 'landing_page' %}">{% trans "Home" %}</a></li>
-
-                    </ul>
-                </div>
-                <div class="col-sm-3 g-margin-b-10--xs g-margin-b-10--md">
-                    <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
-                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="https://github.com/fga-gpp-mds/2017.2-Receituario-Medico/wiki/Documento-de-Vis%C3%A3o">{% trans "Sobre o projeto" %}</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3 g-margin-b-10--xs g-margin-b-10--md">
-                    <ul class="list-unstyled g-ul-li-tb-5--xs g-margin-b-0--xs">
-                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="https://github.com/fga-gpp-mds/2017.2-Receituario-Medico/wiki">{% trans "Sobre a equipe" %}</a></li>
+                        <li><a class="g-font-size-15--xs g-color--white-opacity" href="{% url 'team_page' %}">Time</a></li>
                     </ul>
                 </div>
                 <div class="g-margin-b-12--xs g-margin-b-0--md" align="right">
@@ -34,7 +23,7 @@
                             </option>/
                             {% endfor %}
                         </select>
-                          <button class="btn btn-primary">{% trans "Enviar" %}</button>
+                          <button class="btn btn-primary">{% trans "Selecionar" %}</button>
                     </form>
                 </div>
             </div>
@@ -43,9 +32,9 @@
     <!-- End Links -->
 
     <!-- Copyright -->
-    <div class="container g-padding-y-50--xs">
+    <div class="container g-padding-y-10--xs">
         <p class="g-font-size-10--xs g-margin-b-0--xs g-color--white-opacity-light"><a href="http://keenthemes.com/preview/Megakit/">Megakit</a> Theme Powered by: <a href="http://www.keenthemes.com/">KeenThemes.com</a></p>
-
+      </div>
         <!-- End Copyright -->
     </footer>
     <!--========== END FOOTER ==========-->
