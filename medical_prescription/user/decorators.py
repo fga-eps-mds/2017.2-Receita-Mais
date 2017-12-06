@@ -89,3 +89,26 @@ def patient_is_account_owner_with_email(method):
             raise PermissionDenied
 
     return wrap
+
+
+def user_is_logged(method):
+    """
+    Make sure the user is logged in and redirects it to the dashboard
+    """
+    def wrap(request, *args, **kwargs):
+        if 'user' in request.__dict__:
+            if request.user.is_authenticated():
+                is_health_professional = hasattr(request.user, 'healthprofessional')
+                is_patient = hasattr(request.user, 'patient')
+                if is_health_professional:
+                    return redirect('/dashboard_health_professional/health_professional/')
+                elif is_patient:
+                    return redirect('/dashboard_patient/patient/')
+                else:
+                    return method(request, *args, **kwargs)
+            else:
+                return method(request, *args, **kwargs)
+        else:
+            return method(request, *args, **kwargs)
+
+    return wrap
