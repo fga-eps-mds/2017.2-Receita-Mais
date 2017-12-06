@@ -5,25 +5,25 @@
      <a href="{% url 'list_prescription' %}" id="tag-geral" data-toggle="nav-tabs" >{% trans "Gerais" %}</a>
    </li>
    <li class="active" id="tag-favorite">
-     <a data-toggle="nab-tabs" href="{% url 'list_favorite_prescription' %}" >{% trans "Favoritas" %}</a>
+     <a data-toggle="nab-tabs" href="{% url 'list_favorite_prescription' %}">{% trans "Favoritas" %}</a>
    </li>
  </ul>
  <div class="panel-body">
   <!-- tab component -->
   <table class="table table-striped table-bordered table-hover">
-        {% if list_prescription %}
-    <thead>
-      <th></th>
-      <th>CID</th>
-      <th>Paciente</th>
-      <th>Medicamentos</th>
-      <th>Recomendações</th>
-      <th>Exames</th>
-      <th>Visualizar</th>
-      <th>Editar</th>
-      <th>Imprimir</th>
-    </thead>
-    {% endif %}
+      {% if list_favorite_prescriptions %}
+      <thead>
+        <th></th>
+        <th>CID</th>
+        <th>Paciente</th>
+        <th>Medicamentos</th>
+        <th>Recomendações</th>
+        <th>Exames</th>
+        <th>Visualizar</th>
+        <th>Editar</th>
+        <th>Imprimir</th>
+      </thead>
+      {% endif %}
 
     <tbody>
       {% for prescription in list_favorite_prescriptions %}
@@ -48,7 +48,7 @@
           {% if prescription.nopatientprescription %}
             <td>{{ prescription.nopatientprescription.patient }}</td>
           {% else %}
-            <td>{{ prescription.patientprescription.patient.name }}</td>
+            <td>{{ prescription.patientprescription.name }}</td>
           {% endif %}
 
           <!--  list medicines -->
@@ -94,14 +94,13 @@
 
           <td><a class="js-show-prescription" data-url='{% url 'show_patterns' prescription.pk %}'><i class="fa fa-print"></i></a></td>
 
-
           </tr>
+          {% empty %}
 
-        {% empty %}
-
-          Não existem Prescrições Favoritadas.
+          Não existem Prescrições Cadastradas.
 
         {% endfor %}
+
 
     </tbody>
   </table>
