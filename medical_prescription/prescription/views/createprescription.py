@@ -255,54 +255,34 @@ class CreatePrescriptionView(FormView):
         data = dict()
 
         # Checks whether the completed forms are valid.
-        default_is_valid = False
-        atomic_is_valid = False
-        form_recommendation_is_valid = False
-        form_exam_is_valid = False
+        if (prescription_form.is_valid() and form_recommendation.is_valid() and form_exam.is_valid() and form_medicine.is_valid()):
 
-        if prescription_form.is_valid():
-            default_is_valid = True
+            # Create prescription base.
+            prescription_object = self.create_prescription(prescription_form, request)
 
-            if form_medicine.is_valid():
-                atomic_is_valid = True
-                prescription_medicine_object = self.create_prescription(prescription_form, request)
+            # Add medicines to prescription relation.
+            for atomic_form in form_medicine:
+                self.add_medicine_in_prescription(atomic_form, prescription_object)
 
-                for atomic_form in form_medicine:
-                    self.add_medicine_in_prescription(atomic_form, prescription_medicine_object)
+            # Add recommendations to prescription relation.
+            for recommendation_field in form_recommendation:
+                self.add_recommendation_in_prescription(recommendation_field, prescription_object, request)
 
-                if form_recommendation.is_valid():
-                    form_recommendation_is_valid = True
-                    for recommendation_field in form_recommendation:
-                        print(recommendation_field)
-                        self.add_recommendation_in_prescription(recommendation_field, prescription_medicine_object, request)
+            # Add exams to prescription relation.
+            for exam_atomic_form in form_exam:
+                self.create_many_to_many_exam(exam_atomic_form, prescription_object, request)
 
-                    # Verirfy exam and adding fields in prescription.
-                    if form_exam.is_valid():
-                        form_exam_is_valid = True
-                        for exam_atomic_form in form_exam:
-                            self.create_many_to_many_exam(exam_atomic_form, prescription_medicine_object, request)
-                    else:
-                        # Nothing to do.
-                        pass
-                else:
-                    # Nothing to do.
-                    pass
-            else:
-                # Nothing to do.
-                pass
+            # Set validation true if the forms are valids.
+            data['form_is_valid'] = True
         else:
-            # Nothing to do.
-            pass
+            # Set validation false if the forms are invalids.
+            data['form_is_valid'] = False
 
         # Verify if all forms are valids.
-        data['form_is_valid'] = default_is_valid and atomic_is_valid and form_recommendation_is_valid
-        data['form_is_valid'] = data['form_is_valid'] and form_exam_is_valid
-
         context = {'prescription_form': prescription_form,
                    'form_medicine': form_medicine,
                    'form_recommendation': form_recommendation,
                    'form_exam': form_exam}
         data['html_form'] = render_to_string(self.template_name, context, request=request)
-        print(data['form_is_valid'])
         # Json to communication Ajax.
         return JsonResponse(data)
