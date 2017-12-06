@@ -5,11 +5,13 @@ import logging
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.views.generic import FormView
+from django.utils.decorators import method_decorator
 
 # Local Django
 from user.models import HealthProfessional
 from user.forms import UserLoginForm
 from user import constants
+from user.decorators import user_is_logged
 
 # Set level logger.
 logging.basicConfig(level=logging.DEBUG)
@@ -26,6 +28,7 @@ class LoginView(FormView):
     dashboard_name = ''
 
     # Render the login page.
+    @method_decorator(user_is_logged)
     def get(self, request, *args, **kwargs):
         logger.debug("Start get method.")
         form = self.form_class(initial=self.initial)

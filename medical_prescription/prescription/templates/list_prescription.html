@@ -33,7 +33,7 @@
         <tr class='clickable-row'>
 
             <td>
-              <button class="likes post-likes" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
+              <button class="likes post-likes favorite" url-prescription="{% url 'favorite_prescription' pk=prescription.pk %}">
                  {% if prescription.is_favorite %}
                  <span class="fa fa-star" style="color:orange"></span>
                  {% else %}
