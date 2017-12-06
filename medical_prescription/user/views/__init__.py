@@ -15,3 +15,4 @@ from .updatehealthprofessional import UpdateHealthProfessional
 from .updatepatient import UpdatePatient
 from .showhealthprofessionalview import ShowHealthProfessionalView
 from .updatepasswordview import UpdateUserPassword
+from .editprofile import EditProfileView

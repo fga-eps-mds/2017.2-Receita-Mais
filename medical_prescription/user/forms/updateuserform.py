@@ -23,7 +23,7 @@ class UpdateUserForm(forms.ModelForm):
     """
 
     date_of_birth = FormattedDateField(initial=date.today)
-    password = forms.CharField(widget=forms.PasswordInput())
+    # password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         # Define model to User.
