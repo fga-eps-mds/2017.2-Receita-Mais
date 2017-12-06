@@ -147,12 +147,12 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(PatientPrescription.save.call_count, 1)
 
     @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
-    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionNewRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_patient_not_linked(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
-                   'form_recomendation-TOTAL_FORMS': 1,
-                   'form_recomendation-INITIAL_FORMS': 0,
+                   'form_recommendation-TOTAL_FORMS': 1,
+                   'form_recommendation-INITIAL_FORMS': 0,
                    'form_exam-TOTAL_FORMS': 1,
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
@@ -183,12 +183,12 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(PatientPrescription.save.call_count, 1)
 
     @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
-    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionNewRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_patient_doesnt_exist(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
-                   'form_recomendation-TOTAL_FORMS': 1,
-                   'form_recomendation-INITIAL_FORMS': 0,
+                   'form_recommendation-TOTAL_FORMS': 1,
+                   'form_recommendation-INITIAL_FORMS': 0,
                    'form_exam-TOTAL_FORMS': 1,
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
@@ -223,12 +223,12 @@ class TestCreatePrescription(TestCase):
         self.assertEqual(PatientPrescription.save.call_count, 1)
 
     @patch('prescription.models.PatientPrescription.save', MagicMock(name="save"))
-    @patch('prescription.models.PrescriptionRecommendation.save', MagicMock(name="save"))
+    @patch('prescription.models.PrescriptionNewRecommendation.save', MagicMock(name="save"))
     def test_prescription_post_with_patient_not_actived(self):
         context = {'form_medicine-TOTAL_FORMS': 1,
                    'form_medicine-INITIAL_FORMS': 0,
-                   'form_recomendation-TOTAL_FORMS': 1,
-                   'form_recomendation-INITIAL_FORMS': 0,
+                   'form_recommendation-TOTAL_FORMS': 1,
+                   'form_recommendation-INITIAL_FORMS': 0,
                    'form_exam-TOTAL_FORMS': 1,
                    'form_exam-INITIAL_FORMS': 0,
                    'patient': "JOAO",
