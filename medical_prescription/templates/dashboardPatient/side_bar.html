@@ -12,10 +12,10 @@
       <!-- Optionally, you can add icons to the links -->
       <li class="active"><a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
       <li><a href="{% url 'inbox_patient' %}"><i class="fa fa-envelope"></i><span>{% trans "Caixa de Entrada" %}</span></a></li>
-      <li><a href="{% url 'list_patient_prescription' %}"><i class="fa fa-files-o"></i> <span>Prescrições</span></a></li>
-      <li><a href="{% url 'list_patient_files' %}"><i class="glyphicon glyphicon-open"></i><span>Arquivo(s) enviado(s)</span></a></li>
-      <li><a href="#"><i class="glyphicon glyphicon-file"></i><span>Exames</span></a></li>
-      <li><a href="{% url 'edit_patient_password' request.user.email %}"><i class="fa fa-cog"></i><span>Configurações</span></a></li>
+      <li><a href="{% url 'list_patient_prescription' %}"><i class="fa fa-files-o"></i> <span>{% trans "Prescrições" %}</span></a></li>
+      <li><a href="{% url 'list_patient_files' %}"><i class="glyphicon glyphicon-open"></i><span>{% trans "Arquivos Enviados" %}</span></a></li>
+      <li><a href="#"><i class="glyphicon glyphicon-file"></i><span>{% trans "Exames" %}</span></a></li>
+      <li><a href="{% url 'edit_patient_password' request.user.email %}"><i class="fa fa-cog"></i><span>{% trans "Configurações" %}</span></a></li>
     </ul>
 
     <!-- /.sidebar-menu -->

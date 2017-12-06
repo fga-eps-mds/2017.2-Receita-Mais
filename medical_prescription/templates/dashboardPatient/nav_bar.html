@@ -32,9 +32,9 @@
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
-                <li><a href="#">Exames</a></li>
-                <li><a href="#">Receitas</a></li>
-                <li><a href="#">Mensagens</a></li>
+                <li><a href="#">{% trans "Exames" %}</a></li>
+                <li><a href="#">{% trans "Receitas" %}</a></li>
+                <li><a href="#">{% trans "Mensagens" %}</a></li>
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
@@ -78,7 +78,7 @@
                                 <!-- end notification -->
                             </ul>
                         </li>
-                        <li class="footer"><a href="#">Veja todas as notificações !</a></li>
+                        <li class="footer"><a href="#">{% trans "Ver todas as notificações" %}</a></li>
                     </ul>
                 </li>
 
@@ -104,13 +104,13 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="#" class="btn btn-default btn-flat">{% trans "Perfil" %}</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Logout</a>
                                 </div>
                                 <div class="pull-left">
-                                    <a href="{% url 'edit_hp_password' request.user.email %}" class="btn btn-default btn-flat">Editar Senha</a>
+                                    <a href="{% url 'edit_hp_password' request.user.email %}" class="btn btn-default btn-flat">{% trans "Editar Senha" %}</a>
                                 </div>
                             </li>
                         </ul>
