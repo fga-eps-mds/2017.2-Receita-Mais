@@ -30,6 +30,7 @@ class TestPatient(TestCase):
         self.response.subject = "Assunto"
         self.response.user_from = self.patient
         self.response.user_to = self.professional
+        self.response.files = "files"
         self.response.save()
 
     def test_chat_query_true(self):
@@ -40,7 +41,7 @@ class TestPatient(TestCase):
 
         query = self.view.get_queryset()
 
-        self.assertTrue(query.exists())
+        self.assertTrue(query)
 
     def test_chat_query_false(self):
         request = self.factory.get('/')
@@ -51,9 +52,9 @@ class TestPatient(TestCase):
         query = self.view.get_queryset()
         print(query)
 
-        self.assertFalse(query.exists())
+        self.assertFalse(query)
 
-    def teste_list_prescription(self):
+    def test_list_prescription(self):
         request = self.factory.get('/')
         request.user = self.patient
 
