@@ -41,6 +41,7 @@ PATIENT_INVALID = "This field is required."
 
 # Empty constants
 EMPTY = 0
+EMPTY_PRESCRIPTION = "You need at least add a medicine, exam or recommendation."
 
 # Constants for print prescription
 MAX_LENGTH_CLINIC = 50

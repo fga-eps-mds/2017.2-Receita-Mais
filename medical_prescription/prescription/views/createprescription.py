@@ -254,6 +254,12 @@ class CreatePrescriptionView(FormView):
 
         data = dict()
 
+        prescription_form.get_prescription_lengths(
+            form_medicine,
+            form_exam,
+            form_recommendation
+            )
+
         # Checks whether the completed forms are valid.
         if (prescription_form.is_valid() and form_recommendation.is_valid() and form_exam.is_valid() and form_medicine.is_valid()):
 
