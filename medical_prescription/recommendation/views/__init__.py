@@ -1,3 +1,4 @@
 from .createrecomendationcustom import CustomRecommendationCreateView
 from .listrecommendationcustom import *
 from .deletecustomrecommendation import CustomRecommendationDeleteView
+from .editcustomrecommendation import UpdateCustomRecommendation

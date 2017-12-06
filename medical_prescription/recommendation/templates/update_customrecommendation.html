@@ -1,0 +1,36 @@
+{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+
+<!-- Panel -->
+
+{% csrf_token %}
+<form class="post-form" action='' method="POST">
+  <div class="form-group">
+    {% csrf_token %}
+    <div class="col-md-12">
+      <font size="5">
+        <span class="label label-primary">Nome do Recomendação</span>
+      </font>
+      {% for error in form.name.errors %}
+      <div class="alert alert-danger" role="alert">{{error}}</div>
+      {% endfor %}
+      <br> {{ form.name }}
+    </div>
+    <br><br>
+
+    <div class="col-sm-12">
+      <font size="5">
+        <span class="label label-primary">Descrição</span>
+      </font>
+      {% for error in form.recommendation.errors %}
+      <div class="alert alert-danger" role="alert">{{error}}</div>
+      {% endfor %}
+      <br> {{ form.recommendation }}
+    </div>
+    <br><br>
+    <div class="col-sm-2 col-sm-push-5" align="center">
+      <br>
+      <button type="submit" class="btn btn-primary">Editar</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
