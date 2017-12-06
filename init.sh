@@ -26,7 +26,7 @@ echo "Create makemigrations and migrate"
 python3 medical_prescription/manage.py makemigrations
 python3 medical_prescription/manage.py migrate
 echo "Load all datas"
-python3 medical_prescription/manage.py loaddata data2.json
+python3 medical_prescription/manage.py loaddata dataFinal.json
 echo "Collecting static"
 python3 medical_prescription/manage.py collectstatic
 echo "Run server"
