@@ -73,7 +73,7 @@ class TestCreatePrescription(TestCase):
 
         self.patient_not_actived = Patient()
         self.patient_not_actived.email = "not@pac.com"
-        self.patient_not_actived.is_active = True
+        self.patient_not_actived.is_active = False
         self.patient_not_actived.save()
 
         self.invitation = SendInvitationProfile()
@@ -172,6 +172,12 @@ class TestCreatePrescription(TestCase):
         response = CreatePrescriptionView.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
+        # Checking the creation of link between users.
+        link = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=self.health_professional,
+                                                                     associated_patient=self.not_patient)
+        self.assertTrue(link.exists())
+        self.assertTrue(link.first().is_active)
+
         # # Check save was called
         self.assertTrue(PatientPrescription.save.called)
         self.assertEqual(PatientPrescription.save.call_count, 1)
@@ -202,7 +208,17 @@ class TestCreatePrescription(TestCase):
         response = CreatePrescriptionView.as_view()(request)
         self.assertEqual(response.status_code, 200)
 
-        # # Check save was called
+        # Checking the creation of patient not existence.
+        patient = Patient.objects.filter(email="patient@doesnt.com")
+        self.assertTrue(patient.exists())
+
+        # Checking the creation of link between users.
+        link = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=self.health_professional,
+                                                                     associated_patient=patient.first())
+        self.assertTrue(link.exists())
+        self.assertFalse(link.first().is_active)
+
+        # Check save was called
         self.assertTrue(PatientPrescription.save.called)
         self.assertEqual(PatientPrescription.save.call_count, 1)
 
