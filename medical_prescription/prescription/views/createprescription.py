@@ -85,9 +85,9 @@ class CreatePrescriptionView(FormView):
                 patient = Patient.objects.get(email=patient_email)
                 link = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=health_professional,
                                                                              associated_patient=patient)
-                if link.exists() and link is True:
+                if link.exists() and link.first():
                     return True
-                elif link.exists() and link is False:
+                elif link.exists() and not link.first():
                     message = AddPatientView.relationship_exists(patient, health_professional)
                     self.set_message(patient, message)
                 else:
@@ -117,7 +117,7 @@ class CreatePrescriptionView(FormView):
                                                    cid=disease)
         patient_prescription.save()
 
-        return None
+        return patient_prescription
 
     def create_many_to_many_exam(self, form, exam_prescription, request):
         """
