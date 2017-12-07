@@ -13,7 +13,7 @@
   </script>
 
     <!-- Logo -->
-    <a href="" class="logo">
+    <a href="{% url 'dashboard_hp' %}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>R+</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -104,7 +104,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">{% trans "Perfil"%}</a>
+                                    <a href="{% url 'edit_profile' %}" class="btn btn-default btn-flat">{% trans "Perfil"%}</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{% url 'logout' %}" class="btn btn-default btn-flat">{% trans "Sair"%}</a>
