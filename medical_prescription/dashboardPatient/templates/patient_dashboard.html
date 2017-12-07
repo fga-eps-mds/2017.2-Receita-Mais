@@ -3,8 +3,6 @@
     <link rel="stylesheet" href="{% static "dashboard/bowercomponents/morris.js/morris.css" %}">
     <link rel="stylesheet" href="{% static "dashboard/chart/css/block_chart.css" %}">
 
-    <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
-    <script src="{% static "dashboard/bowercomponents/bootstrap/dist/js/bootstrap.min.js" %}"></script>
     <script src="{% static "dashboard/bowercomponents/morris.js/morris.min.js" %}"></script>
     <script src="{% static "dashboard/bowercomponents/raphael/raphael.min.js" %}"></script>
     <script src="{% static "dashboard/bowercomponents/fastclick/lib/fastclick.js" %}"></script>
@@ -29,6 +27,9 @@
                                 <div class="box box-primary box-solid box-length">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">{{prescription.patientprescription.health_professional.name|truncatechars:20}}</h3>
+                                                 <div class="box-tools pull-right">
+                                                     <a href='{% url 'print_prescription_patient' prescription.pk %}'><i class="fa fa-print"></i></a>
+                                                 </div>
                                     </div>
                                     <div class="box-body" style="margin=0%">
                                         {% if prescription.medicines.all.count or prescription.manipulated_medicines.all.count%}
