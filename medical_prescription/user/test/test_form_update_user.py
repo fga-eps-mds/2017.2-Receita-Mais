@@ -17,7 +17,7 @@ class TestUpdateUserForm(TestCase):
         self.date_of_birth_invalid_MIN = '10/12/2022'
 
         self.phone_valid = '(61)1234-56789'
-        self.phone_invalid = 'a1234567890a'
+        self.phone_invalid = 'a12345678'
         self.phone_invalid_MAX = '12345678912312310111212345612345678'
         self.phone_invalid_MIN = '12345'
         self.phone_invalid_TYPE = '1a!2#4*'
@@ -71,7 +71,6 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_invalid,
                      'phone': self.phone_valid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
                      }
         form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
@@ -111,7 +110,6 @@ class TestUpdateUserForm(TestCase):
                      'date_of_birth': self.date_of_birth_valid,
                      'phone': self.phone_invalid,
                      'sex': self.sex_valid,
-                     'password': self.password_valid,
                      }
         form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
@@ -156,21 +154,3 @@ class TestUpdateUserForm(TestCase):
         form = UpdateUserForm(data=form_data, instance=self.user)
         self.assertFalse(form.is_valid())
 
-    def test_user_update_user_form_password_is_not_valid_MAX(self):
-        form_data = {'name': self.name_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'phone': self.phone_valid,
-                     'sex': self.sex_valid,
-                     'password': self.password_invalid_MAX,
-                     }
-        form = UpdateUserForm(data=form_data, instance=self.user)
-        self.assertFalse(form.is_valid())
-
-    def test_user_update_user_form_password_is_not_valid_MIN(self):
-        form_data = {'name': self.name_valid,
-                     'date_of_birth': self.date_of_birth_valid,
-                     'phone': self.phone_valid,
-                     'sex': self.sex_valid,
-                     'password': self.password_invalid_MIN}
-        form = UpdateUserForm(data=form_data, instance=self.user)
-        self.assertFalse(form.is_valid())
