@@ -1,4 +1,4 @@
-{% extends "dashboardHealthProfessional/template.html" %} {% block content %} {% load staticfiles %} {% load static %}{% load i18n %}
+{% extends template %} {% block content %} {% load staticfiles %} {% load static %}{% load i18n %}
 
     {% csrf_token %}
     <form class="post-form" action=''  method="POST" enctype="multipart/form-data">
@@ -82,11 +82,10 @@
 
         {{ form.image_profile }}
 
-      <button type="submit" class="btn btn-success">{% trans "Salvar" %}</button>
+
 
        <div class="col-sm-2 col-sm-push-5">
-         <br>
-
+           <button type="submit" class="btn btn-success">{% trans "Salvar" %}</button>
        </div>
      </div>
     </form>

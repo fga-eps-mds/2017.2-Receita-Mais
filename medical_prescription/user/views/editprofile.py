@@ -19,5 +19,16 @@ class EditProfileView(UpdateView):
     def get_object(self):
         return self.request.user
 
+    def get_context_data(self, **kwargs):
+        context = super(EditProfileView, self).get_context_data(**kwargs)
+        is_health_professional = hasattr(self.request.user, 'healthprofessional')
+        if is_health_professional:
+            template = "dashboardHealthProfessional/template.html"
+        else:
+            template = "dashboardPatient/template.html"
+
+        context['template'] = template
+        return context
+
     def get_success_url(self):
         return reverse_lazy('edit_profile')

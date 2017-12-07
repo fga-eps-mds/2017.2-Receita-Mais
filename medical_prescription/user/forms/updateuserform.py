@@ -32,7 +32,7 @@ class UpdateUserForm(forms.ModelForm):
 
     date_of_birth = FormattedDateField(initial=date.today, widget=forms.DateInput(format='%d/%m/%Y', attrs={'class': 'form-control'}))
 
-    # image_profile = forms.FileField(required=False, widget=forms.FileInput, initial='')
+    image_profile = forms.FileField(required=False, widget=forms.FileInput, initial='')
 
 
     class Meta:
