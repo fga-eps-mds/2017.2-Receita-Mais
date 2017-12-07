@@ -53,7 +53,7 @@ function add_itens(name, itens) {
   }
 
   list_itens = "<b>" + name + "</b><br><ol>"
-
+  console.log(itens);
   for (var item in itens) {
     if (itens.hasOwnProperty(item)) {
       list_itens += "<li>" + itens[item].name + "</li>";

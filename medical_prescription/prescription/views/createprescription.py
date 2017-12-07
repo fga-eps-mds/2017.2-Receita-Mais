@@ -28,7 +28,9 @@ from disease.models import Disease
 from recommendation.models import NewRecommendation, CustomRecommendation
 from user.models import (Patient,
                          HealthProfessional,
+                         AssociatedHealthProfessionalAndPatient
                          )
+from user.views import AddPatientView
 
 
 class CreatePrescriptionView(FormView):
@@ -36,6 +38,7 @@ class CreatePrescriptionView(FormView):
         Responsible for rendering to fields.
     """
     template_name = 'show_prescription_medicine.html'
+    message = None
 
     # Defines that these forms will have multiple instances.
     MedicinePrescriptionFormSet = formset_factory(MedicinePrescriptionForm)
@@ -51,8 +54,8 @@ class CreatePrescriptionView(FormView):
         """
         Creates the prescription object.
         """
-        patient = form.cleaned_data.get('patient')
-        patient_id = form.cleaned_data.get('patient_id')
+        patient_name = form.cleaned_data.get('patient')
+        patient_email = form.cleaned_data.get('email')
         cid_id = form.cleaned_data.get('cid_id')
 
         if cid_id is not None:
@@ -60,12 +63,43 @@ class CreatePrescriptionView(FormView):
         else:
             disease = None
 
-        if patient_id is None or patient_id is 0:
-            prescription_object = self.create_no_patient_prescription(request, patient, disease)
+        if self.check_relation(patient_email, request):
+            prescription_object = self.create_patient_prescription(request, patient_email, patient_name, disease)
         else:
-            prescription_object = self.create_patient_prescription(request, patient_id, disease)
+            prescription_object = self.create_no_patient_prescription(request, patient_name, disease)
 
         return prescription_object
+
+    def check_relation(self, patient_email, request):
+
+        """
+        Creating link between users if it doesn't exist.
+        """
+
+        health_professional = request.user.healthprofessional
+
+        if patient_email:
+            patient_from_database = Patient.objects.filter(email=patient_email)
+
+            if patient_from_database.exists():
+                patient = Patient.objects.get(email=patient_email)
+                link = AssociatedHealthProfessionalAndPatient.objects.filter(associated_health_professional=health_professional,
+                                                                             associated_patient=patient)
+                if link.exists() and link.first():
+                    return True
+                elif link.exists() and not link.first():
+                    message = AddPatientView.relationship_exists(patient, health_professional)
+                    self.set_message(patient, message)
+                else:
+                    message = AddPatientView.relationship_does_not_exist(patient, health_professional)
+                    self.set_message(patient, message)
+            else:
+                message = AddPatientView.patient_does_not_exist(patient_email, health_professional)
+                self.set_message(None, message)
+        else:
+            return False
+
+        return True
 
     def create_no_patient_prescription(self, request, name, disease):
         health_professional = HealthProfessional.objects.get(email=request.user)
@@ -75,11 +109,12 @@ class CreatePrescriptionView(FormView):
 
         return no_patient_prescription
 
-    def create_patient_prescription(self, request, patient_id, disease):
+    def create_patient_prescription(self, request, patient_email, patient_name, disease):
         health_professional = HealthProfessional.objects.get(email=request.user)
-        patient = Patient.objects.get(pk=patient_id)
+        patient = Patient.objects.get(email=patient_email)
         patient_prescription = PatientPrescription(health_professional=health_professional,
-                                                   patient=patient, cid=disease)
+                                                   patient=patient, name=patient_name,
+                                                   cid=disease)
         patient_prescription.save()
 
         return patient_prescription
@@ -306,5 +341,22 @@ class CreatePrescriptionView(FormView):
         data['html_form'] = render_to_string(self.template_name, context, request=request)
 
         print(data['form_is_valid'])
+        self.get_message(data)
         # Json to communication Ajax.
         return JsonResponse(data)
+
+    def set_message(self, patient, message_body):
+        if patient:
+            self.message = ({'message': message_body,
+                             'image': patient.image_profile.url,
+                             'name': patient.name})
+        else:
+            self.message = ({'message': message_body})
+
+    def get_message(self, data):
+        if self.message:
+            data['message'] = self.message
+            self.message = None
+        else:
+            # Nothing to do.
+            pass

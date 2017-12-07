@@ -1,4 +1,5 @@
 # Local Django
+from .sendmail import SendMail
 from .addpatientview import AddPatientView
 from .listlinkedpatientsview import ListLinkedPatientsView
 from .confirmaccountview import ConfirmAccountView

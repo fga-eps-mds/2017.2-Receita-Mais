@@ -83,3 +83,7 @@ FILE_SIZE = 'Please keep filesize under 20MB'
 # 250MB - 214958080
 # 500MB - 429916160
 MAX_UPLOAD_SIZE = 20971520
+
+EMAIL_MIN_LENGTH = 5
+EMAIL_MAX_LENGTH = 50
+EMAIL_SIZE = "E-mail must be between 5 and 50 characters"
