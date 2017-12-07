@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{% static "prescription/css/autocomplete.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/modal_prescription.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/select.css" %}">
+<link rel="stylesheet" href="{% static "prescription/css/error_mensage.css" %}">
 <link rel="stylesheet" href="{% static "prescription/css/hidden_email.css" %}">
 
 <script>
@@ -35,6 +36,10 @@
         <!-- This fields are responsable off patient information. -->
         {% csrf_token %}
         <div class="form-group">
+            {% if prescription_form.non_field_errors  %}
+            <div class="alert alert-danger" role="alert">{{ prescription_form.non_field_errors }}</div>
+            {% endif %}
+
           {% for error in prescription_form.patient.errors %}
           <div class="alert alert-danger" role="alert">{{error}}</div>
           {% endfor %}

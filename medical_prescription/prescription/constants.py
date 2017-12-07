@@ -84,3 +84,6 @@ FILE_SIZE = 'Please keep filesize under 20MB'
 # 250MB - 214958080
 # 500MB - 429916160
 MAX_UPLOAD_SIZE = 20971520
+
+# Medicine form validation.
+MEDICINE_AUTOCOMPLETE = 'Medicine must be in our system.'

@@ -46,6 +46,9 @@ class PrescriptionBaseValidator():
                 else:
                     # Nothing to do.
                     pass
+        else:
+            # Nothing to do.
+            pass
 
         if not valid:
             raise forms.ValidationError(_(constants.EMPTY_PRESCRIPTION))
