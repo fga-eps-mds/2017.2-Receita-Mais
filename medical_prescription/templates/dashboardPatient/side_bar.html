@@ -10,7 +10,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">Menu</li>
       <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+      <li><a href="{% url 'dashboard_patient' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li><a href="{% url 'inbox_patient' %}"><i class="fa fa-envelope"></i><span>{% trans "Caixa de Entrada" %}</span></a></li>
       <li><a href="{% url 'list_patient_prescription' %}"><i class="fa fa-files-o"></i> <span>Prescrições</span></a></li>
       <li><a href="{% url 'list_patient_files' %}"><i class="glyphicon glyphicon-open"></i><span>Arquivo(s) enviado(s)</span></a></li>

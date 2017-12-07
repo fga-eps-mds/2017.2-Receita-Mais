@@ -1,4 +1,118 @@
-{% extends "dashboardPatient/template.html" %} {% block content %} {% load staticfiles %} {% load static %}
+{% extends "dashboardPatient/template.html" %} {% block content %} {% load staticfiles %} {% load static %} {% load i18n %}
 
-<p>Em breve!</p>
+    <link rel="stylesheet" href="{% static "dashboard/bowercomponents/morris.js/morris.css" %}">
+    <link rel="stylesheet" href="{% static "dashboard/chart/css/block_chart.css" %}">
+
+    <script src="{% static "dashboard/bowercomponents/jquery/dist/jquery.min.js" %}"></script>
+    <script src="{% static "dashboard/bowercomponents/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "dashboard/bowercomponents/morris.js/morris.min.js" %}"></script>
+    <script src="{% static "dashboard/bowercomponents/raphael/raphael.min.js" %}"></script>
+    <script src="{% static "dashboard/bowercomponents/fastclick/lib/fastclick.js" %}"></script>
+
+    <script>
+        var chartData = "{% url 'chart_data' %}";
+    </script>
+
+    <script src="{% static "dashboard/chart/js/chart.js"%}"></script>
+
+    <div class="body">
+
+        <div class="row">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Últimas Prescrições</h4>
+                </div>
+                <div class="box-body pull-center">
+                    <div class="row display-flex">
+                        {% for prescription in last_prescriptions %}
+                            <div class="col-lg-2 col-xs-6 col-md-2">
+                                <div class="box box-primary box-solid box-length">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">{{prescription.patientprescription.health_professional.name|truncatechars:20}}</h3>
+                                    </div>
+                                    <div class="box-body" style="margin=0%">
+                                        {% if prescription.medicines.all.count or prescription.manipulated_medicines.all.count%}
+                                            <b>Medicamentos:</b>
+                                        {% endif %}
+                                        <ol>
+                                            {% for medicine in prescription.medicines.all %}
+                                                <li>{{ medicine.name|truncatechars:15 }}</li>
+                                            {% endfor %}
+
+                                            {% for medicine in prescription.manipulated_medicines.all %}
+                                                <li>{{ medicine.recipe_name|truncatechars:15 }}</li>
+                                            {% endfor %}
+                                        </ol>
+
+                                        {% if prescription.default_exams.all.count or prescription.custom_exams.all.count or prescription.new_exams.all.count%}
+                                            <b>Exames:</b>
+                                        {% endif %}
+                                        <ol>
+                                            {% for exam in prescription.default_exams.all %}
+                                                <li>{{ exam.description|truncatechars:15 }}</li>
+                                            {% endfor %}
+
+                                            {% for exam in prescription.custom_exams.all %}
+                                                <li>{{ exam.description|truncatechars:15 }}</li>
+                                            {% endfor %}
+
+                                            {% for new_exam in prescription.new_exams.all %}
+                                                <li>{{ new_exam.exam_description|truncatechars:15 }}</li>
+                                            {% endfor %}
+                                        </ol>
+
+                                        {% if prescription.custom_recommendations.all.count or prescription.new_recommendations.all.count%}
+                                            <b>Recomendações:</b>
+                                        {% endif %}
+                                        <ol>
+                                            {% for new_recommendation in prescription.new_recommendations.all %}
+                                                <li>{{ new_recommendation.recommendation_description|truncatechars:15 }}</li>
+                                            {% endfor %}
+                                            {% for custom_recommendation in prescription.custom_recommendations.all %}
+                                                <li>{{ custom_recommendation.recommendation|truncatechars:15 }}</li>
+                                            {% endfor %}
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Últimas Mensagens</h4>
+                </div>
+                <div class="box-body pull-center">
+                    <div class="row display-flex">
+                        {% for message in latest_messages %}
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><a href="{% url 'view_message_patient' message.pk %}">{{message.user_from.name|truncatechars:20}}</a></span>
+                                        <span class="info-box-number">{{ message.subject|truncatechars:20 }}</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
 {%endblock %}
