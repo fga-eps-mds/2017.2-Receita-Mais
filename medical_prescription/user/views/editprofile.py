@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 
 from user.models import User
 from user.forms import UpdateUserForm
-from user.decorators import is_health_professional, is_patient
 
 
 class EditProfileView(UpdateView):
@@ -14,7 +13,6 @@ class EditProfileView(UpdateView):
     template_name = 'edit_health_professional.html'
 
     @method_decorator(login_required)
-    @method_decorator(is_health_professional)
     def dispatch(self, *args, **kwargs):
         return super(EditProfileView, self).dispatch(*args, **kwargs)
 
@@ -22,4 +20,4 @@ class EditProfileView(UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('edit_profile')

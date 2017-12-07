@@ -32,9 +32,8 @@ class UpdateUserForm(forms.ModelForm):
 
     date_of_birth = FormattedDateField(initial=date.today, widget=forms.DateInput(format='%d/%m/%Y', attrs={'class': 'form-control'}))
 
-    image_profile = forms.FileField(required=False, widget=forms.FileInput, initial='')
+    # image_profile = forms.FileField(required=False, widget=forms.FileInput, initial='')
 
-    password = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         # Define model to User.
@@ -51,24 +50,20 @@ class UpdateUserForm(forms.ModelForm):
 
         name = self.cleaned_data.get('name')
         phone = self.cleaned_data.get('phone')
-        password = self.cleaned_data.get('password')
         date_of_birth = self.cleaned_data.get('date_of_birth')
-        self.validator_all(name, phone, password, date_of_birth)
+        self.validator_all(name, phone, date_of_birth)
 
         logger.debug("Exit clean data in UpdateUserForm.")
 
-    def validator_all(self, name, phone, password, date_of_birth):
+    def validator_all(self, name, phone, date_of_birth):
         """
         Checks validator in all fields.
         """
 
         logger.debug("Start validations in UpdateUserForm.")
 
-        self.verify_password(password)
-
         validator = UserValidator()
         validator.validator_name(name)
-        validator.validator_password(password, password)
         validator.validator_phone_number(phone)
         validator.validator_date_of_birth(date_of_birth)
 
