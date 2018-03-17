@@ -17,15 +17,19 @@ until postgres_ready; do
   >&2 echo "Postgres is unavailable - sleeping"
   sleep 1
 done
-echo "Delete migrations"
+echo "Update node"
+npm cache clean
+npm install -g n
+n stable
+echo "Deleting migrations"
 find . -path "*/migrations/*.pyc"  -delete
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
-echo "Delete old staticfiles dir"
+echo "Deleting old staticfiles dir"
 find . -path "*/staticfiles/*"  -delete
-echo "Create makemigrations and migrate"
+echo "Creating makemigrations and migrate"
 python3 medical_prescription/manage.py makemigrations
 python3 medical_prescription/manage.py migrate
-echo "Load all datas"
+echo "Loading all datas"
 python3 medical_prescription/manage.py loaddata dataFinal.json
 echo "Collecting static"
 python3 medical_prescription/manage.py collectstatic
