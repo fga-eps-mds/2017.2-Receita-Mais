@@ -16,5 +16,5 @@ python-decouple==3.0
 django-widget-tweaks==1.4.1
 django-localflavor==1.5.0
 Pillow==6.2.0
-reportlab==3.4.0
+reportlab==3.5.55
 PyYAML==5.1
